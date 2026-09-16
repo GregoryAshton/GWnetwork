@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}{{ event.canonical_name }} — GWnetwork{% endblock %}
+{% block content %}
+<h1 class="mono">{{ event.canonical_name }}</h1>
+{% for a in aliases %}<span class="chip">{{ a }}</span>{% endfor %}
+
+{% if view %}
+<h2>Measured properties</h2>
+<div class="wrapx"><table>
+<tr><th>m₁</th><th>m₂</th><th>M<sub>total</sub></th><th>χ<sub>eff</sub></th>
+    <th>D<sub>L</sub></th><th>z</th><th>SNR</th><th>FAR</th><th>Class</th><th>Run</th></tr>
+<tr class="tnum">
+  <td>{{ "%.1f"|format(view.mass_1_source) if view.mass_1_source else "—" }}</td>
+  <td>{{ "%.1f"|format(view.mass_2_source) if view.mass_2_source else "—" }}</td>
+  <td>{{ "%.1f"|format(view.total_mass_source) if view.total_mass_source else "—" }}</td>
+  <td>{{ "%.2f"|format(view.chi_eff) if view.chi_eff is not none else "—" }}</td>
+  <td>{{ "%.0f"|format(view.luminosity_distance) if view.luminosity_distance else "—" }}</td>
+  <td>{{ "%.2f"|format(view.redshift) if view.redshift else "—" }}</td>
+  <td>{{ "%.1f"|format(view.network_matched_filter_snr) if view.network_matched_filter_snr else "—" }}</td>
+  <td>{{ "%.1e"|format(view.far) if view.far else "—" }}</td>
+  <td>{{ view.mass_class or "—" }}</td>
+  <td>{{ view.observing_run or "—" }}</td>
+</tr>
+</table></div>
+<p class="small mut">Masses in M☉, distance in Mpc, FAR per year.
+Values taken from <b>{{ view.params_from_catalog or "—" }}</b>; primary record
+{{ view.catalog }}{% if view.catalog_version %} v{{ view.catalog_version }}{% endif %}.
+GPS {{ "%.1f"|format(view.gps) if view.gps else "—" }}.</p>
+{% endif %}
+
+<h2>Catalogue history</h2>
+<div class="wrapx"><table>
+<tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
+{% for r in records %}
+<tr><td>{{ r.catalog or "—" }}</td><td>{{ r.version or "—" }}</td>
+    <td class="small">{{ r.source }}</td>
+    <td class="num small">{{ "%.1f"|format(r.gps) if r.gps else "—" }}</td></tr>
+{% endfor %}
+</table></div>
+
+{% if usages %}
+{% for level, items in usages %}
+<h2>{{ level.replace("_"," ") }} ({{ items|length }})</h2>
+{% for paper, usage in items %}
+<p><a href="/paper/{{ paper.id }}">{{ paper.title }}</a>
+<span class="small mut">(arXiv:{{ paper.arxiv_id }}, {{ usage.method }},
+conf {{ "%.2f"|format(usage.confidence) }})</span><br>
+{% for r in usage.roles %}<span class="chip">{{ r }}</span>{% endfor %}
+{% for ev in usage.evidence[:2] %}
+<blockquote>{{ ev.quote[:300] }} <span class="small">— {{ ev.section }}</span></blockquote>
+{% endfor %}</p>
+{% endfor %}
+{% endfor %}
+{% else %}
+<h2>Classified usage</h2>
+<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+{% endif %}
+
+<h2>Papers mentioning this event</h2>
+{% if event.ads_ceiling %}
+<p class="small mut">{{ "{:,}".format(mentions|length) }} found here. ADS full-text search
+matches <b>{{ "{:,}".format(event.ads_ceiling) }}</b> for this event's designations — we
+hold {{ (100*mentions|length/event.ads_ceiling)|round|int }}%. These are
+<b>mentions</b>, not citations.</p>
+{% endif %}
+<div class="wrapx"><table>
+<tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
+{% for paper, n in mentions %}
+<tr><td><a href="/paper/{{ paper.id }}">{{ paper.title[:82] }}</a></td>
+    <td class="small mono">{{ paper.arxiv_id }}</td>
+    <td class="num small">{{ "{:,}".format(paper.citation_count) if paper.citation_count is not none else "—" }}</td>
+    <td class="num">{{ n }}</td></tr>
+{% else %}
+<tr><td colspan="4" class="mut">No papers found yet.</td></tr>
+{% endfor %}
+</table></div>
+{% endblock %}

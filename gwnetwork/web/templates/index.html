@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}GWnetwork{% endblock %}
+{% block content %}
+<h1>GWnetwork</h1>
+<p class="mut">Which papers discuss or use which gravitational-wave events.</p>
+
+<div class="stats">
+  {% for label, value in stats %}
+  <div class="stat"><b class="tnum">{{ "{:,}".format(value) }}</b><span>{{ label }}</span></div>
+  {% endfor %}
+</div>
+
+<p class="note"><b>These are mentions, not citations.</b> A count means the paper writes
+the event's name in text we hold. Full text has been fetched for
+{{ "{:,}".format(n_fulltext) }} of {{ "{:,}".format(n_papers) }} papers, so counts are a
+lower bound. Usage classification has not been run.</p>
+
+<h2>Most-mentioned events</h2>
+<div class="wrapx"><table>
+<tr><th>Event</th><th>Class</th><th>Run</th><th class="num">Mentioning</th><th class="num">ADS ceiling</th></tr>
+{% for e in top %}
+<tr>
+  <td><a class="mono" href="/event/{{ e.name }}">{{ e.name }}</a></td>
+  <td class="small">{{ e.mass_class or "—" }}</td>
+  <td class="small">{{ e.run or "—" }}</td>
+  <td class="num">{{ "{:,}".format(e.n_papers) }}</td>
+  <td class="num mut">{{ "{:,}".format(e.ceiling) if e.ceiling else "—" }}</td>
+</tr>
+{% endfor %}
+</table></div>
+{% endblock %}

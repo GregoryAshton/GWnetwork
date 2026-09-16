@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Events — GWnetwork{% endblock %}
+{% block content %}
+<h1>Events</h1>
+<p class="mut small">Filter {{ "{:,}".format(total) }} events on their measured properties.</p>
+
+<form class="filters" method="get">
+  <div class="field"><label for="q">Name or alias</label>
+    <input id="q" name="q" value="{{ f.q or '' }}" placeholder="GW170817, AT2017gfo…"></div>
+
+  <div class="field"><label for="mass_class">Class</label>
+    <select id="mass_class" name="mass_class">
+      <option value="">any</option>
+      {% for c in ["BBH","NSBH","BNS"] %}
+      <option value="{{ c }}" {% if f.mass_class==c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select></div>
+
+  <div class="field"><label for="run">Observing run</label>
+    <select id="run" name="run">
+      <option value="">any</option>
+      {% for r in runs %}
+      <option value="{{ r }}" {% if f.run==r %}selected{% endif %}>{{ r }}</option>
+      {% endfor %}
+    </select></div>
+
+  <div class="field"><label>Primary mass m₁ (M☉)</label>
+    <div class="range">
+      <input name="m1_min" type="number" step="any" value="{{ f.m1_min if f.m1_min is not none else '' }}" placeholder="min">
+      <input name="m1_max" type="number" step="any" value="{{ f.m1_max if f.m1_max is not none else '' }}" placeholder="max">
+    </div></div>
+
+  <div class="field"><label>Network SNR</label>
+    <div class="range">
+      <input name="snr_min" type="number" step="any" value="{{ f.snr_min if f.snr_min is not none else '' }}" placeholder="min">
+      <input name="snr_max" type="number" step="any" value="{{ f.snr_max if f.snr_max is not none else '' }}" placeholder="max">
+    </div></div>
+
+  <div class="field"><label>Distance (Mpc)</label>
+    <div class="range">
+      <input name="dist_min" type="number" step="any" value="{{ f.dist_min if f.dist_min is not none else '' }}" placeholder="min">
+      <input name="dist_max" type="number" step="any" value="{{ f.dist_max if f.dist_max is not none else '' }}" placeholder="max">
+    </div></div>
+
+  <div class="field"><label for="papers">Literature</label>
+    <select id="papers" name="papers">
+      <option value="">any</option>
+      <option value="yes" {% if f.papers=='yes' %}selected{% endif %}>has papers</option>
+      <option value="no"  {% if f.papers=='no'  %}selected{% endif %}>no papers yet</option>
+    </select></div>
+
+  <div class="field"><label for="marginal">Marginal</label>
+    <select id="marginal" name="marginal">
+      <option value="">include</option>
+      <option value="exclude" {% if f.marginal=='exclude' %}selected{% endif %}>exclude marginal</option>
+      <option value="only"    {% if f.marginal=='only'    %}selected{% endif %}>only marginal</option>
+    </select></div>
+
+  <div class="field"><label for="sort">Sort by</label>
+    <select id="sort" name="sort">
+      {% for key, lab in sorts %}
+      <option value="{{ key }}" {% if f.sort==key %}selected{% endif %}>{{ lab }}</option>
+      {% endfor %}
+    </select></div>
+
+  <div class="actions">
+    <button type="submit">Apply</button>
+    <a class="chip" href="/events" style="padding:7px 14px">Reset</a>
+  </div>
+</form>
+
+<p class="small mut">{{ "{:,}".format(shown) }} of {{ "{:,}".format(total) }} events
+{%- if hidden_no_value %}, and <b>{{ hidden_no_value }}</b> hidden because they have no
+measurement for a property you filtered on{% endif %}.</p>
+
+{% if hidden_no_value %}
+<p class="note">Only 68% of events have a mass measurement, and 66% a spin. A numeric
+filter can only include events where that quantity was measured, so the
+{{ hidden_no_value }} excluded here are absent for lack of data, not because they fail
+the criterion.</p>
+{% endif %}
+
+<div class="wrapx"><table>
+<tr>
+  <th>Event</th><th>Class</th><th>Run</th>
+  <th class="num">m₁</th><th class="num">m₂</th><th class="num">χ<sub>eff</sub></th>
+  <th class="num">D<sub>L</sub></th><th class="num">SNR</th>
+  <th class="num">Mentioning</th>
+</tr>
+{% for e in events %}
+<tr>
+  <td><a class="mono" href="/event/{{ e.name }}">{{ e.name }}</a>
+      {% if e.is_marginal %}<span class="chip">marginal</span>{% endif %}</td>
+  <td class="small">{{ e.mass_class or "—" }}</td>
+  <td class="small">{{ e.observing_run or "—" }}</td>
+  <td class="num">{{ "%.1f"|format(e.mass_1_source) if e.mass_1_source else "—" }}</td>
+  <td class="num">{{ "%.1f"|format(e.mass_2_source) if e.mass_2_source else "—" }}</td>
+  <td class="num">{{ "%.2f"|format(e.chi_eff) if e.chi_eff is not none else "—" }}</td>
+  <td class="num">{{ "%.0f"|format(e.luminosity_distance) if e.luminosity_distance else "—" }}</td>
+  <td class="num">{{ "%.1f"|format(e.network_matched_filter_snr) if e.network_matched_filter_snr else "—" }}</td>
+  <td class="num">{{ "{:,}".format(e.n_papers) }}</td>
+</tr>
+{% else %}
+<tr><td colspan="9" class="mut">No event matches those filters.</td></tr>
+{% endfor %}
+</table></div>
+{% if shown > events|length %}
+<p class="small mut">Showing first {{ events|length }}. Narrow the filters to see the rest.</p>
+{% endif %}
+{% endblock %}

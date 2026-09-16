@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ paper.title[:60] }} — GWnetwork{% endblock %}
+{% block content %}
+<h1>{{ paper.title }}</h1>
+<p class="small mut">
+  <a href="https://arxiv.org/abs/{{ paper.arxiv_id }}">arXiv:{{ paper.arxiv_id }}</a>
+  · {{ paper.primary_category or "—" }}
+  · text via {{ paper.fulltext_source or "none" }}
+  {%- if paper.citation_count is not none %} · {{ "{:,}".format(paper.citation_count) }} citations{% endif %}
+</p>
+<p class="small">{{ paper.abstract[:900] }}</p>
+<h2>Events</h2>
+<div class="wrapx"><table>
+<tr><th>Event</th><th class="num">Mentions</th><th>Engagement</th></tr>
+{% for name, n in rows %}
+<tr><td><a class="mono" href="/event/{{ name }}">{{ name }}</a></td>
+    <td class="num">{{ n }}</td>
+    <td class="small">{{ usages.get(name, "—") }}</td></tr>
+{% endfor %}
+</table></div>
+{% endblock %}

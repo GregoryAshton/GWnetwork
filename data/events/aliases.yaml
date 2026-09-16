@@ -1,0 +1,27 @@
+# Electromagnetic counterpart aliases for GW170817.
+#
+# These are not in the GWOSC event API, but papers refer to this event by all
+# of them -- a kilonova paper may say "AT2017gfo" and never write "GW170817".
+# Because common_name matches the existing GWOSC event, these attach to it
+# rather than creating a new one.
+common_name: GW170817
+source: manual
+catalog: null
+external_id: GW170817-aliases
+reference: "Abbott et al. 2017, ApJL 848, L12 (multi-messenger)"
+designations:
+  - designation: GW170817
+    kind: gw_name
+    precedence: 10
+  - designation: AT2017gfo
+    kind: em_counterpart
+    precedence: 20
+  - designation: SSS17a
+    kind: em_counterpart
+    precedence: 30
+  - designation: "GRB 170817A"
+    kind: em_counterpart
+    precedence: 20
+  - designation: GRB170817A
+    kind: em_counterpart
+    precedence: 25

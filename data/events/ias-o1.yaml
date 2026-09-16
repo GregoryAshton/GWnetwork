@@ -1,0 +1,22 @@
+# A genuinely non-GWOSC event.
+#
+# GW151216 is a candidate reported by the IAS pipeline (Zackay et al. 2019) from
+# O1 data. It is NOT in GWTC-1 and does not appear in the GWOSC event API, so it
+# can only enter the database through this path -- which is the whole point of
+# the manual provider. Adding it here makes the entire existing corpus
+# searchable for it on the next extraction run, with no code change.
+common_name: GW151216
+source: ias
+catalog: IAS-O1
+external_id: GW151216-ias-v1
+gps: 1134293073.0          # 2015-12-16 09:24:16 UTC, GPS-UTC = 17 s
+reference: "arXiv:1902.10331 (Zackay et al. 2019)"
+parameters:
+  mass_1_source: 30.4
+  mass_2_source: 12.6
+  network_matched_filter_snr: 9.9
+  note: "Candidate; not confirmed in GWTC-1. Parameters are IAS values."
+designations:
+  - designation: GW151216
+    kind: gw_name
+    precedence: 10
