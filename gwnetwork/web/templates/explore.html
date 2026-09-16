@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% from "_chart.html" import marker %}
+{% block title %}Explore — GWnetwork{% endblock %}
+{% block content %}
+<h1>Explore</h1>
+<p class="mut">Three views of how the literature attends to the event catalogue.
+Every mark links to its event.</p>
+
+{# ---------------------------------------------------------------- 1 #}
+<h2>Where the attention sits in the mass plane</h2>
+<p class="small mut">{{ mass.n }} events with both component masses measured.
+Marker area is proportional to the number of papers mentioning the event; shape
+and colour give the compact-object class. Axes are logarithmic.</p>
+
+{% if mass.empty %}<p class="mut">No events with masses yet.</p>{% else %}
+<figure>
+  <div class="chartbox">
+  <svg class="chart" viewBox="0 0 {{ mass.box.w }} {{ mass.box.h }}" role="img"
+       aria-label="Component mass plane, marker size showing paper count">
+    <g transform="translate({{ mass.box.l }},{{ mass.box.t }})">
+      {% for v, px, lab in mass.ya.ticks %}
+      <line class="grid" x1="0" y1="{{ px }}" x2="{{ mass.w }}" y2="{{ px }}"/>
+      <text class="tick" x="-10" y="{{ px }}" text-anchor="end" dominant-baseline="middle">{{ lab }}</text>
+      {% endfor %}
+      {% for v, px, lab in mass.xa.ticks %}
+      <line class="grid" x1="{{ px }}" y1="0" x2="{{ px }}" y2="{{ mass.h }}"/>
+      <text class="tick" x="{{ px }}" y="{{ mass.h + 20 }}" text-anchor="middle">{{ lab }}</text>
+      {% endfor %}
+      <line class="equal" x1="{{ mass.equal.x1 }}" y1="{{ mass.equal.y1 }}"
+            x2="{{ mass.equal.x2 }}" y2="{{ mass.equal.y2 }}"/>
+      <text class="annot" x="{{ mass.equal.x2 - 8 }}" y="{{ mass.equal.y2 + 16 }}"
+            text-anchor="end">m₁ = m₂</text>
+      <line class="axis" x1="0" y1="{{ mass.h }}" x2="{{ mass.w }}" y2="{{ mass.h }}"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="{{ mass.h }}"/>
+      {% for p in mass.points %}
+      <a href="/event/{{ p.name }}">
+        {{ marker(p) }}<title>{{ p.name }} — {{ p.cls }}, m₁ {{ p.m1 }} M☉, m₂ {{ p.m2 }} M☉, {{ "{:,}".format(p.papers) }} papers</title>
+        {% if p.shape == "triangle" %}</polygon>{% elif p.shape == "square" %}</rect>{% else %}</circle>{% endif %}
+      </a>
+      {% endfor %}
+      {% for p in mass.points if p.label %}
+      {% if p.leader %}<line class="leader" x1="{{ p.x }}" y1="{{ p.y }}"
+        x2="{{ p.lx }}" y2="{{ p.ly - 4 }}"/>{% endif %}
+      <text class="datalabel" x="{{ p.lx }}" y="{{ p.ly }}"
+        text-anchor="{{ p.anchor }}">{{ p.label }}</text>
+      {% endfor %}
+      <text class="axis-label" x="{{ mass.w / 2 }}" y="{{ mass.h + 40 }}" text-anchor="middle">
+        Primary mass m₁ (M☉)</text>
+      <text class="axis-label" transform="translate(-46,{{ mass.h / 2 }}) rotate(-90)"
+            text-anchor="middle">Secondary mass m₂ (M☉)</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption>
+    {% for l in mass.legend %}
+    <span class="key"><span class="swatch {{ l.shape }}"
+      style="--c:{{ l.light }};--cd:{{ l.dark }}"></span>{{ l.cls }}</span>
+    {% endfor %}
+    <span class="key mut">largest mark = {{ "{:,}".format(mass.most) }} papers</span>
+  </figcaption>
+</figure>
+<p class="small mut">Mass class uses a 3 M☉ threshold and ignores measurement
+uncertainty, so events near the line are genuinely ambiguous — GW190814's
+2.6 M☉ secondary is the well-known case. See the
+<a href="/events?sort=m1">table view</a> for the underlying numbers.</p>
+{% endif %}
+
+{# ---------------------------------------------------------------- 2 #}
+<h2>Attention over time</h2>
+<p class="small mut">Papers per year mentioning each event, stacked. The five
+most-discussed events are named; everything else is grouped.</p>
+
+{% if time.empty %}<p class="mut">No dated papers yet.</p>{% else %}
+<figure>
+  <div class="chartbox">
+  <svg class="chart" viewBox="0 0 {{ time.box.w }} {{ time.box.h }}" role="img"
+       aria-label="Papers per year by event, stacked area">
+    <g transform="translate({{ time.box.l }},{{ time.box.t }})">
+      {% for v, px, lab in time.ya.ticks %}
+      <line class="grid" x1="0" y1="{{ px }}" x2="{{ time.w }}" y2="{{ px }}"/>
+      <text class="tick" x="-10" y="{{ px }}" text-anchor="end" dominant-baseline="middle">{{ lab }}</text>
+      {% endfor %}
+      {% for v, px, lab in time.xa.ticks %}
+      <text class="tick" x="{{ px }}" y="{{ time.h + 20 }}" text-anchor="middle">{{ lab }}</text>
+      {% endfor %}
+      {% for b in time.bands %}
+      <path class="band" d="{{ b.path }}" style="--c:{{ b.light }};--cd:{{ b.dark }}">
+        <title>{{ b.name }} — {{ "{:,}".format(b.total) }} papers total</title>
+      </path>
+      {% endfor %}
+      <line class="axis" x1="0" y1="{{ time.h }}" x2="{{ time.w }}" y2="{{ time.h }}"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="{{ time.h }}"/>
+      <text class="axis-label" x="{{ time.w / 2 }}" y="{{ time.h + 40 }}" text-anchor="middle">
+        Year of submission</text>
+      <text class="axis-label" transform="translate(-46,{{ time.h / 2 }}) rotate(-90)"
+            text-anchor="middle">Papers mentioning</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption>
+    {% for b in time.bands %}
+    <span class="key"><span class="swatch"
+      style="--c:{{ b.light }};--cd:{{ b.dark }}"></span>{{ b.name }}</span>
+    {% endfor %}
+  </figcaption>
+</figure>
+<p class="small mut">A paper counts once per event per year. Totals reflect what
+we have extracted, not the full literature — see the ADS ceiling on each event page.</p>
+{% endif %}
+
+{# ---------------------------------------------------------------- 3 #}
+<h2>Is attention explained by loudness?</h2>
+<p class="small mut">Network SNR against papers mentioning the event, with a
+fitted log-linear trend. {{ snr.above }} events sit more than one standard
+deviation above the trend and {{ snr.below }} below.</p>
+
+{% if snr.empty %}<p class="mut">Not enough data yet.</p>{% else %}
+<figure>
+  <div class="chartbox">
+  <svg class="chart" viewBox="0 0 {{ snr.box.w }} {{ snr.box.h }}" role="img"
+       aria-label="Network SNR against paper count with fitted trend">
+    <g transform="translate({{ snr.box.l }},{{ snr.box.t }})">
+      {% for v, px, lab in snr.ya.ticks %}
+      <line class="grid" x1="0" y1="{{ px }}" x2="{{ snr.w }}" y2="{{ px }}"/>
+      <text class="tick" x="-10" y="{{ px }}" text-anchor="end" dominant-baseline="middle">{{ lab }}</text>
+      {% endfor %}
+      {% for v, px, lab in snr.xa.ticks %}
+      <line class="grid" x1="{{ px }}" y1="0" x2="{{ px }}" y2="{{ snr.h }}"/>
+      <text class="tick" x="{{ px }}" y="{{ snr.h + 20 }}" text-anchor="middle">{{ lab }}</text>
+      {% endfor %}
+      <line class="trend" x1="{{ snr.trend.x1 }}" y1="{{ snr.trend.y1 }}"
+            x2="{{ snr.trend.x2 }}" y2="{{ snr.trend.y2 }}"/>
+      <line class="axis" x1="0" y1="{{ snr.h }}" x2="{{ snr.w }}" y2="{{ snr.h }}"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="{{ snr.h }}"/>
+      {% for p in snr.points %}
+      <a href="/event/{{ p.name }}"><circle class="mark" cx="{{ p.x }}" cy="{{ p.y }}"
+        r="{{ p.r }}" style="--c:{{ p.light }};--cd:{{ p.dark }}">
+        <title>{{ p.name }} — SNR {{ p.snr }}, {{ "{:,}".format(p.papers) }} papers ({{ p.z }}σ from trend)</title>
+      </circle></a>
+      {% endfor %}
+      {% for p in snr.points if p.label %}
+      {% if p.leader %}<line class="leader" x1="{{ p.x }}" y1="{{ p.y }}"
+        x2="{{ p.lx }}" y2="{{ p.ly - 4 }}"/>{% endif %}
+      <text class="datalabel" x="{{ p.lx }}" y="{{ p.ly }}"
+        text-anchor="{{ p.anchor }}">{{ p.label }}</text>
+      {% endfor %}
+      <text class="axis-label" x="{{ snr.w / 2 }}" y="{{ snr.h + 40 }}" text-anchor="middle">
+        Network matched-filter SNR</text>
+      <text class="axis-label" transform="translate(-46,{{ snr.h / 2 }}) rotate(-90)"
+            text-anchor="middle">Papers mentioning (log)</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption>
+    {% for l in snr.legend %}
+    <span class="key"><span class="swatch"
+      style="--c:{{ l.light }};--cd:{{ l.dark }}"></span>{{ l.label }}</span>
+    {% endfor %}
+  </figcaption>
+</figure>
+<div class="note"><b>Read this one carefully.</b> The trend is descriptive, not
+causal. Attention follows astrophysical novelty — a first detection, an
+electromagnetic counterpart, a mass-gap object — far more than it follows
+loudness, so sitting above the line usually means the event was <em>interesting</em>,
+not over-studied. Events below the line are also the ones where our full-text
+coverage is thinnest, which biases them downward.</div>
+{% endif %}
+{% endblock %}

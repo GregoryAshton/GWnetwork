@@ -213,6 +213,16 @@ def event_page(request: Request, name: str):
                   aliases=aliases, usages=usages, mentions=mentions)
 
 
+@app.get("/explore", response_class=HTMLResponse)
+def explore(request: Request):
+    from .charts import attention_over_time, attention_vs_snr, mass_plane
+    with session() as s:
+        run = current_run(s, "extract")
+        ctx = {"mass": mass_plane(s), "time": attention_over_time(s, run),
+               "snr": attention_vs_snr(s)}
+    return render(request, "explore.html", **ctx)
+
+
 @app.get("/papers", response_class=HTMLResponse)
 def papers(request: Request):
     with session() as s:

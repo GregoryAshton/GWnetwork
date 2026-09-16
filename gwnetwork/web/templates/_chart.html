@@ -1,0 +1,14 @@
+{# Marker shapes. Left open so the caller can nest a <title> for hover. #}
+{% macro marker(p, extra_class="") %}
+{% if p.shape == "triangle" %}
+<polygon class="mark {{ extra_class }}" points="{{ p.x }},{{ p.y - p.r }} {{ p.x + p.r }},{{ p.y + p.r*0.75 }} {{ p.x - p.r }},{{ p.y + p.r*0.75 }}"
+  style="--c:{{ p.light }};--cd:{{ p.dark }}">
+{% elif p.shape == "square" %}
+<rect class="mark {{ extra_class }}" x="{{ p.x - p.r }}" y="{{ p.y - p.r }}"
+  width="{{ p.r * 2 }}" height="{{ p.r * 2 }}" rx="2"
+  style="--c:{{ p.light }};--cd:{{ p.dark }}">
+{% else %}
+<circle class="mark {{ extra_class }}" cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}"
+  style="--c:{{ p.light }};--cd:{{ p.dark }}">
+{% endif %}
+{% endmacro %}
