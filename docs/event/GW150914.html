@@ -1,0 +1,2691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW150914 — GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">GWnetwork</a><a href="../events.html">Events</a><a href="../explore.html">Explore</a><a href="../papers.html">Papers</a></nav>
+
+<h1 class="mono">GW150914</h1>
+<span class="chip">GW150914</span><span class="chip">GW150914_095045</span>
+
+
+<h2>Measured properties</h2>
+<div class="wrapx"><table>
+<tr><th>m₁</th><th>m₂</th><th>M<sub>total</sub></th><th>χ<sub>eff</sub></th>
+    <th>D<sub>L</sub></th><th>z</th><th>SNR</th><th>FAR</th><th>Class</th><th>Run</th></tr>
+<tr class="tnum">
+  <td>34.6</td>
+  <td>30.0</td>
+  <td>64.5</td>
+  <td>-0.04</td>
+  <td>470</td>
+  <td>0.10</td>
+  <td>26.0</td>
+  <td>1.0e-07</td>
+  <td>BBH</td>
+  <td>O1</td>
+</tr>
+</table></div>
+<p class="small mut">Masses in M☉, distance in Mpc, FAR per year.
+Values taken from <b>GWTC-2.1-confident</b>; primary record
+GWTC-2.1-confident v4.
+GPS 1126259462.4.</p>
+
+
+<h2>Catalogue history</h2>
+<div class="wrapx"><table>
+<tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
+
+<tr><td>—</td><td>—</td>
+    <td class="small">alias-inference</td>
+    <td class="num small">—</td></tr>
+
+<tr><td>GWTC-1-confident</td><td>3</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1126259462.4</td></tr>
+
+<tr><td>GWTC-2.1-confident</td><td>4</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1126259462.4</td></tr>
+
+<tr><td>O1_O2-Preliminary</td><td>1</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1126259462.4</td></tr>
+
+<tr><td>O1_O2-Preliminary</td><td>2</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1126259462.4</td></tr>
+
+</table></div>
+
+
+
+<h2>cited only (1)</h2>
+
+<p><a href="#">The Science of the Einstein Telescope</a>
+<span class="small mut">(arXiv:2503.12263, interactive,
+conf 0.85)</span><br>
+<span class="chip">forecast</span>
+
+<blockquote>Ref. [16] assessed the measurability of a GW150914-like event with different ET configurations <span class="small">— methods</span></blockquote>
+</p>
+
+
+
+
+<h2>Papers mentioning this event</h2>
+
+<p class="small mut">500 found here. ADS full-text search
+matches <b>4,000</b> for this event's designations — we
+hold 12%. These are
+<b>mentions</b>, not citations.</p>
+
+<div class="wrapx"><table>
+<tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
+
+<tr><td><a href="#">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
+    <td class="small mono">1811.12907</td>
+    <td class="num small">3,794</td>
+    <td class="num">33</td></tr>
+
+<tr><td><a href="#">Tests of General Relativity with GW150914</a></td>
+    <td class="small mono">1602.03841</td>
+    <td class="num small">1,860</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Population of Merging Compact Binaries Inferred Using Gravitational Waves through </a></td>
+    <td class="small mono">2111.03634</td>
+    <td class="num small">1,372</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Properties of the Binary Neutron Star Merger GW170817</a></td>
+    <td class="small mono">1805.11579</td>
+    <td class="num small">1,359</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Binary Black Hole Mergers in the First Advanced LIGO Observing Run</a></td>
+    <td class="small mono">1606.04856</td>
+    <td class="num small">1,325</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Science case for the Einstein telescope</a></td>
+    <td class="small mono">1912.02622</td>
+    <td class="num small">1,307</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Did LIGO Detect Dark Matter?</a></td>
+    <td class="small mono">1603.00464</td>
+    <td class="num small">1,220</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO an</a></td>
+    <td class="small mono">2108.01045</td>
+    <td class="num small">1,096</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Prospects for observing and localizing gravitational-wave transients with Advanced</a></td>
+    <td class="small mono">1304.0670</td>
+    <td class="num small">1,042</td>
+    <td class="num">30</td></tr>
+
+<tr><td><a href="#">Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-</a></td>
+    <td class="small mono">2010.14533</td>
+    <td class="num small">1,012</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary Black Hole Population Properties Inferred from the First and Second Observi</a></td>
+    <td class="small mono">1811.12940</td>
+    <td class="num small">970</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Primordial Black Hole Scenario for the Gravitational-Wave Event GW150914</a></td>
+    <td class="small mono">1603.08338</td>
+    <td class="num small">964</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Challenges for ΛCDM: An update</a></td>
+    <td class="small mono">2105.05208</td>
+    <td class="num small">960</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Primordial Black Holes as Dark Matter: Recent Developments</a></td>
+    <td class="small mono">2006.02838</td>
+    <td class="num small">932</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Tests of general relativity with binary black holes from the second LIGO-Virgo gra</a></td>
+    <td class="small mono">2010.14529</td>
+    <td class="num small">925</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Primordial black holes—perspectives in gravitational wave astronomy</a></td>
+    <td class="small mono">1801.05235</td>
+    <td class="num small">913</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Tests of general relativity with GWTC-3</a></td>
+    <td class="small mono">2112.06861</td>
+    <td class="num small">910</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Black holes, gravitational waves and fundamental physics: a roadmap</a></td>
+    <td class="small mono">1806.05195</td>
+    <td class="num small">909</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Astrophysics with the Laser Interferometer Space Antenna</a></td>
+    <td class="small mono">2203.06016</td>
+    <td class="num small">903</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05840</td>
+    <td class="num small">877</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The first gravitational-wave source from the isolated evolution of two stars in th</a></td>
+    <td class="small mono">1602.04531</td>
+    <td class="num small">833</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Horizon Study for Cosmic Explorer: Science, Observatories, and Community</a></td>
+    <td class="small mono">2109.09882</td>
+    <td class="num small">802</td>
+    <td class="num">17</td></tr>
+
+<tr><td><a href="#">Astrophysical Implications of the Binary Black-hole Merger GW150914</a></td>
+    <td class="small mono">1602.03846</td>
+    <td class="num small">720</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">GW150914: The Advanced LIGO Detectors in the Era of First Discoveries</a></td>
+    <td class="small mono">1602.03838</td>
+    <td class="num small">717</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Tests of General Relativity with GW170817</a></td>
+    <td class="small mono">1811.00364</td>
+    <td class="num small">702</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Theoretical physics implications of the binary black-hole mergers GW150914 and GW1</a></td>
+    <td class="small mono">1603.08955</td>
+    <td class="num small">682</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Properties and Astrophysical Implications of the 150 M&lt;SUB&gt;☉&lt;/SUB&gt; Binary Black Ho</a></td>
+    <td class="small mono">2009.01190</td>
+    <td class="num small">666</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The PyCBC search for gravitational waves from compact binary coalescence</a></td>
+    <td class="small mono">1508.02357</td>
+    <td class="num small">646</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary black hole mergers from globular clusters: Masses, merger rates, and the im</a></td>
+    <td class="small mono">1602.02444</td>
+    <td class="num small">597</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05459</td>
+    <td class="num small">551</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Bayesian inference for compact binary coalescences with BILBY: validation and appl</a></td>
+    <td class="small mono">2006.00714</td>
+    <td class="num small">546</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Assisted inspirals of stellar mass black holes embedded in AGN discs: solving the </a></td>
+    <td class="small mono">1602.04226</td>
+    <td class="num small">515</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW150914: First results from the search for binary black hole coalescence with Adv</a></td>
+    <td class="small mono">1602.03839</td>
+    <td class="num small">508</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from</a></td>
+    <td class="small mono">2508.18082</td>
+    <td class="num small">500</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Evolutionary roads leading to low effective spins, high black hole masses, and O1/</a></td>
+    <td class="small mono">1706.07053</td>
+    <td class="num small">474</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The SXS collaboration catalog of binary black hole simulations</a></td>
+    <td class="small mono">1904.04831</td>
+    <td class="num small">469</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Testing the No-Hair Theorem with GW150914</a></td>
+    <td class="small mono">1905.00869</td>
+    <td class="num small">455</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Quantum gravity phenomenology at the dawn of the multi-messenger era-A review</a></td>
+    <td class="small mono">2111.05659</td>
+    <td class="num small">445</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">Merging Black Hole Binaries in Galactic Nuclei: Implications for Advanced-LIGO Det</a></td>
+    <td class="small mono">1606.04889</td>
+    <td class="num small">440</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Analysis framework for the prompt discovery of compact binary mergers in gravitati</a></td>
+    <td class="small mono">1604.04324</td>
+    <td class="num small">430</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The effect of pair-instability mass loss on black-hole mergers</a></td>
+    <td class="small mono">1607.03116</td>
+    <td class="num small">430</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Prospects for Multiband Gravitational-Wave Astronomy after GW150914</a></td>
+    <td class="small mono">1602.06951</td>
+    <td class="num small">423</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Science of the Einstein Telescope</a></td>
+    <td class="small mono">2503.12263</td>
+    <td class="num small">409</td>
+    <td class="num">33</td></tr>
+
+<tr><td><a href="#">Sensitivity of the Advanced LIGO detectors at the beginning of gravitational wave </a></td>
+    <td class="small mono">1604.00439</td>
+    <td class="num small">406</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The chemically homogeneous evolutionary channel for binary black hole mergers: rat</a></td>
+    <td class="small mono">1603.02291</td>
+    <td class="num small">389</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Superradiance</a></td>
+    <td class="small mono">1501.06570</td>
+    <td class="num small">380</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New binary black hole mergers in the second observing run of Advanced LIGO and Adv</a></td>
+    <td class="small mono">1904.07214</td>
+    <td class="num small">378</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A guide to LIGO-Virgo detector noise and extraction of transient gravitational-wav</a></td>
+    <td class="small mono">1908.11170</td>
+    <td class="num small">373</td>
+    <td class="num">59</td></tr>
+
+<tr><td><a href="#">GW150914: Implications for the Stochastic Gravitational-Wave Background from Binar</a></td>
+    <td class="small mono">1602.03847</td>
+    <td class="num small">370</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
+    <td class="small mono">2111.03604</td>
+    <td class="num small">369</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Rate of Binary Black Hole Mergers Inferred from Advanced LIGO Observations Sur</a></td>
+    <td class="small mono">1602.03842</td>
+    <td class="num small">368</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">The progenitors of compact-object binaries: impact of metallicity, common envelope</a></td>
+    <td class="small mono">1806.00001</td>
+    <td class="num small">368</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fermi GBM Observations of LIGO Gravitational-wave Event GW150914</a></td>
+    <td class="small mono">1602.03920</td>
+    <td class="num small">366</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Breaking a dark degeneracy with gravitational waves</a></td>
+    <td class="small mono">1509.08458</td>
+    <td class="num small">363</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Progenitors of gravitational wave mergers: binary evolution with the stellar grid-</a></td>
+    <td class="small mono">1801.05433</td>
+    <td class="num small">356</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Echoes from the abyss: Tentative evidence for Planck-scale structure at black hole</a></td>
+    <td class="small mono">1612.00266</td>
+    <td class="num small">352</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Gravitational-wave Measurement of the Hubble Constant Following the Second Obser</a></td>
+    <td class="small mono">1908.06060</td>
+    <td class="num small">351</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Are merging black holes born from stellar collapse or previous mergers?</a></td>
+    <td class="small mono">1703.06223</td>
+    <td class="num small">351</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Illuminating Black Hole Binary Formation Channels with Spins in Advanced LIGO</a></td>
+    <td class="small mono">1609.05916</td>
+    <td class="num small">348</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Very massive stars, pair-instability supernovae and intermediate-mass black holes </a></td>
+    <td class="small mono">1706.06109</td>
+    <td class="num small">346</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">New horizons for fundamental physics with LISA</a></td>
+    <td class="small mono">2205.01597</td>
+    <td class="num small">342</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Characterization of transient noise in Advanced LIGO relevant to gravitational wav</a></td>
+    <td class="small mono">1602.03844</td>
+    <td class="num small">340</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Modified Gravity and Cosmology: An Update by the CANTATA Network</a></td>
+    <td class="small mono">2105.12582</td>
+    <td class="num small">336</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Stochastic gravitational wave backgrounds</a></td>
+    <td class="small mono">1811.08797</td>
+    <td class="num small">327</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a></td>
+    <td class="small mono">2112.06878</td>
+    <td class="num small">327</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Time-domain effective-one-body gravitational waveforms for coalescing compact bina</a></td>
+    <td class="small mono">1806.01772</td>
+    <td class="num small">324</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Formation and evolution of primordial black hole binaries in the early universe</a></td>
+    <td class="small mono">1812.01930</td>
+    <td class="num small">323</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Observational Constraints on Black Hole Spin</a></td>
+    <td class="small mono">2011.08948</td>
+    <td class="num small">317</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">On the formation history of Galactic double neutron stars</a></td>
+    <td class="small mono">1805.07974</td>
+    <td class="num small">316</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The effect of the metallicity-specific star formation history on double compact ob</a></td>
+    <td class="small mono">1906.08136</td>
+    <td class="num small">309</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Science with e-ASTROGAM. A space mission for MeV-GeV gamma-ray astrophysics</a></td>
+    <td class="small mono">1711.01265</td>
+    <td class="num small">309</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Formation of the first three gravitational-wave observations through isolated bina</a></td>
+    <td class="small mono">1704.01352</td>
+    <td class="num small">301</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Merging stellar-mass binary black holes</a></td>
+    <td class="small mono">1806.05820</td>
+    <td class="num small">298</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Hierarchical mergers of stellar-mass black holes and their gravitational-wave sign</a></td>
+    <td class="small mono">2105.03439</td>
+    <td class="num small">297</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Rates of compact object coalescences</a></td>
+    <td class="small mono">2107.14239</td>
+    <td class="num small">294</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Merging black hole binaries: the effects of progenitor&#39;s metallicity, mass-loss ra</a></td>
+    <td class="small mono">1711.03556</td>
+    <td class="num small">291</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Does the Black Hole Merger Rate Evolve with Redshift?</a></td>
+    <td class="small mono">1805.10270</td>
+    <td class="num small">288</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Enriching the symphony of gravitational waves from binary black holes by tuning hi</a></td>
+    <td class="small mono">1803.10701</td>
+    <td class="num small">287</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Distinguishing spin-aligned and isotropic black hole populations with gravitationa</a></td>
+    <td class="small mono">1706.01385</td>
+    <td class="num small">285</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Effective field theories of post-Newtonian gravity: a comprehensive review</a></td>
+    <td class="small mono">1807.01699</td>
+    <td class="num small">282</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Upper Limits on the Stochastic Gravitational-Wave Background from Advanced LIGO&#39;s </a></td>
+    <td class="small mono">1612.02029</td>
+    <td class="num small">280</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Merging black hole binaries with the SEVN code</a></td>
+    <td class="small mono">1809.04605</td>
+    <td class="num small">275</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Merging black holes in young star clusters</a></td>
+    <td class="small mono">1901.00863</td>
+    <td class="num small">266</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Localization and Broadband Follow-up of the Gravitational-wave Transient GW150914</a></td>
+    <td class="small mono">1602.08492</td>
+    <td class="num small">266</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Challenges to self-acceleration in modified gravity from gravitational waves and l</a></td>
+    <td class="small mono">1602.07670</td>
+    <td class="num small">263</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW170817: Implications for the Stochastic Gravitational-Wave Background from Compa</a></td>
+    <td class="small mono">1710.05837</td>
+    <td class="num small">246</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">The spin of the second-born black hole in coalescing binary black holes</a></td>
+    <td class="small mono">1802.05738</td>
+    <td class="num small">243</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Testing local Lorentz invariance with gravitational waves</a></td>
+    <td class="small mono">1602.04782</td>
+    <td class="num small">240</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Graviton mass bounds</a></td>
+    <td class="small mono">1606.08462</td>
+    <td class="num small">233</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Dynamical Formation of the GW150914 Binary Black Hole</a></td>
+    <td class="small mono">1604.04254</td>
+    <td class="num small">225</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Observational evidence for primordial black holes: A positivist perspective</a></td>
+    <td class="small mono">2306.03903</td>
+    <td class="num small">220</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Electromagnetic Counterparts to Black Hole Mergers Detected by LIGO</a></td>
+    <td class="small mono">1602.04735</td>
+    <td class="num small">220</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Validating the effective-one-body model of spinning, precessing binary black holes</a></td>
+    <td class="small mono">1607.05661</td>
+    <td class="num small">219</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Mergers of Charged Black Holes: Gravitational-wave Events, Short Gamma-Ray Bursts,</a></td>
+    <td class="small mono">1602.04542</td>
+    <td class="num small">218</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Short Gamma-Ray Bursts from the Merger of Two Black Holes</a></td>
+    <td class="small mono">1602.05140</td>
+    <td class="num small">216</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers</a></td>
+    <td class="small mono">2105.09151</td>
+    <td class="num small">215</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Rapid and accurate parameter inference for coalescing, precessing compact binaries</a></td>
+    <td class="small mono">1805.10457</td>
+    <td class="num small">212</td>
+    <td class="num">21</td></tr>
+
+<tr><td><a href="#">Constraints on the Primordial Black Hole Abundance from the First Advanced LIGO Ob</a></td>
+    <td class="small mono">1610.08725</td>
+    <td class="num small">212</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">Where Are LIGO’s Big Black Holes?</a></td>
+    <td class="small mono">1709.08584</td>
+    <td class="num small">212</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Search for Gravitational Lensing Signatures in LIGO-Virgo Binary Black Hole Events</a></td>
+    <td class="small mono">1901.02674</td>
+    <td class="num small">211</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">1-OGC: The First Open Gravitational-wave Catalog of Binary Mergers from Analysis o</a></td>
+    <td class="small mono">1811.01921</td>
+    <td class="num small">211</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The cosmic merger rate of neutron stars and black holes</a></td>
+    <td class="small mono">1806.04866</td>
+    <td class="num small">204</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Dark Energy in light of Multi-Messenger Gravitational-Wave astronomy</a></td>
+    <td class="small mono">1807.09241</td>
+    <td class="num small">203</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Gravitational lensing of gravitational waves: a statistical perspective</a></td>
+    <td class="small mono">1802.05089</td>
+    <td class="num small">202</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observational black hole spectroscopy: A time-domain multimode analysis of GW15091</a></td>
+    <td class="small mono">1902.07527</td>
+    <td class="num small">198</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Detecting Gravitational-Wave Memory with LIGO: Implications of GW150914</a></td>
+    <td class="small mono">1605.01415</td>
+    <td class="num small">198</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Reconstructing phenomenological distributions of compact binaries via gravitationa</a></td>
+    <td class="small mono">1805.06442</td>
+    <td class="num small">198</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Modified gravitational-wave propagation and standard sirens</a></td>
+    <td class="small mono">1805.08731</td>
+    <td class="num small">196</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Next Generation Global Gravitational Wave Observatory: The Science Book</a></td>
+    <td class="small mono">2111.06990</td>
+    <td class="num small">191</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Theory-Agnostic Constraints on Black-Hole Dipole Radiation with Multiband Gravitat</a></td>
+    <td class="small mono">1603.04075</td>
+    <td class="num small">191</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The cosmic merger rate of stellar black hole binaries from the Illustris simulatio</a></td>
+    <td class="small mono">1708.05722</td>
+    <td class="num small">190</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Stellar-mass black holes in young massive and open stellar clusters and their role</a></td>
+    <td class="small mono">1611.09357</td>
+    <td class="num small">190</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Beyond the Standard Models with cosmic strings</a></td>
+    <td class="small mono">1912.02569</td>
+    <td class="num small">188</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">LISA for cosmologists: Calculating the signal-to-noise ratio for stochastic and de</a></td>
+    <td class="small mono">1908.00546</td>
+    <td class="num small">185</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Georgia tech catalog of gravitational waveforms</a></td>
+    <td class="small mono">1605.03204</td>
+    <td class="num small">185</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Analysis of Ringdown Overtones in GW150914</a></td>
+    <td class="small mono">2201.00822</td>
+    <td class="num small">180</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fundamental Physics Implications for Higher-Curvature Theories from Binary Black H</a></td>
+    <td class="small mono">1905.00870</td>
+    <td class="num small">178</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Distinguishing between Formation Channels for Binary Black Holes with LISA</a></td>
+    <td class="small mono">1606.09558</td>
+    <td class="num small">176</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW170817 falsifies dark matter emulators</a></td>
+    <td class="small mono">1710.06168</td>
+    <td class="num small">174</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Multiband gravitational-wave astronomy: Observing binary inspirals with a decihert</a></td>
+    <td class="small mono">1802.06977</td>
+    <td class="num small">174</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Analyzing black-hole ringdowns</a></td>
+    <td class="small mono">2107.05609</td>
+    <td class="num small">172</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Use of gravitational waves to probe the formation channels of compact binaries</a></td>
+    <td class="small mono">1503.04307</td>
+    <td class="num small">171</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observing gravitational-wave transient GW150914 with minimal assumptions</a></td>
+    <td class="small mono">1602.03843</td>
+    <td class="num small">168</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Primordial black holes and their gravitational-wave signatures</a></td>
+    <td class="small mono">2310.19857</td>
+    <td class="num small">168</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Black-hole spectroscopy by making full use of gravitational-wave modeling</a></td>
+    <td class="small mono">1805.00293</td>
+    <td class="num small">167</td>
+    <td class="num">24</td></tr>
+
+<tr><td><a href="#">Black Hole and Neutron Star Binary Mergers in Triple Systems: Merger Fraction and </a></td>
+    <td class="small mono">1805.03202</td>
+    <td class="num small">166</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">It has to be cool: Supergiant progenitors of binary black hole mergers from common</a></td>
+    <td class="small mono">2006.11286</td>
+    <td class="num small">165</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Surrogate model of gravitational waveforms from numerical relativity simulations</a></td>
+    <td class="small mono">1701.00550</td>
+    <td class="num small">161</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Searching for eccentricity: signatures of dynamical formation in the first gravita</a></td>
+    <td class="small mono">1909.05466</td>
+    <td class="num small">160</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Eccentric, nonspinning, inspiral, Gaussian-process merger approximant for the dete</a></td>
+    <td class="small mono">1711.06276</td>
+    <td class="num small">160</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Gravitational waves from the remnants of the first stars</a></td>
+    <td class="small mono">1603.05655</td>
+    <td class="num small">159</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Directly comparing GW150914 with numerical solutions of Einstein&#39;s equations for b</a></td>
+    <td class="small mono">1606.01262</td>
+    <td class="num small">159</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Leading higher-derivative corrections to Kerr geometry</a></td>
+    <td class="small mono">1901.01315</td>
+    <td class="num small">156</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational wave decay into dark energy</a></td>
+    <td class="small mono">1809.03484</td>
+    <td class="num small">153</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Effects of waveform model systematics on the interpretation of GW150914</a></td>
+    <td class="small mono">1611.07531</td>
+    <td class="num small">152</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Merger Rate Distribution of Primordial Black Hole Binaries</a></td>
+    <td class="small mono">1801.10327</td>
+    <td class="num small">152</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Neural Importance Sampling for Rapid and Reliable Gravitational-Wave Inference</a></td>
+    <td class="small mono">2210.05686</td>
+    <td class="num small">150</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Measuring eccentricity in binary black hole inspirals with gravitational waves</a></td>
+    <td class="small mono">1806.05350</td>
+    <td class="num small">148</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the importance of source population models for gravitational-wave cosmology</a></td>
+    <td class="small mono">2103.14663</td>
+    <td class="num small">147</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Improved Analysis of GW150914 Using a Fully Spin-Precessing Waveform Model</a></td>
+    <td class="small mono">1606.01210</td>
+    <td class="num small">145</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The science case for LIGO-India</a></td>
+    <td class="small mono">2105.01716</td>
+    <td class="num small">143</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Listening to the Universe with next generation ground-based gravitational-wave det</a></td>
+    <td class="small mono">2202.11048</td>
+    <td class="num small">142</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Binary Black Holes in Dense Star Clusters: Exploring the Theoretical Uncertainties</a></td>
+    <td class="small mono">1603.00884</td>
+    <td class="num small">142</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Effects of data quality vetoes on a search for compact binary coalescences in Adva</a></td>
+    <td class="small mono">1710.02185</td>
+    <td class="num small">141</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Stochastic Gravitational-Wave Background due to Primordial Binary Black Hole Merge</a></td>
+    <td class="small mono">1608.06699</td>
+    <td class="num small">141</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Did GW150914 produce a rotating gravastar?</a></td>
+    <td class="small mono">1602.08759</td>
+    <td class="num small">140</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Testing the Black-Hole Area Law with GW150914</a></td>
+    <td class="small mono">2012.04486</td>
+    <td class="num small">138</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Solving puzzles of GW150914 by primordial black holes</a></td>
+    <td class="small mono">1611.00541</td>
+    <td class="num small">137</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Localization accuracy of compact binary coalescences detected by the third-generat</a></td>
+    <td class="small mono">1710.05325</td>
+    <td class="num small">134</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Distinguishing primordial black holes from astrophysical black holes by Einstein T</a></td>
+    <td class="small mono">1904.02396</td>
+    <td class="num small">133</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Gravitational wave echoes through new windows</a></td>
+    <td class="small mono">1712.06517</td>
+    <td class="num small">133</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Black Hole Spectroscopy and Tests of General Relativity with GW250114</a></td>
+    <td class="small mono">2509.08099</td>
+    <td class="num small">132</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Common-envelope ejection in massive binary stars. Implications for the progenitors</a></td>
+    <td class="small mono">1610.04417</td>
+    <td class="num small">132</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: An Introduction to Version 4.0 of the Gravitational-Wave Transient Catal</a></td>
+    <td class="small mono">2508.18080</td>
+    <td class="num small">132</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Complete waveform model for compact binaries on eccentric orbits</a></td>
+    <td class="small mono">1609.05933</td>
+    <td class="num small">132</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observations of the First Electromagnetic Counterpart to a Gravitational-wave Sour</a></td>
+    <td class="small mono">1710.05844</td>
+    <td class="num small">132</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Calibration of the Advanced LIGO detectors for the discovery of the binary black-h</a></td>
+    <td class="small mono">1602.03845</td>
+    <td class="num small">131</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Numerical relativity simulation of GW150914 in Einstein-dilaton-Gauss-Bonnet gravi</a></td>
+    <td class="small mono">2001.03571</td>
+    <td class="num small">130</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on quasinormal-mode frequencies with LIGO-Virgo binary-black-hole obse</a></td>
+    <td class="small mono">2104.01906</td>
+    <td class="num small">128</td>
+    <td class="num">26</td></tr>
+
+<tr><td><a href="#">The basic physics of the binary black hole merger GW150914</a></td>
+    <td class="small mono">1608.01940</td>
+    <td class="num small">128</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">coherent WaveBurst, a pipeline for unmodeled gravitational-wave data analysis</a></td>
+    <td class="small mono">2006.12604</td>
+    <td class="num small">125</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Information-theoretic approach to the gravitational-wave burst detection problem</a></td>
+    <td class="small mono">1511.05955</td>
+    <td class="num small">122</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Distribution of effective spins and masses of binary black holes from the LIGO and</a></td>
+    <td class="small mono">2105.10580</td>
+    <td class="num small">121</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">All-sky search for short gravitational-wave bursts in the second Advanced LIGO and</a></td>
+    <td class="small mono">1904.08976</td>
+    <td class="num small">119</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Progenitor of GW150914</a></td>
+    <td class="small mono">1603.00511</td>
+    <td class="num small">118</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Recent searches for continuous gravitational waves</a></td>
+    <td class="small mono">1712.05897</td>
+    <td class="num small">118</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The expected spins of gravitational wave sources with isolated field binary progen</a></td>
+    <td class="small mono">1702.00885</td>
+    <td class="num small">118</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Standard Siren Measurement of the Hubble Constant Using Gravitational-wave Event</a></td>
+    <td class="small mono">2111.06445</td>
+    <td class="num small">117</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Metallicity-constrained merger rates of binary black holes and the stochastic grav</a></td>
+    <td class="small mono">1604.04288</td>
+    <td class="num small">116</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black hole formation from a general quadratic action for inflationary primordial f</a></td>
+    <td class="small mono">1811.03065</td>
+    <td class="num small">115</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">The Emergence of Structure in the Binary Black Hole Mass Distribution</a></td>
+    <td class="small mono">2011.04502</td>
+    <td class="num small">115</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Numerical relativity simulation of GW150914 beyond general relativity</a></td>
+    <td class="small mono">1911.02588</td>
+    <td class="num small">115</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">High-energy neutrino follow-up search of gravitational wave event GW150914 with AN</a></td>
+    <td class="small mono">1602.05411</td>
+    <td class="num small">114</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">INTEGRAL Upper Limits on Gamma-Ray Emission Associated with the Gravitational Wave</a></td>
+    <td class="small mono">1602.04180</td>
+    <td class="num small">114</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW150914: spin-based constraints on the merger time of the progenitor system</a></td>
+    <td class="small mono">1605.03839</td>
+    <td class="num small">114</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining the generalized uncertainty principle with the gravitational wave eve</a></td>
+    <td class="small mono">1610.08549</td>
+    <td class="num small">110</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining the orbital eccentricity of inspiralling compact binary systems with </a></td>
+    <td class="small mono">2108.05861</td>
+    <td class="num small">109</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">Pulsar timing array constraints on the induced gravitational waves</a></td>
+    <td class="small mono">1907.06372</td>
+    <td class="num small">109</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">On the merger rate of primordial black holes: effects of nearest neighbours distri</a></td>
+    <td class="small mono">1807.02084</td>
+    <td class="num small">107</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Methods for Identifying and Characterizing Gravitational-wave Transients</a></td>
+    <td class="small mono">2508.18081</td>
+    <td class="num small">106</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational waves from primordial black holes collisions in binary systems</a></td>
+    <td class="small mono">1604.04932</td>
+    <td class="num small">106</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Formation Channels of Single and Binary Stellar-Mass Black Holes</a></td>
+    <td class="small mono">2106.00699</td>
+    <td class="num small">105</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Searching for electromagnetic counterparts to gravitational-wave merger events wit</a></td>
+    <td class="small mono">2004.00025</td>
+    <td class="num small">105</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational waves and electroweak baryogenesis in a global study of the extended</a></td>
+    <td class="small mono">1810.02380</td>
+    <td class="num small">105</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Continuous Gravitational Waves from Neutron Stars: Current Status and Prospects</a></td>
+    <td class="small mono">1909.12600</td>
+    <td class="num small">104</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Pulsational Pair-instability Supernovae. I. Pre-collapse Evolution and Pulsational</a></td>
+    <td class="small mono">1901.11136</td>
+    <td class="num small">104</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Parameter estimation for binary black holes with networks of third-generation grav</a></td>
+    <td class="small mono">1610.06917</td>
+    <td class="num small">104</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parameter estimation with gravitational waves</a></td>
+    <td class="small mono">2204.04449</td>
+    <td class="num small">103</td>
+    <td class="num">62</td></tr>
+
+<tr><td><a href="#">Magnetic massive stars as progenitors of `heavy&#39; stellar-mass black holes</a></td>
+    <td class="small mono">1611.08964</td>
+    <td class="num small">102</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Effective-one-body waveforms for precessing coalescing compact binaries with post-</a></td>
+    <td class="small mono">2111.03675</td>
+    <td class="num small">102</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Searching for a ringdown overtone in GW150914</a></td>
+    <td class="small mono">2205.07809</td>
+    <td class="num small">101</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Accurate waveforms for eccentric, aligned-spin binary black holes: The multipolar </a></td>
+    <td class="small mono">2412.12823</td>
+    <td class="num small">101</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On choosing the start time of binary black hole ringdowns</a></td>
+    <td class="small mono">1711.00926</td>
+    <td class="num small">100</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">All-sky search for short gravitational-wave bursts in the first Advanced LIGO run</a></td>
+    <td class="small mono">1611.02972</td>
+    <td class="num small">100</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Low-latency Gravitational-wave Alerts for Multimessenger Astronomy during the Seco</a></td>
+    <td class="small mono">1901.03310</td>
+    <td class="num small">100</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">How does a dark compact object ringdown?</a></td>
+    <td class="small mono">2006.14628</td>
+    <td class="num small">100</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Detectability of gravitational waves from binary black holes: Impact of precession</a></td>
+    <td class="small mono">1612.02340</td>
+    <td class="num small">99</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary neutron star mergers and third generation detectors: Localization and early</a></td>
+    <td class="small mono">1803.09680</td>
+    <td class="num small">98</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parameter estimation for heavy binary-black holes with networks of second-generati</a></td>
+    <td class="small mono">1611.01122</td>
+    <td class="num small">97</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Exotic energy injection with ExoCLASS: application to the Higgs portal model and e</a></td>
+    <td class="small mono">1801.01871</td>
+    <td class="num small">97</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Fingerprints of Binary Black Hole Formation Channels Encoded in the Mass and Spin </a></td>
+    <td class="small mono">2003.07409</td>
+    <td class="num small">97</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black-hole ringdown as a probe of higher-curvature gravity theories</a></td>
+    <td class="small mono">2205.05132</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Quasinormal-mode filters: A new approach to analyze the gravitational-wave ringdow</a></td>
+    <td class="small mono">2207.10870</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Ultra-luminous X-ray sources and neutron-star-black-hole mergers from very massive</a></td>
+    <td class="small mono">1705.04734</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Pre-DECIGO can get the smoking gun to decide the astrophysical or cosmological ori</a></td>
+    <td class="small mono">1607.00897</td>
+    <td class="num small">94</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Modeling the source of GW150914 with targeted numerical-relativity simulations</a></td>
+    <td class="small mono">1607.05377</td>
+    <td class="num small">94</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational waves from quasinormal modes of a class of Lorentzian wormholes</a></td>
+    <td class="small mono">1803.10204</td>
+    <td class="num small">94</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Multiband Gravitational-Wave Astronomy: Parameter Estimation and Tests of General </a></td>
+    <td class="small mono">1605.01037</td>
+    <td class="num small">94</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New public code for initial data of unequal-mass, spinning compact-object binaries</a></td>
+    <td class="small mono">2103.09911</td>
+    <td class="num small">93</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Higher order gravitational-wave modes with likelihood reweighting</a></td>
+    <td class="small mono">1905.05477</td>
+    <td class="num small">92</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">On the Fermi-GBM Event 0.4 s after GW150914</a></td>
+    <td class="small mono">1606.00314</td>
+    <td class="num small">92</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Impact of inter-correlated initial binary parameters on double black hole and neut</a></td>
+    <td class="small mono">1808.07889</td>
+    <td class="num small">92</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Neutron star mergers and how to study them</a></td>
+    <td class="small mono">1909.06085</td>
+    <td class="num small">92</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">No Evidence that the Majority of Black Holes in Binaries Have Zero Spin</a></td>
+    <td class="small mono">2205.08574</td>
+    <td class="num small">92</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Second RIT binary black hole simulations catalog and its application to gravitatio</a></td>
+    <td class="small mono">1901.02553</td>
+    <td class="num small">90</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Forecasts for detecting the gravitational-wave memory effect with Advanced LIGO an</a></td>
+    <td class="small mono">2002.01821</td>
+    <td class="num small">89</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Dynamical Formation of Low-mass Merging Black Hole Binaries like GW151226</a></td>
+    <td class="small mono">1609.06689</td>
+    <td class="num small">87</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave</a></td>
+    <td class="small mono">2509.04348</td>
+    <td class="num small">87</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Revisiting the ringdown of GW150914</a></td>
+    <td class="small mono">2202.02941</td>
+    <td class="num small">87</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for strongly lensed counterpart images of binary black hole mergers in the </a></td>
+    <td class="small mono">1912.05389</td>
+    <td class="num small">86</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Supplement: “The Rate of Binary Black Hole Mergers Inferred from Advanced LIGO Obs</a></td>
+    <td class="small mono">1606.03939</td>
+    <td class="num small">86</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">EuCAPT White Paper: Opportunities and Challenges for Theoretical Astroparticle Phy</a></td>
+    <td class="small mono">2110.10074</td>
+    <td class="num small">85</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Effects of the surrounding primordial black holes on the merger rate of primordial</a></td>
+    <td class="small mono">1812.05376</td>
+    <td class="num small">85</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Overview of KAGRA: KAGRA science</a></td>
+    <td class="small mono">2008.02921</td>
+    <td class="num small">84</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational-wave tests of general relativity with ground-based detectors and pul</a></td>
+    <td class="small mono">2408.05240</td>
+    <td class="num small">83</td>
+    <td class="num">51</td></tr>
+
+<tr><td><a href="#">Primordial Black Holes as Dark Matter Candidates</a></td>
+    <td class="small mono">2110.02821</td>
+    <td class="num small">83</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">When and where did GW150914 form?</a></td>
+    <td class="small mono">1605.08783</td>
+    <td class="num small">83</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational wave background from Population III binary black holes consistent wi</a></td>
+    <td class="small mono">1603.06921</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational wave denoising of binary black hole mergers with deep learning</a></td>
+    <td class="small mono">1901.00869</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraint on the abundance of primordial black holes in dark matter from Planck d</a></td>
+    <td class="small mono">1608.02174</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black hole echology: The observer&#39;s manual</a></td>
+    <td class="small mono">1803.02845</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parameter estimation method that directly compares gravitational wave observations</a></td>
+    <td class="small mono">1705.09833</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Searching for black hole echoes from the LIGO-Virgo catalog GWTC-1</a></td>
+    <td class="small mono">1906.00838</td>
+    <td class="num small">82</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Exploring Features in the Binary Black Hole Population</a></td>
+    <td class="small mono">2111.13991</td>
+    <td class="num small">82</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW×LSS: chasing the progenitors of merging binary black holes</a></td>
+    <td class="small mono">1809.03528</td>
+    <td class="num small">82</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Hidden Universality in the Merger Rate Distribution in the Primordial Black Hole S</a></td>
+    <td class="small mono">1709.09007</td>
+    <td class="num small">81</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Ultralight Bosonic Field Mass Bounds from Astrophysical Black Hole Spin</a></td>
+    <td class="small mono">2009.07206</td>
+    <td class="num small">81</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Numerical relativity of compact binaries in the 21st century</a></td>
+    <td class="small mono">1808.06011</td>
+    <td class="num small">81</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Coalescence of black hole─neutron star binaries</a></td>
+    <td class="small mono">2110.06218</td>
+    <td class="num small">80</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Overtones or higher harmonics? Prospects for testing the no-hair theorem with grav</a></td>
+    <td class="small mono">1911.00440</td>
+    <td class="num small">80</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Dark Matter In Extreme Astrophysical Environments</a></td>
+    <td class="small mono">2203.07984</td>
+    <td class="num small">80</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A pixelated approach to galaxy catalogue incompleteness: improving the dark siren </a></td>
+    <td class="small mono">2111.04629</td>
+    <td class="num small">79</td>
+    <td class="num">19</td></tr>
+
+<tr><td><a href="#">Fast Gravitational-wave Parameter Estimation without Compromises</a></td>
+    <td class="small mono">2302.05333</td>
+    <td class="num small">79</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">What Powered the Optical Transient AT2017gfo Associated with GW170817?</a></td>
+    <td class="small mono">1804.06597</td>
+    <td class="num small">78</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Suppression of the accretion rate in thin discs around binary black holes</a></td>
+    <td class="small mono">1605.01730</td>
+    <td class="num small">78</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Statistically-informed deep learning for gravitational wave parameter estimation</a></td>
+    <td class="small mono">1903.01998</td>
+    <td class="num small">76</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Uncertain Future of Massive Binaries Obscures the Origin of LIGO/Virgo Sources</a></td>
+    <td class="small mono">2108.10885</td>
+    <td class="num small">76</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multi-messenger Observations of Binary Neutron Star Mergers in the O4 Run</a></td>
+    <td class="small mono">2204.07592</td>
+    <td class="num small">75</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Systematic Biases in Estimating the Properties of Black Holes Due to Inaccurate Gr</a></td>
+    <td class="small mono">2404.05811</td>
+    <td class="num small">74</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Binary black hole mergers from LIGO/Virgo O1 and O2: Population inference combinin</a></td>
+    <td class="small mono">2008.07014</td>
+    <td class="num small">74</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Quantum Black Holes in the Sky</a></td>
+    <td class="small mono">2001.09553</td>
+    <td class="num small">73</td>
+    <td class="num">39</td></tr>
+
+<tr><td><a href="#">GWFAST: A Fisher Information Matrix Python Code for Third-generation Gravitational</a></td>
+    <td class="small mono">2207.06910</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tests of general relativity in the nonlinear regime: A parametrized plunge-merger-</a></td>
+    <td class="small mono">2212.09655</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Hybrid post-Newtonian effective-one-body scheme for spin-precessing compact-binary</a></td>
+    <td class="small mono">2005.05338</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on Kerr-Newman black holes from merger-ringdown gravitational-wave obs</a></td>
+    <td class="small mono">2109.13961</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A generalized precession parameter χ&lt;SUB&gt;p&lt;/SUB&gt; to interpret gravitational-wave d</a></td>
+    <td class="small mono">2011.11948</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observational tests of the black hole area increase law</a></td>
+    <td class="small mono">1711.09073</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A morphology-independent search for gravitational wave echoes in data from the fir</a></td>
+    <td class="small mono">1906.11168</td>
+    <td class="num small">71</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Phase transitions in neutron stars and their links to gravitational waves</a></td>
+    <td class="small mono">1907.04654</td>
+    <td class="num small">71</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">General Relativistic Simulations of the Quasicircular Inspiral and Merger of Charg</a></td>
+    <td class="small mono">2006.15764</td>
+    <td class="num small">71</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Lunar Gravitational-wave Antenna: mission studies and science case</a></td>
+    <td class="small mono">2404.09181</td>
+    <td class="num small">70</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Effects of the merger history on the merger rate density of primordial black hole </a></td>
+    <td class="small mono">1901.07672</td>
+    <td class="num small">70</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational waves from compact binaries in post-Newtonian accurate hyperbolic or</a></td>
+    <td class="small mono">1807.02380</td>
+    <td class="num small">70</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Target-of-opportunity Observations of Gravitational-wave Events with Vera C. Rubin</a></td>
+    <td class="small mono">2111.01945</td>
+    <td class="num small">69</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Dark Energy Camera Search for an Optical Counterpart to the First Advanced LIGO </a></td>
+    <td class="small mono">1602.04198</td>
+    <td class="num small">69</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Accurate modeling and mitigation of overlapping signals and glitches in gravitatio</a></td>
+    <td class="small mono">2205.13580</td>
+    <td class="num small">68</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">First Constraints on Compact Binary Environments from LIGO-Virgo Data</a></td>
+    <td class="small mono">2309.05061</td>
+    <td class="num small">67</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Measurement Accuracy of Inspiraling Eccentric Neutron Star and Black Hole Binaries</a></td>
+    <td class="small mono">1809.00672</td>
+    <td class="num small">67</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Electromagnetic luminosity of the coalescence of charged black hole binaries</a></td>
+    <td class="small mono">1607.02140</td>
+    <td class="num small">67</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">High-Energy Multimessenger Transient Astrophysics</a></td>
+    <td class="small mono">1907.12506</td>
+    <td class="num small">66</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Enhancing modified gravity detection from gravitational-wave observations using th</a></td>
+    <td class="small mono">2102.05939</td>
+    <td class="num small">66</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Parametrized and inspiral-merger-ringdown consistency tests of gravity with multib</a></td>
+    <td class="small mono">1911.05258</td>
+    <td class="num small">65</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Reanalysis of binary black hole gravitational wave events for orbital eccentricity</a></td>
+    <td class="small mono">2504.15833</td>
+    <td class="num small">65</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Pan-STARRS and PESSTO search for an optical counterpart to the LIGO gravitational-</a></td>
+    <td class="small mono">1602.04156</td>
+    <td class="num small">64</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">On the possible gamma-ray burst-gravitational wave association in GW150914</a></td>
+    <td class="small mono">1604.07132</td>
+    <td class="num small">64</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">On constraining the speed of gravitational waves following GW150914</a></td>
+    <td class="small mono">1602.04188</td>
+    <td class="num small">64</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Quantum gravity and gravitational-wave astronomy</a></td>
+    <td class="small mono">1907.02489</td>
+    <td class="num small">63</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Deep learning and Bayesian inference of gravitational-wave populations: Hierarchic</a></td>
+    <td class="small mono">2203.03651</td>
+    <td class="num small">63</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Using rational filters to uncover the first ringdown overtone in GW150914</a></td>
+    <td class="small mono">2301.06639</td>
+    <td class="num small">62</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Gravitational wave constraints on Lorentz and parity violations in gravity: High-o</a></td>
+    <td class="small mono">2112.06446</td>
+    <td class="num small">61</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Constraining Black Hole Spins with Gravitational-wave Observations</a></td>
+    <td class="small mono">1809.01401</td>
+    <td class="num small">61</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Observable Signature of Merging Stellar-mass Black Holes in Active Galactic Nuclei</a></td>
+    <td class="small mono">2301.07111</td>
+    <td class="num small">61</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Oscillation modes of hybrid stars within the relativistic Cowling approximation</a></td>
+    <td class="small mono">1807.02166</td>
+    <td class="num small">61</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational wave tests of quantum modifications to black hole structure—with pos</a></td>
+    <td class="small mono">1602.03622</td>
+    <td class="num small">61</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Remnant Black Hole Kicks and Implications for Hierarchical Mergers</a></td>
+    <td class="small mono">2106.07179</td>
+    <td class="num small">60</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational-wave versus x-ray tests of strong-field gravity</a></td>
+    <td class="small mono">1912.08062</td>
+    <td class="num small">60</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational Wave Implications for the Parity Symmetry of Gravity in the High Ene</a></td>
+    <td class="small mono">2002.05668</td>
+    <td class="num small">60</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Tests of gravitational-wave birefringence with the open gravitational-wave catalog</a></td>
+    <td class="small mono">2109.09718</td>
+    <td class="num small">60</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The delay time of gravitational wave — gamma-ray burst associations</a></td>
+    <td class="small mono">1905.00781</td>
+    <td class="num small">59</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Black Hole Spectroscopy by Mode Cleaning</a></td>
+    <td class="small mono">2301.06705</td>
+    <td class="num small">59</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Combined search for anisotropic birefringence in the gravitational-wave transient </a></td>
+    <td class="small mono">2002.01185</td>
+    <td class="num small">58</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Unraveling the origin of black holes from effective spin measurements with LIGO-Vi</a></td>
+    <td class="small mono">1905.13019</td>
+    <td class="num small">58</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Constraints on frequency-dependent violations of Shapiro delay from GW150914</a></td>
+    <td class="small mono">1602.04779</td>
+    <td class="num small">58</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Dependence of the outer boundary condition on protoneutron star asteroseismology w</a></td>
+    <td class="small mono">1906.04354</td>
+    <td class="num small">58</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Testing General Relativity with Gravitational Waves: An Overview</a></td>
+    <td class="small mono">2201.05418</td>
+    <td class="num small">57</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">Constraining noncommutative spacetime from GW150914</a></td>
+    <td class="small mono">1607.03776</td>
+    <td class="num small">57</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Time-domain phenomenological multipolar waveforms for aligned-spin binary black ho</a></td>
+    <td class="small mono">2503.13062</td>
+    <td class="num small">57</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Wolf-Rayet stars in the Small Magellanic Cloud as testbed for massive star evoluti</a></td>
+    <td class="small mono">1709.08727</td>
+    <td class="num small">57</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Expanding the LISA Horizon from the Ground</a></td>
+    <td class="small mono">1808.08247</td>
+    <td class="num small">57</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Using final black hole spins and masses to infer the formation history of the obse</a></td>
+    <td class="small mono">1806.01285</td>
+    <td class="num small">56</td>
+    <td class="num">16</td></tr>
+
+<tr><td><a href="#">Possible Causes of False General Relativity Violations in Gravitational Wave Obser</a></td>
+    <td class="small mono">2405.02197</td>
+    <td class="num small">55</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">Inferring eccentricity evolution from observations of coalescing binary black hole</a></td>
+    <td class="small mono">2207.10474</td>
+    <td class="num small">55</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fermi-LAT Observations of the LIGO Event GW150914</a></td>
+    <td class="small mono">1602.04488</td>
+    <td class="num small">54</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Observatory science with eXTP</a></td>
+    <td class="small mono">1812.04023</td>
+    <td class="num small">54</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Supplement: “Localization and Broadband Follow-up of the Gravitational-wave Transi</a></td>
+    <td class="small mono">1604.07864</td>
+    <td class="num small">54</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Searching for ringdown higher modes with a numerical relativity-informed post-merg</a></td>
+    <td class="small mono">2312.12515</td>
+    <td class="num small">53</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">Host galaxy properties of mergers of stellar binary black holes and their implicat</a></td>
+    <td class="small mono">1711.09190</td>
+    <td class="num small">53</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">iPTF Search for an Optical Counterpart to Gravitational-wave Transient GW150914</a></td>
+    <td class="small mono">1602.08764</td>
+    <td class="num small">53</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Implications of the Tentative Association between GW150914 and a Fermi-GBM Transie</a></td>
+    <td class="small mono">1602.04460</td>
+    <td class="num small">53</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Measuring the eccentricity of binary black holes in GWTC-1 by using the inspiral-o</a></td>
+    <td class="small mono">2002.05528</td>
+    <td class="num small">53</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Cuckoo&#39;s eggs in neutron stars: can LIGO hear chirps from the dark sector?</a></td>
+    <td class="small mono">1807.02527</td>
+    <td class="num small">53</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">In pursuit of Love numbers: First templated search for compact objects with large </a></td>
+    <td class="small mono">2306.00050</td>
+    <td class="num small">53</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Comment on &#34;Analysis of Ringdown Overtones in GW150914&#34;</a></td>
+    <td class="small mono">2310.13869</td>
+    <td class="num small">53</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Remarks on graviton propagation in light of GW150914</a></td>
+    <td class="small mono">1602.04764</td>
+    <td class="num small">53</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Comprehensive Statistical Study of Gamma-Ray Bursts</a></td>
+    <td class="small mono">1902.05489</td>
+    <td class="num small">52</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational-wave cosmography with LISA and the Hubble tension</a></td>
+    <td class="small mono">1609.07142</td>
+    <td class="num small">52</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. I. Overview and General Tests</a></td>
+    <td class="small mono">2603.19019</td>
+    <td class="num small">52</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Accelerated parameter estimation in Bilby with relative binning</a></td>
+    <td class="small mono">2312.06009</td>
+    <td class="num small">52</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Fundamental physics and cosmology with TianQin</a></td>
+    <td class="small mono">2502.20138</td>
+    <td class="num small">50</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Parametrized tests of post-Newtonian theory using principal component analysis</a></td>
+    <td class="small mono">2110.10147</td>
+    <td class="num small">50</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Hangup effect in unequal mass binary black hole mergers and further studies of the</a></td>
+    <td class="small mono">1801.08162</td>
+    <td class="num small">50</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Neural posterior estimation with guaranteed exact coverage: The ringdown of GW1509</a></td>
+    <td class="small mono">2305.18528</td>
+    <td class="num small">50</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Concise estimate of the expected number of detections for stellar-mass binary blac</a></td>
+    <td class="small mono">1606.02298</td>
+    <td class="num small">50</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A search for optical and near-infrared counterparts of the compact binary merger G</a></td>
+    <td class="small mono">2007.04998</td>
+    <td class="num small">50</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Searching the Gamma-Ray Sky for Counterparts to Gravitational Wave Sources: /Fermi</a></td>
+    <td class="small mono">1606.04901</td>
+    <td class="num small">50</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational memory effects and Bondi-Metzner-Sachs symmetries in scalar-tensor t</a></td>
+    <td class="small mono">2005.01310</td>
+    <td class="num small">50</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Compact Binary Coalescences: Astrophysical Processes and Lessons Learned</a></td>
+    <td class="small mono">2206.15392</td>
+    <td class="num small">49</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">The formation and coalescence sites of the first gravitational wave events</a></td>
+    <td class="small mono">1705.06781</td>
+    <td class="num small">49</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Ultrahigh-energy Cosmic Rays and Black Hole Mergers</a></td>
+    <td class="small mono">1602.06961</td>
+    <td class="num small">49</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Testing gravity with gravitational waves from binary black hole mergers: Contribut</a></td>
+    <td class="small mono">1907.10059</td>
+    <td class="num small">49</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Potential Subpopulations and Assembling Tendency of the Merging Black Holes</a></td>
+    <td class="small mono">2208.11871</td>
+    <td class="num small">49</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining Scalar-tensor Theories Using Neutron Star-Black Hole Gravitational Wa</a></td>
+    <td class="small mono">2105.13644</td>
+    <td class="num small">48</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Eccentric gravitational wave bursts in the post-Newtonian formalism</a></td>
+    <td class="small mono">1702.01818</td>
+    <td class="num small">48</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</a></td>
+    <td class="small mono">2603.19020</td>
+    <td class="num small">48</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Impact of noise transients on low latency gravitational-wave event localization</a></td>
+    <td class="small mono">2202.00344</td>
+    <td class="num small">47</td>
+    <td class="num">17</td></tr>
+
+<tr><td><a href="#">Dirichlet process Gaussian-mixture model: An application to localizing coalescing </a></td>
+    <td class="small mono">1801.08009</td>
+    <td class="num small">47</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Limits of Astrophysics with Gravitational-Wave Backgrounds</a></td>
+    <td class="small mono">1604.02513</td>
+    <td class="num small">47</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Cosmological evolution of primordial black holes</a></td>
+    <td class="small mono">1702.08069</td>
+    <td class="num small">47</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observi</a></td>
+    <td class="small mono">2605.27225</td>
+    <td class="num small">47</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Effective field theory for gravitational radiation in scalar-tensor gravity</a></td>
+    <td class="small mono">1902.04941</td>
+    <td class="num small">47</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Bayesian inference of multimessenger astrophysical data: Methods and applications </a></td>
+    <td class="small mono">2102.00017</td>
+    <td class="num small">46</td>
+    <td class="num">16</td></tr>
+
+<tr><td><a href="#">Extraction of binary black hole gravitational wave signals from detector data usin</a></td>
+    <td class="small mono">2105.03073</td>
+    <td class="num small">46</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Gravitational-wave inference in the catalog era: Evolving priors and marginal even</a></td>
+    <td class="small mono">1912.09708</td>
+    <td class="num small">46</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Prospects of detecting the nonlinear gravitational wave memory</a></td>
+    <td class="small mono">1810.09563</td>
+    <td class="num small">46</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Testing fundamental physics with astrophysical transients</a></td>
+    <td class="small mono">2102.03724</td>
+    <td class="num small">46</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">IceCube Search for Neutrinos Coincident with Compact Binary Mergers from LIGO-Virg</a></td>
+    <td class="small mono">2004.02910</td>
+    <td class="num small">46</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining the parameters of GW150914 and GW170104 with numerical relativity sur</a></td>
+    <td class="small mono">1808.08004</td>
+    <td class="num small">46</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Investigating the relation between gravitational wave tests of general relativity</a></td>
+    <td class="small mono">2109.06988</td>
+    <td class="num small">46</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Fermi GBM signal contemporaneous with GW150914 - an unlikely association</a></td>
+    <td class="small mono">1602.07352</td>
+    <td class="num small">46</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Analysis of GWTC-3 with fully precessing numerical relativity surrogate models</a></td>
+    <td class="small mono">2309.14473</td>
+    <td class="num small">45</td>
+    <td class="num">16</td></tr>
+
+<tr><td><a href="#">On the Interpretation of the Fermi-GBM Transient Observed in Coincidence with LIGO</a></td>
+    <td class="small mono">1801.02305</td>
+    <td class="num small">45</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">The most powerful astrophysical events: Gravitational-wave peak luminosity of bina</a></td>
+    <td class="small mono">1612.09566</td>
+    <td class="num small">45</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Assessing the model waveform accuracy of gravitational waves</a></td>
+    <td class="small mono">2205.08448</td>
+    <td class="num small">45</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Disks around merging binary black holes: From GW150914 to supermassive black holes</a></td>
+    <td class="small mono">1801.02624</td>
+    <td class="num small">45</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational waves and geometrical optics in scalar-tensor theories</a></td>
+    <td class="small mono">1912.08093</td>
+    <td class="num small">45</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for Neutrinos in Super-Kamiokande Associated with Gravitational-wave Events</a></td>
+    <td class="small mono">1608.08745</td>
+    <td class="num small">44</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining chameleon field driven warm inflation with Planck 2018 data</a></td>
+    <td class="small mono">1907.10966</td>
+    <td class="num small">44</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Denoising of gravitational wave signals via dictionary learning algorithms</a></td>
+    <td class="small mono">1612.01305</td>
+    <td class="num small">44</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">When black holes collide: Probing the interior composition by the spectrum of ring</a></td>
+    <td class="small mono">1704.05789</td>
+    <td class="num small">44</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for anisotropic, birefringent spacetime-symmetry breaking in gravitational </a></td>
+    <td class="small mono">2210.04481</td>
+    <td class="num small">44</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Astrophysics of stellar black holes</a></td>
+    <td class="small mono">1809.09130</td>
+    <td class="num small">43</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Ultrahigh-energy neutrino follow-up of gravitational wave events GW150914 and GW15</a></td>
+    <td class="small mono">1608.07378</td>
+    <td class="num small">43</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Constraining extra dimensions using observations of black hole quasi-normal modes</a></td>
+    <td class="small mono">2106.05558</td>
+    <td class="num small">43</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">First gravitational-wave burst GW150914: MASTER optical follow-up observations</a></td>
+    <td class="small mono">1605.01607</td>
+    <td class="num small">42</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Search for the Birefringence of Gravitational Waves with the Third Observing Run o</a></td>
+    <td class="small mono">2201.02813</td>
+    <td class="num small">42</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Massively Parallel Simulations of Binary Black Hole Intermediate-Mass-Ratio Inspir</a></td>
+    <td class="small mono">1807.06128</td>
+    <td class="num small">42</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Wider look at the gravitational-wave transients from GWTC-1 using an unmodeled rec</a></td>
+    <td class="small mono">1905.09260</td>
+    <td class="num small">41</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">AGILE Observations of the Gravitational-wave Event GW150914</a></td>
+    <td class="small mono">1604.00955</td>
+    <td class="num small">41</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">New Limits on the Lorentz/CPT Symmetry Through 50 Gravitational-wave Events</a></td>
+    <td class="small mono">2108.02974</td>
+    <td class="num small">41</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Analytic family of post-merger template waveforms</a></td>
+    <td class="small mono">1606.03952</td>
+    <td class="num small">41</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Cosmological inference from standard sirens without redshift measurements</a></td>
+    <td class="small mono">1801.05073</td>
+    <td class="num small">41</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tossing Black Hole Spin Axes</a></td>
+    <td class="small mono">2205.02541</td>
+    <td class="num small">41</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The importance of priors on LIGO-Virgo parameter estimation: the case of primordia</a></td>
+    <td class="small mono">2008.12320</td>
+    <td class="num small">40</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">Single progenitor model for GW150914 and GW170104</a></td>
+    <td class="small mono">1706.04211</td>
+    <td class="num small">40</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants</a></td>
+    <td class="small mono">2603.19021</td>
+    <td class="num small">40</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Afterglows and Kilonovae Associated with Nearby Low-luminosity Short-duration Gamm</a></td>
+    <td class="small mono">1710.05910</td>
+    <td class="num small">40</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multimessenger tests of the weak equivalence principle from GW170817 and its elect</a></td>
+    <td class="small mono">1710.05860</td>
+    <td class="num small">39</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Echoes from the Abyss: A Status Update</a></td>
+    <td class="small mono">2001.00821</td>
+    <td class="num small">39</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Reconstructing gravitational wave signals from binary black hole mergers with mini</a></td>
+    <td class="small mono">2003.09456</td>
+    <td class="num small">39</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Improved deep learning techniques in gravitational-wave data analysis</a></td>
+    <td class="small mono">2011.04418</td>
+    <td class="num small">39</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multimessenger Binary Mergers Containing Neutron Stars: Gravitational Waves, Jets,</a></td>
+    <td class="small mono">2102.03366</td>
+    <td class="num small">39</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on cosmological viscosity and self-interacting dark matter from gravit</a></td>
+    <td class="small mono">1603.02635</td>
+    <td class="num small">39</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Complete parameter inference for GW150914 using deep learning</a></td>
+    <td class="small mono">2008.03312</td>
+    <td class="num small">38</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Low evidence for ringdown overtone in GW150914 when marginalizing over time and sk</a></td>
+    <td class="small mono">2312.14118</td>
+    <td class="num small">38</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Analysis of Birefringence and Dispersion Effects from Spacetime-Symmetry Breaking </a></td>
+    <td class="small mono">2108.06298</td>
+    <td class="num small">38</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Prospects of eLISA for detecting Galactic binary black holes similar to GW150914</a></td>
+    <td class="small mono">1602.04715</td>
+    <td class="num small">38</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Testing gravitational wave propagation with multiband detections</a></td>
+    <td class="small mono">2209.14398</td>
+    <td class="num small">38</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Electromagnetic afterglows associated with gamma-ray emission coincident with bina</a></td>
+    <td class="small mono">1602.05050</td>
+    <td class="num small">38</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Probing lens-induced gravitational-wave birefringence as a test of general relativ</a></td>
+    <td class="small mono">2301.04826</td>
+    <td class="num small">37</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Black hole mimickers: from theory to observation</a></td>
+    <td class="small mono">2505.09014</td>
+    <td class="num small">37</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Accretion Feedback from newly-formed black holes and its implications for LIGO Sou</a></td>
+    <td class="small mono">1904.04835</td>
+    <td class="num small">37</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Gating-and-inpainting perspective on GW150914 ringdown overtone: Understanding the</a></td>
+    <td class="small mono">2310.19645</td>
+    <td class="num small">37</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Analysis of Sub-threshold Short Gamma-Ray Bursts in Fermi GBM Data</a></td>
+    <td class="small mono">1806.02378</td>
+    <td class="num small">37</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A study of the inspiral-merger-ringdown consistency test with gravitational-wave s</a></td>
+    <td class="small mono">2402.15110</td>
+    <td class="num small">37</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining accretion efficiency in massive binary stars with LIGO -Virgo black h</a></td>
+    <td class="small mono">2010.11220</td>
+    <td class="num small">37</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Difficulties of quantitative tests of the Kerr-hypothesis with X-ray observations </a></td>
+    <td class="small mono">1806.10347</td>
+    <td class="num small">36</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Probing extra dimension through gravitational wave observations of compact binarie</a></td>
+    <td class="small mono">1607.03388</td>
+    <td class="num small">36</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Fusing numerical relativity and deep learning to detect higher-order multipole wav</a></td>
+    <td class="small mono">1807.09787</td>
+    <td class="num small">36</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black hole spins in coalescing binary black holes</a></td>
+    <td class="small mono">1706.00369</td>
+    <td class="num small">35</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Group equivariant neural posterior estimation</a></td>
+    <td class="small mono">2111.13139</td>
+    <td class="num small">35</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Fermi Gamma-Ray Burst Monitor Search for Electromagnetic Signals Coincident with</a></td>
+    <td class="small mono">1810.02764</td>
+    <td class="num small">35</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parametrized spin-precessing inspiral-merger-ringdown waveform model for tests of </a></td>
+    <td class="small mono">2504.10130</td>
+    <td class="num small">34</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">WaveFormer: transformer-based denoising method for gravitational-wave data</a></td>
+    <td class="small mono">2212.14283</td>
+    <td class="num small">34</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Testing massive-field modifications of gravity via gravitational waves</a></td>
+    <td class="small mono">1905.11859</td>
+    <td class="num small">34</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational wave standard sirens: A brief review of cosmological parameter estim</a></td>
+    <td class="small mono">2507.12965</td>
+    <td class="num small">34</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Using deep learning to localize gravitational wave sources</a></td>
+    <td class="small mono">1909.06367</td>
+    <td class="num small">34</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational waves in \mathbf {f(R)} gravity power law model</a></td>
+    <td class="small mono">1901.11277</td>
+    <td class="num small">34</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multi-band gravitational wave astronomy: science with joint space- and ground-base</a></td>
+    <td class="small mono">1702.04356</td>
+    <td class="num small">34</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">What gravity waves are telling about quantum spacetime</a></td>
+    <td class="small mono">1604.00541</td>
+    <td class="num small">34</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Post-Newtonian phase accuracy requirements for stellar black hole binaries with LI</a></td>
+    <td class="small mono">1811.01805</td>
+    <td class="num small">33</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Flexible Gaussian Process Reconstruction Method and the Mass Function of the Coa</a></td>
+    <td class="small mono">2104.02969</td>
+    <td class="num small">33</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Inferring the gravitational wave memory for binary coalescence events</a></td>
+    <td class="small mono">2009.06351</td>
+    <td class="num small">32</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Observed Gravitational-Wave Populations</a></td>
+    <td class="small mono">2410.19145</td>
+    <td class="num small">32</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Gravitational Waves from Binary Black Hole Mergers inside Stars</a></td>
+    <td class="small mono">1704.07383</td>
+    <td class="num small">32</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Probing cosmological fields with gravitational wave oscillations</a></td>
+    <td class="small mono">1912.06104</td>
+    <td class="num small">32</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Detecting black-hole binary clustering via the second-generation gravitational-wav</a></td>
+    <td class="small mono">1603.08072</td>
+    <td class="num small">32</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Searching for electromagnetic counterpart of LIGO gravitational waves in the Fermi</a></td>
+    <td class="small mono">1603.06611</td>
+    <td class="num small">32</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Exploring waveforms with non-GR deviations for extreme mass-ratio inspirals</a></td>
+    <td class="small mono">2405.18508</td>
+    <td class="num small">32</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">J-GEM follow-up observations to search for an optical counterpart of the first gra</a></td>
+    <td class="small mono">1605.03216</td>
+    <td class="num small">32</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Possible role of magnetic reconnection in the electromagnetic counterpart of binar</a></td>
+    <td class="small mono">1603.01950</td>
+    <td class="num small">32</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parameter estimation with the current generation of phenomenological waveform mode</a></td>
+    <td class="small mono">2105.05960</td>
+    <td class="num small">31</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Not quite black holes at LIGO</a></td>
+    <td class="small mono">1909.11801</td>
+    <td class="num small">31</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Fast post-adiabatic waveforms in the time domain: Applications to compact binary c</a></td>
+    <td class="small mono">2105.06983</td>
+    <td class="num small">31</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Modeling the Afterglow of the Possible Fermi-GBM event Associated with GW150914</a></td>
+    <td class="small mono">1602.05529</td>
+    <td class="num small">31</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Optical Follow-up of Gravitational-wave Events during the Second Advanced LIGO/VIR</a></td>
+    <td class="small mono">1901.08474</td>
+    <td class="num small">31</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Gravitational-wave Merging Events from the Dynamics of Stellar-mass Binary Black H</a></td>
+    <td class="small mono">1903.02685</td>
+    <td class="num small">31</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Cosmological searches for the neutrino mass scale and mass ordering</a></td>
+    <td class="small mono">1907.08010</td>
+    <td class="num small">31</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Tidal heating constraints for black holes and exotic compact objects from the LIGO</a></td>
+    <td class="small mono">2404.14641</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Gravitational Wave Universe Toolbox. A software package to simulate observatio</a></td>
+    <td class="small mono">2106.13662</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The first gravitational-wave burst GW150914, as predicted by the scenario machine</a></td>
+    <td class="small mono">1605.01604</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-5.0: An Introduction to Version 5.0 of the Gravitational-Wave Transient Catal</a></td>
+    <td class="small mono">2605.27223</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">DDOTI observations of gravitational-wave sources discovered in O3</a></td>
+    <td class="small mono">2106.15075</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary neutron star merger rate via the luminosity function of short gamma-ray bur</a></td>
+    <td class="small mono">1710.05620</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">CMB spectral distortions from black holes formed by vacuum bubbles</a></td>
+    <td class="small mono">1804.10059</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Improved parametrized test of general relativity using the IMRPHENOMX waveform fam</a></td>
+    <td class="small mono">2504.21147</td>
+    <td class="num small">31</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Post-Newtonian Templates for Gravitational Waves from Compact Binary Inspirals</a></td>
+    <td class="small mono">2012.01350</td>
+    <td class="num small">30</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Measuring the speed of gravitational waves from the first and second observing run</a></td>
+    <td class="small mono">2005.03121</td>
+    <td class="num small">30</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Gravitational wave cosmology</a></td>
+    <td class="small mono">2505.19747</td>
+    <td class="num small">30</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Population-informed priors in gravitational-wave astronomy</a></td>
+    <td class="small mono">2108.02462</td>
+    <td class="num small">30</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Search for Electron Antineutrinos Associated with Gravitational-wave Events GW15</a></td>
+    <td class="small mono">1606.07155</td>
+    <td class="num small">30</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Ensemble of deep convolutional neural networks for real-time gravitational wave si</a></td>
+    <td class="small mono">2204.12058</td>
+    <td class="num small">30</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational waves as a probe of globular cluster formation and evolution</a></td>
+    <td class="small mono">2011.14541</td>
+    <td class="num small">30</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Bounds on GUP parameters from GW150914 and GW190521</a></td>
+    <td class="small mono">2101.03746</td>
+    <td class="num small">30</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Characterization of binary black holes by heterogeneous gravitational-wave network</a></td>
+    <td class="small mono">1804.07866</td>
+    <td class="num small">29</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">Constraining gravitational wave amplitude birefringence with GWTC-3</a></td>
+    <td class="small mono">2305.05844</td>
+    <td class="num small">29</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining alternative theories of gravity using GW150914 and GW151226</a></td>
+    <td class="small mono">1611.05766</td>
+    <td class="num small">29</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Multi-messenger astrophysics of black holes and neutron stars as probed by ground-</a></td>
+    <td class="small mono">2402.13445</td>
+    <td class="num small">29</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">How loud are echoes from exotic compact objects?</a></td>
+    <td class="small mono">2010.14578</td>
+    <td class="num small">29</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Limits on Electromagnetic Counterparts of Gravitational-wave-detected Binary Black</a></td>
+    <td class="small mono">1901.04522</td>
+    <td class="num small">28</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Target of Opportunity Observations of Gravitational Wave Events with LSST</a></td>
+    <td class="small mono">1812.04051</td>
+    <td class="num small">28</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Superradiance and the Spins of Black Holes from LIGO and X-ray binaries</a></td>
+    <td class="small mono">1911.07862</td>
+    <td class="num small">28</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Improving significance of binary black hole mergers in Advanced LIGO data using de</a></td>
+    <td class="small mono">2010.08584</td>
+    <td class="num small">28</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constrains on the electric charges of the binary black holes with GWTC-1 events</a></td>
+    <td class="small mono">2004.12421</td>
+    <td class="num small">27</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">Systematic challenges for future gravitational wave measurements of precessing bin</a></td>
+    <td class="small mono">1709.03095</td>
+    <td class="num small">27</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Targeted numerical simulations of binary black holes for GW170104</a></td>
+    <td class="small mono">1712.05836</td>
+    <td class="num small">27</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Gravitational-wave inference for eccentric binaries: the argument of periapsis</a></td>
+    <td class="small mono">2206.14006</td>
+    <td class="num small">27</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Quantum black hole spectroscopy: probing the quantum nature of the black hole area</a></td>
+    <td class="small mono">2011.03816</td>
+    <td class="num small">27</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Compact binary coalescences in dense gaseous environments can pose as ones in vacu</a></td>
+    <td class="small mono">2410.16388</td>
+    <td class="num small">27</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Prospects for joint observations of gravitational waves and gamma rays from mergin</a></td>
+    <td class="small mono">1606.06124</td>
+    <td class="num small">27</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational wave source localization for eccentric binary coalesce with a ground</a></td>
+    <td class="small mono">1710.02965</td>
+    <td class="num small">27</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Are stellar-mass binary black hole mergers isotropically distributed?</a></td>
+    <td class="small mono">2003.02919</td>
+    <td class="num small">27</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Inferring spin tilts at formation from gravitational wave observations of binary b</a></td>
+    <td class="small mono">2107.11902</td>
+    <td class="num small">27</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary black hole mergers within the LIGO horizon: statistical properties and pros</a></td>
+    <td class="small mono">1708.09402</td>
+    <td class="num small">26</td>
+    <td class="num">23</td></tr>
+
+<tr><td><a href="#">Identifying strongly lensed gravitational waves through their phase consistency</a></td>
+    <td class="small mono">2308.06616</td>
+    <td class="num small">26</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Denoising gravitational-wave signals from binary black holes with a dilated convol</a></td>
+    <td class="small mono">2205.13513</td>
+    <td class="num small">26</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Lecture notes on black hole binary astrophysics</a></td>
+    <td class="small mono">1807.11489</td>
+    <td class="num small">26</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Mergers of accreting stellar-mass black holes</a></td>
+    <td class="small mono">1602.08767</td>
+    <td class="num small">26</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New Methods for Offline GstLAL Analyses</a></td>
+    <td class="small mono">2506.06497</td>
+    <td class="num small">26</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Parameter estimation of stellar mass binary black holes in the network of TianQin </a></td>
+    <td class="small mono">2307.12244</td>
+    <td class="num small">26</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Bayesian evidence estimation from posterior samples with normalizing flows</a></td>
+    <td class="small mono">2404.12294</td>
+    <td class="num small">26</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Backward Population Synthesis: Mapping the Evolutionary History of Gravitational-w</a></td>
+    <td class="small mono">2206.04062</td>
+    <td class="num small">26</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational wave inference on a numerical-relativity simulation of a black hole </a></td>
+    <td class="small mono">2208.02805</td>
+    <td class="num small">26</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW190814 follow-up with the optical telescope MeerLICHT</a></td>
+    <td class="small mono">2103.02399</td>
+    <td class="num small">26</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Monte Carlo Population Synthesis on Massive Star Binaries: Astrophysical Implicati</a></td>
+    <td class="small mono">1710.05504</td>
+    <td class="num small">25</td>
+    <td class="num">37</td></tr>
+
+<tr><td><a href="#">Morphology-independent test of the mixed polarization content of transient gravita</a></td>
+    <td class="small mono">2105.01521</td>
+    <td class="num small">25</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Gravitational wave physics and astronomy in the nascent era</a></td>
+    <td class="small mono">2104.02445</td>
+    <td class="num small">25</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Deeper, Wider, Sharper: Next-Generation Ground-based Gravitational-Wave Observatio</a></td>
+    <td class="small mono">1903.09220</td>
+    <td class="num small">25</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Constraining unmodeled physics with compact binary mergers from GWTC-1</a></td>
+    <td class="small mono">2008.06436</td>
+    <td class="num small">25</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Dark Energy Camera Search for Missing Supergiants in the LMC after the Advanced </a></td>
+    <td class="small mono">1602.04199</td>
+    <td class="num small">25</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Searching for gravitational wave echoes from black hole binary events in the third</a></td>
+    <td class="small mono">2309.01894</td>
+    <td class="num small">25</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Black hole-neutron star coalescence: Effects of the neutron star spin on jet launc</a></td>
+    <td class="small mono">2011.08863</td>
+    <td class="num small">25</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Enhancing confidence in the detection of gravitational waves from compact binaries</a></td>
+    <td class="small mono">1803.09783</td>
+    <td class="num small">25</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Testing general relativity with TianQin: The prospect of using the inspiral signal</a></td>
+    <td class="small mono">2210.13006</td>
+    <td class="num small">25</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Energetic constraints on electromagnetic signals from double black hole mergers</a></td>
+    <td class="small mono">1611.00764</td>
+    <td class="num small">25</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for Neutrinos in Coincidence with Gravitational Wave Events from the LIGO-V</a></td>
+    <td class="small mono">2104.09196</td>
+    <td class="num small">25</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A More Stringent Constraint on the Mass Ratio of Binary Neutron Star Merger GW1708</a></td>
+    <td class="small mono">1711.08577</td>
+    <td class="num small">25</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the Angular Momentum Transport Efficiency within the Star Constrained from Grav</a></td>
+    <td class="small mono">2108.04821</td>
+    <td class="num small">24</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Implications of the gravitational wave event GW150914</a></td>
+    <td class="small mono">1606.06526</td>
+    <td class="num small">24</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Exploring stellar evolution with gravitational-wave observations</a></td>
+    <td class="small mono">1709.09197</td>
+    <td class="num small">24</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Exploring gravitational-wave detection and parameter inference using deep learning</a></td>
+    <td class="small mono">2011.10425</td>
+    <td class="num small">24</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Modeling ringdown II: non-precessing binary black holes</a></td>
+    <td class="small mono">1801.08208</td>
+    <td class="num small">24</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the time lags of the LIGO signals</a></td>
+    <td class="small mono">1706.04191</td>
+    <td class="num small">24</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Low-Latency Algorithm for Multi-messenger Astrophysics (LLAMA) with Gravitational-</a></td>
+    <td class="small mono">1901.05486</td>
+    <td class="num small">24</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tests of General Relativity: A Review</a></td>
+    <td class="small mono">1705.04397</td>
+    <td class="num small">24</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Is the GW150914-GBM really associated with the GW150914?</a></td>
+    <td class="small mono">1605.05447</td>
+    <td class="num small">23</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in G</a></td>
+    <td class="small mono">2404.09668</td>
+    <td class="num small">23</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Does spacetime have memories? Searching for gravitational-wave memory in the third</a></td>
+    <td class="small mono">2404.11919</td>
+    <td class="num small">23</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">SLICK: Strong Lensing Identification of Candidates Kindred in gravitational wave d</a></td>
+    <td class="small mono">2403.02994</td>
+    <td class="num small">23</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary neutron star mergers: a multi-messenger revolution</a></td>
+    <td class="small mono">2009.12255</td>
+    <td class="num small">23</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Virgo Detector Characterization and Data Quality during the O3 run</a></td>
+    <td class="small mono">2205.01555</td>
+    <td class="num small">23</td>
+    <td class="num">1</td></tr>
+
+</table></div>
+
+</div>
+</body>
+</html>

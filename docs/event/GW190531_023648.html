@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW190531_023648 — GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">GWnetwork</a><a href="../events.html">Events</a><a href="../explore.html">Explore</a><a href="../papers.html">Papers</a></nav>
+
+<h1 class="mono">GW190531_023648</h1>
+<span class="chip">GW190531_023648</span>
+
+
+<h2>Measured properties</h2>
+<div class="wrapx"><table>
+<tr><th>m₁</th><th>m₂</th><th>M<sub>total</sub></th><th>χ<sub>eff</sub></th>
+    <th>D<sub>L</sub></th><th>z</th><th>SNR</th><th>FAR</th><th>Class</th><th>Run</th></tr>
+<tr class="tnum">
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>10.0</td>
+  <td>4.1e-01</td>
+  <td>—</td>
+  <td>O3a</td>
+</tr>
+</table></div>
+<p class="small mut">Masses in M☉, distance in Mpc, FAR per year.
+Values taken from <b>—</b>; primary record
+GWTC-2.1-marginal v1.
+GPS 1243305426.3.</p>
+
+
+<h2>Catalogue history</h2>
+<div class="wrapx"><table>
+<tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
+
+<tr><td>GWTC-2.1-marginal</td><td>1</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1243305426.3</td></tr>
+
+</table></div>
+
+
+<h2>Classified usage</h2>
+<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+
+
+<h2>Papers mentioning this event</h2>
+
+<p class="small mut">8 found here. ADS full-text search
+matches <b>6</b> for this event's designations — we
+hold 133%. These are
+<b>mentions</b>, not citations.</p>
+
+<div class="wrapx"><table>
+<tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
+
+<tr><td><a href="#">GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO an</a></td>
+    <td class="small mono">2108.01045</td>
+    <td class="num small">1,096</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
+    <td class="small mono">2111.03604</td>
+    <td class="num small">369</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">New binary black hole mergers in the LIGO-Virgo O3a data</a></td>
+    <td class="small mono">2201.02252</td>
+    <td class="num small">207</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Population properties and multimessenger prospects of neutron star-black hole merg</a></td>
+    <td class="small mono">2207.01568</td>
+    <td class="num small">51</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the</a></td>
+    <td class="small mono">2308.13666</td>
+    <td class="num small">14</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Astrophysical implications of eccentricity in gravitational waves from neutron sta</a></td>
+    <td class="small mono">2512.16289</td>
+    <td class="num small">9</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Ap</a></td>
+    <td class="small mono">2504.17587</td>
+    <td class="num small">4</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Combining gravitational wave search pipelines to find subthreshold signals in GWTC</a></td>
+    <td class="small mono">2607.07272</td>
+    <td class="num small">0</td>
+    <td class="num">7</td></tr>
+
+</table></div>
+
+</div>
+</body>
+</html>

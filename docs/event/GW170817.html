@@ -1,0 +1,2728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW170817 — GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">GWnetwork</a><a href="../events.html">Events</a><a href="../explore.html">Explore</a><a href="../papers.html">Papers</a></nav>
+
+<h1 class="mono">GW170817</h1>
+<span class="chip">GW170817</span><span class="chip">AT2017gfo</span><span class="chip">SSS17a</span><span class="chip">GRB 170817A</span><span class="chip">GRB170817A</span><span class="chip">GW170817_124104</span>
+
+
+<h2>Measured properties</h2>
+<div class="wrapx"><table>
+<tr><th>m₁</th><th>m₂</th><th>M<sub>total</sub></th><th>χ<sub>eff</sub></th>
+    <th>D<sub>L</sub></th><th>z</th><th>SNR</th><th>FAR</th><th>Class</th><th>Run</th></tr>
+<tr class="tnum">
+  <td>1.5</td>
+  <td>1.3</td>
+  <td>—</td>
+  <td>0.00</td>
+  <td>40</td>
+  <td>0.01</td>
+  <td>33.0</td>
+  <td>1.0e-07</td>
+  <td>BNS</td>
+  <td>O2</td>
+</tr>
+</table></div>
+<p class="small mut">Masses in M☉, distance in Mpc, FAR per year.
+Values taken from <b>GWTC-1-confident</b>; primary record
+GWTC-1-confident v3.
+GPS 1187008882.4.</p>
+
+
+<h2>Catalogue history</h2>
+<div class="wrapx"><table>
+<tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
+
+<tr><td>—</td><td>—</td>
+    <td class="small">manual</td>
+    <td class="num small">—</td></tr>
+
+<tr><td>—</td><td>—</td>
+    <td class="small">alias-inference</td>
+    <td class="num small">—</td></tr>
+
+<tr><td>GWTC-1-confident</td><td>3</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1187008882.4</td></tr>
+
+<tr><td>O1_O2-Preliminary</td><td>1</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1187008882.4</td></tr>
+
+<tr><td>O1_O2-Preliminary</td><td>2</td>
+    <td class="small">gwosc</td>
+    <td class="num small">1187008882.4</td></tr>
+
+</table></div>
+
+
+
+<h2>strain reanalysis (1)</h2>
+
+<p><a href="#">From Existing and New Nuclear and Astrophysical Constraints to Stringent Limits on the Equation of State of Neutron-Rich Dense Matter</a>
+<span class="small mut">(arXiv:2402.04172, interactive,
+conf 0.90)</span><br>
+<span class="chip">multimessenger</span>
+
+<blockquote>This is augmented by reanalyses of the existing data from binary neutron star coalescences, in particular of GW170817, with improved models for the tidal waveform and kilonova light curves <span class="small">— abstract</span></blockquote>
+</p>
+
+
+<h2>posterior samples (1)</h2>
+
+<p><a href="#">Population Properties of Neutron Stars in the Coalescing Compact Binaries</a>
+<span class="small mut">(arXiv:2108.06986, interactive,
+conf 0.95)</span><br>
+<span class="chip">population</span>
+
+<blockquote>Our hierarchical analysis is based on the GW events involving at least one NS, which consist of four published confident events, including GW170817, GW190425, GW200105 and GW200115 <span class="small">— methods</span></blockquote>
+
+<blockquote>we adopt the “IMRPhenomPv2NRT_lowSpin_posterior” ... posterior samples for GW170817, GW190425, GW200105, GW200115 <span class="small">— methods</span></blockquote>
+</p>
+
+
+<h2>published results (1)</h2>
+
+<p><a href="#">The electromagnetic counterparts of compact binary mergers</a>
+<span class="small mut">(arXiv:1912.05659, interactive,
+conf 0.60)</span><br>
+<span class="chip">review</span><span class="chip">multimessenger</span>
+
+<blockquote>6 GW170817 <span class="small">— conclusion</span></blockquote>
+
+<blockquote>7.3 GW170817 and sGRBs <span class="small">— discussion</span></blockquote>
+</p>
+
+
+<h2>cited only (1)</h2>
+
+<p><a href="#">The Science of the Einstein Telescope</a>
+<span class="small mut">(arXiv:2503.12263, interactive,
+conf 0.85)</span><br>
+<span class="chip">forecast</span><span class="chip">review</span>
+
+<blockquote>ET will be sensitive to the effect of dynamical friction in a GW170817-like event <span class="small">— methods</span></blockquote>
+</p>
+
+
+
+
+<h2>Papers mentioning this event</h2>
+
+<p class="small mut">500 found here. ADS full-text search
+matches <b>9,456</b> for this event's designations — we
+hold 5%. These are
+<b>mentions</b>, not citations.</p>
+
+<div class="wrapx"><table>
+<tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
+
+<tr><td><a href="#">Multi-messenger Observations of a Binary Neutron Star Merger</a></td>
+    <td class="small mono">1710.05833</td>
+    <td class="num small">4,146</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
+    <td class="small mono">1811.12907</td>
+    <td class="num small">3,794</td>
+    <td class="num">53</td></tr>
+
+<tr><td><a href="#">Gravitational Waves and Gamma-Rays from a Binary Neutron Star Merger: GW170817 and</a></td>
+    <td class="small mono">1710.05834</td>
+    <td class="num small">3,422</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">GW170817: Measurements of Neutron Star Radii and Equation of State</a></td>
+    <td class="small mono">1805.11581</td>
+    <td class="num small">2,573</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Population of Merging Compact Binaries Inferred Using Gravitational Waves through </a></td>
+    <td class="small mono">2111.03634</td>
+    <td class="num small">1,372</td>
+    <td class="num">21</td></tr>
+
+<tr><td><a href="#">Properties of the Binary Neutron Star Merger GW170817</a></td>
+    <td class="small mono">1805.11579</td>
+    <td class="num small">1,359</td>
+    <td class="num">71</td></tr>
+
+<tr><td><a href="#">A gravitational-wave standard siren measurement of the Hubble constant</a></td>
+    <td class="small mono">1710.05835</td>
+    <td class="num small">1,321</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Science case for the Einstein telescope</a></td>
+    <td class="small mono">1912.02622</td>
+    <td class="num small">1,307</td>
+    <td class="num">38</td></tr>
+
+<tr><td><a href="#">Swope Supernova Survey 2017a (SSS17a), the optical counterpart to a gravitational </a></td>
+    <td class="small mono">1710.05452</td>
+    <td class="num small">1,118</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO an</a></td>
+    <td class="small mono">2108.01045</td>
+    <td class="num small">1,096</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Origin of the heavy elements in binary neutron-star mergers from a gravitational-w</a></td>
+    <td class="small mono">1710.05463</td>
+    <td class="num small">1,067</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Prospects for observing and localizing gravitational-wave transients with Advanced</a></td>
+    <td class="small mono">1304.0670</td>
+    <td class="num small">1,042</td>
+    <td class="num">51</td></tr>
+
+<tr><td><a href="#">Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-</a></td>
+    <td class="small mono">2010.14533</td>
+    <td class="num small">1,012</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Binary Black Hole Population Properties Inferred from the First and Second Observi</a></td>
+    <td class="small mono">1811.12940</td>
+    <td class="num small">970</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Challenges for ΛCDM: An update</a></td>
+    <td class="small mono">2105.05208</td>
+    <td class="num small">960</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Gravitational-Wave Constraints on the Neutron-Star-Matter Equation of State</a></td>
+    <td class="small mono">1711.02644</td>
+    <td class="num small">941</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Dark Energy After GW170817: Dead Ends and the Road Ahead</a></td>
+    <td class="small mono">1710.05901</td>
+    <td class="num small">931</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tests of general relativity with binary black holes from the second LIGO-Virgo gra</a></td>
+    <td class="small mono">2010.14529</td>
+    <td class="num small">925</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Tests of general relativity with GWTC-3</a></td>
+    <td class="small mono">2112.06861</td>
+    <td class="num small">910</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Black holes, gravitational waves and fundamental physics: a roadmap</a></td>
+    <td class="small mono">1806.05195</td>
+    <td class="num small">909</td>
+    <td class="num">33</td></tr>
+
+<tr><td><a href="#">Astrophysics with the Laser Interferometer Space Antenna</a></td>
+    <td class="small mono">2203.06016</td>
+    <td class="num small">903</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Observation of Gravitational Waves from Two Neutron Star-Black Hole Coalescences</a></td>
+    <td class="small mono">2106.15163</td>
+    <td class="num small">884</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">INTEGRAL Detection of the First Prompt Gamma-Ray Signal Coincident with the Gravit</a></td>
+    <td class="small mono">1710.05449</td>
+    <td class="num small">882</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05840</td>
+    <td class="num small">877</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">Spectroscopic identification of r-process nucleosynthesis in a double neutron-star</a></td>
+    <td class="small mono">1710.05858</td>
+    <td class="num small">868</td>
+    <td class="num">27</td></tr>
+
+<tr><td><a href="#">Constraining the Maximum Mass of Neutron Stars from Multi-messenger Observations o</a></td>
+    <td class="small mono">1710.05938</td>
+    <td class="num small">855</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">A kilonova as the electromagnetic counterpart to a gravitational-wave source</a></td>
+    <td class="small mono">1710.05841</td>
+    <td class="num small">825</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The X-ray counterpart to the gravitational-wave event GW170817</a></td>
+    <td class="small mono">1710.05433</td>
+    <td class="num small">812</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Horizon Study for Cosmic Explorer: Science, Observatories, and Community</a></td>
+    <td class="small mono">2109.09882</td>
+    <td class="num small">802</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">Strong Constraints on Cosmological Gravity from GW170817 and GRB 170817A</a></td>
+    <td class="small mono">1710.06394</td>
+    <td class="num small">792</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Dark Energy after GW170817 and GRB170817A</a></td>
+    <td class="small mono">1710.05877</td>
+    <td class="num small">781</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Illuminating gravitational waves: A concordant picture of photons from a neutron s</a></td>
+    <td class="small mono">1710.05436</td>
+    <td class="num small">758</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Using Gravitational-wave Observations and Quasi-universal Relations to Constrain t</a></td>
+    <td class="small mono">1711.00314</td>
+    <td class="num small">751</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Light curves of the neutron star merger GW170817/SSS17a: Implications for r-proces</a></td>
+    <td class="small mono">1710.05443</td>
+    <td class="num small">744</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Origin of the heaviest elements: The rapid neutron-capture process</a></td>
+    <td class="small mono">1901.01410</td>
+    <td class="num small">715</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tests of General Relativity with GW170817</a></td>
+    <td class="small mono">1811.00364</td>
+    <td class="num small">702</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">The Emergence of a Lanthanide-rich Kilonova Following the Merger of Two Neutron St</a></td>
+    <td class="small mono">1710.05455</td>
+    <td class="num small">695</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Implications of the Neutron Star Merger GW170817 for Cosmological Scalar-Tensor Th</a></td>
+    <td class="small mono">1710.05893</td>
+    <td class="num small">695</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New Constraints on Radii and Tidal Deformabilities of Neutron Stars from GW170817</a></td>
+    <td class="small mono">1803.00549</td>
+    <td class="num small">674</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tidal Deformabilities and Radii of Neutron Stars from the Observation of GW170817</a></td>
+    <td class="small mono">1804.08583</td>
+    <td class="num small">668</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Properties and Astrophysical Implications of the 150 M&lt;SUB&gt;☉&lt;/SUB&gt; Binary Black Ho</a></td>
+    <td class="small mono">2009.01190</td>
+    <td class="num small">666</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Horndeski theory and beyond: a review</a></td>
+    <td class="small mono">1901.07183</td>
+    <td class="num small">664</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Neutron-star Radius Constraints from GW170817 and Future Detections</a></td>
+    <td class="small mono">1710.06843</td>
+    <td class="num small">594</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW170817: Joint Constraint on the Neutron Star Equation of State from Multimesseng</a></td>
+    <td class="small mono">1711.03647</td>
+    <td class="num small">591</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Superluminal motion of a relativistic jet in the neutron-star merger GW170817</a></td>
+    <td class="small mono">1806.09693</td>
+    <td class="num small">580</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05459</td>
+    <td class="num small">551</td>
+    <td class="num">18</td></tr>
+
+<tr><td><a href="#">Bayesian inference for compact binary coalescences with BILBY: validation and appl</a></td>
+    <td class="small mono">2006.00714</td>
+    <td class="num small">546</td>
+    <td class="num">17</td></tr>
+
+<tr><td><a href="#">The Combined Ultraviolet, Optical, and Near-infrared Light Curves of the Kilonova </a></td>
+    <td class="small mono">1710.11576</td>
+    <td class="num small">542</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Swift and NuSTAR observations of GW170817: Detection of a blue kilonova</a></td>
+    <td class="small mono">1710.05437</td>
+    <td class="num small">533</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A radio counterpart to a neutron star merger</a></td>
+    <td class="small mono">1710.05435</td>
+    <td class="num small">511</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05454</td>
+    <td class="num small">507</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from</a></td>
+    <td class="small mono">2508.18082</td>
+    <td class="num small">500</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Kilonovae</a></td>
+    <td class="small mono">1910.01617</td>
+    <td class="num small">496</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Multimessenger constraints on the neutron-star equation of state and the Hubble co</a></td>
+    <td class="small mono">2002.11355</td>
+    <td class="num small">483</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">The SXS collaboration catalog of binary black hole simulations</a></td>
+    <td class="small mono">1904.04831</td>
+    <td class="num small">469</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A two per cent Hubble constant measurement from standard sirens within five years</a></td>
+    <td class="small mono">1712.06531</td>
+    <td class="num small">451</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Discovery of the Electromagnetic Counterpart of GW170817: Kilonova AT 2017gfo/</a></td>
+    <td class="small mono">1710.05854</td>
+    <td class="num small">447</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Identification of strontium in the merger of two neutron stars</a></td>
+    <td class="small mono">1910.10510</td>
+    <td class="num small">446</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Quantum gravity phenomenology at the dawn of the multi-messenger era-A review</a></td>
+    <td class="small mono">2111.05659</td>
+    <td class="num small">445</td>
+    <td class="num">22</td></tr>
+
+<tr><td><a href="#">Modeling GW170817 based on numerical relativity and its implications</a></td>
+    <td class="small mono">1710.07579</td>
+    <td class="num small">445</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GW170817, general relativistic magnetohydrodynamic simulations, and the neutron st</a></td>
+    <td class="small mono">1711.00473</td>
+    <td class="num small">444</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Stringent constraints on neutron-star radii from multimessenger observations and n</a></td>
+    <td class="small mono">1908.10352</td>
+    <td class="num small">439</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A kilonova following a long-duration gamma-ray burst at 350 Mpc</a></td>
+    <td class="small mono">2204.10864</td>
+    <td class="num small">429</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05456</td>
+    <td class="num small">419</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Design and Operation of the ATLAS Transient Science Server</a></td>
+    <td class="small mono">2003.09052</td>
+    <td class="num small">415</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Compact radio emission indicates a structured jet was produced by a binary neutron</a></td>
+    <td class="small mono">1808.00469</td>
+    <td class="num small">413</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraints on the Dense Matter Equation of State and Neutron Star Properties from</a></td>
+    <td class="small mono">2105.06981</td>
+    <td class="num small">412</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Science of the Einstein Telescope</a></td>
+    <td class="small mono">2503.12263</td>
+    <td class="num small">409</td>
+    <td class="num">175</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05431</td>
+    <td class="num small">409</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Collapsars as a major source of r-process elements</a></td>
+    <td class="small mono">1810.00098</td>
+    <td class="num small">394</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Late Time Afterglow Observations Reveal a Collimated Relativistic Jet in the Eject</a></td>
+    <td class="small mono">1712.03237</td>
+    <td class="num small">386</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Superradiance</a></td>
+    <td class="small mono">1501.06570</td>
+    <td class="num small">380</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">New binary black hole mergers in the second observing run of Advanced LIGO and Adv</a></td>
+    <td class="small mono">1904.07214</td>
+    <td class="num small">378</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A guide to LIGO-Virgo detector noise and extraction of transient gravitational-wav</a></td>
+    <td class="small mono">1908.11170</td>
+    <td class="num small">373</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">A mildly relativistic wide-angle outflow in the neutron-star merger event GW170817</a></td>
+    <td class="small mono">1711.11573</td>
+    <td class="num small">373</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
+    <td class="small mono">2111.03604</td>
+    <td class="num small">369</td>
+    <td class="num">20</td></tr>
+
+<tr><td><a href="#">The progenitors of compact-object binaries: impact of metallicity, common envelope</a></td>
+    <td class="small mono">1806.00001</td>
+    <td class="num small">368</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">The Binary Neutron Star Event LIGO/Virgo GW170817 160 Days after Merger: Synchrotr</a></td>
+    <td class="small mono">1801.03531</td>
+    <td class="num small">363</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Progenitors of gravitational wave mergers: binary evolution with the stellar grid-</a></td>
+    <td class="small mono">1801.05433</td>
+    <td class="num small">356</td>
+    <td class="num">24</td></tr>
+
+<tr><td><a href="#">A Gravitational-wave Measurement of the Hubble Constant Following the Second Obser</a></td>
+    <td class="small mono">1908.06060</td>
+    <td class="num small">351</td>
+    <td class="num">14</td></tr>
+
+<tr><td><a href="#">A Hubble constant measurement from superluminal motion of the jet in GW170817</a></td>
+    <td class="small mono">1806.10596</td>
+    <td class="num small">347</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Population Properties of Merging Compact Binaries</a></td>
+    <td class="small mono">2508.18083</td>
+    <td class="num small">344</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New horizons for fundamental physics with LISA</a></td>
+    <td class="small mono">2205.01597</td>
+    <td class="num small">342</td>
+    <td class="num">30</td></tr>
+
+<tr><td><a href="#">Critical examination of constraints on the equation of state of dense matter obtai</a></td>
+    <td class="small mono">1804.02783</td>
+    <td class="num small">339</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Kilonova from post-merger ejecta as an optical and near-Infrared counterpart of GW</a></td>
+    <td class="small mono">1710.05850</td>
+    <td class="num small">337</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Modified Gravity and Cosmology: An Update by the CANTATA Network</a></td>
+    <td class="small mono">2105.12582</td>
+    <td class="num small">336</td>
+    <td class="num">77</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05457</td>
+    <td class="num small">335</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Early spectra of the gravitational wave source GW170817: Evolution of a neutron st</a></td>
+    <td class="small mono">1710.05432</td>
+    <td class="num small">333</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Heavy-element production in a compact object merger observed by JWST</a></td>
+    <td class="small mono">2307.02098</td>
+    <td class="num small">329</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a></td>
+    <td class="small mono">2112.06878</td>
+    <td class="num small">327</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">Stochastic gravitational wave backgrounds</a></td>
+    <td class="small mono">1811.08797</td>
+    <td class="num small">327</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">On the formation history of Galactic double neutron stars</a></td>
+    <td class="small mono">1805.07974</td>
+    <td class="num small">316</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Science with e-ASTROGAM. A space mission for MeV-GeV gamma-ray astrophysics</a></td>
+    <td class="small mono">1711.01265</td>
+    <td class="num small">309</td>
+    <td class="num">11</td></tr>
+
+<tr><td><a href="#">The effect of the metallicity-specific star formation history on double compact ob</a></td>
+    <td class="small mono">1906.08136</td>
+    <td class="num small">309</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observation of Gravitational Waves from the Coalescence of a 2.5─4.5 M &lt;SUB&gt;⊙&lt;/SUB</a></td>
+    <td class="small mono">2404.04248</td>
+    <td class="num small">306</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Constraint on the maximum mass of neutron stars using GW170817 event</a></td>
+    <td class="small mono">1905.03656</td>
+    <td class="num small">305</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Neutron-star tidal deformability and equation-of-state constraints</a></td>
+    <td class="small mono">2006.03168</td>
+    <td class="num small">304</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Merging stellar-mass binary black holes</a></td>
+    <td class="small mono">1806.05820</td>
+    <td class="num small">298</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Hierarchical mergers of stellar-mass black holes and their gravitational-wave sign</a></td>
+    <td class="small mono">2105.03439</td>
+    <td class="num small">297</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Primordial gravitational waves, precisely: the role of thermodynamics in the Stand</a></td>
+    <td class="small mono">1803.01038</td>
+    <td class="num small">295</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Rates of compact object coalescences</a></td>
+    <td class="small mono">2107.14239</td>
+    <td class="num small">294</td>
+    <td class="num">18</td></tr>
+
+<tr><td><a href="#">GW170817: Constraining the nuclear matter equation of state from the neutron star </a></td>
+    <td class="small mono">1805.11963</td>
+    <td class="num small">292</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">MASTER Optical Detection of the First LIGO/Virgo Neutron Star Binary Merger GW1708</a></td>
+    <td class="small mono">1710.05461</td>
+    <td class="num small">286</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Effective field theories of post-Newtonian gravity: a comprehensive review</a></td>
+    <td class="small mono">1807.01699</td>
+    <td class="num small">282</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">The GstLAL Search Analysis Methods for Compact Binary Mergers in Advanced LIGO&#39;s S</a></td>
+    <td class="small mono">1901.08580</td>
+    <td class="num small">276</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">AT 2017gfo: An Anisotropic and Three-component Kilonova Counterpart of GW170817</a></td>
+    <td class="small mono">1711.03982</td>
+    <td class="num small">275</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multimessenger Bayesian parameter inference of a binary neutron star merger</a></td>
+    <td class="small mono">1812.04803</td>
+    <td class="num small">274</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">The outflow structure of GW170817 from late-time broad-band observations</a></td>
+    <td class="small mono">1801.06516</td>
+    <td class="num small">271</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Electromagnetic evidence that SSS17a is the result of a binary neutron star merger</a></td>
+    <td class="small mono">1710.05434</td>
+    <td class="num small">270</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Long-term GRMHD simulations of neutron star merger accretion discs: implications f</a></td>
+    <td class="small mono">1808.00461</td>
+    <td class="num small">267</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for Post-merger Gravitational Waves from the Remnant of the Binary Neutron </a></td>
+    <td class="small mono">1710.09320</td>
+    <td class="num small">264</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Merger and Mass Ejection of Neutron Star Binaries</a></td>
+    <td class="small mono">1908.02350</td>
+    <td class="num small">263</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The optical afterglow of the short gamma-ray burst associated with GW170817</a></td>
+    <td class="small mono">1801.02669</td>
+    <td class="num small">261</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public A</a></td>
+    <td class="small mono">1910.05331</td>
+    <td class="num small">261</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Systematic opacity calculations for kilonovae</a></td>
+    <td class="small mono">1906.08914</td>
+    <td class="num small">259</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Scalar-tensor theories and modified gravity in the wake of GW170817</a></td>
+    <td class="small mono">1711.07403</td>
+    <td class="num small">257</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A cocoon shock breakout as the origin of the γ-ray emission in GW170817</a></td>
+    <td class="small mono">1710.05896</td>
+    <td class="num small">254</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Cow: Discovery of a Luminous, Hot, and Rapidly Evolving Transient</a></td>
+    <td class="small mono">1807.05965</td>
+    <td class="num small">253</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining the Dense Matter Equation of State with Joint Analysis of NICER and L</a></td>
+    <td class="small mono">1912.11031</td>
+    <td class="num small">251</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Implications from GW170817 and I-Love-Q relations for relativistic hybrid stars</a></td>
+    <td class="small mono">1712.00451</td>
+    <td class="num small">250</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Neutron Star Mergers Might Not Be the Only Source of r-process Elements in the Mil</a></td>
+    <td class="small mono">1809.03525</td>
+    <td class="num small">250</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the Sound Speed in Neutron Stars</a></td>
+    <td class="small mono">2203.14974</td>
+    <td class="num small">248</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW170817: Implications for the Stochastic Gravitational-Wave Background from Compa</a></td>
+    <td class="small mono">1710.05837</td>
+    <td class="num small">246</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Tidal Deformability from GW170817 as a Direct Probe of the Neutron Star Radius</a></td>
+    <td class="small mono">1803.07687</td>
+    <td class="num small">246</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">A Standard Siren Measurement of the Hubble Constant from GW170817 without the Elec</a></td>
+    <td class="small mono">1807.05667</td>
+    <td class="num small">245</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">The Dynamics of Binary Neutron Star Mergers and GW170817</a></td>
+    <td class="small mono">2002.03863</td>
+    <td class="num small">244</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Dark energy in Horndeski theories after GW170817: A review</a></td>
+    <td class="small mono">1809.08735</td>
+    <td class="num small">236</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Deep Chandra X-Ray Study of Neutron Star Coalescence GW170817</a></td>
+    <td class="small mono">1710.05852</td>
+    <td class="num small">235</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Estimating the Contribution of Dynamical Ejecta in the Kilonova Associated with GW</a></td>
+    <td class="small mono">1710.05836</td>
+    <td class="num small">233</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Current status of r-process nucleosynthesis</a></td>
+    <td class="small mono">1906.05002</td>
+    <td class="num small">227</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">J-GEM observations of an electromagnetic counterpart to the neutron star merger GW</a></td>
+    <td class="small mono">1710.05848</td>
+    <td class="num small">223</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Remnant baryon mass in neutron star-black hole mergers: Predictions for binary neu</a></td>
+    <td class="small mono">1807.00011</td>
+    <td class="num small">222</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on the neutron star equation of state from AT2017gfo using radiative t</a></td>
+    <td class="small mono">1805.09371</td>
+    <td class="num small">221</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Follow Up of GW170817 and Its Electromagnetic Counterpart by Australian-Led Observ</a></td>
+    <td class="small mono">1710.05846</td>
+    <td class="num small">220</td>
+    <td class="num">103</td></tr>
+
+<tr><td><a href="#">Observational evidence for primordial black holes: A positivist perspective</a></td>
+    <td class="small mono">2306.03903</td>
+    <td class="num small">220</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers</a></td>
+    <td class="small mono">2105.09151</td>
+    <td class="num small">215</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Nonparametric inference of the neutron star equation of state from gravitational w</a></td>
+    <td class="small mono">1811.12529</td>
+    <td class="num small">215</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Three-dimensional GRMHD Simulations of Neutrino-cooled Accretion Disks from Neutro</a></td>
+    <td class="small mono">1711.00868</td>
+    <td class="num small">214</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Origin of r-process Elements in the Milky Way</a></td>
+    <td class="small mono">1710.05875</td>
+    <td class="num small">213</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Rapid and accurate parameter inference for coalescing, precessing compact binaries</a></td>
+    <td class="small mono">1805.10457</td>
+    <td class="num small">212</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">A Decline in the X-Ray through Radio Emission from GW170817 Continues to Support a</a></td>
+    <td class="small mono">1805.02870</td>
+    <td class="num small">212</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The evolution of the X-ray afterglow emission of GW 170817/ GRB 170817A in XMM-New</a></td>
+    <td class="small mono">1801.06164</td>
+    <td class="num small">212</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Towards understanding astrophysical effects of nuclear symmetry energy</a></td>
+    <td class="small mono">1905.13175</td>
+    <td class="num small">212</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for Gravitational Lensing Signatures in LIGO-Virgo Binary Black Hole Events</a></td>
+    <td class="small mono">1901.02674</td>
+    <td class="num small">211</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Cosmological inference using gravitational wave standard sirens: A mock data analy</a></td>
+    <td class="small mono">1908.06050</td>
+    <td class="num small">211</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Magnetar Origin for the Kilonova Ejecta in GW170817</a></td>
+    <td class="small mono">1801.04286</td>
+    <td class="num small">208</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Nonparametric inference of neutron star composition, equation of state, and maximu</a></td>
+    <td class="small mono">1910.09740</td>
+    <td class="num small">206</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Progress in Constraining Nuclear Symmetry Energy Using Neutron Star Observables Si</a></td>
+    <td class="small mono">2105.04629</td>
+    <td class="num small">205</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The cosmic merger rate of neutron stars and black holes</a></td>
+    <td class="small mono">1806.04866</td>
+    <td class="num small">204</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Dark Energy in light of Multi-Messenger Gravitational-Wave astronomy</a></td>
+    <td class="small mono">1807.09241</td>
+    <td class="num small">203</td>
+    <td class="num">20</td></tr>
+
+<tr><td><a href="#">Gravitational lensing of gravitational waves: a statistical perspective</a></td>
+    <td class="small mono">1802.05089</td>
+    <td class="num small">202</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multimessenger parameter estimation of GW170817</a></td>
+    <td class="small mono">1810.12917</td>
+    <td class="num small">199</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Modified gravitational-wave propagation and standard sirens</a></td>
+    <td class="small mono">1805.08731</td>
+    <td class="num small">196</td>
+    <td class="num">23</td></tr>
+
+<tr><td><a href="#">A peculiar low-luminosity short gamma-ray burst from a double neutron star merger </a></td>
+    <td class="small mono">1710.05851</td>
+    <td class="num small">196</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">New Neutron Star Equation of State with Quark-Hadron Crossover</a></td>
+    <td class="small mono">1903.08963</td>
+    <td class="num small">196</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Mass Distribution of Galactic Double Neutron Stars</a></td>
+    <td class="small mono">1902.03300</td>
+    <td class="num small">196</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Neutron Star Tidal Deformabilities Constrained by Nuclear Theory and Experiment</a></td>
+    <td class="small mono">1803.02803</td>
+    <td class="num small">192</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Next Generation Global Gravitational Wave Observatory: The Science Book</a></td>
+    <td class="small mono">2111.06990</td>
+    <td class="num small">191</td>
+    <td class="num">34</td></tr>
+
+<tr><td><a href="#">Neutron star mergers as sites of r-process nucleosynthesis and short gamma-ray bur</a></td>
+    <td class="small mono">1801.01141</td>
+    <td class="num small">190</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Full transport model of GW170817-like disk produces a blue kilonova</a></td>
+    <td class="small mono">1905.07477</td>
+    <td class="num small">190</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Beyond the Standard Models with cosmic strings</a></td>
+    <td class="small mono">1912.02569</td>
+    <td class="num small">188</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Constraints on the ejecta of the GW170817 neutron star merger from its electromagn</a></td>
+    <td class="small mono">1711.09638</td>
+    <td class="num small">188</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Relative Binning and Fast Likelihood Evaluation for Gravitational Wave Parameter E</a></td>
+    <td class="small mono">1806.08792</td>
+    <td class="num small">188</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining twin stars with GW170817</a></td>
+    <td class="small mono">1811.10929</td>
+    <td class="num small">186</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Double neutron stars: merger rates revisited</a></td>
+    <td class="small mono">1708.07885</td>
+    <td class="num small">185</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The electromagnetic counterparts of compact binary mergers</a></td>
+    <td class="small mono">1912.05659</td>
+    <td class="num small">184</td>
+    <td class="num">188</td></tr>
+
+<tr><td><a href="#">Postmerger Gravitational-Wave Signatures of Phase Transitions in Binary Mergers</a></td>
+    <td class="small mono">1912.09340</td>
+    <td class="num small">184</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">r-process nucleosynthesis: connecting rare-isotope beam facilities with the cosmos</a></td>
+    <td class="small mono">1805.04637</td>
+    <td class="num small">184</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Optical Afterglow of GW170817 at One Year Post-merger</a></td>
+    <td class="small mono">1811.11491</td>
+    <td class="num small">183</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fundamental Physics Implications for Higher-Curvature Theories from Binary Black H</a></td>
+    <td class="small mono">1905.00870</td>
+    <td class="num small">178</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GW170817 falsifies dark matter emulators</a></td>
+    <td class="small mono">1710.06168</td>
+    <td class="num small">174</td>
+    <td class="num">17</td></tr>
+
+<tr><td><a href="#">Multiband gravitational-wave astronomy: Observing binary inspirals with a decihert</a></td>
+    <td class="small mono">1802.06977</td>
+    <td class="num small">174</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Combined Constraints on the Equation of State of Dense Neutron-rich Matter from Te</a></td>
+    <td class="small mono">1801.06855</td>
+    <td class="num small">174</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A lanthanide-rich kilonova in the aftermath of a long gamma-ray burst</a></td>
+    <td class="small mono">2308.00638</td>
+    <td class="num small">173</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The afterglow and kilonova of the short GRB 160821B</a></td>
+    <td class="small mono">1905.01290</td>
+    <td class="num small">171</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multimessenger Constraints for Ultradense Matter</a></td>
+    <td class="small mono">2105.05132</td>
+    <td class="num small">169</td>
+    <td class="num">130</td></tr>
+
+<tr><td><a href="#">Dark halos around neutron stars and gravitational waves</a></td>
+    <td class="small mono">1803.03266</td>
+    <td class="num small">168</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Rectifying Einstein-Gauss-Bonnet inflation in view of GW170817</a></td>
+    <td class="small mono">2003.13724</td>
+    <td class="num small">168</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Primordial black holes and their gravitational-wave signatures</a></td>
+    <td class="small mono">2310.19857</td>
+    <td class="num small">168</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the Rate of Neutron Star Binary Mergers from Globular Clusters</a></td>
+    <td class="small mono">1910.10740</td>
+    <td class="num small">167</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black-hole spectroscopy by making full use of gravitational-wave modeling</a></td>
+    <td class="small mono">1805.00293</td>
+    <td class="num small">167</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Impact of massive binary star and cosmic evolution on gravitational wave observati</a></td>
+    <td class="small mono">2112.05763</td>
+    <td class="num small">167</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Black Hole and Neutron Star Binary Mergers in Triple Systems: Merger Fraction and </a></td>
+    <td class="small mono">1805.03202</td>
+    <td class="num small">166</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Rapid detection of gravitational waves from compact binary mergers with PyCBC Live</a></td>
+    <td class="small mono">1805.11174</td>
+    <td class="num small">165</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Short GRB 160821B: A Reverse Shock, a Refreshed Shock, and a Well-sampled Kilonova</a></td>
+    <td class="small mono">1905.02159</td>
+    <td class="num small">164</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Discovery and confirmation of the shortest gamma-ray burst from a collapsar</a></td>
+    <td class="small mono">2105.05067</td>
+    <td class="num small">164</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">First Multimessenger Observations of a Neutron Star Merger</a></td>
+    <td class="small mono">2012.04810</td>
+    <td class="num small">164</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Turnover in the Radio Light Curve of GW170817</a></td>
+    <td class="small mono">1803.06853</td>
+    <td class="num small">164</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Radiative Transfer Simulation for the Optical and Near-infrared Electromagnetic Co</a></td>
+    <td class="small mono">1806.04088</td>
+    <td class="num small">163</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Generalized framework for testing gravity with gravitational-wave propagation. II.</a></td>
+    <td class="small mono">1711.03776</td>
+    <td class="num small">162</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Numerical Relativity Simulations of the Neutron Star Merger GW170817: Long-term Re</a></td>
+    <td class="small mono">2008.04333</td>
+    <td class="num small">161</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Nuclear Physics Multimessenger Astrophysics Constraints on the Neutron Star Equati</a></td>
+    <td class="small mono">2105.08688</td>
+    <td class="num small">161</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Searching for eccentricity: signatures of dynamical formation in the first gravita</a></td>
+    <td class="small mono">1909.05466</td>
+    <td class="num small">160</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Model comparison from LIGO-Virgo data on GW170817&#39;s binary components and conseque</a></td>
+    <td class="small mono">1908.01012</td>
+    <td class="num small">159</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Precise Distance to the Host Galaxy of the Binary Neutron Star Merger GW170817 U</a></td>
+    <td class="small mono">1801.06080</td>
+    <td class="num small">159</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Limiting masses and radii of neutron stars and their implications</a></td>
+    <td class="small mono">2009.06441</td>
+    <td class="num small">158</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Rapid Reddening and Featureless Optical Spectra of the Optical Counterpart of </a></td>
+    <td class="small mono">1710.05853</td>
+    <td class="num small">158</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Two Years of Nonthermal Emission from the Binary Neutron Star Merger GW170817: Rap</a></td>
+    <td class="small mono">1909.06393</td>
+    <td class="num small">158</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Environment of the Binary Neutron Star Merger GW170817</a></td>
+    <td class="small mono">1710.05444</td>
+    <td class="num small">157</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on interquark interaction parameters with GW170817 in a binary strange</a></td>
+    <td class="small mono">1711.04312</td>
+    <td class="num small">156</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Detecting gravitational waves with disparate detector responses: Two new binary bl</a></td>
+    <td class="small mono">1910.09528</td>
+    <td class="num small">156</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Leading higher-derivative corrections to Kerr geometry</a></td>
+    <td class="small mono">1901.01315</td>
+    <td class="num small">156</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Forecasting the Detection Capabilities of Third-generation Gravitational-wave Dete</a></td>
+    <td class="small mono">2207.02771</td>
+    <td class="num small">155</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Nonlocal gravity. Conceptual aspects and cosmological predictions</a></td>
+    <td class="small mono">1712.07066</td>
+    <td class="num small">154</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational wave decay into dark energy</a></td>
+    <td class="small mono">1809.03484</td>
+    <td class="num small">153</td>
+    <td class="num">17</td></tr>
+
+<tr><td><a href="#">Diversity of Kilonova Light Curves</a></td>
+    <td class="small mono">1908.05815</td>
+    <td class="num small">152</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">A Statistical Standard Siren Measurement of the Hubble Constant from the LIGO/Virg</a></td>
+    <td class="small mono">2006.14961</td>
+    <td class="num small">151</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Can Horndeski theory be recast using teleparallel gravity?</a></td>
+    <td class="small mono">1904.10791</td>
+    <td class="num small">151</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for low mass vector resonances decaying into quark-antiquark pairs in proto</a></td>
+    <td class="small mono">2002.04615</td>
+    <td class="num small">150</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Neural Importance Sampling for Rapid and Reliable Gravitational-Wave Inference</a></td>
+    <td class="small mono">2210.05686</td>
+    <td class="num small">150</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Brane-world extra dimensions in light of GW170817</a></td>
+    <td class="small mono">1711.06628</td>
+    <td class="num small">148</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A long-lived neutron star merger remnant in GW170817: constraints and clues from X</a></td>
+    <td class="small mono">1810.04664</td>
+    <td class="num small">148</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">On the importance of source population models for gravitational-wave cosmology</a></td>
+    <td class="small mono">2103.14663</td>
+    <td class="num small">147</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">f (T ) gravity after GW170817 and GRB170817A</a></td>
+    <td class="small mono">1801.05827</td>
+    <td class="num small">147</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">A General-relativistic Determination of the Threshold Mass to Prompt Collapse in B</a></td>
+    <td class="small mono">1901.09977</td>
+    <td class="num small">147</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A luminous blue kilonova and an off-axis jet from a compact binary merger at z = 0</a></td>
+    <td class="small mono">1806.10624</td>
+    <td class="num small">144</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Four Eccentric Mergers Increase the Evidence that LIGO-Virgo-KAGRA&#39;s Binary Black </a></td>
+    <td class="small mono">2206.14695</td>
+    <td class="num small">144</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The science case for LIGO-India</a></td>
+    <td class="small mono">2105.01716</td>
+    <td class="num small">143</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="#">A Long-lived Remnant Neutron Star after GW170817 Inferred from Its Associated Kilo</a></td>
+    <td class="small mono">1711.01898</td>
+    <td class="num small">143</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Afterglow imaging and polarization of misaligned structured GRB jets and cocoons: </a></td>
+    <td class="small mono">1803.05892</td>
+    <td class="num small">143</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Revisiting the Lower Bound on Tidal Deformability Derived by AT 2017gfo</a></td>
+    <td class="small mono">1903.01466</td>
+    <td class="num small">143</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Listening to the Universe with next generation ground-based gravitational-wave det</a></td>
+    <td class="small mono">2202.11048</td>
+    <td class="num small">142</td>
+    <td class="num">49</td></tr>
+
+<tr><td><a href="#">A Strong Jet Signature in the Late-time Light Curve of GW170817</a></td>
+    <td class="small mono">1810.12927</td>
+    <td class="num small">142</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Synchrotron Radiation from the Fast Tail of Dynamical Ejecta of Neutron Star Merge</a></td>
+    <td class="small mono">1803.00599</td>
+    <td class="num small">141</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Swampland implications of GW170817-compatible Einstein-Gauss-Bonnet gravity</a></td>
+    <td class="small mono">2004.00479</td>
+    <td class="num small">141</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Distance to NGC 4993: The Host Galaxy of the Gravitational-wave Event GW170817</a></td>
+    <td class="small mono">1710.05856</td>
+    <td class="num small">140</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Search for Gravitational Waves from a Long-lived Remnant of the Binary Neutron Sta</a></td>
+    <td class="small mono">1810.02581</td>
+    <td class="num small">140</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The role of magnetic field geometry in the evolution of neutron star merger accret</a></td>
+    <td class="small mono">1907.02079</td>
+    <td class="num small">140</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on Einstein-aether theory after GW170817</a></td>
+    <td class="small mono">1802.04303</td>
+    <td class="num small">139</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Science with the 2.5-meter Wide Field Survey Telescope (WFST)</a></td>
+    <td class="small mono">2306.07590</td>
+    <td class="num small">138</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Mitigation of the instrumental noise transient in gravitational-wave data surround</a></td>
+    <td class="small mono">1808.03619</td>
+    <td class="num small">137</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Cosmology with LIGO/Virgo dark sirens: Hubble parameter and modified gravitational</a></td>
+    <td class="small mono">2101.12660</td>
+    <td class="num small">137</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05458</td>
+    <td class="num small">137</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Improved gravitational-wave constraints on higher-order curvature theories of grav</a></td>
+    <td class="small mono">2104.11189</td>
+    <td class="num small">136</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A magnetar-powered X-ray transient as the aftermath of a binary neutron-star merge</a></td>
+    <td class="small mono">1904.05368</td>
+    <td class="num small">135</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Localization accuracy of compact binary coalescences detected by the third-generat</a></td>
+    <td class="small mono">1710.05325</td>
+    <td class="num small">134</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational wave echoes through new windows</a></td>
+    <td class="small mono">1712.06517</td>
+    <td class="num small">133</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">First 100 ms of a long-lived magnetized neutron star formed in a binary neutron st</a></td>
+    <td class="small mono">1904.10222</td>
+    <td class="num small">133</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Distinguishing primordial black holes from astrophysical black holes by Einstein T</a></td>
+    <td class="small mono">1904.02396</td>
+    <td class="num small">133</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Evidence for Cocoon Emission from the Early Light Curve of SSS17a</a></td>
+    <td class="small mono">1710.05822</td>
+    <td class="num small">133</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A thousand days after the merger: Continued X-ray emission from GW170817</a></td>
+    <td class="small mono">2006.01150</td>
+    <td class="num small">133</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observations of the First Electromagnetic Counterpart to a Gravitational-wave Sour</a></td>
+    <td class="small mono">1710.05844</td>
+    <td class="num small">132</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: An Introduction to Version 4.0 of the Gravitational-Wave Transient Catal</a></td>
+    <td class="small mono">2508.18080</td>
+    <td class="num small">132</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">From inflation to black hole mergers and back again: Gravitational-wave data-drive</a></td>
+    <td class="small mono">2209.05959</td>
+    <td class="num small">132</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Black Hole Spectroscopy and Tests of General Relativity with GW250114</a></td>
+    <td class="small mono">2509.08099</td>
+    <td class="num small">132</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">New relativistic effective interaction for finite nuclei, infinite nuclear matter,</a></td>
+    <td class="small mono">1711.04940</td>
+    <td class="num small">131</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The origin of the first neutron star - neutron star merger</a></td>
+    <td class="small mono">1712.00632</td>
+    <td class="num small">130</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Footprints of axion-like particle in pulsar timing array data and James Webb Space</a></td>
+    <td class="small mono">2306.17022</td>
+    <td class="num small">128</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the Nature of GW190814 and Its Impact on the Understanding of Supranuclear Matt</a></td>
+    <td class="small mono">2007.06057</td>
+    <td class="num small">127</td>
+    <td class="num">19</td></tr>
+
+<tr><td><a href="#">Velocity correction for Hubble constant measurements from standard sirens</a></td>
+    <td class="small mono">1909.08627</td>
+    <td class="num small">127</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A line-binned treatment of opacities for the spectra and light curves from neutron</a></td>
+    <td class="small mono">1904.08781</td>
+    <td class="num small">127</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Electromagnetic Counterpart of the Binary Neutron Star Merger LIGO/Virgo GW170</a></td>
+    <td class="small mono">1710.05438</td>
+    <td class="num small">126</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Vainshtein screening in scalar-tensor theories before and after GW170817: Constrai</a></td>
+    <td class="small mono">1712.04731</td>
+    <td class="num small">126</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining the Equation of State of High-density Cold Matter Using Nuclear and A</a></td>
+    <td class="small mono">1904.08907</td>
+    <td class="num small">124</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Numerical Simulations of the Jet Dynamics and Synchrotron Radiation of Binary Neut</a></td>
+    <td class="small mono">1804.09345</td>
+    <td class="num small">124</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Third family of compact stars within a nonlocal chiral quark model equation of sta</a></td>
+    <td class="small mono">1805.04105</td>
+    <td class="num small">124</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GRB 170817A Associated with GW170817: Multi-frequency Observations and Modeling of</a></td>
+    <td class="small mono">1710.05448</td>
+    <td class="num small">123</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Are Small Radii of Compact Stars Ruled out by GW170817/AT2017gfo?</a></td>
+    <td class="small mono">1803.09696</td>
+    <td class="num small">123</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">A Neutron Star Binary Merger Model for GW170817/GRB 170817A/SSS17a</a></td>
+    <td class="small mono">1710.05453</td>
+    <td class="num small">123</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">The First Hours of the GW170817 Kilonova and the Importance of Early Optical and U</a></td>
+    <td class="small mono">1802.02164</td>
+    <td class="num small">123</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">When Did the Remnant of GW170817 Collapse to a Black Hole?</a></td>
+    <td class="small mono">1901.04138</td>
+    <td class="num small">122</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Extracting nuclear symmetry energies at high densities from observations of neutro</a></td>
+    <td class="small mono">1807.07698</td>
+    <td class="num small">121</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Axisymmetric Radiative Transfer Models of Kilonovae</a></td>
+    <td class="small mono">2004.00102</td>
+    <td class="num small">121</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The evolution of binary neutron star post-merger remnants: a review</a></td>
+    <td class="small mono">2012.08172</td>
+    <td class="num small">120</td>
+    <td class="num">48</td></tr>
+
+<tr><td><a href="#">All-sky search for short gravitational-wave bursts in the second Advanced LIGO and</a></td>
+    <td class="small mono">1904.08976</td>
+    <td class="num small">119</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Improved Constraints on H &lt;SUB&gt;0&lt;/SUB&gt; from a Combined Analysis of Gravitational-w</a></td>
+    <td class="small mono">1710.06426</td>
+    <td class="num small">118</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Recent searches for continuous gravitational waves</a></td>
+    <td class="small mono">1712.05897</td>
+    <td class="num small">118</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Standard Siren Measurement of the Hubble Constant Using Gravitational-wave Event</a></td>
+    <td class="small mono">2111.06445</td>
+    <td class="num small">117</td>
+    <td class="num">18</td></tr>
+
+<tr><td><a href="#">Fingerprints of Heavy-Element Nucleosynthesis in the Late-Time Lightcurves of Kilo</a></td>
+    <td class="small mono">1808.10459</td>
+    <td class="num small">116</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Afterglow light curves from misaligned structured jets</a></td>
+    <td class="small mono">2001.02239</td>
+    <td class="num small">116</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Welcome to the Multi-Messenger Era! Lessons from a Neutron Star Merger and the Lan</a></td>
+    <td class="small mono">1710.05931</td>
+    <td class="num small">116</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Neutrino Fast Flavor Conversions in Neutron-Star Postmerger Accretion Disks</a></td>
+    <td class="small mono">2103.02616</td>
+    <td class="num small">116</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Mimicking dark matter and dark energy in a mimetic model compatible with GW170817</a></td>
+    <td class="small mono">1803.02620</td>
+    <td class="num small">115</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">The Emergence of Structure in the Binary Black Hole Mass Distribution</a></td>
+    <td class="small mono">2011.04502</td>
+    <td class="num small">115</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Kilonova Luminosity Function Constraints Based on Zwicky Transient Facility Search</a></td>
+    <td class="small mono">2006.11306</td>
+    <td class="num small">114</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">GW170817 and GW190814: Tension on the Maximum Mass</a></td>
+    <td class="small mono">2101.01735</td>
+    <td class="num small">113</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Spitzer mid-infrared detections of neutron star merger GW170817 suggests synthesis</a></td>
+    <td class="small mono">1812.08708</td>
+    <td class="num small">113</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Limits on the number of spacetime dimensions from GW170817</a></td>
+    <td class="small mono">1801.08160</td>
+    <td class="num small">113</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational waves in Einstein-æther and generalized TeVeS theory after GW170817</a></td>
+    <td class="small mono">1801.03382</td>
+    <td class="num small">112</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">From Existing and New Nuclear and Astrophysical Constraints to Stringent Limits on</a></td>
+    <td class="small mono">2402.04172</td>
+    <td class="num small">111</td>
+    <td class="num">138</td></tr>
+
+<tr><td><a href="#">On the Progenitor of Binary Neutron Star Merger GW170817</a></td>
+    <td class="small mono">1710.05838</td>
+    <td class="num small">110</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">A refined Einstein-Gauss-Bonnet inflationary theoretical framework</a></td>
+    <td class="small mono">2108.10460</td>
+    <td class="num small">110</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Measuring the Hubble Constant with Neutron Star Black Hole Mergers</a></td>
+    <td class="small mono">1804.07337</td>
+    <td class="num small">110</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Brightening X-Ray Emission from GW170817/GRB 170817A: Further Evidence for an Outf</a></td>
+    <td class="small mono">1712.02809</td>
+    <td class="num small">109</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Constraining the orbital eccentricity of inspiralling compact binary systems with </a></td>
+    <td class="small mono">2108.05861</td>
+    <td class="num small">109</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">GW170817 -the first observed neutron star merger and its kilonova: Implications fo</a></td>
+    <td class="small mono">1901.09044</td>
+    <td class="num small">109</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Pulsar timing array constraints on the induced gravitational waves</a></td>
+    <td class="small mono">1907.06372</td>
+    <td class="num small">109</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Gravitational-wave physics II: Progress</a></td>
+    <td class="small mono">2106.10235</td>
+    <td class="num small">109</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Signals in the tidal deformability for phase transitions in compact stars with con</a></td>
+    <td class="small mono">1809.03333</td>
+    <td class="num small">108</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Hořava gravity after GW170817</a></td>
+    <td class="small mono">1711.08845</td>
+    <td class="num small">108</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">On the merger rate of primordial black holes: effects of nearest neighbours distri</a></td>
+    <td class="small mono">1807.02084</td>
+    <td class="num small">107</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Alive and well: mimetic gravity and a higher-order extension in light of GW170817</a></td>
+    <td class="small mono">1811.06830</td>
+    <td class="num small">107</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Radioactive Heating Rate of r-process Elements and Macronova Light Curve</a></td>
+    <td class="small mono">1909.02581</td>
+    <td class="num small">107</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fast neutrino flavor conversion, ejecta properties, and nucleosynthesis in newly-f</a></td>
+    <td class="small mono">2009.04046</td>
+    <td class="num small">107</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Standard sirens with a running Planck mass</a></td>
+    <td class="small mono">1901.03321</td>
+    <td class="num small">107</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Methods for Identifying and Characterizing Gravitational-wave Transients</a></td>
+    <td class="small mono">2508.18081</td>
+    <td class="num small">106</td>
+    <td class="num">7</td></tr>
+
+<tr><td><a href="#">Cross-correlating Dark Sirens and Galaxies: Constraints on H &lt;SUB&gt;0&lt;/SUB&gt; from GWT</a></td>
+    <td class="small mono">2203.03643</td>
+    <td class="num small">106</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Searching for electromagnetic counterparts to gravitational-wave merger events wit</a></td>
+    <td class="small mono">2004.00025</td>
+    <td class="num small">105</td>
+    <td class="num">35</td></tr>
+
+<tr><td><a href="#">Formation Channels of Single and Binary Stellar-Mass Black Holes</a></td>
+    <td class="small mono">2106.00699</td>
+    <td class="num small">105</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Gravitational waves and electroweak baryogenesis in a global study of the extended</a></td>
+    <td class="small mono">1810.02380</td>
+    <td class="num small">105</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Tests of general relativity with gravitational-wave observations using a flexible </a></td>
+    <td class="small mono">2203.13937</td>
+    <td class="num small">105</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Continuous Gravitational Waves from Neutron Stars: Current Status and Prospects</a></td>
+    <td class="small mono">1909.12600</td>
+    <td class="num small">104</td>
+    <td class="num">21</td></tr>
+
+<tr><td><a href="#">The Allowed Parameter Space of a Long-lived Neutron Star as the Merger Remnant of </a></td>
+    <td class="small mono">1802.00571</td>
+    <td class="num small">104</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Off-axis emission of short GRB jets from double neutron star mergers and GRB 17081</a></td>
+    <td class="small mono">1710.06421</td>
+    <td class="num small">104</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational-wave asteroseismology with fundamental modes from compact binary ins</a></td>
+    <td class="small mono">1905.00817</td>
+    <td class="num small">104</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Pulsational Pair-instability Supernovae. I. Pre-collapse Evolution and Pulsational</a></td>
+    <td class="small mono">1901.11136</td>
+    <td class="num small">104</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Parameter estimation with gravitational waves</a></td>
+    <td class="small mono">2204.04449</td>
+    <td class="num small">103</td>
+    <td class="num">59</td></tr>
+
+<tr><td><a href="#">Lanthanide Features in Near-infrared Spectra of Kilonovae</a></td>
+    <td class="small mono">2206.04232</td>
+    <td class="num small">103</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">The Optical Afterglow of GW170817: An Off-axis Structured Jet and Deep Constraints</a></td>
+    <td class="small mono">1908.08046</td>
+    <td class="num small">103</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Lessons from the Short GRB 170817A: The First Gravitational-wave Detection of a Bi</a></td>
+    <td class="small mono">1710.06407</td>
+    <td class="num small">103</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Neutron Star Equation of State from the Quark Level in Light of GW170817</a></td>
+    <td class="small mono">1802.05510</td>
+    <td class="num small">103</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Cosmological constraints on Horndeski gravity in light of GW170817</a></td>
+    <td class="small mono">1712.02710</td>
+    <td class="num small">103</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">PSR J0030+0451, GW170817, and the Nuclear Data: Joint Constraints on Equation of S</a></td>
+    <td class="small mono">1912.07467</td>
+    <td class="num small">102</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Effective-one-body waveforms for precessing coalescing compact binaries with post-</a></td>
+    <td class="small mono">2111.03675</td>
+    <td class="num small">102</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GROWTH on S190814bv: Deep Synoptic Limits on the Optical/Near-infrared Counterpart</a></td>
+    <td class="small mono">1910.13409</td>
+    <td class="num small">102</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Hybrid Stars in the Light of GW170817</a></td>
+    <td class="small mono">1712.08094</td>
+    <td class="num small">102</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">AT2017gfo: Bayesian inference and model selection of multicomponent kilonovae and </a></td>
+    <td class="small mono">2101.01201</td>
+    <td class="num small">101</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">The γ-rays that accompanied GW170817 and the observational signature of a magnetic</a></td>
+    <td class="small mono">1710.05897</td>
+    <td class="num small">101</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Inferring neutron star properties from GW170817 with universal relations</a></td>
+    <td class="small mono">1902.04557</td>
+    <td class="num small">101</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Optical Follow-up of Gravitational-wave Events with Las Cumbres Observatory</a></td>
+    <td class="small mono">1710.05842</td>
+    <td class="num small">101</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Echoes from the abyss: a highly spinning black hole remnant for the binary neutron</a></td>
+    <td class="small mono">1803.10454</td>
+    <td class="num small">101</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Low-latency Gravitational-wave Alerts for Multimessenger Astronomy during the Seco</a></td>
+    <td class="small mono">1901.03310</td>
+    <td class="num small">100</td>
+    <td class="num">23</td></tr>
+
+<tr><td><a href="#">Aligned-spin neutron-star-black-hole waveform model based on the effective-one-bod</a></td>
+    <td class="small mono">2004.10001</td>
+    <td class="num small">100</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Unveiling the engines of fast radio bursts, superluminous supernovae, and gamma-ra</a></td>
+    <td class="small mono">1806.05690</td>
+    <td class="num small">100</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW190814: Spin and Equation of State of a Neutron Star Companion</a></td>
+    <td class="small mono">2007.05526</td>
+    <td class="num small">99</td>
+    <td class="num">34</td></tr>
+
+<tr><td><a href="#">Cosmology and dark energy from joint gravitational wave-GRB observations</a></td>
+    <td class="small mono">1907.01487</td>
+    <td class="num small">99</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">GRB 170817A as a jet counterpart to gravitational wave triggerGW 170817</a></td>
+    <td class="small mono">1710.05857</td>
+    <td class="num small">99</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Maximum gravitational mass &lt;inline-formula&gt;&lt;mml:math&gt;&lt;mml:msub&gt;&lt;mml:mi&gt;M&lt;/mml:mi&gt;&lt;</a></td>
+    <td class="small mono">2309.12644</td>
+    <td class="num small">99</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Fast-transient Searches in Real Time with ZTFReST: Identification of Three Optical</a></td>
+    <td class="small mono">2104.06352</td>
+    <td class="num small">99</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Combining Electromagnetic and Gravitational-Wave Constraints on Neutron-Star Masse</a></td>
+    <td class="small mono">2008.12817</td>
+    <td class="num small">99</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Binary neutron star mergers and third generation detectors: Localization and early</a></td>
+    <td class="small mono">1803.09680</td>
+    <td class="num small">98</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Spiral-wave Wind for the Blue Kilonova</a></td>
+    <td class="small mono">1907.04872</td>
+    <td class="num small">98</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Relativistic parameterizations of neutron matter and implications for neutron star</a></td>
+    <td class="small mono">1808.06808</td>
+    <td class="num small">98</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">An updated nuclear-physics and multi-messenger astrophysics framework for binary n</a></td>
+    <td class="small mono">2205.08513</td>
+    <td class="num small">97</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Kilohertz gravitational waves from binary neutron star remnants: Time-domain model</a></td>
+    <td class="small mono">1908.11418</td>
+    <td class="num small">97</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">From γ to Radio: The Electromagnetic Counterpart of GW170817</a></td>
+    <td class="small mono">1803.07595</td>
+    <td class="num small">97</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tidal deformability of an anisotropic compact star: Implications of GW170817</a></td>
+    <td class="small mono">1903.04956</td>
+    <td class="num small">96</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Confronting gravitational-wave observations with modern nuclear physics constraint</a></td>
+    <td class="small mono">1901.09874</td>
+    <td class="num small">96</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Panchromatic Afterglow of GW170817: The Full Uniform Data Set, Modeling, Compa</a></td>
+    <td class="small mono">2006.02382</td>
+    <td class="num small">96</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tight multimessenger constraints on the neutron star equation of state from GW1708</a></td>
+    <td class="small mono">2102.02229</td>
+    <td class="num small">95</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational wave lensing beyond general relativity: Birefringence, echoes, and s</a></td>
+    <td class="small mono">2009.12187</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Host galaxies of merging compact objects: mass, star formation rate, metallicity, </a></td>
+    <td class="small mono">1903.00083</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Modelling the spectra of the kilonova AT2017gfo - I. The photospheric epochs</a></td>
+    <td class="small mono">2202.01786</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Stability of Black Holes and the Speed of Gravitational Waves within Self-Tuning C</a></td>
+    <td class="small mono">1712.04398</td>
+    <td class="num small">95</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Observing the post-merger signal of GW170817-like events with improved gravitation</a></td>
+    <td class="small mono">1811.08931</td>
+    <td class="num small">94</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">The Peculiar Precursor of a Gamma-Ray Burst from a Binary Merger Involving a Magne</a></td>
+    <td class="small mono">2205.02186</td>
+    <td class="num small">94</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Relativistic Description of Dense Matter Equation of State and Compatibility with </a></td>
+    <td class="small mono">2201.12552</td>
+    <td class="num small">94</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Cosmological parameter constraints for Horndeski scalar-tensor gravity</a></td>
+    <td class="small mono">1811.12928</td>
+    <td class="num small">94</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining nuclear matter parameters with GW170817</a></td>
+    <td class="small mono">1812.08910</td>
+    <td class="num small">93</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Parity-violating gravity and GW170817</a></td>
+    <td class="small mono">1809.00815</td>
+    <td class="num small">93</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">New public code for initial data of unequal-mass, spinning compact-object binaries</a></td>
+    <td class="small mono">2103.09911</td>
+    <td class="num small">93</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A lesson from GW170817: most neutron star mergers result in tightly collimated suc</a></td>
+    <td class="small mono">1808.04831</td>
+    <td class="num small">93</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Neutron star mergers and how to study them</a></td>
+    <td class="small mono">1909.06085</td>
+    <td class="num small">92</td>
+    <td class="num">62</td></tr>
+
+<tr><td><a href="#">Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between</a></td>
+    <td class="small mono">2111.03498</td>
+    <td class="num small">92</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Impact of inter-correlated initial binary parameters on double black hole and neut</a></td>
+    <td class="small mono">1808.07889</td>
+    <td class="num small">92</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">A kilonova associated with GRB 070809</a></td>
+    <td class="small mono">1901.06269</td>
+    <td class="num small">92</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Follow-up of the Neutron Star Bearing Gravitational-wave Candidate Events S190425z</a></td>
+    <td class="small mono">1905.02186</td>
+    <td class="num small">91</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Implications from GW170817 for ∆-isobar Admixed Hypernuclear Compact Stars</a></td>
+    <td class="small mono">1904.02006</td>
+    <td class="num small">91</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">New equations of state constrained by nuclear physics, observations, and QCD calcu</a></td>
+    <td class="small mono">2009.08885</td>
+    <td class="num small">91</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The R-Process Alliance: First Magellan/MIKE Release from the Southern Search for R</a></td>
+    <td class="small mono">2006.07731</td>
+    <td class="num small">91</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Broadband Counterpart of the Short GRB 200522A at z = 0.5536: A Luminous Kilon</a></td>
+    <td class="small mono">2008.08593</td>
+    <td class="num small">91</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Confronting nuclear equation of state in the presence of dark matter using GW17081</a></td>
+    <td class="small mono">1807.10013</td>
+    <td class="num small">90</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Bayesian Inference of the Symmetry Energy of Superdense Neutron-rich Matter from F</a></td>
+    <td class="small mono">2005.07216</td>
+    <td class="num small">90</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Shadows of Kerr-like black holes in a modified gravity theory</a></td>
+    <td class="small mono">1810.12767</td>
+    <td class="num small">90</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Unified interacting quark matter and its astrophysical implications</a></td>
+    <td class="small mono">2009.07182</td>
+    <td class="num small">90</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Bayesian Inference of Dense Matter Equation of State within Relativistic Mean Fiel</a></td>
+    <td class="small mono">2002.08951</td>
+    <td class="num small">89</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Distance and Properties of NGC 4993 as the Host Galaxy of the Gravitational-wave S</a></td>
+    <td class="small mono">1710.05861</td>
+    <td class="num small">89</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Dark Energy after GW170817 Revisited</a></td>
+    <td class="small mono">1810.08239</td>
+    <td class="num small">89</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Treating quarks within neutron stars</a></td>
+    <td class="small mono">1906.04095</td>
+    <td class="num small">89</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Surrogate model for an aligned-spin effective-one-body waveform model of binary ne</a></td>
+    <td class="small mono">1812.08643</td>
+    <td class="num small">89</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Nuclear and neutron-star matter from local chiral interactions</a></td>
+    <td class="small mono">1912.09411</td>
+    <td class="num small">88</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave</a></td>
+    <td class="small mono">2509.04348</td>
+    <td class="num small">87</td>
+    <td class="num">32</td></tr>
+
+<tr><td><a href="#">A comparison between short GRB afterglows and kilonova AT2017gfo: shedding light o</a></td>
+    <td class="small mono">1901.05792</td>
+    <td class="num small">87</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Constraints on the neutron star equation of state from GW170817</a></td>
+    <td class="small mono">1904.10002</td>
+    <td class="num small">87</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Distinguishing the nature of comparable-mass neutron star binary systems with mult</a></td>
+    <td class="small mono">1808.03836</td>
+    <td class="num small">87</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Collimated outflows from long-lived binary neutron star merger remnants</a></td>
+    <td class="small mono">2001.10241</td>
+    <td class="num small">86</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Search for strongly lensed counterpart images of binary black hole mergers in the </a></td>
+    <td class="small mono">1912.05389</td>
+    <td class="num small">86</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining the Inclinations of Binary Mergers from Gravitational-wave Observatio</a></td>
+    <td class="small mono">1809.10727</td>
+    <td class="num small">86</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraints on the Moment of Inertia of PSR J0737-3039A from GW170817</a></td>
+    <td class="small mono">1807.04727</td>
+    <td class="num small">86</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Waveform systematics in the gravitational-wave inference of tidal parameters and e</a></td>
+    <td class="small mono">2009.08467</td>
+    <td class="num small">86</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">EuCAPT White Paper: Opportunities and Challenges for Theoretical Astroparticle Phy</a></td>
+    <td class="small mono">2110.10074</td>
+    <td class="num small">85</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Implications of the search for optical counterparts during the first six months of</a></td>
+    <td class="small mono">1910.11246</td>
+    <td class="num small">85</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Unified Picture of Short and Long Gamma-Ray Bursts from Compact Binary Mergers</a></td>
+    <td class="small mono">2309.00038</td>
+    <td class="num small">85</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Overview of KAGRA: KAGRA science</a></td>
+    <td class="small mono">2008.02921</td>
+    <td class="num small">84</td>
+    <td class="num">40</td></tr>
+
+<tr><td><a href="#">Hubble tension or distance ladder crisis?</a></td>
+    <td class="small mono">2408.11031</td>
+    <td class="num small">84</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">Signatures of r-process Elements in Kilonova Spectra</a></td>
+    <td class="small mono">2103.15284</td>
+    <td class="num small">84</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Viscous-dynamical Ejecta from Binary Neutron Star Mergers</a></td>
+    <td class="small mono">1809.11163</td>
+    <td class="num small">84</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Radioactive Heating and Late Time Kilonova Light Curves</a></td>
+    <td class="small mono">1807.03319</td>
+    <td class="num small">84</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Jet Dynamics in Compact Object Mergers: GW170817 Likely Had a Successful Jet</a></td>
+    <td class="small mono">1806.10616</td>
+    <td class="num small">84</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Gravitational-wave tests of general relativity with ground-based detectors and pul</a></td>
+    <td class="small mono">2408.05240</td>
+    <td class="num small">83</td>
+    <td class="num">49</td></tr>
+
+<tr><td><a href="#">Constraints on scalar─tensor theory of gravity by the recent observational results</a></td>
+    <td class="small mono">1711.04102</td>
+    <td class="num small">83</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Does Matter Matter? Using the Mass Distribution to Distinguish Neutron Stars and B</a></td>
+    <td class="small mono">2006.13178</td>
+    <td class="num small">83</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Was GW170817 a Canonical Neutron Star Merger? Bayesian Analysis with a Third Famil</a></td>
+    <td class="small mono">2005.02759</td>
+    <td class="num small">83</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">How Many Kilonovae Can Be Found in Past, Present, and Future Survey Data Sets?</a></td>
+    <td class="small mono">1710.05845</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">First Constraints on Nuclear Coupling of Axionlike Particles from the Binary Neutr</a></td>
+    <td class="small mono">2105.13963</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Structured Jets and X-Ray Plateaus in Gamma-Ray Burst Phenomena</a></td>
+    <td class="small mono">1904.08786</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Search for Eccentric Binary Neutron Star Mergers in the First and Second Observing</a></td>
+    <td class="small mono">1912.05464</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Confronting GW190814 with hyperonization in dense matter and hypernuclear compact </a></td>
+    <td class="small mono">2007.09683</td>
+    <td class="num small">83</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Jets from Neutron-Star Merger Remnants and Massive Blue Kilonovae</a></td>
+    <td class="small mono">2303.12284</td>
+    <td class="num small">82</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Observational constraints on the structure of gamma-ray burst jets</a></td>
+    <td class="small mono">1808.07493</td>
+    <td class="num small">82</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Comparing two models for measuring the neutron star equation of state from gravita</a></td>
+    <td class="small mono">1805.11217</td>
+    <td class="num small">82</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Exploring Features in the Binary Black Hole Population</a></td>
+    <td class="small mono">2111.13991</td>
+    <td class="num small">82</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Can an off-axis gamma-ray burst jet in GW170817 explain all the electromagnetic co</a></td>
+    <td class="small mono">1710.05905</td>
+    <td class="num small">82</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Numerical relativity of compact binaries in the 21st century</a></td>
+    <td class="small mono">1808.06011</td>
+    <td class="num small">81</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Optical superluminal motion measurement in the neutron-star merger GW170817</a></td>
+    <td class="small mono">2210.06568</td>
+    <td class="num small">81</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Physics of radiation mediated shocks and its applications to GRBs, supernovae, and</a></td>
+    <td class="small mono">1909.10288</td>
+    <td class="num small">81</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Virgo detector characterization and data quality: results from the O3 run</a></td>
+    <td class="small mono">2210.15633</td>
+    <td class="num small">81</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Ultralight Bosonic Field Mass Bounds from Astrophysical Black Hole Spin</a></td>
+    <td class="small mono">2009.07206</td>
+    <td class="num small">81</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Coalescence of black hole─neutron star binaries</a></td>
+    <td class="small mono">2110.06218</td>
+    <td class="num small">80</td>
+    <td class="num">38</td></tr>
+
+<tr><td><a href="#">Dark Matter In Extreme Astrophysical Environments</a></td>
+    <td class="small mono">2203.07984</td>
+    <td class="num small">80</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">A luminosity distribution for kilonovae based on short gamma-ray burst afterglows</a></td>
+    <td class="small mono">1811.05506</td>
+    <td class="num small">80</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Reviving non-minimal Horndeski-like theories after GW170817: kinetic coupling corr</a></td>
+    <td class="small mono">2006.05512</td>
+    <td class="num small">80</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Secondary component of gravitational-wave signal GW190814 as an anisotropic neutro</a></td>
+    <td class="small mono">2007.10679</td>
+    <td class="num small">80</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Frequency domain model of f -mode dynamic tides in gravitational waveforms from co</a></td>
+    <td class="small mono">1905.00818</td>
+    <td class="num small">80</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A pixelated approach to galaxy catalogue incompleteness: improving the dark siren </a></td>
+    <td class="small mono">2111.04629</td>
+    <td class="num small">79</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Real-time inference for binary neutron star mergers using machine learning</a></td>
+    <td class="small mono">2407.09602</td>
+    <td class="num small">79</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Production of Very Light Elements and Strontium in the Early Ejecta of Neutron Sta</a></td>
+    <td class="small mono">2009.08988</td>
+    <td class="num small">79</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Fast Gravitational-wave Parameter Estimation without Compromises</a></td>
+    <td class="small mono">2302.05333</td>
+    <td class="num small">79</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">What Powered the Optical Transient AT2017gfo Associated with GW170817?</a></td>
+    <td class="small mono">1804.06597</td>
+    <td class="num small">78</td>
+    <td class="num">43</td></tr>
+
+<tr><td><a href="#">Measuring the Viewing Angle of GW170817 with Electromagnetic and Gravitational Wav</a></td>
+    <td class="small mono">1804.04179</td>
+    <td class="num small">78</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Neutron star equation of state: Quark mean-field (QMF) modeling and applications</a></td>
+    <td class="small mono">2007.05116</td>
+    <td class="num small">78</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">EM counterparts of structured jets from 3D GRMHD simulations</a></td>
+    <td class="small mono">1809.05099</td>
+    <td class="num small">77</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Inferring prompt black-hole formation in neutron star mergers from gravitational-w</a></td>
+    <td class="small mono">1908.05442</td>
+    <td class="num small">77</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining the Neutron Star Equation of State Using Multiband Independent Measur</a></td>
+    <td class="small mono">1902.05078</td>
+    <td class="num small">77</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Implications of the radio and X-ray emission that followed GW170817</a></td>
+    <td class="small mono">1801.09712</td>
+    <td class="num small">77</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Inferring the population properties of binary neutron stars with gravitational-wav</a></td>
+    <td class="small mono">1711.09226</td>
+    <td class="num small">77</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Conformal model for gravitational waves and dark matter: a status update</a></td>
+    <td class="small mono">2210.07075</td>
+    <td class="num small">77</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Updated Observing Scenarios and Multimessenger Implications for the International </a></td>
+    <td class="small mono">2306.09234</td>
+    <td class="num small">76</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Multimessenger Constraints on Radiatively Decaying Axions from GW170817</a></td>
+    <td class="small mono">2305.10327</td>
+    <td class="num small">76</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraining gravitational wave amplitude birefringence and Chern-Simons gravity w</a></td>
+    <td class="small mono">2101.11153</td>
+    <td class="num small">76</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asy</a></td>
+    <td class="small mono">2510.26931</td>
+    <td class="num small">76</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Multi-messenger Observations of Binary Neutron Star Mergers in the O4 Run</a></td>
+    <td class="small mono">2204.07592</td>
+    <td class="num small">75</td>
+    <td class="num">28</td></tr>
+
+<tr><td><a href="#">Plausible presence of new state in neutron stars with masses above 0.98MTOV</a></td>
+    <td class="small mono">2207.13613</td>
+    <td class="num small">75</td>
+    <td class="num">24</td></tr>
+
+<tr><td><a href="#">Cosmology and modified gravitational wave propagation from binary black hole popul</a></td>
+    <td class="small mono">2112.05728</td>
+    <td class="num small">75</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">The GW170817/GRB 170817A/AT 2017gfo Association: Some Implications for Physics and</a></td>
+    <td class="small mono">1710.05805</td>
+    <td class="num small">75</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">Parameter estimation and model selection of gravitational wave signals contaminate</a></td>
+    <td class="small mono">1803.11346</td>
+    <td class="num small">75</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Implications of the Mass M={2.17}_{-0.10}^{+0.11} M &lt;SUB&gt;☉&lt;/SUB&gt; of PSR J0740+6620</a></td>
+    <td class="small mono">1904.10998</td>
+    <td class="num small">75</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Consistent relativistic mean-field models constrained by GW170817</a></td>
+    <td class="small mono">1812.10533</td>
+    <td class="num small">75</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">What do we learn about vector interactions from GW170817?</a></td>
+    <td class="small mono">1810.06109</td>
+    <td class="num small">75</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Late-time evolution of afterglows from off-axis neutron star mergers</a></td>
+    <td class="small mono">1806.03843</td>
+    <td class="num small">75</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Equilibrium, radial stability and non-adiabatic gravitational collapse of anisotro</a></td>
+    <td class="small mono">2008.05331</td>
+    <td class="num small">75</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Discriminating between Neutron Stars and Black Holes with Imperfect Knowledge of t</a></td>
+    <td class="small mono">2007.01372</td>
+    <td class="num small">75</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Old Host-galaxy Environment of SSS17a, the First Electromagnetic Counterpart t</a></td>
+    <td class="small mono">1710.05439</td>
+    <td class="num small">74</td>
+    <td class="num">9</td></tr>
+
+<tr><td><a href="#">Systematic Biases in Estimating the Properties of Black Holes Due to Inaccurate Gr</a></td>
+    <td class="small mono">2404.05811</td>
+    <td class="num small">74</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="#">THESEUS: A key space mission concept for Multi-Messenger Astrophysics</a></td>
+    <td class="small mono">1712.08153</td>
+    <td class="num small">74</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Physical Conditions for the r-process. I. Radioactive Energy Sources of Kilonovae</a></td>
+    <td class="small mono">1808.03763</td>
+    <td class="num small">74</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Double Neutron Star Mergers and Short Gamma-ray Bursts: Long-lasting High-energy S</a></td>
+    <td class="small mono">1710.10757</td>
+    <td class="num small">74</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Interplay between Delta Particles and Hyperons in Neutron Stars</a></td>
+    <td class="small mono">1907.08583</td>
+    <td class="num small">74</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Simulations of Early Kilonova Emission from Neutron Star Mergers</a></td>
+    <td class="small mono">2008.05495</td>
+    <td class="num small">74</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The R-process Alliance: A Nearly Complete R-process Abundance Template Derived fro</a></td>
+    <td class="small mono">2205.03426</td>
+    <td class="num small">74</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Quantum Black Holes in the Sky</a></td>
+    <td class="small mono">2001.09553</td>
+    <td class="num small">73</td>
+    <td class="num">25</td></tr>
+
+<tr><td><a href="#">GWFAST: A Fisher Information Matrix Python Code for Third-generation Gravitational</a></td>
+    <td class="small mono">2207.06910</td>
+    <td class="num small">73</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">GW170817 Most Likely Made a Black Hole</a></td>
+    <td class="small mono">1712.03240</td>
+    <td class="num small">73</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">MAGIC Observations of the Nearby Short Gamma-Ray Burst GRB 160821B</a></td>
+    <td class="small mono">2012.07193</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Charge Radius of Neutron-Deficient &lt;SUP&gt;54&lt;/SUP&gt;Ni and Symmetry Energy Constraints</a></td>
+    <td class="small mono">2106.10378</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Hybrid post-Newtonian effective-one-body scheme for spin-precessing compact-binary</a></td>
+    <td class="small mono">2005.05338</td>
+    <td class="num small">73</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Effects of Self-interacting Bosonic Dark Matter on Neutron Star Properties</a></td>
+    <td class="small mono">2209.10905</td>
+    <td class="num small">72</td>
+    <td class="num">18</td></tr>
+
+<tr><td><a href="#">Numerical simulations of neutron star-black hole binaries in the near-equal-mass r</a></td>
+    <td class="small mono">1903.09166</td>
+    <td class="num small">72</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Imprints of the nuclear symmetry energy on the tidal deformability of neutron star</a></td>
+    <td class="small mono">1801.04620</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Pulsar J1411+2551: A Low-mass Double Neutron Star System</a></td>
+    <td class="small mono">1711.09804</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Transejecta high-energy neutrino emission from binary neutron star mergers</a></td>
+    <td class="small mono">1805.11613</td>
+    <td class="num small">72</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Phase transitions in neutron stars and their links to gravitational waves</a></td>
+    <td class="small mono">1907.04654</td>
+    <td class="num small">71</td>
+    <td class="num">53</td></tr>
+
+<tr><td><a href="#">A morphology-independent search for gravitational wave echoes in data from the fir</a></td>
+    <td class="small mono">1906.11168</td>
+    <td class="num small">71</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">The Fate of the Merger Remnant in GW170817 and Its Imprint on the Jet Structure</a></td>
+    <td class="small mono">2007.12245</td>
+    <td class="num small">71</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Jet propagation in neutron star mergers and GW170817</a></td>
+    <td class="small mono">1909.05867</td>
+    <td class="num small">71</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">What Constraints on the Neutron Star Maximum Mass Can One Pose from GW170817 Obser</a></td>
+    <td class="small mono">1912.06369</td>
+    <td class="num small">71</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The Lunar Gravitational-wave Antenna: mission studies and science case</a></td>
+    <td class="small mono">2404.09181</td>
+    <td class="num small">70</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Fading of the X-Ray Afterglow of Neutron Star Merger GW170817/GRB 170817A at 260 D</a></td>
+    <td class="small mono">1805.04093</td>
+    <td class="num small">70</td>
+    <td class="num">6</td></tr>
+
+<tr><td><a href="#">Constraining the Outflow Structure of the Binary Neutron Star Merger Event GW17081</a></td>
+    <td class="small mono">1809.06843</td>
+    <td class="num small">70</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">TeV Gamma-Ray Observations of the Binary Neutron Star Merger GW170817 with H.E.S.S</a></td>
+    <td class="small mono">1710.05862</td>
+    <td class="num small">70</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="#">Equation-of-state insensitive relations after GW170817</a></td>
+    <td class="small mono">1903.03909</td>
+    <td class="num small">70</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Constraints on the Maximum Mass of Neutron Stars with a Quark Core from GW170817 a</a></td>
+    <td class="small mono">2103.15119</td>
+    <td class="num small">70</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Gravitational waves from compact binaries in post-Newtonian accurate hyperbolic or</a></td>
+    <td class="small mono">1807.02380</td>
+    <td class="num small">70</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Inflationary phenomenology of Einstein Gauss-Bonnet gravity compatible with GW1708</a></td>
+    <td class="small mono">1908.07555</td>
+    <td class="num small">70</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Constraining Strangeness in Dense Matter with GW170817</a></td>
+    <td class="small mono">1806.04763</td>
+    <td class="num small">70</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Target-of-opportunity Observations of Gravitational-wave Events with Vera C. Rubin</a></td>
+    <td class="small mono">2111.01945</td>
+    <td class="num small">69</td>
+    <td class="num">15</td></tr>
+
+<tr><td><a href="#">Constraining the relativistic mean-field model equations of state with gravitation</a></td>
+    <td class="small mono">1809.07108</td>
+    <td class="num small">69</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">A Broad Grid of 2D Kilonova Emission Models</a></td>
+    <td class="small mono">2105.11543</td>
+    <td class="num small">69</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">White dwarfs and revelations</a></td>
+    <td class="small mono">1803.00541</td>
+    <td class="num small">69</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Joint gravitational wave - gamma-ray burst detection rates in the aftermath of GW1</a></td>
+    <td class="small mono">1811.09168</td>
+    <td class="num small">68</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="#">Holographic compact stars meet gravitational wave constraints</a></td>
+    <td class="small mono">1711.06244</td>
+    <td class="num small">68</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Twin Stars and the Stiffness of the Nuclear Equation of State: Ruling Out Strong P</a></td>
+    <td class="small mono">1912.09809</td>
+    <td class="num small">68</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Accurate modeling and mitigation of overlapping signals and glitches in gravitatio</a></td>
+    <td class="small mono">2205.13580</td>
+    <td class="num small">68</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">First Constraints on Compact Binary Environments from LIGO-Virgo Data</a></td>
+    <td class="small mono">2309.05061</td>
+    <td class="num small">67</td>
+    <td class="num">13</td></tr>
+
+<tr><td><a href="#">Insight-HXMT observations of the first binary neutron star merger GW170817</a></td>
+    <td class="small mono">1710.06065</td>
+    <td class="num small">67</td>
+    <td class="num">12</td></tr>
+
+<tr><td><a href="#">Asymmetric mass ratios for bright double neutron-star mergers</a></td>
+    <td class="small mono">2007.04175</td>
+    <td class="num small">67</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Measurement Accuracy of Inspiraling Eccentric Neutron Star and Black Hole Binaries</a></td>
+    <td class="small mono">1809.00672</td>
+    <td class="num small">67</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">GRMHD Simulations of Neutron-star Mergers with Weak Interactions: r-process Nucleo</a></td>
+    <td class="small mono">2206.03618</td>
+    <td class="num small">67</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">First measurement of the Hubble parameter from bright binary black hole GW190521</a></td>
+    <td class="small mono">2009.14199</td>
+    <td class="num small">67</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">The impact of peculiar velocities on the estimation of the Hubble constant from gr</a></td>
+    <td class="small mono">1909.09609</td>
+    <td class="num small">67</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">High-Energy Multimessenger Transient Astrophysics</a></td>
+    <td class="small mono">1907.12506</td>
+    <td class="num small">66</td>
+    <td class="num">36</td></tr>
+
+<tr><td><a href="#">GW170817 Afterglow Reveals that Short Gamma-Ray Bursts are Neutron Star Mergers</a></td>
+    <td class="small mono">1905.02665</td>
+    <td class="num small">66</td>
+    <td class="num">8</td></tr>
+
+<tr><td><a href="#">Evidence for Dynamically Driven Formation of the GW170817 Neutron Star Binary in N</a></td>
+    <td class="small mono">1710.06748</td>
+    <td class="num small">66</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Afterglow Constraints on the Viewing Angle of Binary Neutron Star Mergers and Dete</a></td>
+    <td class="small mono">2005.01754</td>
+    <td class="num small">66</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="#">Extended Calculations of Energy Levels and Transition Rates of Nd II-IV Ions for A</a></td>
+    <td class="small mono">1901.10671</td>
+    <td class="num small">66</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Equation of state of dense matter in the multimessenger era</a></td>
+    <td class="small mono">1901.11364</td>
+    <td class="num small">66</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">New and robust gravitational-waveform model for high-mass-ratio binary neutron sta</a></td>
+    <td class="small mono">2311.07456</td>
+    <td class="num small">66</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Jet propagation in expanding medium for gamma-ray bursts</a></td>
+    <td class="small mono">2007.10690</td>
+    <td class="num small">66</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">Tellurium emission line in kilonova AT 2017gfo</a></td>
+    <td class="small mono">2307.00988</td>
+    <td class="num small">66</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="#">A Low-mass Binary Neutron Star: Long-term Ejecta Evolution and Kilonovae with Weak</a></td>
+    <td class="small mono">2012.14711</td>
+    <td class="num small">65</td>
+    <td class="num">6</td></tr>
+
+</table></div>
+
+</div>
+</body>
+</html>

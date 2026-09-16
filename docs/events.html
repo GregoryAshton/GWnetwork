@@ -1,0 +1,5941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events — GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="./index.html">GWnetwork</a><a href="./events.html">Events</a><a href="./explore.html">Explore</a><a href="./papers.html">Papers</a></nav>
+
+<h1>Events</h1>
+<p class="mut small">Filter 434 events on their measured properties.</p>
+
+<form class="filters" method="get" id="filters" onsubmit="return false">
+  <div class="field"><label for="q">Name or alias</label>
+    <input id="q" name="q" value="" placeholder="GW170817, AT2017gfo…"></div>
+
+  <div class="field"><label for="mass_class">Class</label>
+    <select id="mass_class" name="mass_class">
+      <option value="">any</option>
+      
+      <option value="BBH" >BBH</option>
+      
+      <option value="NSBH" >NSBH</option>
+      
+      <option value="BNS" >BNS</option>
+      
+    </select></div>
+
+  <div class="field"><label for="run">Observing run</label>
+    <select id="run" name="run">
+      <option value="">any</option>
+      
+      <option value="O1" >O1</option>
+      
+      <option value="O2" >O2</option>
+      
+      <option value="O3a" >O3a</option>
+      
+      <option value="O3b" >O3b</option>
+      
+      <option value="O4" >O4</option>
+      
+    </select></div>
+
+  <div class="field"><label>Primary mass m₁ (M☉)</label>
+    <div class="range">
+      <input name="m1_min" type="number" step="any" value="" placeholder="min">
+      <input name="m1_max" type="number" step="any" value="" placeholder="max">
+    </div></div>
+
+  <div class="field"><label>Network SNR</label>
+    <div class="range">
+      <input name="snr_min" type="number" step="any" value="" placeholder="min">
+      <input name="snr_max" type="number" step="any" value="" placeholder="max">
+    </div></div>
+
+  <div class="field"><label>Distance (Mpc)</label>
+    <div class="range">
+      <input name="dist_min" type="number" step="any" value="" placeholder="min">
+      <input name="dist_max" type="number" step="any" value="" placeholder="max">
+    </div></div>
+
+  <div class="field"><label for="papers">Literature</label>
+    <select id="papers" name="papers">
+      <option value="">any</option>
+      <option value="yes" >has papers</option>
+      <option value="no"  >no papers yet</option>
+    </select></div>
+
+  <div class="field"><label for="marginal">Marginal</label>
+    <select id="marginal" name="marginal">
+      <option value="">include</option>
+      <option value="exclude" >exclude marginal</option>
+      <option value="only"    >only marginal</option>
+    </select></div>
+
+  <div class="field"><label for="sort">Sort by</label>
+    <select id="sort" name="sort">
+      
+      <option value="papers" selected>Most mentioning papers</option>
+      
+      <option value="name" >Name</option>
+      
+      <option value="gps" >Date (newest first)</option>
+      
+      <option value="m1" >Primary mass</option>
+      
+      <option value="snr" >Network SNR</option>
+      
+      <option value="dist" >Distance</option>
+      
+    </select></div>
+
+  <div class="actions">
+    <button type="submit">Apply</button>
+    <a class="chip" href="./events.html" style="padding:7px 14px">Reset</a>
+  </div>
+</form>
+
+<p class="small mut" id="resultcount">434 of 434 events.</p>
+
+<p class="note" id="hiddennote" hidden>Only 68% of events have a mass measurement, and 66% a spin. A numeric
+filter can only include events where that quantity was measured, so the
+<span id="hiddenn">0</span> excluded here are absent for lack of
+data, not because they fail the criterion.</p>
+
+<div class="wrapx"><table id="eventtable">
+<tr>
+  <th>Event</th><th>Class</th><th>Run</th>
+  <th class="num">m₁</th><th class="num">m₂</th><th class="num">χ<sub>eff</sub></th>
+  <th class="num">D<sub>L</sub></th><th class="num">SNR</th>
+  <th class="num">Mentioning</th>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170817.html">GW170817</a>
+      </td>
+  <td class="small">BNS</td>
+  <td class="small">O2</td>
+  <td class="num">1.5</td>
+  <td class="num">1.3</td>
+  <td class="num">0.00</td>
+  <td class="num">40</td>
+  <td class="num">33.0</td>
+  <td class="num">2,384</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW150914.html">GW150914</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O1</td>
+  <td class="num">34.6</td>
+  <td class="num">30.0</td>
+  <td class="num">-0.04</td>
+  <td class="num">470</td>
+  <td class="num">26.0</td>
+  <td class="num">1,019</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190814.html">GW190814</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">23.3</td>
+  <td class="num">2.6</td>
+  <td class="num">0.00</td>
+  <td class="num">230</td>
+  <td class="num">25.3</td>
+  <td class="num">604</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW151226.html">GW151226</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O1</td>
+  <td class="num">14.2</td>
+  <td class="num">7.5</td>
+  <td class="num">0.20</td>
+  <td class="num">460</td>
+  <td class="num">12.7</td>
+  <td class="num">578</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190521.html">GW190521</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">98.4</td>
+  <td class="num">57.2</td>
+  <td class="num">-0.14</td>
+  <td class="num">3310</td>
+  <td class="num">14.3</td>
+  <td class="num">507</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170814.html">GW170814</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">30.9</td>
+  <td class="num">24.9</td>
+  <td class="num">0.08</td>
+  <td class="num">610</td>
+  <td class="num">17.7</td>
+  <td class="num">495</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170104.html">GW170104</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">28.7</td>
+  <td class="num">20.8</td>
+  <td class="num">-0.04</td>
+  <td class="num">1110</td>
+  <td class="num">13.8</td>
+  <td class="num">471</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190425.html">GW190425</a>
+      </td>
+  <td class="small">BNS</td>
+  <td class="small">O3a</td>
+  <td class="num">2.1</td>
+  <td class="num">1.3</td>
+  <td class="num">0.07</td>
+  <td class="num">150</td>
+  <td class="num">12.4</td>
+  <td class="num">427</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170608.html">GW170608</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">10.6</td>
+  <td class="num">7.8</td>
+  <td class="num">0.05</td>
+  <td class="num">340</td>
+  <td class="num">15.3</td>
+  <td class="num">395</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190412.html">GW190412</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">27.7</td>
+  <td class="num">9.0</td>
+  <td class="num">0.21</td>
+  <td class="num">720</td>
+  <td class="num">19.8</td>
+  <td class="num">295</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170729.html">GW170729</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">54.7</td>
+  <td class="num">30.2</td>
+  <td class="num">0.29</td>
+  <td class="num">2490</td>
+  <td class="num">10.7</td>
+  <td class="num">203</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200115_042309.html">GW200115_042309</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3b</td>
+  <td class="num">5.9</td>
+  <td class="num">1.4</td>
+  <td class="num">-0.15</td>
+  <td class="num">290</td>
+  <td class="num">11.3</td>
+  <td class="num">185</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170818.html">GW170818</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">34.8</td>
+  <td class="num">27.6</td>
+  <td class="num">-0.06</td>
+  <td class="num">1080</td>
+  <td class="num">12.0</td>
+  <td class="num">162</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170809.html">GW170809</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">34.1</td>
+  <td class="num">24.2</td>
+  <td class="num">0.07</td>
+  <td class="num">1070</td>
+  <td class="num">12.8</td>
+  <td class="num">159</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170823.html">GW170823</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">38.3</td>
+  <td class="num">29.0</td>
+  <td class="num">0.05</td>
+  <td class="num">1970</td>
+  <td class="num">12.2</td>
+  <td class="num">157</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200105_162426.html">GW200105_162426</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3b</td>
+  <td class="num">8.9</td>
+  <td class="num">1.9</td>
+  <td class="num">-0.01</td>
+  <td class="num">280</td>
+  <td class="num">13.9</td>
+  <td class="num">155</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW151012.html">GW151012</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O1</td>
+  <td class="num">24.8</td>
+  <td class="num">13.6</td>
+  <td class="num">0.12</td>
+  <td class="num">1000</td>
+  <td class="num">9.3</td>
+  <td class="num">152</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200129_065458.html">GW200129_065458</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">34.5</td>
+  <td class="num">29.0</td>
+  <td class="num">0.11</td>
+  <td class="num">890</td>
+  <td class="num">26.8</td>
+  <td class="num">135</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231123_135430.html">GW231123_135430</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">137.0</td>
+  <td class="num">101.0</td>
+  <td class="num">0.32</td>
+  <td class="num">2200</td>
+  <td class="num">21.8</td>
+  <td class="num">119</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190517_055101.html">GW190517_055101</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">39.2</td>
+  <td class="num">24.0</td>
+  <td class="num">0.49</td>
+  <td class="num">1790</td>
+  <td class="num">10.8</td>
+  <td class="num">108</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190519_153544.html">GW190519_153544</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">65.1</td>
+  <td class="num">40.8</td>
+  <td class="num">0.33</td>
+  <td class="num">2600</td>
+  <td class="num">15.9</td>
+  <td class="num">103</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230529_181500.html">GW230529_181500</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O4</td>
+  <td class="num">3.7</td>
+  <td class="num">1.4</td>
+  <td class="num">-0.10</td>
+  <td class="num">203</td>
+  <td class="num">11.8</td>
+  <td class="num">101</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191109_010717.html">GW191109_010717</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">65.0</td>
+  <td class="num">47.0</td>
+  <td class="num">-0.29</td>
+  <td class="num">1290</td>
+  <td class="num">17.3</td>
+  <td class="num">100</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190706_222641.html">GW190706_222641</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">74.0</td>
+  <td class="num">39.4</td>
+  <td class="num">0.28</td>
+  <td class="num">3630</td>
+  <td class="num">13.4</td>
+  <td class="num">97</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190924_021846.html">GW190924_021846</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">8.8</td>
+  <td class="num">5.1</td>
+  <td class="num">0.03</td>
+  <td class="num">550</td>
+  <td class="num">12.0</td>
+  <td class="num">92</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190408_181802.html">GW190408_181802</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">24.8</td>
+  <td class="num">18.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">1540</td>
+  <td class="num">14.6</td>
+  <td class="num">88</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190728_064510.html">GW190728_064510</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">12.5</td>
+  <td class="num">8.0</td>
+  <td class="num">0.13</td>
+  <td class="num">880</td>
+  <td class="num">13.1</td>
+  <td class="num">88</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190521_074359.html">GW190521_074359</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">43.4</td>
+  <td class="num">33.4</td>
+  <td class="num">0.10</td>
+  <td class="num">1080</td>
+  <td class="num">25.9</td>
+  <td class="num">87</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190602_175927.html">GW190602_175927</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">71.8</td>
+  <td class="num">44.8</td>
+  <td class="num">0.12</td>
+  <td class="num">2840</td>
+  <td class="num">13.2</td>
+  <td class="num">86</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190828_063405.html">GW190828_063405</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">31.9</td>
+  <td class="num">25.8</td>
+  <td class="num">0.15</td>
+  <td class="num">2070</td>
+  <td class="num">16.5</td>
+  <td class="num">85</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190513_205428.html">GW190513_205428</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">36.0</td>
+  <td class="num">18.3</td>
+  <td class="num">0.16</td>
+  <td class="num">2210</td>
+  <td class="num">12.5</td>
+  <td class="num">83</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190503_185404.html">GW190503_185404</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">41.3</td>
+  <td class="num">28.3</td>
+  <td class="num">-0.05</td>
+  <td class="num">1520</td>
+  <td class="num">12.2</td>
+  <td class="num">82</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190720_000836.html">GW190720_000836</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">14.2</td>
+  <td class="num">7.5</td>
+  <td class="num">0.19</td>
+  <td class="num">770</td>
+  <td class="num">10.9</td>
+  <td class="num">82</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190512_180714.html">GW190512_180714</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">23.2</td>
+  <td class="num">12.5</td>
+  <td class="num">0.02</td>
+  <td class="num">1460</td>
+  <td class="num">12.7</td>
+  <td class="num">81</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190701_203306.html">GW190701_203306</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">54.1</td>
+  <td class="num">40.5</td>
+  <td class="num">-0.08</td>
+  <td class="num">2090</td>
+  <td class="num">11.2</td>
+  <td class="num">81</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190727_060333.html">GW190727_060333</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">38.9</td>
+  <td class="num">30.2</td>
+  <td class="num">0.09</td>
+  <td class="num">3070</td>
+  <td class="num">11.7</td>
+  <td class="num">80</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190620_030421.html">GW190620_030421</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">58.0</td>
+  <td class="num">35.0</td>
+  <td class="num">0.34</td>
+  <td class="num">2910</td>
+  <td class="num">12.1</td>
+  <td class="num">78</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200224_222234.html">GW200224_222234</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">40.0</td>
+  <td class="num">32.7</td>
+  <td class="num">0.10</td>
+  <td class="num">1710</td>
+  <td class="num">20.0</td>
+  <td class="num">78</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190915_235702.html">GW190915_235702</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">32.6</td>
+  <td class="num">24.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">1750</td>
+  <td class="num">13.1</td>
+  <td class="num">77</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190630_185205.html">GW190630_185205</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">35.1</td>
+  <td class="num">24.0</td>
+  <td class="num">0.10</td>
+  <td class="num">870</td>
+  <td class="num">16.4</td>
+  <td class="num">75</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190426_152155.html">GW190426_152155</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">5.7</td>
+  <td class="num">1.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">370</td>
+  <td class="num">10.1</td>
+  <td class="num">74</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190929_012149.html">GW190929_012149</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">66.3</td>
+  <td class="num">26.8</td>
+  <td class="num">-0.03</td>
+  <td class="num">3130</td>
+  <td class="num">9.7</td>
+  <td class="num">73</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190707_093326.html">GW190707_093326</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">12.1</td>
+  <td class="num">7.9</td>
+  <td class="num">-0.04</td>
+  <td class="num">850</td>
+  <td class="num">13.1</td>
+  <td class="num">72</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200210_092254.html">GW200210_092254</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3b</td>
+  <td class="num">24.1</td>
+  <td class="num">2.8</td>
+  <td class="num">0.02</td>
+  <td class="num">940</td>
+  <td class="num">8.4</td>
+  <td class="num">72</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250114_082203.html">GW250114_082203</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.8</td>
+  <td class="num">32.3</td>
+  <td class="num">-0.03</td>
+  <td class="num">405</td>
+  <td class="num">78.6</td>
+  <td class="num">72</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190828_065509.html">GW190828_065509</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">23.7</td>
+  <td class="num">10.4</td>
+  <td class="num">0.05</td>
+  <td class="num">1540</td>
+  <td class="num">10.2</td>
+  <td class="num">71</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200311_115853.html">GW200311_115853</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">34.2</td>
+  <td class="num">27.7</td>
+  <td class="num">-0.02</td>
+  <td class="num">1170</td>
+  <td class="num">17.8</td>
+  <td class="num">70</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190421_213856.html">GW190421_213856</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">42.0</td>
+  <td class="num">32.0</td>
+  <td class="num">-0.10</td>
+  <td class="num">2590</td>
+  <td class="num">10.7</td>
+  <td class="num">68</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190708_232457.html">GW190708_232457</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">19.8</td>
+  <td class="num">11.6</td>
+  <td class="num">0.05</td>
+  <td class="num">930</td>
+  <td class="num">13.4</td>
+  <td class="num">68</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191219_163120.html">GW191219_163120</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3b</td>
+  <td class="num">31.1</td>
+  <td class="num">1.2</td>
+  <td class="num">0.00</td>
+  <td class="num">550</td>
+  <td class="num">9.1</td>
+  <td class="num">68</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190910_112807.html">GW190910_112807</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">43.8</td>
+  <td class="num">34.2</td>
+  <td class="num">0.00</td>
+  <td class="num">1520</td>
+  <td class="num">14.5</td>
+  <td class="num">67</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200225_060421.html">GW200225_060421</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">19.3</td>
+  <td class="num">14.0</td>
+  <td class="num">-0.12</td>
+  <td class="num">1150</td>
+  <td class="num">12.5</td>
+  <td class="num">67</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190917_114630.html">GW190917_114630</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">9.7</td>
+  <td class="num">2.1</td>
+  <td class="num">-0.08</td>
+  <td class="num">720</td>
+  <td class="num">8.3</td>
+  <td class="num">66</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200202_154313.html">GW200202_154313</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">10.1</td>
+  <td class="num">7.3</td>
+  <td class="num">0.04</td>
+  <td class="num">410</td>
+  <td class="num">10.8</td>
+  <td class="num">64</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190930_133541.html">GW190930_133541</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">14.2</td>
+  <td class="num">6.9</td>
+  <td class="num">0.19</td>
+  <td class="num">770</td>
+  <td class="num">9.7</td>
+  <td class="num">63</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191204_171526.html">GW191204_171526</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">11.7</td>
+  <td class="num">8.4</td>
+  <td class="num">0.16</td>
+  <td class="num">640</td>
+  <td class="num">17.4</td>
+  <td class="num">63</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191222_033537.html">GW191222_033537</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">45.1</td>
+  <td class="num">34.7</td>
+  <td class="num">-0.04</td>
+  <td class="num">3000</td>
+  <td class="num">12.5</td>
+  <td class="num">62</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200219_094415.html">GW200219_094415</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">37.5</td>
+  <td class="num">27.9</td>
+  <td class="num">-0.08</td>
+  <td class="num">3400</td>
+  <td class="num">10.7</td>
+  <td class="num">62</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200316_215756.html">GW200316_215756</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">13.1</td>
+  <td class="num">7.8</td>
+  <td class="num">0.13</td>
+  <td class="num">1120</td>
+  <td class="num">10.3</td>
+  <td class="num">61</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190719_215514.html">GW190719_215514</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">36.6</td>
+  <td class="num">19.9</td>
+  <td class="num">0.25</td>
+  <td class="num">3730</td>
+  <td class="num">7.9</td>
+  <td class="num">60</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190803_022701.html">GW190803_022701</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">37.7</td>
+  <td class="num">27.6</td>
+  <td class="num">-0.01</td>
+  <td class="num">3190</td>
+  <td class="num">9.3</td>
+  <td class="num">60</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191216_213338.html">GW191216_213338</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">12.1</td>
+  <td class="num">7.7</td>
+  <td class="num">0.11</td>
+  <td class="num">340</td>
+  <td class="num">18.6</td>
+  <td class="num">60</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190514_065416.html">GW190514_065416</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">40.9</td>
+  <td class="num">28.4</td>
+  <td class="num">-0.08</td>
+  <td class="num">3890</td>
+  <td class="num">8.0</td>
+  <td class="num">59</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191129_134029.html">GW191129_134029</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">10.7</td>
+  <td class="num">6.7</td>
+  <td class="num">0.06</td>
+  <td class="num">790</td>
+  <td class="num">13.1</td>
+  <td class="num">59</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191215_223052.html">GW191215_223052</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">24.9</td>
+  <td class="num">18.1</td>
+  <td class="num">-0.04</td>
+  <td class="num">1930</td>
+  <td class="num">11.2</td>
+  <td class="num">57</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190527_092055.html">GW190527_092055</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">35.6</td>
+  <td class="num">22.2</td>
+  <td class="num">0.10</td>
+  <td class="num">2520</td>
+  <td class="num">8.0</td>
+  <td class="num">56</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200208_130117.html">GW200208_130117</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">37.7</td>
+  <td class="num">27.4</td>
+  <td class="num">-0.07</td>
+  <td class="num">2230</td>
+  <td class="num">10.8</td>
+  <td class="num">56</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190731_140936.html">GW190731_140936</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">41.8</td>
+  <td class="num">29.0</td>
+  <td class="num">0.07</td>
+  <td class="num">3330</td>
+  <td class="num">8.8</td>
+  <td class="num">55</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190413_134308.html">GW190413_134308</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">51.3</td>
+  <td class="num">30.4</td>
+  <td class="num">-0.01</td>
+  <td class="num">3800</td>
+  <td class="num">10.6</td>
+  <td class="num">53</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200216_220804.html">GW200216_220804</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">51.0</td>
+  <td class="num">30.0</td>
+  <td class="num">0.10</td>
+  <td class="num">3800</td>
+  <td class="num">8.1</td>
+  <td class="num">51</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190413_052954.html">GW190413_052954</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">33.7</td>
+  <td class="num">24.2</td>
+  <td class="num">-0.04</td>
+  <td class="num">3320</td>
+  <td class="num">9.0</td>
+  <td class="num">50</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191230_180458.html">GW191230_180458</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">49.4</td>
+  <td class="num">37.0</td>
+  <td class="num">-0.05</td>
+  <td class="num">4300</td>
+  <td class="num">10.4</td>
+  <td class="num">50</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200128_022011.html">GW200128_022011</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">42.2</td>
+  <td class="num">32.6</td>
+  <td class="num">0.12</td>
+  <td class="num">3400</td>
+  <td class="num">10.6</td>
+  <td class="num">50</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200208_222617.html">GW200208_222617</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">51.0</td>
+  <td class="num">12.3</td>
+  <td class="num">0.45</td>
+  <td class="num">4100</td>
+  <td class="num">7.4</td>
+  <td class="num">50</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241011_233834.html">GW241011_233834</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">19.5</td>
+  <td class="num">6.0</td>
+  <td class="num">0.50</td>
+  <td class="num">212</td>
+  <td class="num">35.8</td>
+  <td class="num">49</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191105_143521.html">GW191105_143521</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">10.7</td>
+  <td class="num">7.7</td>
+  <td class="num">-0.02</td>
+  <td class="num">1150</td>
+  <td class="num">9.7</td>
+  <td class="num">48</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200209_085452.html">GW200209_085452</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">35.6</td>
+  <td class="num">27.1</td>
+  <td class="num">-0.12</td>
+  <td class="num">3400</td>
+  <td class="num">9.6</td>
+  <td class="num">48</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191103_012549.html">GW191103_012549</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">11.8</td>
+  <td class="num">7.9</td>
+  <td class="num">0.21</td>
+  <td class="num">990</td>
+  <td class="num">8.9</td>
+  <td class="num">47</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200112_155838.html">GW200112_155838</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">35.6</td>
+  <td class="num">28.3</td>
+  <td class="num">0.06</td>
+  <td class="num">1250</td>
+  <td class="num">19.8</td>
+  <td class="num">46</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190403_051519.html">GW190403_051519</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">85.0</td>
+  <td class="num">20.0</td>
+  <td class="num">0.68</td>
+  <td class="num">8280</td>
+  <td class="num">7.6</td>
+  <td class="num">45</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190805_211137.html">GW190805_211137</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">46.2</td>
+  <td class="num">30.6</td>
+  <td class="num">0.37</td>
+  <td class="num">6130</td>
+  <td class="num">8.1</td>
+  <td class="num">45</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190725_174728.html">GW190725_174728</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">11.8</td>
+  <td class="num">6.3</td>
+  <td class="num">-0.04</td>
+  <td class="num">1030</td>
+  <td class="num">9.1</td>
+  <td class="num">43</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191127_050227.html">GW191127_050227</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">53.0</td>
+  <td class="num">24.0</td>
+  <td class="num">0.18</td>
+  <td class="num">3400</td>
+  <td class="num">9.2</td>
+  <td class="num">42</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200302_015811.html">GW200302_015811</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">37.8</td>
+  <td class="num">20.0</td>
+  <td class="num">0.01</td>
+  <td class="num">1480</td>
+  <td class="num">10.8</td>
+  <td class="num">42</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200220_061928.html">GW200220_061928</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">87.0</td>
+  <td class="num">61.0</td>
+  <td class="num">0.06</td>
+  <td class="num">6000</td>
+  <td class="num">7.2</td>
+  <td class="num">41</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241110_124123.html">GW241110_124123</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">16.4</td>
+  <td class="num">8.0</td>
+  <td class="num">-0.31</td>
+  <td class="num">740</td>
+  <td class="num">10.2</td>
+  <td class="num">41</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200322_091133.html">GW200322_091133</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">38.0</td>
+  <td class="num">11.3</td>
+  <td class="num">0.27</td>
+  <td class="num">3500</td>
+  <td class="num">4.5</td>
+  <td class="num">40</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190426_190642.html">GW190426_190642</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">105.5</td>
+  <td class="num">76.0</td>
+  <td class="num">0.23</td>
+  <td class="num">4580</td>
+  <td class="num">8.7</td>
+  <td class="num">39</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190925_232845.html">GW190925_232845</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">20.8</td>
+  <td class="num">15.5</td>
+  <td class="num">0.09</td>
+  <td class="num">930</td>
+  <td class="num">9.7</td>
+  <td class="num">39</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200308_173609.html">GW200308_173609</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">60.0</td>
+  <td class="num">24.0</td>
+  <td class="num">0.16</td>
+  <td class="num">7100</td>
+  <td class="num">4.7</td>
+  <td class="num">39</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190916_200658.html">GW190916_200658</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">43.8</td>
+  <td class="num">23.3</td>
+  <td class="num">0.20</td>
+  <td class="num">4940</td>
+  <td class="num">8.1</td>
+  <td class="num">36</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200220_124850.html">GW200220_124850</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">38.9</td>
+  <td class="num">27.9</td>
+  <td class="num">-0.07</td>
+  <td class="num">4000</td>
+  <td class="num">8.5</td>
+  <td class="num">36</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190424_180648.html">GW190424_180648</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">40.5</td>
+  <td class="num">31.8</td>
+  <td class="num">0.13</td>
+  <td class="num">2200</td>
+  <td class="num">10.1</td>
+  <td class="num">35</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190926_050336.html">GW190926_050336</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">41.1</td>
+  <td class="num">20.4</td>
+  <td class="num">-0.02</td>
+  <td class="num">3280</td>
+  <td class="num">8.1</td>
+  <td class="num">35</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191113_071753.html">GW191113_071753</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">29.0</td>
+  <td class="num">5.9</td>
+  <td class="num">0.00</td>
+  <td class="num">1370</td>
+  <td class="num">7.9</td>
+  <td class="num">35</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191126_115259.html">GW191126_115259</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">12.1</td>
+  <td class="num">8.3</td>
+  <td class="num">0.21</td>
+  <td class="num">1620</td>
+  <td class="num">8.3</td>
+  <td class="num">32</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200306_093714.html">GW200306_093714</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">28.3</td>
+  <td class="num">14.8</td>
+  <td class="num">0.32</td>
+  <td class="num">2100</td>
+  <td class="num">7.8</td>
+  <td class="num">32</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190909_114149.html">GW190909_114149</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">45.8</td>
+  <td class="num">28.3</td>
+  <td class="num">-0.06</td>
+  <td class="num">3770</td>
+  <td class="num">9.0</td>
+  <td class="num">31</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191204_110529.html">GW191204_110529</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">27.3</td>
+  <td class="num">19.2</td>
+  <td class="num">0.05</td>
+  <td class="num">1900</td>
+  <td class="num">8.9</td>
+  <td class="num">29</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231028_153006.html">GW231028_153006</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">94.0</td>
+  <td class="num">59.0</td>
+  <td class="num">0.45</td>
+  <td class="num">4200</td>
+  <td class="num">22.4</td>
+  <td class="num">22</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231226_101520.html">GW231226_101520</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.2</td>
+  <td class="num">35.1</td>
+  <td class="num">-0.08</td>
+  <td class="num">1180</td>
+  <td class="num">34.7</td>
+  <td class="num">22</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230518_125908.html">GW230518_125908</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">—</td>
+  <td class="num">8.2</td>
+  <td class="num">1.4</td>
+  <td class="num">-0.01</td>
+  <td class="num">236</td>
+  <td class="num">14.1</td>
+  <td class="num">21</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230627_015337.html">GW230627_015337</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">8.4</td>
+  <td class="num">5.7</td>
+  <td class="num">0.02</td>
+  <td class="num">305</td>
+  <td class="num">28.7</td>
+  <td class="num">21</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230814_230901.html">GW230814_230901</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.7</td>
+  <td class="num">28.2</td>
+  <td class="num">-0.01</td>
+  <td class="num">290</td>
+  <td class="num">43.0</td>
+  <td class="num">20</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW151216.html">GW151216</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O1</td>
+  <td class="num">30.4</td>
+  <td class="num">12.6</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.9</td>
+  <td class="num">19</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231118_005626.html">GW231118_005626</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">20.0</td>
+  <td class="num">10.8</td>
+  <td class="num">0.38</td>
+  <td class="num">2190</td>
+  <td class="num">10.7</td>
+  <td class="num">18</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231223_032836.html">GW231223_032836</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">46.0</td>
+  <td class="num">31.0</td>
+  <td class="num">-0.16</td>
+  <td class="num">4200</td>
+  <td class="num">10.2</td>
+  <td class="num">17</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230922_040658.html">GW230922_040658</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">76.0</td>
+  <td class="num">51.0</td>
+  <td class="num">0.31</td>
+  <td class="num">6500</td>
+  <td class="num">12.5</td>
+  <td class="num">16</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230928_215827.html">GW230928_215827</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">54.0</td>
+  <td class="num">29.0</td>
+  <td class="num">0.40</td>
+  <td class="num">4900</td>
+  <td class="num">10.5</td>
+  <td class="num">16</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231206_233901.html">GW231206_233901</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.6</td>
+  <td class="num">28.5</td>
+  <td class="num">-0.05</td>
+  <td class="num">1490</td>
+  <td class="num">21.9</td>
+  <td class="num">16</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230914_111401.html">GW230914_111401</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">60.0</td>
+  <td class="num">37.0</td>
+  <td class="num">0.12</td>
+  <td class="num">2700</td>
+  <td class="num">17.2</td>
+  <td class="num">15</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230927_153832.html">GW230927_153832</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">21.7</td>
+  <td class="num">16.6</td>
+  <td class="num">0.03</td>
+  <td class="num">1190</td>
+  <td class="num">20.3</td>
+  <td class="num">15</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231114_043211.html">GW231114_043211</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">22.8</td>
+  <td class="num">8.2</td>
+  <td class="num">0.08</td>
+  <td class="num">1390</td>
+  <td class="num">10.0</td>
+  <td class="num">15</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231224_024321.html">GW231224_024321</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">9.3</td>
+  <td class="num">7.3</td>
+  <td class="num">-0.01</td>
+  <td class="num">950</td>
+  <td class="num">14.0</td>
+  <td class="num">15</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230628_231200.html">GW230628_231200</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">32.5</td>
+  <td class="num">27.0</td>
+  <td class="num">-0.01</td>
+  <td class="num">2260</td>
+  <td class="num">16.4</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230706_104333.html">GW230706_104333</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">16.3</td>
+  <td class="num">11.5</td>
+  <td class="num">0.19</td>
+  <td class="num">1910</td>
+  <td class="num">9.2</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230723_101834.html">GW230723_101834</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">16.6</td>
+  <td class="num">10.6</td>
+  <td class="num">-0.18</td>
+  <td class="num">1610</td>
+  <td class="num">10.1</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230924_124453.html">GW230924_124453</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">28.8</td>
+  <td class="num">23.2</td>
+  <td class="num">0.02</td>
+  <td class="num">2400</td>
+  <td class="num">13.5</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231001_140220.html">GW231001_140220</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">76.0</td>
+  <td class="num">41.0</td>
+  <td class="num">-0.04</td>
+  <td class="num">4400</td>
+  <td class="num">11.5</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231110_040320.html">GW231110_040320</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">19.4</td>
+  <td class="num">12.6</td>
+  <td class="num">0.17</td>
+  <td class="num">1890</td>
+  <td class="num">11.5</td>
+  <td class="num">14</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230601_224134.html">GW230601_224134</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">64.0</td>
+  <td class="num">44.0</td>
+  <td class="num">-0.03</td>
+  <td class="num">3700</td>
+  <td class="num">13.4</td>
+  <td class="num">13</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231118_090602.html">GW231118_090602</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.9</td>
+  <td class="num">7.4</td>
+  <td class="num">0.08</td>
+  <td class="num">1360</td>
+  <td class="num">11.0</td>
+  <td class="num">13</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230624_113103.html">GW230624_113103</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">27.1</td>
+  <td class="num">16.1</td>
+  <td class="num">0.17</td>
+  <td class="num">1930</td>
+  <td class="num">11.4</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230702_185453.html">GW230702_185453</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.0</td>
+  <td class="num">18.0</td>
+  <td class="num">0.05</td>
+  <td class="num">2500</td>
+  <td class="num">10.1</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230712_090405.html">GW230712_090405</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">32.0</td>
+  <td class="num">12.5</td>
+  <td class="num">-0.02</td>
+  <td class="num">2000</td>
+  <td class="num">9.5</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230731_215307.html">GW230731_215307</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.3</td>
+  <td class="num">7.9</td>
+  <td class="num">-0.05</td>
+  <td class="num">1100</td>
+  <td class="num">12.2</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230814_061920.html">GW230814_061920</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">69.0</td>
+  <td class="num">42.0</td>
+  <td class="num">0.07</td>
+  <td class="num">4000</td>
+  <td class="num">11.2</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230919_215712.html">GW230919_215712</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">27.3</td>
+  <td class="num">21.4</td>
+  <td class="num">0.18</td>
+  <td class="num">1330</td>
+  <td class="num">16.8</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230922_020344.html">GW230922_020344</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">39.3</td>
+  <td class="num">29.2</td>
+  <td class="num">0.03</td>
+  <td class="num">1640</td>
+  <td class="num">13.4</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231020_142947.html">GW231020_142947</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.0</td>
+  <td class="num">7.4</td>
+  <td class="num">0.14</td>
+  <td class="num">1230</td>
+  <td class="num">12.0</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231102_071736.html">GW231102_071736</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">61.0</td>
+  <td class="num">42.0</td>
+  <td class="num">0.06</td>
+  <td class="num">3800</td>
+  <td class="num">15.6</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231104_133418.html">GW231104_133418</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.2</td>
+  <td class="num">8.6</td>
+  <td class="num">0.14</td>
+  <td class="num">1470</td>
+  <td class="num">11.8</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231213_111417.html">GW231213_111417</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.6</td>
+  <td class="num">27.2</td>
+  <td class="num">0.06</td>
+  <td class="num">4000</td>
+  <td class="num">10.4</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230605_065343.html">GW230605_065343</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">17.4</td>
+  <td class="num">11.0</td>
+  <td class="num">0.06</td>
+  <td class="num">1060</td>
+  <td class="num">11.4</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230606_004305.html">GW230606_004305</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.6</td>
+  <td class="num">25.7</td>
+  <td class="num">-0.11</td>
+  <td class="num">2800</td>
+  <td class="num">11.1</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230609_064958.html">GW230609_064958</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.4</td>
+  <td class="num">25.2</td>
+  <td class="num">-0.14</td>
+  <td class="num">3400</td>
+  <td class="num">10.6</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230630_234532.html">GW230630_234532</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.0</td>
+  <td class="num">6.6</td>
+  <td class="num">-0.04</td>
+  <td class="num">1090</td>
+  <td class="num">9.9</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230709_122727.html">GW230709_122727</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">30.0</td>
+  <td class="num">0.08</td>
+  <td class="num">4700</td>
+  <td class="num">10.2</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230811_032116.html">GW230811_032116</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.4</td>
+  <td class="num">22.3</td>
+  <td class="num">0.03</td>
+  <td class="num">2100</td>
+  <td class="num">13.6</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230820_212515.html">GW230820_212515</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">62.0</td>
+  <td class="num">34.0</td>
+  <td class="num">0.21</td>
+  <td class="num">4000</td>
+  <td class="num">9.3</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230824_033047.html">GW230824_033047</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">53.0</td>
+  <td class="num">36.0</td>
+  <td class="num">-0.01</td>
+  <td class="num">4700</td>
+  <td class="num">11.1</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230904_051013.html">GW230904_051013</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.6</td>
+  <td class="num">7.1</td>
+  <td class="num">0.05</td>
+  <td class="num">1030</td>
+  <td class="num">10.5</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230920_071124.html">GW230920_071124</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">32.4</td>
+  <td class="num">23.8</td>
+  <td class="num">—</td>
+  <td class="num">2900</td>
+  <td class="num">11.1</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230927_043729.html">GW230927_043729</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.0</td>
+  <td class="num">27.1</td>
+  <td class="num">0.01</td>
+  <td class="num">3200</td>
+  <td class="num">12.1</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231029_111508.html">GW231029_111508</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">65.0</td>
+  <td class="num">42.0</td>
+  <td class="num">0.14</td>
+  <td class="num">3100</td>
+  <td class="num">10.8</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231108_125142.html">GW231108_125142</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">23.2</td>
+  <td class="num">17.4</td>
+  <td class="num">-0.08</td>
+  <td class="num">2050</td>
+  <td class="num">12.6</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231113_200417.html">GW231113_200417</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.6</td>
+  <td class="num">7.4</td>
+  <td class="num">0.13</td>
+  <td class="num">1160</td>
+  <td class="num">10.5</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231118_071402.html">GW231118_071402</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">43.0</td>
+  <td class="num">29.0</td>
+  <td class="num">0.12</td>
+  <td class="num">4300</td>
+  <td class="num">9.2</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231230_170116.html">GW231230_170116</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">53.0</td>
+  <td class="num">35.0</td>
+  <td class="num">-0.18</td>
+  <td class="num">5700</td>
+  <td class="num">8.2</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240925_005809.html">GW240925_005809</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">9.0</td>
+  <td class="num">7.0</td>
+  <td class="num">0.02</td>
+  <td class="num">356</td>
+  <td class="num">31.2</td>
+  <td class="num">11</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230707_124047.html">GW230707_124047</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">46.1</td>
+  <td class="num">36.3</td>
+  <td class="num">-0.05</td>
+  <td class="num">4400</td>
+  <td class="num">11.9</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230729_082317.html">GW230729_082317</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.3</td>
+  <td class="num">7.6</td>
+  <td class="num">0.12</td>
+  <td class="num">1640</td>
+  <td class="num">9.5</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231004_232346.html">GW231004_232346</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">64.0</td>
+  <td class="num">35.0</td>
+  <td class="num">-0.04</td>
+  <td class="num">4400</td>
+  <td class="num">8.9</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231005_021030.html">GW231005_021030</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">84.0</td>
+  <td class="num">50.0</td>
+  <td class="num">0.10</td>
+  <td class="num">6300</td>
+  <td class="num">10.4</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231129_081745.html">GW231129_081745</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">23.8</td>
+  <td class="num">0.03</td>
+  <td class="num">3800</td>
+  <td class="num">9.4</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231206_233134.html">GW231206_233134</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.6</td>
+  <td class="num">28.2</td>
+  <td class="num">-0.08</td>
+  <td class="num">3200</td>
+  <td class="num">12.8</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240107_013215.html">GW240107_013215</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">59.0</td>
+  <td class="num">33.0</td>
+  <td class="num">0.32</td>
+  <td class="num">5800</td>
+  <td class="num">9.6</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241127_061008.html">GW241127_061008</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">63.8</td>
+  <td class="num">20.8</td>
+  <td class="num">-0.16</td>
+  <td class="num">1080</td>
+  <td class="num">31.3</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230608_205047.html">GW230608_205047</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">48.0</td>
+  <td class="num">31.0</td>
+  <td class="num">0.04</td>
+  <td class="num">3500</td>
+  <td class="num">10.2</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230630_125806.html">GW230630_125806</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">51.0</td>
+  <td class="num">33.0</td>
+  <td class="num">0.18</td>
+  <td class="num">5400</td>
+  <td class="num">9.0</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230704_021211.html">GW230704_021211</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">32.6</td>
+  <td class="num">20.0</td>
+  <td class="num">-0.01</td>
+  <td class="num">2700</td>
+  <td class="num">9.4</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230708_230935.html">GW230708_230935</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">64.0</td>
+  <td class="num">40.0</td>
+  <td class="num">0.01</td>
+  <td class="num">3500</td>
+  <td class="num">10.0</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230819_171910.html">GW230819_171910</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">70.0</td>
+  <td class="num">35.0</td>
+  <td class="num">-0.04</td>
+  <td class="num">4100</td>
+  <td class="num">9.9</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231008_142521.html">GW231008_142521</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">25.6</td>
+  <td class="num">-0.01</td>
+  <td class="num">3000</td>
+  <td class="num">9.3</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231014_040532.html">GW231014_040532</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">20.6</td>
+  <td class="num">14.7</td>
+  <td class="num">0.18</td>
+  <td class="num">2300</td>
+  <td class="num">9.0</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231127_165300.html">GW231127_165300</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">28.0</td>
+  <td class="num">0.05</td>
+  <td class="num">4500</td>
+  <td class="num">9.9</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231223_075055.html">GW231223_075055</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.9</td>
+  <td class="num">6.8</td>
+  <td class="num">0.07</td>
+  <td class="num">970</td>
+  <td class="num">9.4</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231223_202619.html">GW231223_202619</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.1</td>
+  <td class="num">8.3</td>
+  <td class="num">0.10</td>
+  <td class="num">890</td>
+  <td class="num">10.1</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240104_164932.html">GW240104_164932</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">42.3</td>
+  <td class="num">32.2</td>
+  <td class="num">0.09</td>
+  <td class="num">1910</td>
+  <td class="num">14.8</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241225_082815.html">GW241225_082815</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">55.7</td>
+  <td class="num">42.2</td>
+  <td class="num">-0.17</td>
+  <td class="num">1880</td>
+  <td class="num">19.5</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250207_115645.html">GW250207_115645</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.2</td>
+  <td class="num">30.6</td>
+  <td class="num">0.00</td>
+  <td class="num">187</td>
+  <td class="num">68.9</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190531_023648.html">GW190531_023648</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3a</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.0</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230704_212616.html">GW230704_212616</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">89.0</td>
+  <td class="num">50.0</td>
+  <td class="num">0.27</td>
+  <td class="num">7300</td>
+  <td class="num">8.7</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230708_053705.html">GW230708_053705</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">29.1</td>
+  <td class="num">22.7</td>
+  <td class="num">0.06</td>
+  <td class="num">3300</td>
+  <td class="num">8.9</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230726_002940.html">GW230726_002940</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.6</td>
+  <td class="num">27.9</td>
+  <td class="num">-0.02</td>
+  <td class="num">2100</td>
+  <td class="num">10.5</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230805_034249.html">GW230805_034249</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">32.2</td>
+  <td class="num">22.6</td>
+  <td class="num">0.06</td>
+  <td class="num">3500</td>
+  <td class="num">9.5</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230806_204041.html">GW230806_204041</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">51.0</td>
+  <td class="num">35.0</td>
+  <td class="num">0.08</td>
+  <td class="num">5500</td>
+  <td class="num">9.4</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230825_041334.html">GW230825_041334</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">44.0</td>
+  <td class="num">27.2</td>
+  <td class="num">0.29</td>
+  <td class="num">4900</td>
+  <td class="num">8.8</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230911_195324.html">GW230911_195324</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.9</td>
+  <td class="num">21.6</td>
+  <td class="num">-0.02</td>
+  <td class="num">1350</td>
+  <td class="num">11.1</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231018_233037.html">GW231018_233037</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.6</td>
+  <td class="num">7.3</td>
+  <td class="num">0.01</td>
+  <td class="num">1540</td>
+  <td class="num">9.1</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231119_075248.html">GW231119_075248</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">49.0</td>
+  <td class="num">33.0</td>
+  <td class="num">—</td>
+  <td class="num">6700</td>
+  <td class="num">8.3</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231221_135041.html">GW231221_135041</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">47.0</td>
+  <td class="num">29.0</td>
+  <td class="num">0.01</td>
+  <td class="num">4600</td>
+  <td class="num">10.0</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231231_154016.html">GW231231_154016</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">22.5</td>
+  <td class="num">17.2</td>
+  <td class="num">-0.03</td>
+  <td class="num">1070</td>
+  <td class="num">13.4</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241125_010116.html">GW241125_010116</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">60.0</td>
+  <td class="num">47.0</td>
+  <td class="num">0.09</td>
+  <td class="num">4700</td>
+  <td class="num">11.0</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190704_104834.html">GW190704_104834</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">7.0</td>
+  <td class="num">3.1</td>
+  <td class="num">0.20</td>
+  <td class="num">500</td>
+  <td class="num">8.9</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190910_012619.html">GW190910_012619</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">34.0</td>
+  <td class="num">3.2</td>
+  <td class="num">-0.60</td>
+  <td class="num">1000</td>
+  <td class="num">8.2</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200311_103121.html">GW200311_103121</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230630_070659.html">GW230630_070659</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.8</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230803_033412.html">GW230803_033412</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">44.0</td>
+  <td class="num">29.0</td>
+  <td class="num">0.07</td>
+  <td class="num">5000</td>
+  <td class="num">9.4</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230831_015414.html">GW230831_015414</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">42.0</td>
+  <td class="num">30.0</td>
+  <td class="num">0.04</td>
+  <td class="num">4900</td>
+  <td class="num">8.6</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230930_110730.html">GW230930_110730</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.5</td>
+  <td class="num">24.4</td>
+  <td class="num">0.02</td>
+  <td class="num">4900</td>
+  <td class="num">9.0</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231005_091549.html">GW231005_091549</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">28.8</td>
+  <td class="num">21.2</td>
+  <td class="num">-0.03</td>
+  <td class="num">3800</td>
+  <td class="num">11.0</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231113_122623.html">GW231113_122623</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">39.8</td>
+  <td class="num">26.4</td>
+  <td class="num">0.33</td>
+  <td class="num">3400</td>
+  <td class="num">8.6</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240109_050431.html">GW240109_050431</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">28.7</td>
+  <td class="num">18.1</td>
+  <td class="num">-0.07</td>
+  <td class="num">1500</td>
+  <td class="num">10.4</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240920_124024.html">GW240920_124024</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.1</td>
+  <td class="num">31.9</td>
+  <td class="num">-0.04</td>
+  <td class="num">1090</td>
+  <td class="num">37.4</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241230_084504.html">GW241230_084504</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">42.4</td>
+  <td class="num">33.5</td>
+  <td class="num">-0.14</td>
+  <td class="num">2900</td>
+  <td class="num">11.1</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190711_030756.html">GW190711_030756</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">90.0</td>
+  <td class="num">20.0</td>
+  <td class="num">0.30</td>
+  <td class="num">2500</td>
+  <td class="num">9.0</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200201_203549.html">GW200201_203549</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.0</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240515_005301.html">GW240515_005301</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.1</td>
+  <td class="num">18.5</td>
+  <td class="num">0.47</td>
+  <td class="num">3800</td>
+  <td class="num">12.8</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240615_113620.html">GW240615_113620</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.0</td>
+  <td class="num">26.4</td>
+  <td class="num">-0.07</td>
+  <td class="num">1560</td>
+  <td class="num">26.4</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240615_160735.html">GW240615_160735</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">28.5</td>
+  <td class="num">20.0</td>
+  <td class="num">0.28</td>
+  <td class="num">4000</td>
+  <td class="num">13.1</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240920_073424.html">GW240920_073424</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">24.7</td>
+  <td class="num">13.4</td>
+  <td class="num">-0.09</td>
+  <td class="num">1440</td>
+  <td class="num">14.0</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240921_201835.html">GW240921_201835</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.9</td>
+  <td class="num">9.8</td>
+  <td class="num">—</td>
+  <td class="num">920</td>
+  <td class="num">11.3</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240930_035959.html">GW240930_035959</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">25.5</td>
+  <td class="num">11.2</td>
+  <td class="num">-0.05</td>
+  <td class="num">950</td>
+  <td class="num">16.1</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240930_234614.html">GW240930_234614</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.8</td>
+  <td class="num">21.9</td>
+  <td class="num">0.04</td>
+  <td class="num">3600</td>
+  <td class="num">11.3</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241102_144729.html">GW241102_144729</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">44.4</td>
+  <td class="num">31.0</td>
+  <td class="num">-0.09</td>
+  <td class="num">3400</td>
+  <td class="num">12.7</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241113_163507.html">GW241113_163507</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">19.3</td>
+  <td class="num">14.4</td>
+  <td class="num">0.50</td>
+  <td class="num">1360</td>
+  <td class="num">12.5</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190707_083226.html">GW190707_083226</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">52.0</td>
+  <td class="num">32.0</td>
+  <td class="num">-0.20</td>
+  <td class="num">4000</td>
+  <td class="num">8.3</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190718_160159.html">GW190718_160159</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">11.0</td>
+  <td class="num">6.3</td>
+  <td class="num">0.70</td>
+  <td class="num">1500</td>
+  <td class="num">8.4</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190818_232544.html">GW190818_232544</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">70.0</td>
+  <td class="num">34.0</td>
+  <td class="num">0.70</td>
+  <td class="num">6000</td>
+  <td class="num">8.1</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190821_124821.html">GW190821_124821</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">8.0</td>
+  <td class="num">3.9</td>
+  <td class="num">-0.40</td>
+  <td class="num">800</td>
+  <td class="num">8.8</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190906_054335.html">GW190906_054335</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">39.0</td>
+  <td class="num">24.0</td>
+  <td class="num">0.10</td>
+  <td class="num">6000</td>
+  <td class="num">7.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190920_113516.html">GW190920_113516</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">7.0</td>
+  <td class="num">2.8</td>
+  <td class="num">0.60</td>
+  <td class="num">700</td>
+  <td class="num">8.6</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/200114_020818.html">200114_020818</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">14.5</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240413_022019.html">GW240413_022019</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">7.9</td>
+  <td class="num">5.6</td>
+  <td class="num">0.07</td>
+  <td class="num">570</td>
+  <td class="num">18.1</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240514_121713.html">GW240514_121713</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">46.8</td>
+  <td class="num">36.7</td>
+  <td class="num">0.01</td>
+  <td class="num">2590</td>
+  <td class="num">16.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240520_213616.html">GW240520_213616</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.4</td>
+  <td class="num">8.0</td>
+  <td class="num">—</td>
+  <td class="num">1400</td>
+  <td class="num">11.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240527_183429.html">GW240527_183429</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">52.0</td>
+  <td class="num">33.0</td>
+  <td class="num">0.31</td>
+  <td class="num">6400</td>
+  <td class="num">10.4</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240601_231004.html">GW240601_231004</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.6</td>
+  <td class="num">7.7</td>
+  <td class="num">0.09</td>
+  <td class="num">1270</td>
+  <td class="num">10.4</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240622_004008.html">GW240622_004008</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">18.6</td>
+  <td class="num">11.3</td>
+  <td class="num">0.25</td>
+  <td class="num">1470</td>
+  <td class="num">12.7</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240629_145256.html">GW240629_145256</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.1</td>
+  <td class="num">7.8</td>
+  <td class="num">0.04</td>
+  <td class="num">1280</td>
+  <td class="num">12.7</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240630_101703.html">GW240630_101703</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">28.6</td>
+  <td class="num">21.6</td>
+  <td class="num">-0.04</td>
+  <td class="num">3200</td>
+  <td class="num">10.6</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240703_191355.html">GW240703_191355</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.4</td>
+  <td class="num">26.4</td>
+  <td class="num">0.05</td>
+  <td class="num">1880</td>
+  <td class="num">10.1</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240705_053215.html">GW240705_053215</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">47.1</td>
+  <td class="num">35.3</td>
+  <td class="num">-0.03</td>
+  <td class="num">3700</td>
+  <td class="num">16.8</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240716_034900.html">GW240716_034900</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.3</td>
+  <td class="num">26.5</td>
+  <td class="num">-0.02</td>
+  <td class="num">1860</td>
+  <td class="num">12.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240902_143306.html">GW240902_143306</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">24.4</td>
+  <td class="num">18.3</td>
+  <td class="num">-0.03</td>
+  <td class="num">2900</td>
+  <td class="num">10.6</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240908_082628.html">GW240908_082628</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">39.8</td>
+  <td class="num">27.7</td>
+  <td class="num">0.14</td>
+  <td class="num">3100</td>
+  <td class="num">11.1</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240910_103535.html">GW240910_103535</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.9</td>
+  <td class="num">6.3</td>
+  <td class="num">0.12</td>
+  <td class="num">740</td>
+  <td class="num">17.8</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240919_061559.html">GW240919_061559</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">38.3</td>
+  <td class="num">29.6</td>
+  <td class="num">-0.02</td>
+  <td class="num">1870</td>
+  <td class="num">16.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240922_142106.html">GW240922_142106</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.5</td>
+  <td class="num">7.8</td>
+  <td class="num">0.07</td>
+  <td class="num">1230</td>
+  <td class="num">12.5</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241109_115924.html">GW241109_115924</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">7.3</td>
+  <td class="num">5.1</td>
+  <td class="num">0.01</td>
+  <td class="num">600</td>
+  <td class="num">11.9</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241111_111552.html">GW241111_111552</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">25.3</td>
+  <td class="num">20.5</td>
+  <td class="num">0.10</td>
+  <td class="num">1550</td>
+  <td class="num">16.3</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241230_233618.html">GW241230_233618</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">68.0</td>
+  <td class="num">49.0</td>
+  <td class="num">-0.14</td>
+  <td class="num">2700</td>
+  <td class="num">12.2</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250109_010541.html">GW250109_010541</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.5</td>
+  <td class="num">27.4</td>
+  <td class="num">-0.11</td>
+  <td class="num">3400</td>
+  <td class="num">13.1</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250116_015318.html">GW250116_015318</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.2</td>
+  <td class="num">21.3</td>
+  <td class="num">0.15</td>
+  <td class="num">5200</td>
+  <td class="num">8.0</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170412.html">170412</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170616.html">170616</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.1</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190814_192009.html">GW190814_192009</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">80.0</td>
+  <td class="num">50.0</td>
+  <td class="num">0.50</td>
+  <td class="num">9000</td>
+  <td class="num">8.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/200214_224526.html">200214_224526</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.1</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231026_130704.html">GW231026_130704</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.0</td>
+  <td class="num">20.8</td>
+  <td class="num">0.03</td>
+  <td class="num">4400</td>
+  <td class="num">8.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231113_150041.html">GW231113_150041</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">56.0</td>
+  <td class="num">29.0</td>
+  <td class="num">0.04</td>
+  <td class="num">5200</td>
+  <td class="num">8.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240414_054515.html">GW240414_054515</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">38.8</td>
+  <td class="num">25.9</td>
+  <td class="num">0.03</td>
+  <td class="num">1530</td>
+  <td class="num">11.2</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240426_031451.html">GW240426_031451</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">52.0</td>
+  <td class="num">36.0</td>
+  <td class="num">-0.05</td>
+  <td class="num">4000</td>
+  <td class="num">10.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240428_225440.html">GW240428_225440</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">19.8</td>
+  <td class="num">14.7</td>
+  <td class="num">0.03</td>
+  <td class="num">840</td>
+  <td class="num">15.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240501_033534.html">GW240501_033534</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">38.6</td>
+  <td class="num">27.7</td>
+  <td class="num">0.04</td>
+  <td class="num">4700</td>
+  <td class="num">10.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240507_041632.html">GW240507_041632</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">31.3</td>
+  <td class="num">8.5</td>
+  <td class="num">0.01</td>
+  <td class="num">1450</td>
+  <td class="num">10.2</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240511_031507.html">GW240511_031507</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.5</td>
+  <td class="num">32.2</td>
+  <td class="num">0.05</td>
+  <td class="num">1990</td>
+  <td class="num">16.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240512_024139.html">GW240512_024139</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.6</td>
+  <td class="num">8.0</td>
+  <td class="num">0.14</td>
+  <td class="num">1170</td>
+  <td class="num">11.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240513_183302.html">GW240513_183302</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">24.4</td>
+  <td class="num">16.9</td>
+  <td class="num">0.14</td>
+  <td class="num">2250</td>
+  <td class="num">14.5</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240519_012815.html">GW240519_012815</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">65.0</td>
+  <td class="num">39.0</td>
+  <td class="num">-0.04</td>
+  <td class="num">1740</td>
+  <td class="num">10.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240526_093944.html">GW240526_093944</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">14.5</td>
+  <td class="num">8.4</td>
+  <td class="num">0.22</td>
+  <td class="num">1940</td>
+  <td class="num">9.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240527_230910.html">GW240527_230910</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">27.6</td>
+  <td class="num">10.0</td>
+  <td class="num">-0.03</td>
+  <td class="num">1190</td>
+  <td class="num">11.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240530_012417.html">GW240530_012417</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">14.1</td>
+  <td class="num">8.3</td>
+  <td class="num">0.04</td>
+  <td class="num">1010</td>
+  <td class="num">10.8</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240531_075248.html">GW240531_075248</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.0</td>
+  <td class="num">22.6</td>
+  <td class="num">0.04</td>
+  <td class="num">4100</td>
+  <td class="num">9.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240601_061200.html">GW240601_061200</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">52.0</td>
+  <td class="num">32.0</td>
+  <td class="num">-0.08</td>
+  <td class="num">5100</td>
+  <td class="num">10.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240621_195059.html">GW240621_195059</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">36.8</td>
+  <td class="num">29.7</td>
+  <td class="num">—</td>
+  <td class="num">1210</td>
+  <td class="num">28.2</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240621_200935.html">GW240621_200935</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">41.6</td>
+  <td class="num">31.6</td>
+  <td class="num">-0.09</td>
+  <td class="num">4800</td>
+  <td class="num">10.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240807_214559.html">GW240807_214559</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240813_034548.html">GW240813_034548</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240824_205609.html">GW240824_205609</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">70.0</td>
+  <td class="num">37.0</td>
+  <td class="num">0.08</td>
+  <td class="num">5300</td>
+  <td class="num">9.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240825_055146.html">GW240825_055146</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">13.2</td>
+  <td class="num">7.9</td>
+  <td class="num">0.07</td>
+  <td class="num">1250</td>
+  <td class="num">10.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240830_211120.html">GW240830_211120</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.9</td>
+  <td class="num">7.8</td>
+  <td class="num">0.07</td>
+  <td class="num">1140</td>
+  <td class="num">11.1</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240907_153833.html">GW240907_153833</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">38.0</td>
+  <td class="num">28.3</td>
+  <td class="num">0.04</td>
+  <td class="num">4500</td>
+  <td class="num">10.5</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240915_001357.html">GW240915_001357</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.9</td>
+  <td class="num">7.7</td>
+  <td class="num">0.13</td>
+  <td class="num">920</td>
+  <td class="num">16.4</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240915_105151.html">GW240915_105151</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.6</td>
+  <td class="num">7.5</td>
+  <td class="num">0.07</td>
+  <td class="num">630</td>
+  <td class="num">13.9</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240923_204006.html">GW240923_204006</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">46.1</td>
+  <td class="num">34.9</td>
+  <td class="num">0.01</td>
+  <td class="num">4000</td>
+  <td class="num">13.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240924_000316.html">GW240924_000316</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">46.0</td>
+  <td class="num">34.0</td>
+  <td class="num">0.10</td>
+  <td class="num">3700</td>
+  <td class="num">11.4</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241002_030559.html">GW241002_030559</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.3</td>
+  <td class="num">29.9</td>
+  <td class="num">-0.10</td>
+  <td class="num">1460</td>
+  <td class="num">11.9</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241006_015333.html">GW241006_015333</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">24.6</td>
+  <td class="num">20.3</td>
+  <td class="num">0.07</td>
+  <td class="num">1850</td>
+  <td class="num">17.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241009_084816.html">GW241009_084816</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.7</td>
+  <td class="num">8.1</td>
+  <td class="num">-0.05</td>
+  <td class="num">1130</td>
+  <td class="num">12.1</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241009_220455.html">GW241009_220455</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.2</td>
+  <td class="num">25.5</td>
+  <td class="num">0.11</td>
+  <td class="num">2900</td>
+  <td class="num">10.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241101_220523.html">GW241101_220523</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">41.0</td>
+  <td class="num">19.3</td>
+  <td class="num">0.15</td>
+  <td class="num">2200</td>
+  <td class="num">10.6</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241102_124058.html">GW241102_124058</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.9</td>
+  <td class="num">8.0</td>
+  <td class="num">0.06</td>
+  <td class="num">390</td>
+  <td class="num">21.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241109_033317.html">GW241109_033317</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">42.4</td>
+  <td class="num">31.7</td>
+  <td class="num">0.01</td>
+  <td class="num">2700</td>
+  <td class="num">11.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241114_024711.html">GW241114_024711</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">47.0</td>
+  <td class="num">25.0</td>
+  <td class="num">0.12</td>
+  <td class="num">2600</td>
+  <td class="num">11.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241114_235258.html">GW241114_235258</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.3</td>
+  <td class="num">7.7</td>
+  <td class="num">0.06</td>
+  <td class="num">790</td>
+  <td class="num">12.4</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241129_021832.html">GW241129_021832</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">30.4</td>
+  <td class="num">23.0</td>
+  <td class="num">0.17</td>
+  <td class="num">2550</td>
+  <td class="num">16.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241130_034908.html">GW241130_034908</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">29.9</td>
+  <td class="num">24.3</td>
+  <td class="num">0.05</td>
+  <td class="num">1990</td>
+  <td class="num">13.8</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241130_110422.html">GW241130_110422</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.1</td>
+  <td class="num">6.5</td>
+  <td class="num">0.04</td>
+  <td class="num">1320</td>
+  <td class="num">10.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241210_060606.html">GW241210_060606</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">29.0</td>
+  <td class="num">21.4</td>
+  <td class="num">0.04</td>
+  <td class="num">2600</td>
+  <td class="num">13.4</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241225_042553.html">GW241225_042553</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.4</td>
+  <td class="num">8.1</td>
+  <td class="num">0.12</td>
+  <td class="num">660</td>
+  <td class="num">16.5</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241229_155844.html">GW241229_155844</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">52.0</td>
+  <td class="num">33.0</td>
+  <td class="num">0.05</td>
+  <td class="num">6800</td>
+  <td class="num">8.7</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241231_054133.html">GW241231_054133</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">12.4</td>
+  <td class="num">7.1</td>
+  <td class="num">0.08</td>
+  <td class="num">910</td>
+  <td class="num">17.4</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250104_015122.html">GW250104_015122</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.8</td>
+  <td class="num">34.5</td>
+  <td class="num">0.11</td>
+  <td class="num">4800</td>
+  <td class="num">12.1</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250108_152221.html">GW250108_152221</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">54.0</td>
+  <td class="num">36.0</td>
+  <td class="num">0.05</td>
+  <td class="num">3800</td>
+  <td class="num">11.8</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250118_170523.html">GW250118_170523</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">38.1</td>
+  <td class="num">29.6</td>
+  <td class="num">0.12</td>
+  <td class="num">1910</td>
+  <td class="num">13.9</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250119_025138.html">GW250119_025138</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">33.8</td>
+  <td class="num">26.7</td>
+  <td class="num">0.06</td>
+  <td class="num">3100</td>
+  <td class="num">14.5</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250119_190238.html">GW250119_190238</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">11.5</td>
+  <td class="num">9.9</td>
+  <td class="num">0.09</td>
+  <td class="num">311</td>
+  <td class="num">21.3</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/161202.html">161202</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.5</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170208.html">170208</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.0</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191118_212859.html">GW191118_212859</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.1</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230830_064744.html">GW230830_064744</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240420_175625.html">GW240420_175625</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">34.6</td>
+  <td class="num">23.8</td>
+  <td class="num">—</td>
+  <td class="num">2000</td>
+  <td class="num">10.0</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240505_133552.html">GW240505_133552</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">31.0</td>
+  <td class="num">23.1</td>
+  <td class="num">-0.13</td>
+  <td class="num">4700</td>
+  <td class="num">9.4</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240525_031210.html">GW240525_031210</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">31.1</td>
+  <td class="num">21.4</td>
+  <td class="num">0.17</td>
+  <td class="num">4500</td>
+  <td class="num">9.1</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240618_071627.html">GW240618_071627</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">65.0</td>
+  <td class="num">40.0</td>
+  <td class="num">—</td>
+  <td class="num">5500</td>
+  <td class="num">8.7</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240621_214041.html">GW240621_214041</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">32.0</td>
+  <td class="num">—</td>
+  <td class="num">6800</td>
+  <td class="num">7.9</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240627_131622.html">GW240627_131622</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">13.2</td>
+  <td class="num">6.7</td>
+  <td class="num">—</td>
+  <td class="num">1350</td>
+  <td class="num">9.8</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240908_125134.html">GW240908_125134</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">45.0</td>
+  <td class="num">32.0</td>
+  <td class="num">-0.09</td>
+  <td class="num">4700</td>
+  <td class="num">8.6</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240916_184352.html">GW240916_184352</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.7</td>
+  <td class="num">7.8</td>
+  <td class="num">0.05</td>
+  <td class="num">1280</td>
+  <td class="num">9.8</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241007_082943.html">GW241007_082943</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">36.6</td>
+  <td class="num">26.6</td>
+  <td class="num">0.11</td>
+  <td class="num">4000</td>
+  <td class="num">9.8</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241116_151753.html">GW241116_151753</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">70.0</td>
+  <td class="num">24.0</td>
+  <td class="num">0.28</td>
+  <td class="num">5700</td>
+  <td class="num">10.5</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250101_011205.html">GW250101_011205</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">30.0</td>
+  <td class="num">21.1</td>
+  <td class="num">-0.05</td>
+  <td class="num">3200</td>
+  <td class="num">9.8</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250109_074552.html">GW250109_074552</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">39.0</td>
+  <td class="num">30.2</td>
+  <td class="num">0.07</td>
+  <td class="num">2300</td>
+  <td class="num">10.7</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250118_023225.html">GW250118_023225</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">44.0</td>
+  <td class="num">31.0</td>
+  <td class="num">0.04</td>
+  <td class="num">5800</td>
+  <td class="num">9.0</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250118_055802.html">GW250118_055802</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.3</td>
+  <td class="num">6.9</td>
+  <td class="num">0.11</td>
+  <td class="num">940</td>
+  <td class="num">10.5</td>
+  <td class="num">3</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/151008.html">151008</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O1</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/151012.2.html">151012.2</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O1</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/151116.html">151116</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O1</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/161217.html">161217</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.7</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170219.html">170219</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170405.html">170405</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170423.html">170423</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170630.html">170630</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.7</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170705.html">170705</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/170720.html">170720</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/191225_215715.html">191225_215715</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">20.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/200219_201407.html">200219_201407</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230531_141100.html">GW230531_141100</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230603_174756.html">GW230603_174756</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230606_024545.html">GW230606_024545</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230615_160825.html">GW230615_160825</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230618_102550.html">GW230618_102550</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230624_214944.html">GW230624_214944</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230702_162025.html">GW230702_162025</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230717_102139.html">GW230717_102139</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230721_222634.html">GW230721_222634</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230723_084820.html">GW230723_084820</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230728_083628.html">GW230728_083628</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.1</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230807_205045.html">GW230807_205045</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.1</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230823_142524.html">GW230823_142524</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230824_135331.html">GW230824_135331</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.7</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230831_134621.html">GW230831_134621</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230902_122814.html">GW230902_122814</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.1</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230902_172430.html">GW230902_172430</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230902_224555.html">GW230902_224555</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230904_152545.html">GW230904_152545</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230920_064709.html">GW230920_064709</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230925_143957.html">GW230925_143957</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231005_144455.html">GW231005_144455</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231013_135504.html">GW231013_135504</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231102_052214.html">GW231102_052214</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231102_232433.html">GW231102_232433</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231204_090648.html">GW231204_090648</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240105_151143.html">GW240105_151143</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">25.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240406_062847.html">GW240406_062847</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">11.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240408_081753.html">GW240408_081753</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240411_074140.html">GW240411_074140</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240419_041206.html">GW240419_041206</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.1</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240421_052935.html">GW240421_052935</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240426_085802.html">GW240426_085802</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240509_102351.html">GW240509_102351</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240512_051606.html">GW240512_051606</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240516_041939.html">GW240516_041939</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240525_201644.html">GW240525_201644</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240527_150907.html">GW240527_150907</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240531_040326.html">GW240531_040326</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">19.5</td>
+  <td class="num">14.3</td>
+  <td class="num">0.14</td>
+  <td class="num">3000</td>
+  <td class="num">9.1</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240612_081540.html">GW240612_081540</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">55.0</td>
+  <td class="num">38.0</td>
+  <td class="num">0.07</td>
+  <td class="num">6200</td>
+  <td class="num">9.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240613_011503.html">GW240613_011503</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240619_212357.html">GW240619_212357</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240621_103457.html">GW240621_103457</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240630_212937.html">GW240630_212937</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240701_011640.html">GW240701_011640</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240701_203807.html">GW240701_203807</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240814_145043.html">GW240814_145043</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240828_102340.html">GW240828_102340</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240907_121650.html">GW240907_121650</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240913_111216.html">GW240913_111216</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240923_000715.html">GW240923_000715</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">11.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240925_000956.html">GW240925_000956</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240930_123408.html">GW240930_123408</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241009_022835.html">GW241009_022835</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.1</td>
+  <td class="num">26.8</td>
+  <td class="num">0.09</td>
+  <td class="num">5600</td>
+  <td class="num">8.4</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241018_235402.html">GW241018_235402</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.6</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241106_110932.html">GW241106_110932</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241124_024914.html">GW241124_024914</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">42.0</td>
+  <td class="num">26.0</td>
+  <td class="num">0.04</td>
+  <td class="num">4500</td>
+  <td class="num">8.7</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241129_140416.html">GW241129_140416</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241201_055758.html">GW241201_055758</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">47.0</td>
+  <td class="num">33.0</td>
+  <td class="num">0.13</td>
+  <td class="num">7100</td>
+  <td class="num">9.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241201_142737.html">GW241201_142737</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241210_120900.html">GW241210_120900</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.0</td>
+  <td class="num">23.6</td>
+  <td class="num">-0.07</td>
+  <td class="num">3600</td>
+  <td class="num">9.0</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241220_062146.html">GW241220_062146</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250105_134047.html">GW250105_134047</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.7</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250109_083206.html">GW250109_083206</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.5</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250116_051426.html">GW250116_051426</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GRB051103.html">GRB051103</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/190924_232654.html">190924_232654</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3a</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/191223_014159.html">191223_014159</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">14.2</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/200121_031748.html">200121_031748</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.7</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230517_044807.html">GW230517_044807</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">11.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230528_145129.html">GW230528_145129</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230606_065320.html">GW230606_065320</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">12.6</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230609_010824.html">GW230609_010824</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230610_061439.html">GW230610_061439</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230625_211655.html">GW230625_211655</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230708_071859.html">GW230708_071859</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230709_063445.html">GW230709_063445</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230817_212349.html">GW230817_212349</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230822_230337.html">GW230822_230337</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230902_150325.html">GW230902_150325</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231002_143916.html">GW231002_143916</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.4</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231007_134720.html">GW231007_134720</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231024_023603.html">GW231024_023603</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231025_142306.html">GW231025_142306</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231113_112825.html">GW231113_112825</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231120_022103.html">GW231120_022103</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.0</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231126_010928.html">GW231126_010928</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231206_010629.html">GW231206_010629</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.7</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231220_173406.html">GW231220_173406</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.9</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231231_120147.html">GW231231_120147</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">11.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240407_061416.html">GW240407_061416</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240407_214946.html">GW240407_214946</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.5</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240430_093517.html">GW240430_093517</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.7</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240619_044535.html">GW240619_044535</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240620_094631.html">GW240620_094631</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.6</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240625_073331.html">GW240625_073331</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240630_115348.html">GW240630_115348</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240701_013826.html">GW240701_013826</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.4</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240901_195332.html">GW240901_195332</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.4</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240907_092521.html">GW240907_092521</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.3</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240908_174149.html">GW240908_174149</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.0</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240915_045510.html">GW240915_045510</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240917_130237.html">GW240917_130237</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240919_215453.html">GW240919_215453</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.1</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240923_110846.html">GW240923_110846</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.6</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241101_034726.html">GW241101_034726</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.2</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241109_005349.html">GW241109_005349</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.5</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241210_023335.html">GW241210_023335</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">7.8</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241219_222607.html">GW241219_222607</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.7</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250120_042414.html">GW250120_042414</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.7</td>
+  <td class="num">1</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/blind_injection.html">blind_injection</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">0</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231113_062050.html">GW231113_062050</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">0</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231127_061546.html">GW231127_061546</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.0</td>
+  <td class="num">0</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240407_040938.html">GW240407_040938</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.5</td>
+  <td class="num">0</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240611_214835.html">GW240611_214835</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.9</td>
+  <td class="num">0</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW240806_043539.html">GW240806_043539</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">O4</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">8.9</td>
+  <td class="num">0</td>
+</tr>
+
+</table></div>
+
+
+
+<script>
+/* Static build: 434 events is small enough to filter in the browser, so the
+   page stays interactive with no server behind it. */
+(function(){
+  var rows = null, tbody = null;
+  var f = document.getElementById('filters');
+  var count = document.getElementById('resultcount');
+  var note = document.getElementById('hiddennote');
+  var trunc = document.getElementById('truncnote');
+  var num = function(v){ var x = parseFloat(v); return isNaN(x) ? null : x; };
+  var fmt = function(v, d){ return v == null ? '\u2014' : v.toFixed(d); };
+
+  fetch('events.json').then(function(r){ return r.json(); }).then(function(data){
+    rows = data;
+    tbody = document.getElementById('eventtable');
+    f.addEventListener('input', render);
+    f.addEventListener('change', render);
+    render();
+  });
+
+  function render(){
+    var g = function(n){ var el = f.elements[n]; return el ? el.value : ''; };
+    var q = g('q').toLowerCase(), cls = g('mass_class'), run = g('run'),
+        pap = g('papers'), marg = g('marginal'), sort = g('sort');
+    var lim = {m1:[num(g('m1_min')),num(g('m1_max'))],
+               s:[num(g('snr_min')),num(g('snr_max'))],
+               d:[num(g('dist_min')),num(g('dist_max'))]};
+    var hidden = 0;
+    var out = rows.filter(function(e){
+      if (q && e.n.toLowerCase().indexOf(q) < 0) return false;
+      if (cls && e.c !== cls) return false;
+      if (run && e.r !== run) return false;
+      if (pap === 'yes' && !e.p) return false;
+      if (pap === 'no' && e.p) return false;
+      if (marg === 'exclude' && e.g) return false;
+      if (marg === 'only' && !e.g) return false;
+      for (var k in lim){
+        var lo = lim[k][0], hi = lim[k][1];
+        if (lo == null && hi == null) continue;
+        /* A numeric filter can only match a measured value. Count what that
+           excludes rather than letting it vanish. */
+        if (e[k] == null){ hidden++; return false; }
+        if (lo != null && e[k] < lo) return false;
+        if (hi != null && e[k] > hi) return false;
+      }
+      return true;
+    });
+    var key = {papers:'p', name:'n', m1:'m1', snr:'s', dist:'d'}[sort] || 'p';
+    out.sort(function(a,b){
+      if (key === 'n') return a.n < b.n ? -1 : 1;
+      return (b[key] == null ? -1 : b[key]) - (a[key] == null ? -1 : a[key]);
+    });
+    count.textContent = out.length.toLocaleString() + ' of ' +
+      rows.length.toLocaleString() + ' events' +
+      (hidden ? ', and ' + hidden + ' hidden because they have no measurement for a property you filtered on' : '') + '.';
+    note.hidden = !hidden;
+    if (hidden) document.getElementById('hiddenn').textContent = hidden;
+    if (trunc) trunc.hidden = out.length <= 500;
+    var head = tbody.rows[0];
+    while (tbody.rows.length > 1) tbody.deleteRow(1);
+    out.slice(0,500).forEach(function(e){
+      var tr = tbody.insertRow(-1);
+      tr.innerHTML =
+        '<td><a class="mono" href="event/' + e.n + '.html">' + e.n + '</a>' +
+          (e.g ? ' <span class="chip">marginal</span>' : '') + '</td>' +
+        '<td class="small">' + (e.c || '\u2014') + '</td>' +
+        '<td class="small">' + (e.r || '\u2014') + '</td>' +
+        '<td class="num">' + fmt(e.m1,1) + '</td>' +
+        '<td class="num">' + fmt(e.m2,1) + '</td>' +
+        '<td class="num">' + fmt(e.x,2) + '</td>' +
+        '<td class="num">' + fmt(e.d,0) + '</td>' +
+        '<td class="num">' + fmt(e.s,1) + '</td>' +
+        '<td class="num">' + e.p.toLocaleString() + '</td>';
+    });
+  }
+})();
+</script>
+
+
+</div>
+</body>
+</html>

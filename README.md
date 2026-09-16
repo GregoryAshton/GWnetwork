@@ -105,3 +105,17 @@ Get an ADS token at <https://ui.adsabs.harvard.edu/user/settings/token>
 ```bash
 .venv/bin/python -m pytest
 ```
+
+## Static site (GitHub Pages)
+
+```bash
+gwn export --out docs      # renders 438 pages, ~6.5 MB
+```
+
+Pages serves files, not processes, so the export differs from `gwn serve` in two
+ways: event filtering moves into the browser (434 events is small enough that
+client-side filtering is instant and needs no server), and paper links point at
+arXiv rather than local pages — exporting all 13,904 paper pages would add
+~49 MB to host what arXiv already hosts.
+
+Regenerate and commit `docs/` after any pipeline run that changes the data.

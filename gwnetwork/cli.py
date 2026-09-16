@@ -272,6 +272,19 @@ def cmd_status():
             typer.echo("" if not k else f"{k:<{width}}  {v}")
 
 
+@app.command("export")
+def cmd_export(
+    out: str = typer.Option("docs", help="Output directory (docs/ is GitHub Pages' default)"),
+):
+    """Render the site to static HTML for GitHub Pages."""
+    from pathlib import Path
+    from .web.export import export
+    stats = export(Path(out))
+    typer.echo(str(stats))
+    for w in stats.warnings[:10]:
+        typer.echo(f"  ! {w}")
+
+
 @app.command("serve")
 def cmd_serve(host: str = "127.0.0.1", port: int = 8000):
     """Serve the read-only website."""

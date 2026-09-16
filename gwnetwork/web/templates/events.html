@@ -4,7 +4,7 @@
 <h1>Events</h1>
 <p class="mut small">Filter {{ "{:,}".format(total) }} events on their measured properties.</p>
 
-<form class="filters" method="get">
+<form class="filters" method="get" id="filters"{% if static %} onsubmit="return false"{% endif %}>
   <div class="field"><label for="q">Name or alias</label>
     <input id="q" name="q" value="{{ f.q or '' }}" placeholder="GW170817, AT2017gfo…"></div>
 
@@ -69,18 +69,16 @@
   </div>
 </form>
 
-<p class="small mut">{{ "{:,}".format(shown) }} of {{ "{:,}".format(total) }} events
+<p class="small mut" id="resultcount">{{ "{:,}".format(shown) }} of {{ "{:,}".format(total) }} events
 {%- if hidden_no_value %}, and <b>{{ hidden_no_value }}</b> hidden because they have no
 measurement for a property you filtered on{% endif %}.</p>
 
-{% if hidden_no_value %}
-<p class="note">Only 68% of events have a mass measurement, and 66% a spin. A numeric
+<p class="note" id="hiddennote"{% if static %} hidden{% endif %}>Only 68% of events have a mass measurement, and 66% a spin. A numeric
 filter can only include events where that quantity was measured, so the
-{{ hidden_no_value }} excluded here are absent for lack of data, not because they fail
-the criterion.</p>
-{% endif %}
+<span id="hiddenn">{{ hidden_no_value }}</span> excluded here are absent for lack of
+data, not because they fail the criterion.</p>
 
-<div class="wrapx"><table>
+<div class="wrapx"><table id="eventtable">
 <tr>
   <th>Event</th><th>Class</th><th>Run</th>
   <th class="num">m₁</th><th class="num">m₂</th><th class="num">χ<sub>eff</sub></th>
@@ -105,6 +103,86 @@ the criterion.</p>
 {% endfor %}
 </table></div>
 {% if shown > events|length %}
-<p class="small mut">Showing first {{ events|length }}. Narrow the filters to see the rest.</p>
+<p class="small mut" id="truncnote">Showing first {{ events|length }}. Narrow the filters to see the rest.</p>
+{% endif %}
+
+{% if static %}
+<script>
+/* Static build: 434 events is small enough to filter in the browser, so the
+   page stays interactive with no server behind it. */
+(function(){
+  var rows = null, tbody = null;
+  var f = document.getElementById('filters');
+  var count = document.getElementById('resultcount');
+  var note = document.getElementById('hiddennote');
+  var trunc = document.getElementById('truncnote');
+  var num = function(v){ var x = parseFloat(v); return isNaN(x) ? null : x; };
+  var fmt = function(v, d){ return v == null ? '\u2014' : v.toFixed(d); };
+
+  fetch('events.json').then(function(r){ return r.json(); }).then(function(data){
+    rows = data;
+    tbody = document.getElementById('eventtable');
+    f.addEventListener('input', render);
+    f.addEventListener('change', render);
+    render();
+  });
+
+  function render(){
+    var g = function(n){ var el = f.elements[n]; return el ? el.value : ''; };
+    var q = g('q').toLowerCase(), cls = g('mass_class'), run = g('run'),
+        pap = g('papers'), marg = g('marginal'), sort = g('sort');
+    var lim = {m1:[num(g('m1_min')),num(g('m1_max'))],
+               s:[num(g('snr_min')),num(g('snr_max'))],
+               d:[num(g('dist_min')),num(g('dist_max'))]};
+    var hidden = 0;
+    var out = rows.filter(function(e){
+      if (q && e.n.toLowerCase().indexOf(q) < 0) return false;
+      if (cls && e.c !== cls) return false;
+      if (run && e.r !== run) return false;
+      if (pap === 'yes' && !e.p) return false;
+      if (pap === 'no' && e.p) return false;
+      if (marg === 'exclude' && e.g) return false;
+      if (marg === 'only' && !e.g) return false;
+      for (var k in lim){
+        var lo = lim[k][0], hi = lim[k][1];
+        if (lo == null && hi == null) continue;
+        /* A numeric filter can only match a measured value. Count what that
+           excludes rather than letting it vanish. */
+        if (e[k] == null){ hidden++; return false; }
+        if (lo != null && e[k] < lo) return false;
+        if (hi != null && e[k] > hi) return false;
+      }
+      return true;
+    });
+    var key = {papers:'p', name:'n', m1:'m1', snr:'s', dist:'d'}[sort] || 'p';
+    out.sort(function(a,b){
+      if (key === 'n') return a.n < b.n ? -1 : 1;
+      return (b[key] == null ? -1 : b[key]) - (a[key] == null ? -1 : a[key]);
+    });
+    count.textContent = out.length.toLocaleString() + ' of ' +
+      rows.length.toLocaleString() + ' events' +
+      (hidden ? ', and ' + hidden + ' hidden because they have no measurement for a property you filtered on' : '') + '.';
+    note.hidden = !hidden;
+    if (hidden) document.getElementById('hiddenn').textContent = hidden;
+    if (trunc) trunc.hidden = out.length <= 500;
+    var head = tbody.rows[0];
+    while (tbody.rows.length > 1) tbody.deleteRow(1);
+    out.slice(0,500).forEach(function(e){
+      var tr = tbody.insertRow(-1);
+      tr.innerHTML =
+        '<td><a class="mono" href="event/' + e.n + '.html">' + e.n + '</a>' +
+          (e.g ? ' <span class="chip">marginal</span>' : '') + '</td>' +
+        '<td class="small">' + (e.c || '\u2014') + '</td>' +
+        '<td class="small">' + (e.r || '\u2014') + '</td>' +
+        '<td class="num">' + fmt(e.m1,1) + '</td>' +
+        '<td class="num">' + fmt(e.m2,1) + '</td>' +
+        '<td class="num">' + fmt(e.x,2) + '</td>' +
+        '<td class="num">' + fmt(e.d,0) + '</td>' +
+        '<td class="num">' + fmt(e.s,1) + '</td>' +
+        '<td class="num">' + e.p.toLocaleString() + '</td>';
+    });
+  }
+})();
+</script>
 {% endif %}
 {% endblock %}

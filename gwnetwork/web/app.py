@@ -106,7 +106,8 @@ def events(request: Request, q: Optional[str] = None, mass_class: Optional[str] 
            m1_max: Optional[str] = None, snr_min: Optional[str] = None,
            snr_max: Optional[str] = None, dist_min: Optional[str] = None,
            dist_max: Optional[str] = None, papers: Optional[str] = None,
-           marginal: Optional[str] = None, sort: str = "papers"):
+           marginal: Optional[str] = None, sort: str = "papers",
+           static: int = 0):
     f = {"q": q, "mass_class": mass_class, "run": run, "papers": papers,
          "marginal": marginal, "sort": sort,
          "m1_min": _num(m1_min), "m1_max": _num(m1_max),
@@ -176,7 +177,8 @@ def events(request: Request, q: Optional[str] = None, mass_class: Optional[str] 
             .order_by(EventView.observing_run)).all()]
 
     return render(request, "events.html", events=out, f=f, total=total, shown=shown,
-                  runs=runs, sorts=SORTS, hidden_no_value=hidden_no_value)
+                  runs=runs, sorts=SORTS, hidden_no_value=hidden_no_value,
+                  static=bool(static))
 
 
 @app.get("/event/{name}", response_class=HTMLResponse)
