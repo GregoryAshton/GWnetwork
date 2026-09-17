@@ -73,6 +73,18 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
 .key{display:inline-flex;align-items:center;gap:6px}
 .swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
 .swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
 .swatch.triangle{border-radius:0;background:none;width:0;height:0;
   border-left:6px solid transparent;border-right:6px solid transparent;
   border-bottom:11px solid var(--c)}
@@ -221,7 +233,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.00</td>
   <td class="num">40</td>
   <td class="num">33.0</td>
-  <td class="num">2,384</td>
+  <td class="num">2,932</td>
 </tr>
 
 <tr>
@@ -234,7 +246,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.04</td>
   <td class="num">470</td>
   <td class="num">26.0</td>
-  <td class="num">1,019</td>
+  <td class="num">1,377</td>
 </tr>
 
 <tr>
@@ -247,7 +259,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.00</td>
   <td class="num">230</td>
   <td class="num">25.3</td>
-  <td class="num">604</td>
+  <td class="num">814</td>
 </tr>
 
 <tr>
@@ -260,7 +272,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.20</td>
   <td class="num">460</td>
   <td class="num">12.7</td>
-  <td class="num">578</td>
+  <td class="num">751</td>
 </tr>
 
 <tr>
@@ -273,7 +285,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.14</td>
   <td class="num">3310</td>
   <td class="num">14.3</td>
-  <td class="num">507</td>
+  <td class="num">673</td>
 </tr>
 
 <tr>
@@ -286,20 +298,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.08</td>
   <td class="num">610</td>
   <td class="num">17.7</td>
-  <td class="num">495</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170104.html">GW170104</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">28.7</td>
-  <td class="num">20.8</td>
-  <td class="num">-0.04</td>
-  <td class="num">1110</td>
-  <td class="num">13.8</td>
-  <td class="num">471</td>
+  <td class="num">642</td>
 </tr>
 
 <tr>
@@ -312,7 +311,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.07</td>
   <td class="num">150</td>
   <td class="num">12.4</td>
-  <td class="num">427</td>
+  <td class="num">616</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170104.html">GW170104</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">28.7</td>
+  <td class="num">20.8</td>
+  <td class="num">-0.04</td>
+  <td class="num">1110</td>
+  <td class="num">13.8</td>
+  <td class="num">603</td>
 </tr>
 
 <tr>
@@ -325,7 +337,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.05</td>
   <td class="num">340</td>
   <td class="num">15.3</td>
-  <td class="num">395</td>
+  <td class="num">474</td>
 </tr>
 
 <tr>
@@ -338,7 +350,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.21</td>
   <td class="num">720</td>
   <td class="num">19.8</td>
-  <td class="num">295</td>
+  <td class="num">390</td>
 </tr>
 
 <tr>
@@ -351,7 +363,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.29</td>
   <td class="num">2490</td>
   <td class="num">10.7</td>
-  <td class="num">203</td>
+  <td class="num">245</td>
 </tr>
 
 <tr>
@@ -364,46 +376,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.15</td>
   <td class="num">290</td>
   <td class="num">11.3</td>
-  <td class="num">185</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170818.html">GW170818</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">34.8</td>
-  <td class="num">27.6</td>
-  <td class="num">-0.06</td>
-  <td class="num">1080</td>
-  <td class="num">12.0</td>
-  <td class="num">162</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170809.html">GW170809</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">34.1</td>
-  <td class="num">24.2</td>
-  <td class="num">0.07</td>
-  <td class="num">1070</td>
-  <td class="num">12.8</td>
-  <td class="num">159</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170823.html">GW170823</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">38.3</td>
-  <td class="num">29.0</td>
-  <td class="num">0.05</td>
-  <td class="num">1970</td>
-  <td class="num">12.2</td>
-  <td class="num">157</td>
+  <td class="num">243</td>
 </tr>
 
 <tr>
@@ -416,20 +389,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.01</td>
   <td class="num">280</td>
   <td class="num">13.9</td>
-  <td class="num">155</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW151012.html">GW151012</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O1</td>
-  <td class="num">24.8</td>
-  <td class="num">13.6</td>
-  <td class="num">0.12</td>
-  <td class="num">1000</td>
-  <td class="num">9.3</td>
-  <td class="num">152</td>
+  <td class="num">202</td>
 </tr>
 
 <tr>
@@ -442,7 +402,59 @@ data, not because they fail the criterion.</p>
   <td class="num">0.11</td>
   <td class="num">890</td>
   <td class="num">26.8</td>
-  <td class="num">135</td>
+  <td class="num">188</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170818.html">GW170818</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">34.8</td>
+  <td class="num">27.6</td>
+  <td class="num">-0.06</td>
+  <td class="num">1080</td>
+  <td class="num">12.0</td>
+  <td class="num">186</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170809.html">GW170809</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">34.1</td>
+  <td class="num">24.2</td>
+  <td class="num">0.07</td>
+  <td class="num">1070</td>
+  <td class="num">12.8</td>
+  <td class="num">178</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW151012.html">GW151012</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O1</td>
+  <td class="num">24.8</td>
+  <td class="num">13.6</td>
+  <td class="num">0.12</td>
+  <td class="num">1000</td>
+  <td class="num">9.3</td>
+  <td class="num">177</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170823.html">GW170823</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">38.3</td>
+  <td class="num">29.0</td>
+  <td class="num">0.05</td>
+  <td class="num">1970</td>
+  <td class="num">12.2</td>
+  <td class="num">177</td>
 </tr>
 
 <tr>
@@ -455,46 +467,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.32</td>
   <td class="num">2200</td>
   <td class="num">21.8</td>
-  <td class="num">119</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190517_055101.html">GW190517_055101</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">39.2</td>
-  <td class="num">24.0</td>
-  <td class="num">0.49</td>
-  <td class="num">1790</td>
-  <td class="num">10.8</td>
-  <td class="num">108</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190519_153544.html">GW190519_153544</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">65.1</td>
-  <td class="num">40.8</td>
-  <td class="num">0.33</td>
-  <td class="num">2600</td>
-  <td class="num">15.9</td>
-  <td class="num">103</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230529_181500.html">GW230529_181500</a>
-      </td>
-  <td class="small">NSBH</td>
-  <td class="small">O4</td>
-  <td class="num">3.7</td>
-  <td class="num">1.4</td>
-  <td class="num">-0.10</td>
-  <td class="num">203</td>
-  <td class="num">11.8</td>
-  <td class="num">101</td>
+  <td class="num">151</td>
 </tr>
 
 <tr>
@@ -507,7 +480,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.29</td>
   <td class="num">1290</td>
   <td class="num">17.3</td>
-  <td class="num">100</td>
+  <td class="num">138</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190517_055101.html">GW190517_055101</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">39.2</td>
+  <td class="num">24.0</td>
+  <td class="num">0.49</td>
+  <td class="num">1790</td>
+  <td class="num">10.8</td>
+  <td class="num">132</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230529_181500.html">GW230529_181500</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O4</td>
+  <td class="num">3.7</td>
+  <td class="num">1.4</td>
+  <td class="num">-0.10</td>
+  <td class="num">203</td>
+  <td class="num">11.8</td>
+  <td class="num">132</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190519_153544.html">GW190519_153544</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">65.1</td>
+  <td class="num">40.8</td>
+  <td class="num">0.33</td>
+  <td class="num">2600</td>
+  <td class="num">15.9</td>
+  <td class="num">128</td>
 </tr>
 
 <tr>
@@ -520,46 +532,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.28</td>
   <td class="num">3630</td>
   <td class="num">13.4</td>
-  <td class="num">97</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190924_021846.html">GW190924_021846</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">8.8</td>
-  <td class="num">5.1</td>
-  <td class="num">0.03</td>
-  <td class="num">550</td>
-  <td class="num">12.0</td>
-  <td class="num">92</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190408_181802.html">GW190408_181802</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">24.8</td>
-  <td class="num">18.5</td>
-  <td class="num">-0.03</td>
-  <td class="num">1540</td>
-  <td class="num">14.6</td>
-  <td class="num">88</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190728_064510.html">GW190728_064510</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">12.5</td>
-  <td class="num">8.0</td>
-  <td class="num">0.13</td>
-  <td class="num">880</td>
-  <td class="num">13.1</td>
-  <td class="num">88</td>
+  <td class="num">121</td>
 </tr>
 
 <tr>
@@ -572,7 +545,33 @@ data, not because they fail the criterion.</p>
   <td class="num">0.10</td>
   <td class="num">1080</td>
   <td class="num">25.9</td>
-  <td class="num">87</td>
+  <td class="num">113</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190408_181802.html">GW190408_181802</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">24.8</td>
+  <td class="num">18.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">1540</td>
+  <td class="num">14.6</td>
+  <td class="num">112</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190924_021846.html">GW190924_021846</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">8.8</td>
+  <td class="num">5.1</td>
+  <td class="num">0.03</td>
+  <td class="num">550</td>
+  <td class="num">12.0</td>
+  <td class="num">112</td>
 </tr>
 
 <tr>
@@ -585,59 +584,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.12</td>
   <td class="num">2840</td>
   <td class="num">13.2</td>
-  <td class="num">86</td>
+  <td class="num">109</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190828_063405.html">GW190828_063405</a>
+  <td><a class="mono" href="./event/GW190728_064510.html">GW190728_064510</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">31.9</td>
-  <td class="num">25.8</td>
-  <td class="num">0.15</td>
-  <td class="num">2070</td>
-  <td class="num">16.5</td>
-  <td class="num">85</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190513_205428.html">GW190513_205428</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">36.0</td>
-  <td class="num">18.3</td>
-  <td class="num">0.16</td>
-  <td class="num">2210</td>
   <td class="num">12.5</td>
-  <td class="num">83</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190503_185404.html">GW190503_185404</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">41.3</td>
-  <td class="num">28.3</td>
-  <td class="num">-0.05</td>
-  <td class="num">1520</td>
-  <td class="num">12.2</td>
-  <td class="num">82</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190720_000836.html">GW190720_000836</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">14.2</td>
-  <td class="num">7.5</td>
-  <td class="num">0.19</td>
-  <td class="num">770</td>
-  <td class="num">10.9</td>
-  <td class="num">82</td>
+  <td class="num">8.0</td>
+  <td class="num">0.13</td>
+  <td class="num">880</td>
+  <td class="num">13.1</td>
+  <td class="num">107</td>
 </tr>
 
 <tr>
@@ -650,124 +610,46 @@ data, not because they fail the criterion.</p>
   <td class="num">0.02</td>
   <td class="num">1460</td>
   <td class="num">12.7</td>
-  <td class="num">81</td>
+  <td class="num">105</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190701_203306.html">GW190701_203306</a>
+  <td><a class="mono" href="./event/GW190513_205428.html">GW190513_205428</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">54.1</td>
-  <td class="num">40.5</td>
-  <td class="num">-0.08</td>
-  <td class="num">2090</td>
-  <td class="num">11.2</td>
-  <td class="num">81</td>
+  <td class="num">36.0</td>
+  <td class="num">18.3</td>
+  <td class="num">0.16</td>
+  <td class="num">2210</td>
+  <td class="num">12.5</td>
+  <td class="num">105</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190727_060333.html">GW190727_060333</a>
+  <td><a class="mono" href="./event/GW190828_063405.html">GW190828_063405</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">38.9</td>
-  <td class="num">30.2</td>
-  <td class="num">0.09</td>
-  <td class="num">3070</td>
-  <td class="num">11.7</td>
-  <td class="num">80</td>
+  <td class="num">31.9</td>
+  <td class="num">25.8</td>
+  <td class="num">0.15</td>
+  <td class="num">2070</td>
+  <td class="num">16.5</td>
+  <td class="num">105</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190620_030421.html">GW190620_030421</a>
+  <td><a class="mono" href="./event/GW190503_185404.html">GW190503_185404</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">58.0</td>
-  <td class="num">35.0</td>
-  <td class="num">0.34</td>
-  <td class="num">2910</td>
-  <td class="num">12.1</td>
-  <td class="num">78</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200224_222234.html">GW200224_222234</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">40.0</td>
-  <td class="num">32.7</td>
-  <td class="num">0.10</td>
-  <td class="num">1710</td>
-  <td class="num">20.0</td>
-  <td class="num">78</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190915_235702.html">GW190915_235702</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">32.6</td>
-  <td class="num">24.5</td>
-  <td class="num">-0.03</td>
-  <td class="num">1750</td>
-  <td class="num">13.1</td>
-  <td class="num">77</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190630_185205.html">GW190630_185205</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">35.1</td>
-  <td class="num">24.0</td>
-  <td class="num">0.10</td>
-  <td class="num">870</td>
-  <td class="num">16.4</td>
-  <td class="num">75</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190426_152155.html">GW190426_152155</a>
-      </td>
-  <td class="small">NSBH</td>
-  <td class="small">O3a</td>
-  <td class="num">5.7</td>
-  <td class="num">1.5</td>
-  <td class="num">-0.03</td>
-  <td class="num">370</td>
-  <td class="num">10.1</td>
-  <td class="num">74</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190929_012149.html">GW190929_012149</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">66.3</td>
-  <td class="num">26.8</td>
-  <td class="num">-0.03</td>
-  <td class="num">3130</td>
-  <td class="num">9.7</td>
-  <td class="num">73</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190707_093326.html">GW190707_093326</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">12.1</td>
-  <td class="num">7.9</td>
-  <td class="num">-0.04</td>
-  <td class="num">850</td>
-  <td class="num">13.1</td>
-  <td class="num">72</td>
+  <td class="num">41.3</td>
+  <td class="num">28.3</td>
+  <td class="num">-0.05</td>
+  <td class="num">1520</td>
+  <td class="num">12.2</td>
+  <td class="num">103</td>
 </tr>
 
 <tr>
@@ -780,33 +662,85 @@ data, not because they fail the criterion.</p>
   <td class="num">0.02</td>
   <td class="num">940</td>
   <td class="num">8.4</td>
-  <td class="num">72</td>
+  <td class="num">102</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW250114_082203.html">GW250114_082203</a>
+  <td><a class="mono" href="./event/GW200224_222234.html">GW200224_222234</a>
       </td>
   <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">33.8</td>
-  <td class="num">32.3</td>
-  <td class="num">-0.03</td>
-  <td class="num">405</td>
-  <td class="num">78.6</td>
-  <td class="num">72</td>
+  <td class="small">O3b</td>
+  <td class="num">40.0</td>
+  <td class="num">32.7</td>
+  <td class="num">0.10</td>
+  <td class="num">1710</td>
+  <td class="num">20.0</td>
+  <td class="num">102</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190828_065509.html">GW190828_065509</a>
+  <td><a class="mono" href="./event/GW190701_203306.html">GW190701_203306</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">23.7</td>
-  <td class="num">10.4</td>
-  <td class="num">0.05</td>
-  <td class="num">1540</td>
-  <td class="num">10.2</td>
-  <td class="num">71</td>
+  <td class="num">54.1</td>
+  <td class="num">40.5</td>
+  <td class="num">-0.08</td>
+  <td class="num">2090</td>
+  <td class="num">11.2</td>
+  <td class="num">101</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190915_235702.html">GW190915_235702</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">32.6</td>
+  <td class="num">24.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">1750</td>
+  <td class="num">13.1</td>
+  <td class="num">101</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190727_060333.html">GW190727_060333</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">38.9</td>
+  <td class="num">30.2</td>
+  <td class="num">0.09</td>
+  <td class="num">3070</td>
+  <td class="num">11.7</td>
+  <td class="num">99</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190720_000836.html">GW190720_000836</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">14.2</td>
+  <td class="num">7.5</td>
+  <td class="num">0.19</td>
+  <td class="num">770</td>
+  <td class="num">10.9</td>
+  <td class="num">96</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190929_012149.html">GW190929_012149</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">66.3</td>
+  <td class="num">26.8</td>
+  <td class="num">-0.03</td>
+  <td class="num">3130</td>
+  <td class="num">9.7</td>
+  <td class="num">93</td>
 </tr>
 
 <tr>
@@ -819,33 +753,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.02</td>
   <td class="num">1170</td>
   <td class="num">17.8</td>
-  <td class="num">70</td>
+  <td class="num">91</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190421_213856.html">GW190421_213856</a>
+  <td><a class="mono" href="./event/GW250114_082203.html">GW250114_082203</a>
       </td>
   <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">42.0</td>
-  <td class="num">32.0</td>
-  <td class="num">-0.10</td>
-  <td class="num">2590</td>
-  <td class="num">10.7</td>
-  <td class="num">68</td>
+  <td class="small">O4</td>
+  <td class="num">33.8</td>
+  <td class="num">32.3</td>
+  <td class="num">-0.03</td>
+  <td class="num">405</td>
+  <td class="num">78.6</td>
+  <td class="num">91</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190708_232457.html">GW190708_232457</a>
+  <td><a class="mono" href="./event/GW190620_030421.html">GW190620_030421</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">19.8</td>
-  <td class="num">11.6</td>
-  <td class="num">0.05</td>
-  <td class="num">930</td>
-  <td class="num">13.4</td>
-  <td class="num">68</td>
+  <td class="num">58.0</td>
+  <td class="num">35.0</td>
+  <td class="num">0.34</td>
+  <td class="num">2910</td>
+  <td class="num">12.1</td>
+  <td class="num">89</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190426_152155.html">GW190426_152155</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">5.7</td>
+  <td class="num">1.5</td>
+  <td class="num">-0.03</td>
+  <td class="num">370</td>
+  <td class="num">10.1</td>
+  <td class="num">88</td>
 </tr>
 
 <tr>
@@ -858,20 +805,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.00</td>
   <td class="num">550</td>
   <td class="num">9.1</td>
-  <td class="num">68</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190910_112807.html">GW190910_112807</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">43.8</td>
-  <td class="num">34.2</td>
-  <td class="num">0.00</td>
-  <td class="num">1520</td>
-  <td class="num">14.5</td>
-  <td class="num">67</td>
+  <td class="num">88</td>
 </tr>
 
 <tr>
@@ -884,7 +818,72 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.12</td>
   <td class="num">1150</td>
   <td class="num">12.5</td>
-  <td class="num">67</td>
+  <td class="num">87</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190630_185205.html">GW190630_185205</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">35.1</td>
+  <td class="num">24.0</td>
+  <td class="num">0.10</td>
+  <td class="num">870</td>
+  <td class="num">16.4</td>
+  <td class="num">86</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190707_093326.html">GW190707_093326</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">12.1</td>
+  <td class="num">7.9</td>
+  <td class="num">-0.04</td>
+  <td class="num">850</td>
+  <td class="num">13.1</td>
+  <td class="num">86</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190828_065509.html">GW190828_065509</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">23.7</td>
+  <td class="num">10.4</td>
+  <td class="num">0.05</td>
+  <td class="num">1540</td>
+  <td class="num">10.2</td>
+  <td class="num">86</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190421_213856.html">GW190421_213856</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">42.0</td>
+  <td class="num">32.0</td>
+  <td class="num">-0.10</td>
+  <td class="num">2590</td>
+  <td class="num">10.7</td>
+  <td class="num">85</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190708_232457.html">GW190708_232457</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">19.8</td>
+  <td class="num">11.6</td>
+  <td class="num">0.05</td>
+  <td class="num">930</td>
+  <td class="num">13.4</td>
+  <td class="num">82</td>
 </tr>
 
 <tr>
@@ -897,46 +896,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.08</td>
   <td class="num">720</td>
   <td class="num">8.3</td>
-  <td class="num">66</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200202_154313.html">GW200202_154313</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">10.1</td>
-  <td class="num">7.3</td>
-  <td class="num">0.04</td>
-  <td class="num">410</td>
-  <td class="num">10.8</td>
-  <td class="num">64</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190930_133541.html">GW190930_133541</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">14.2</td>
-  <td class="num">6.9</td>
-  <td class="num">0.19</td>
-  <td class="num">770</td>
-  <td class="num">9.7</td>
-  <td class="num">63</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW191204_171526.html">GW191204_171526</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">11.7</td>
-  <td class="num">8.4</td>
-  <td class="num">0.16</td>
-  <td class="num">640</td>
-  <td class="num">17.4</td>
-  <td class="num">63</td>
+  <td class="num">82</td>
 </tr>
 
 <tr>
@@ -949,7 +909,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.04</td>
   <td class="num">3000</td>
   <td class="num">12.5</td>
-  <td class="num">62</td>
+  <td class="num">80</td>
 </tr>
 
 <tr>
@@ -962,85 +922,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.08</td>
   <td class="num">3400</td>
   <td class="num">10.7</td>
-  <td class="num">62</td>
+  <td class="num">80</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW200316_215756.html">GW200316_215756</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">13.1</td>
-  <td class="num">7.8</td>
-  <td class="num">0.13</td>
-  <td class="num">1120</td>
-  <td class="num">10.3</td>
-  <td class="num">61</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190719_215514.html">GW190719_215514</a>
+  <td><a class="mono" href="./event/GW190910_112807.html">GW190910_112807</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">36.6</td>
-  <td class="num">19.9</td>
-  <td class="num">0.25</td>
-  <td class="num">3730</td>
-  <td class="num">7.9</td>
-  <td class="num">60</td>
+  <td class="num">43.8</td>
+  <td class="num">34.2</td>
+  <td class="num">0.00</td>
+  <td class="num">1520</td>
+  <td class="num">14.5</td>
+  <td class="num">78</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190803_022701.html">GW190803_022701</a>
+  <td><a class="mono" href="./event/GW190930_133541.html">GW190930_133541</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">37.7</td>
-  <td class="num">27.6</td>
-  <td class="num">-0.01</td>
-  <td class="num">3190</td>
-  <td class="num">9.3</td>
-  <td class="num">60</td>
+  <td class="num">14.2</td>
+  <td class="num">6.9</td>
+  <td class="num">0.19</td>
+  <td class="num">770</td>
+  <td class="num">9.7</td>
+  <td class="num">77</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW191216_213338.html">GW191216_213338</a>
+  <td><a class="mono" href="./event/GW191204_171526.html">GW191204_171526</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3b</td>
-  <td class="num">12.1</td>
-  <td class="num">7.7</td>
-  <td class="num">0.11</td>
-  <td class="num">340</td>
-  <td class="num">18.6</td>
-  <td class="num">60</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190514_065416.html">GW190514_065416</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">40.9</td>
-  <td class="num">28.4</td>
-  <td class="num">-0.08</td>
-  <td class="num">3890</td>
-  <td class="num">8.0</td>
-  <td class="num">59</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW191129_134029.html">GW191129_134029</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">10.7</td>
-  <td class="num">6.7</td>
-  <td class="num">0.06</td>
-  <td class="num">790</td>
-  <td class="num">13.1</td>
-  <td class="num">59</td>
+  <td class="num">11.7</td>
+  <td class="num">8.4</td>
+  <td class="num">0.16</td>
+  <td class="num">640</td>
+  <td class="num">17.4</td>
+  <td class="num">76</td>
 </tr>
 
 <tr>
@@ -1053,20 +974,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.04</td>
   <td class="num">1930</td>
   <td class="num">11.2</td>
-  <td class="num">57</td>
+  <td class="num">76</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190527_092055.html">GW190527_092055</a>
+  <td><a class="mono" href="./event/GW200202_154313.html">GW200202_154313</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">10.1</td>
+  <td class="num">7.3</td>
+  <td class="num">0.04</td>
+  <td class="num">410</td>
+  <td class="num">10.8</td>
+  <td class="num">76</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190803_022701.html">GW190803_022701</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">35.6</td>
-  <td class="num">22.2</td>
-  <td class="num">0.10</td>
-  <td class="num">2520</td>
-  <td class="num">8.0</td>
-  <td class="num">56</td>
+  <td class="num">37.7</td>
+  <td class="num">27.6</td>
+  <td class="num">-0.01</td>
+  <td class="num">3190</td>
+  <td class="num">9.3</td>
+  <td class="num">73</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191216_213338.html">GW191216_213338</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">12.1</td>
+  <td class="num">7.7</td>
+  <td class="num">0.11</td>
+  <td class="num">340</td>
+  <td class="num">18.6</td>
+  <td class="num">73</td>
 </tr>
 
 <tr>
@@ -1079,59 +1026,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.07</td>
   <td class="num">2230</td>
   <td class="num">10.8</td>
-  <td class="num">56</td>
+  <td class="num">73</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190731_140936.html">GW190731_140936</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">41.8</td>
-  <td class="num">29.0</td>
-  <td class="num">0.07</td>
-  <td class="num">3330</td>
-  <td class="num">8.8</td>
-  <td class="num">55</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190413_134308.html">GW190413_134308</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">51.3</td>
-  <td class="num">30.4</td>
-  <td class="num">-0.01</td>
-  <td class="num">3800</td>
-  <td class="num">10.6</td>
-  <td class="num">53</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200216_220804.html">GW200216_220804</a>
+  <td><a class="mono" href="./event/GW200316_215756.html">GW200316_215756</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3b</td>
-  <td class="num">51.0</td>
-  <td class="num">30.0</td>
-  <td class="num">0.10</td>
-  <td class="num">3800</td>
-  <td class="num">8.1</td>
-  <td class="num">51</td>
+  <td class="num">13.1</td>
+  <td class="num">7.8</td>
+  <td class="num">0.13</td>
+  <td class="num">1120</td>
+  <td class="num">10.3</td>
+  <td class="num">73</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190413_052954.html">GW190413_052954</a>
+  <td><a class="mono" href="./event/GW190719_215514.html">GW190719_215514</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">33.7</td>
-  <td class="num">24.2</td>
-  <td class="num">-0.04</td>
-  <td class="num">3320</td>
-  <td class="num">9.0</td>
-  <td class="num">50</td>
+  <td class="num">36.6</td>
+  <td class="num">19.9</td>
+  <td class="num">0.25</td>
+  <td class="num">3730</td>
+  <td class="num">7.9</td>
+  <td class="num">72</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191129_134029.html">GW191129_134029</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">10.7</td>
+  <td class="num">6.7</td>
+  <td class="num">0.06</td>
+  <td class="num">790</td>
+  <td class="num">13.1</td>
+  <td class="num">70</td>
 </tr>
 
 <tr>
@@ -1144,7 +1078,46 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.05</td>
   <td class="num">4300</td>
   <td class="num">10.4</td>
-  <td class="num">50</td>
+  <td class="num">70</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190514_065416.html">GW190514_065416</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">40.9</td>
+  <td class="num">28.4</td>
+  <td class="num">-0.08</td>
+  <td class="num">3890</td>
+  <td class="num">8.0</td>
+  <td class="num">69</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190527_092055.html">GW190527_092055</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">35.6</td>
+  <td class="num">22.2</td>
+  <td class="num">0.10</td>
+  <td class="num">2520</td>
+  <td class="num">8.0</td>
+  <td class="num">67</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190413_134308.html">GW190413_134308</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">51.3</td>
+  <td class="num">30.4</td>
+  <td class="num">-0.01</td>
+  <td class="num">3800</td>
+  <td class="num">10.6</td>
+  <td class="num">66</td>
 </tr>
 
 <tr>
@@ -1157,7 +1130,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.12</td>
   <td class="num">3400</td>
   <td class="num">10.6</td>
-  <td class="num">50</td>
+  <td class="num">66</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190731_140936.html">GW190731_140936</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">41.8</td>
+  <td class="num">29.0</td>
+  <td class="num">0.07</td>
+  <td class="num">3330</td>
+  <td class="num">8.8</td>
+  <td class="num">64</td>
 </tr>
 
 <tr>
@@ -1170,20 +1156,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.45</td>
   <td class="num">4100</td>
   <td class="num">7.4</td>
-  <td class="num">50</td>
+  <td class="num">64</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW241011_233834.html">GW241011_233834</a>
+  <td><a class="mono" href="./event/GW200216_220804.html">GW200216_220804</a>
       </td>
   <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">19.5</td>
-  <td class="num">6.0</td>
-  <td class="num">0.50</td>
-  <td class="num">212</td>
-  <td class="num">35.8</td>
-  <td class="num">49</td>
+  <td class="small">O3b</td>
+  <td class="num">51.0</td>
+  <td class="num">30.0</td>
+  <td class="num">0.10</td>
+  <td class="num">3800</td>
+  <td class="num">8.1</td>
+  <td class="num">62</td>
 </tr>
 
 <tr>
@@ -1196,7 +1182,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.02</td>
   <td class="num">1150</td>
   <td class="num">9.7</td>
-  <td class="num">48</td>
+  <td class="num">61</td>
 </tr>
 
 <tr>
@@ -1209,33 +1195,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.12</td>
   <td class="num">3400</td>
   <td class="num">9.6</td>
-  <td class="num">48</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW191103_012549.html">GW191103_012549</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">11.8</td>
-  <td class="num">7.9</td>
-  <td class="num">0.21</td>
-  <td class="num">990</td>
-  <td class="num">8.9</td>
-  <td class="num">47</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200112_155838.html">GW200112_155838</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">35.6</td>
-  <td class="num">28.3</td>
-  <td class="num">0.06</td>
-  <td class="num">1250</td>
-  <td class="num">19.8</td>
-  <td class="num">46</td>
+  <td class="num">61</td>
 </tr>
 
 <tr>
@@ -1248,98 +1208,59 @@ data, not because they fail the criterion.</p>
   <td class="num">0.68</td>
   <td class="num">8280</td>
   <td class="num">7.6</td>
-  <td class="num">45</td>
+  <td class="num">58</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190805_211137.html">GW190805_211137</a>
+  <td><a class="mono" href="./event/GW190413_052954.html">GW190413_052954</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">46.2</td>
-  <td class="num">30.6</td>
-  <td class="num">0.37</td>
-  <td class="num">6130</td>
-  <td class="num">8.1</td>
-  <td class="num">45</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190725_174728.html">GW190725_174728</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">11.8</td>
-  <td class="num">6.3</td>
+  <td class="num">33.7</td>
+  <td class="num">24.2</td>
   <td class="num">-0.04</td>
-  <td class="num">1030</td>
-  <td class="num">9.1</td>
-  <td class="num">43</td>
+  <td class="num">3320</td>
+  <td class="num">9.0</td>
+  <td class="num">58</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW191127_050227.html">GW191127_050227</a>
+  <td><a class="mono" href="./event/GW200112_155838.html">GW200112_155838</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O3b</td>
-  <td class="num">53.0</td>
-  <td class="num">24.0</td>
-  <td class="num">0.18</td>
-  <td class="num">3400</td>
-  <td class="num">9.2</td>
-  <td class="num">42</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200302_015811.html">GW200302_015811</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">37.8</td>
-  <td class="num">20.0</td>
-  <td class="num">0.01</td>
-  <td class="num">1480</td>
-  <td class="num">10.8</td>
-  <td class="num">42</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200220_061928.html">GW200220_061928</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">87.0</td>
-  <td class="num">61.0</td>
+  <td class="num">35.6</td>
+  <td class="num">28.3</td>
   <td class="num">0.06</td>
-  <td class="num">6000</td>
-  <td class="num">7.2</td>
-  <td class="num">41</td>
+  <td class="num">1250</td>
+  <td class="num">19.8</td>
+  <td class="num">58</td>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW241110_124123.html">GW241110_124123</a>
+  <td><a class="mono" href="./event/GW191103_012549.html">GW191103_012549</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">11.8</td>
+  <td class="num">7.9</td>
+  <td class="num">0.21</td>
+  <td class="num">990</td>
+  <td class="num">8.9</td>
+  <td class="num">56</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241011_233834.html">GW241011_233834</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O4</td>
-  <td class="num">16.4</td>
-  <td class="num">8.0</td>
-  <td class="num">-0.31</td>
-  <td class="num">740</td>
-  <td class="num">10.2</td>
-  <td class="num">41</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200322_091133.html">GW200322_091133</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">38.0</td>
-  <td class="num">11.3</td>
-  <td class="num">0.27</td>
-  <td class="num">3500</td>
-  <td class="num">4.5</td>
-  <td class="num">40</td>
+  <td class="num">19.5</td>
+  <td class="num">6.0</td>
+  <td class="num">0.50</td>
+  <td class="num">212</td>
+  <td class="num">35.8</td>
+  <td class="num">56</td>
 </tr>
 
 <tr>
@@ -1352,7 +1273,85 @@ data, not because they fail the criterion.</p>
   <td class="num">0.23</td>
   <td class="num">4580</td>
   <td class="num">8.7</td>
-  <td class="num">39</td>
+  <td class="num">53</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW191127_050227.html">GW191127_050227</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">53.0</td>
+  <td class="num">24.0</td>
+  <td class="num">0.18</td>
+  <td class="num">3400</td>
+  <td class="num">9.2</td>
+  <td class="num">53</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190805_211137.html">GW190805_211137</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">46.2</td>
+  <td class="num">30.6</td>
+  <td class="num">0.37</td>
+  <td class="num">6130</td>
+  <td class="num">8.1</td>
+  <td class="num">52</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200220_061928.html">GW200220_061928</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">87.0</td>
+  <td class="num">61.0</td>
+  <td class="num">0.06</td>
+  <td class="num">6000</td>
+  <td class="num">7.2</td>
+  <td class="num">52</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190725_174728.html">GW190725_174728</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">11.8</td>
+  <td class="num">6.3</td>
+  <td class="num">-0.04</td>
+  <td class="num">1030</td>
+  <td class="num">9.1</td>
+  <td class="num">50</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200302_015811.html">GW200302_015811</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">37.8</td>
+  <td class="num">20.0</td>
+  <td class="num">0.01</td>
+  <td class="num">1480</td>
+  <td class="num">10.8</td>
+  <td class="num">49</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW241110_124123.html">GW241110_124123</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">16.4</td>
+  <td class="num">8.0</td>
+  <td class="num">-0.31</td>
+  <td class="num">740</td>
+  <td class="num">10.2</td>
+  <td class="num">46</td>
 </tr>
 
 <tr>
@@ -1365,7 +1364,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.09</td>
   <td class="num">930</td>
   <td class="num">9.7</td>
-  <td class="num">39</td>
+  <td class="num">45</td>
 </tr>
 
 <tr>
@@ -1378,7 +1377,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.16</td>
   <td class="num">7100</td>
   <td class="num">4.7</td>
-  <td class="num">39</td>
+  <td class="num">45</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200322_091133.html">GW200322_091133</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">38.0</td>
+  <td class="num">11.3</td>
+  <td class="num">0.27</td>
+  <td class="num">3500</td>
+  <td class="num">4.5</td>
+  <td class="num">44</td>
 </tr>
 
 <tr>
@@ -1391,33 +1403,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.20</td>
   <td class="num">4940</td>
   <td class="num">8.1</td>
-  <td class="num">36</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200220_124850.html">GW200220_124850</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">38.9</td>
-  <td class="num">27.9</td>
-  <td class="num">-0.07</td>
-  <td class="num">4000</td>
-  <td class="num">8.5</td>
-  <td class="num">36</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190424_180648.html">GW190424_180648</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">40.5</td>
-  <td class="num">31.8</td>
-  <td class="num">0.13</td>
-  <td class="num">2200</td>
-  <td class="num">10.1</td>
-  <td class="num">35</td>
+  <td class="num">42</td>
 </tr>
 
 <tr>
@@ -1430,7 +1416,20 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.02</td>
   <td class="num">3280</td>
   <td class="num">8.1</td>
-  <td class="num">35</td>
+  <td class="num">42</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200220_124850.html">GW200220_124850</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">38.9</td>
+  <td class="num">27.9</td>
+  <td class="num">-0.07</td>
+  <td class="num">4000</td>
+  <td class="num">8.5</td>
+  <td class="num">42</td>
 </tr>
 
 <tr>
@@ -1443,6 +1442,45 @@ data, not because they fail the criterion.</p>
   <td class="num">0.00</td>
   <td class="num">1370</td>
   <td class="num">7.9</td>
+  <td class="num">41</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190424_180648.html">GW190424_180648</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">40.5</td>
+  <td class="num">31.8</td>
+  <td class="num">0.13</td>
+  <td class="num">2200</td>
+  <td class="num">10.1</td>
+  <td class="num">40</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200306_093714.html">GW200306_093714</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">28.3</td>
+  <td class="num">14.8</td>
+  <td class="num">0.32</td>
+  <td class="num">2100</td>
+  <td class="num">7.8</td>
+  <td class="num">37</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW190909_114149.html">GW190909_114149</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O3a</td>
+  <td class="num">45.8</td>
+  <td class="num">28.3</td>
+  <td class="num">-0.06</td>
+  <td class="num">3770</td>
+  <td class="num">9.0</td>
   <td class="num">35</td>
 </tr>
 
@@ -1456,33 +1494,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.21</td>
   <td class="num">1620</td>
   <td class="num">8.3</td>
-  <td class="num">32</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200306_093714.html">GW200306_093714</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">28.3</td>
-  <td class="num">14.8</td>
-  <td class="num">0.32</td>
-  <td class="num">2100</td>
-  <td class="num">7.8</td>
-  <td class="num">32</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190909_114149.html">GW190909_114149</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">45.8</td>
-  <td class="num">28.3</td>
-  <td class="num">-0.06</td>
-  <td class="num">3770</td>
-  <td class="num">9.0</td>
-  <td class="num">31</td>
+  <td class="num">35</td>
 </tr>
 
 <tr>
@@ -1495,59 +1507,7 @@ data, not because they fail the criterion.</p>
   <td class="num">0.05</td>
   <td class="num">1900</td>
   <td class="num">8.9</td>
-  <td class="num">29</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW231028_153006.html">GW231028_153006</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">94.0</td>
-  <td class="num">59.0</td>
-  <td class="num">0.45</td>
-  <td class="num">4200</td>
-  <td class="num">22.4</td>
-  <td class="num">22</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW231226_101520.html">GW231226_101520</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">40.2</td>
-  <td class="num">35.1</td>
-  <td class="num">-0.08</td>
-  <td class="num">1180</td>
-  <td class="num">34.7</td>
-  <td class="num">22</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230518_125908.html">GW230518_125908</a>
-      </td>
-  <td class="small">NSBH</td>
-  <td class="small">—</td>
-  <td class="num">8.2</td>
-  <td class="num">1.4</td>
-  <td class="num">-0.01</td>
-  <td class="num">236</td>
-  <td class="num">14.1</td>
-  <td class="num">21</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230627_015337.html">GW230627_015337</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">8.4</td>
-  <td class="num">5.7</td>
-  <td class="num">0.02</td>
-  <td class="num">305</td>
-  <td class="num">28.7</td>
-  <td class="num">21</td>
+  <td class="num">34</td>
 </tr>
 
 <tr>
@@ -1560,7 +1520,7 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.01</td>
   <td class="num">290</td>
   <td class="num">43.0</td>
-  <td class="num">20</td>
+  <td class="num">25</td>
 </tr>
 
 <tr>
@@ -1573,7 +1533,59 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">9.9</td>
-  <td class="num">19</td>
+  <td class="num">24</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230518_125908.html">GW230518_125908</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">—</td>
+  <td class="num">8.2</td>
+  <td class="num">1.4</td>
+  <td class="num">-0.01</td>
+  <td class="num">236</td>
+  <td class="num">14.1</td>
+  <td class="num">24</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231226_101520.html">GW231226_101520</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">40.2</td>
+  <td class="num">35.1</td>
+  <td class="num">-0.08</td>
+  <td class="num">1180</td>
+  <td class="num">34.7</td>
+  <td class="num">24</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231028_153006.html">GW231028_153006</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">94.0</td>
+  <td class="num">59.0</td>
+  <td class="num">0.45</td>
+  <td class="num">4200</td>
+  <td class="num">22.4</td>
+  <td class="num">23</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230627_015337.html">GW230627_015337</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">8.4</td>
+  <td class="num">5.7</td>
+  <td class="num">0.02</td>
+  <td class="num">305</td>
+  <td class="num">28.7</td>
+  <td class="num">22</td>
 </tr>
 
 <tr>
@@ -1586,7 +1598,20 @@ data, not because they fail the criterion.</p>
   <td class="num">0.38</td>
   <td class="num">2190</td>
   <td class="num">10.7</td>
-  <td class="num">18</td>
+  <td class="num">19</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW231206_233901.html">GW231206_233901</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.6</td>
+  <td class="num">28.5</td>
+  <td class="num">-0.05</td>
+  <td class="num">1490</td>
+  <td class="num">21.9</td>
+  <td class="num">17</td>
 </tr>
 
 <tr>
@@ -1603,6 +1628,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GW230914_111401.html">GW230914_111401</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">60.0</td>
+  <td class="num">37.0</td>
+  <td class="num">0.12</td>
+  <td class="num">2700</td>
+  <td class="num">17.2</td>
+  <td class="num">16</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/GW230922_040658.html">GW230922_040658</a>
       </td>
   <td class="small">BBH</td>
@@ -1612,6 +1650,19 @@ data, not because they fail the criterion.</p>
   <td class="num">0.31</td>
   <td class="num">6500</td>
   <td class="num">12.5</td>
+  <td class="num">16</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230927_153832.html">GW230927_153832</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">21.7</td>
+  <td class="num">16.6</td>
+  <td class="num">0.03</td>
+  <td class="num">1190</td>
+  <td class="num">20.3</td>
   <td class="num">16</td>
 </tr>
 
@@ -1626,45 +1677,6 @@ data, not because they fail the criterion.</p>
   <td class="num">4900</td>
   <td class="num">10.5</td>
   <td class="num">16</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW231206_233901.html">GW231206_233901</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">37.6</td>
-  <td class="num">28.5</td>
-  <td class="num">-0.05</td>
-  <td class="num">1490</td>
-  <td class="num">21.9</td>
-  <td class="num">16</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230914_111401.html">GW230914_111401</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">60.0</td>
-  <td class="num">37.0</td>
-  <td class="num">0.12</td>
-  <td class="num">2700</td>
-  <td class="num">17.2</td>
-  <td class="num">15</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230927_153832.html">GW230927_153832</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">21.7</td>
-  <td class="num">16.6</td>
-  <td class="num">0.03</td>
-  <td class="num">1190</td>
-  <td class="num">20.3</td>
-  <td class="num">15</td>
 </tr>
 
 <tr>
@@ -1807,6 +1819,19 @@ data, not because they fail the criterion.</p>
   <td class="num">0.17</td>
   <td class="num">1930</td>
   <td class="num">11.4</td>
+  <td class="num">12</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW230630_234532.html">GW230630_234532</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">10.0</td>
+  <td class="num">6.6</td>
+  <td class="num">-0.04</td>
+  <td class="num">1090</td>
+  <td class="num">9.9</td>
   <td class="num">12</td>
 </tr>
 
@@ -1976,19 +2001,6 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.14</td>
   <td class="num">3400</td>
   <td class="num">10.6</td>
-  <td class="num">11</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW230630_234532.html">GW230630_234532</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">10.0</td>
-  <td class="num">6.6</td>
-  <td class="num">-0.04</td>
-  <td class="num">1090</td>
-  <td class="num">9.9</td>
   <td class="num">11</td>
 </tr>
 
@@ -2266,6 +2278,32 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GW241225_082815.html">GW241225_082815</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">55.7</td>
+  <td class="num">42.2</td>
+  <td class="num">-0.17</td>
+  <td class="num">1880</td>
+  <td class="num">19.5</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW250207_115645.html">GW250207_115645</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">35.2</td>
+  <td class="num">30.6</td>
+  <td class="num">0.00</td>
+  <td class="num">187</td>
+  <td class="num">68.9</td>
+  <td class="num">10</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/GW230608_205047.html">GW230608_205047</a>
       </td>
   <td class="small">BBH</td>
@@ -2396,6 +2434,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GW231231_154016.html">GW231231_154016</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">22.5</td>
+  <td class="num">17.2</td>
+  <td class="num">-0.03</td>
+  <td class="num">1070</td>
+  <td class="num">13.4</td>
+  <td class="num">9</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/GW240104_164932.html">GW240104_164932</a>
       </td>
   <td class="small">BBH</td>
@@ -2409,32 +2460,6 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW241225_082815.html">GW241225_082815</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">55.7</td>
-  <td class="num">42.2</td>
-  <td class="num">-0.17</td>
-  <td class="num">1880</td>
-  <td class="num">19.5</td>
-  <td class="num">9</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW250207_115645.html">GW250207_115645</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">35.2</td>
-  <td class="num">30.6</td>
-  <td class="num">0.00</td>
-  <td class="num">187</td>
-  <td class="num">68.9</td>
-  <td class="num">9</td>
-</tr>
-
-<tr>
   <td><a class="mono" href="./event/GW190531_023648.html">GW190531_023648</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -2444,6 +2469,19 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">10.0</td>
+  <td class="num">8</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200311_103121.html">GW200311_103121</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">9.2</td>
   <td class="num">8</td>
 </tr>
 
@@ -2578,15 +2616,15 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW231231_154016.html">GW231231_154016</a>
+  <td><a class="mono" href="./event/GW241113_163507.html">GW241113_163507</a>
       </td>
   <td class="small">BBH</td>
   <td class="small">O4</td>
-  <td class="num">22.5</td>
-  <td class="num">17.2</td>
-  <td class="num">-0.03</td>
-  <td class="num">1070</td>
-  <td class="num">13.4</td>
+  <td class="num">19.3</td>
+  <td class="num">14.4</td>
+  <td class="num">0.50</td>
+  <td class="num">1360</td>
+  <td class="num">12.5</td>
   <td class="num">8</td>
 </tr>
 
@@ -2626,19 +2664,6 @@ data, not because they fail the criterion.</p>
   <td class="num">-0.60</td>
   <td class="num">1000</td>
   <td class="num">8.2</td>
-  <td class="num">7</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200311_103121.html">GW200311_103121</a>
-      <span class="chip">marginal</span></td>
-  <td class="small">—</td>
-  <td class="small">O3b</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">9.2</td>
   <td class="num">7</td>
 </tr>
 
@@ -2734,6 +2759,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GW240515_005301.html">GW240515_005301</a>
+      </td>
+  <td class="small">BBH</td>
+  <td class="small">O4</td>
+  <td class="num">37.1</td>
+  <td class="num">18.5</td>
+  <td class="num">0.47</td>
+  <td class="num">3800</td>
+  <td class="num">12.8</td>
+  <td class="num">7</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/GW240920_124024.html">GW240920_124024</a>
       </td>
   <td class="small">BBH</td>
@@ -2773,6 +2811,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GW190920_113516.html">GW190920_113516</a>
+      </td>
+  <td class="small">NSBH</td>
+  <td class="small">O3a</td>
+  <td class="num">7.0</td>
+  <td class="num">2.8</td>
+  <td class="num">0.60</td>
+  <td class="num">700</td>
+  <td class="num">8.6</td>
+  <td class="num">6</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/GW200201_203549.html">GW200201_203549</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -2782,19 +2833,6 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">9.0</td>
-  <td class="num">6</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW240515_005301.html">GW240515_005301</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">37.1</td>
-  <td class="num">18.5</td>
-  <td class="num">0.47</td>
-  <td class="num">3800</td>
-  <td class="num">12.8</td>
   <td class="num">6</td>
 </tr>
 
@@ -2890,19 +2928,6 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW241113_163507.html">GW241113_163507</a>
-      </td>
-  <td class="small">BBH</td>
-  <td class="small">O4</td>
-  <td class="num">19.3</td>
-  <td class="num">14.4</td>
-  <td class="num">0.50</td>
-  <td class="num">1360</td>
-  <td class="num">12.5</td>
-  <td class="num">6</td>
-</tr>
-
-<tr>
   <td><a class="mono" href="./event/GW190707_083226.html">GW190707_083226</a>
       </td>
   <td class="small">BBH</td>
@@ -2968,19 +2993,6 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GW190920_113516.html">GW190920_113516</a>
-      </td>
-  <td class="small">NSBH</td>
-  <td class="small">O3a</td>
-  <td class="num">7.0</td>
-  <td class="num">2.8</td>
-  <td class="num">0.60</td>
-  <td class="num">700</td>
-  <td class="num">8.6</td>
-  <td class="num">5</td>
-</tr>
-
-<tr>
   <td><a class="mono" href="./event/200114_020818.html">200114_020818</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -2990,6 +3002,19 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">14.5</td>
+  <td class="num">5</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/200214_224526.html">200214_224526</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O3b</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">13.1</td>
   <td class="num">5</td>
 </tr>
 
@@ -3267,6 +3292,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/170208.html">170208</a>
+      <span class="chip">marginal</span></td>
+  <td class="small">—</td>
+  <td class="small">O2</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">10.0</td>
+  <td class="num">4</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/170412.html">170412</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -3302,19 +3340,6 @@ data, not because they fail the criterion.</p>
   <td class="num">0.50</td>
   <td class="num">9000</td>
   <td class="num">8.0</td>
-  <td class="num">4</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/200214_224526.html">200214_224526</a>
-      <span class="chip">marginal</span></td>
-  <td class="small">—</td>
-  <td class="small">O3b</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">13.1</td>
   <td class="num">4</td>
 </tr>
 
@@ -3969,7 +3994,7 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/170208.html">170208</a>
+  <td><a class="mono" href="./event/161217.html">161217</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
   <td class="small">O2</td>
@@ -3977,7 +4002,7 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">—</td>
-  <td class="num">10.0</td>
+  <td class="num">10.7</td>
   <td class="num">3</td>
 </tr>
 
@@ -4190,6 +4215,19 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
+  <td><a class="mono" href="./event/GRB051103.html">GRB051103</a>
+      </td>
+  <td class="small">—</td>
+  <td class="small">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">—</td>
+  <td class="num">2</td>
+</tr>
+
+<tr>
   <td><a class="mono" href="./event/151008.html">151008</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -4225,19 +4263,6 @@ data, not because they fail the criterion.</p>
   <td class="num">—</td>
   <td class="num">—</td>
   <td class="num">9.0</td>
-  <td class="num">2</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/161217.html">161217</a>
-      <span class="chip">marginal</span></td>
-  <td class="small">—</td>
-  <td class="small">O2</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">10.7</td>
   <td class="num">2</td>
 </tr>
 
@@ -5191,19 +5216,6 @@ data, not because they fail the criterion.</p>
 </tr>
 
 <tr>
-  <td><a class="mono" href="./event/GRB051103.html">GRB051103</a>
-      </td>
-  <td class="small">—</td>
-  <td class="small">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">—</td>
-  <td class="num">1</td>
-</tr>
-
-<tr>
   <td><a class="mono" href="./event/190924_232654.html">190924_232654</a>
       <span class="chip">marginal</span></td>
   <td class="small">—</td>
@@ -5936,6 +5948,17 @@ data, not because they fail the criterion.</p>
 </script>
 
 
+
+<footer class="sitefoot">
+  <span>Data extracted 2026-09-17 ·
+    434 events ·
+    13,904 papers,
+    1,975 with full text (14%)</span>
+  <span>Built 2026-09-17 09:26 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/2606aa4"><code>2606aa4</code></a><span title="uncommitted changes present at build time">+local</span>
+     ·
+    <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
+</footer>
 </div>
 </body>
 </html>

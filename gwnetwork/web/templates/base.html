@@ -73,6 +73,18 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
 .key{display:inline-flex;align-items:center;gap:6px}
 .swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
 .swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
 .swatch.triangle{border-radius:0;background:none;width:0;height:0;
   border-left:6px solid transparent;border-right:6px solid transparent;
   border-bottom:11px solid var(--c)}
@@ -106,6 +118,17 @@ button.ghost{background:none;color:var(--accent)}
 <div class="wrap">
 <nav><a href="/">GWnetwork</a><a href="/events">Events</a><a href="/explore">Explore</a><a href="/papers">Papers</a></nav>
 {% block content %}{% endblock %}
+
+<footer class="sitefoot">
+  <span>Data extracted {{ data.extracted_at or "—" }} ·
+    {{ "{:,}".format(data.n_events) }} events ·
+    {{ "{:,}".format(data.n_papers) }} papers,
+    {{ "{:,}".format(data.n_fulltext) }} with full text ({{ data.pct_fulltext }}%)</span>
+  <span>Built {{ build.built_at }} ·
+    {% if build.sha %}<a href="{{ build.repo_url }}/commit/{{ build.sha }}"><code>{{ build.sha }}</code></a>{% if build.dirty %}<span title="uncommitted changes present at build time">+local</span>{% endif %}
+    {% else %}version unknown{% endif %} ·
+    <a href="{{ build.repo_url }}">source</a></span>
+</footer>
 </div>
 </body>
 </html>

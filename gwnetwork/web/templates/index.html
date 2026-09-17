@@ -2,7 +2,7 @@
 {% block title %}GWnetwork{% endblock %}
 {% block content %}
 <h1>GWnetwork</h1>
-<p class="mut">Which papers discuss or use which gravitational-wave events.</p>
+<p class="lede">Which papers discuss or use which gravitational-wave events.</p>
 
 <div class="stats">
   {% for label, value in stats %}
@@ -10,10 +10,39 @@
   {% endfor %}
 </div>
 
-<p class="note"><b>These are mentions, not citations.</b> A count means the paper writes
-the event's name in text we hold. Full text has been fetched for
-{{ "{:,}".format(n_fulltext) }} of {{ "{:,}".format(n_papers) }} papers, so counts are a
-lower bound. Usage classification has not been run.</p>
+<div class="readme">
+  <h2>What this is</h2>
+  <p>Every gravitational-wave event in the GWOSC catalogues, linked to the arXiv
+  papers that name it. The event list is built from GWOSC and extended by hand
+  where a signal was reported elsewhere; the literature is found by searching the
+  NASA ADS full-text index for every designation an event has ever been known
+  by — including electromagnetic counterpart names like
+  <code>AT2017gfo</code> and short forms like <code>GW230529</code>.</p>
+
+  <h2>What a mention is</h2>
+  <p>A <b>mention</b> is an occurrence of an event's name in the text of a paper
+  we hold, recorded with its character offset, the section it appeared in, and
+  the surrounding sentence. Nothing is inferred: if the string is not in the
+  text, there is no mention.</p>
+  <p>A mention is <b>not a citation</b>, and the two sets differ more than you
+  might expect. For GW170817, 9,775 papers cite the discovery paper and 11,313
+  name the event somewhere in their full text — but only 6,005 do both. Roughly
+  3,800 cite the paper without ever writing the event's name, and 5,300 write the
+  name without citing that paper. Counting citations and counting mentions
+  answer different questions, and neither answers <em>who actually used the
+  event</em> — that is what the usage classification is for.</p>
+
+  <h2>The data set is incomplete</h2>
+  <p>Coverage is partial and openly so. Full text has been fetched for
+  {{ "{:,}".format(n_fulltext) }} of {{ "{:,}".format(n_papers) }} papers{% if n_papers %}
+  ({{ (100 * n_fulltext / n_papers)|round|int }}%){% endif %}; for the rest only the
+  abstract has been searched, so their mentions are undercounted. Each event page shows
+  what we found against the number ADS reports, so the shortfall is visible
+  rather than implied. Usage classification — whether a paper reanalysed an
+  event, used its posterior samples, or merely cited it — has been run on a
+  handful of papers as a sample, not the corpus. Treat every count here as a
+  lower bound.</p>
+</div>
 
 <h2>Most-mentioned events</h2>
 <div class="wrapx"><table>

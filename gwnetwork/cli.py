@@ -163,11 +163,14 @@ def cmd_fetch(
     min_designations: int = typer.Option(
         0, help="Only papers matching at least this many event designations. "
                 "5 covers 432/434 events from ~978 papers; 0 fetches everything."),
+    rate_delay: float = typer.Option(
+        3.0, help="Seconds between arXiv requests. Be polite; 3 s is the default."),
 ):
     """Fetch full text from arXiv. Densest papers first, so interrupting is safe."""
     from .corpus.discover import fetch_fulltext
     typer.echo(str(fetch_fulltext(limit=limit, force=force,
-                                  min_designations=min_designations)))
+                                  min_designations=min_designations,
+                                  rate_delay=rate_delay)))
 
 
 @app.command("extract")
@@ -286,10 +289,16 @@ def cmd_export(
 
 
 @app.command("serve")
-def cmd_serve(host: str = "127.0.0.1", port: int = 8000):
+def cmd_serve(
+    host: str = "127.0.0.1",
+    port: int = 8000,
+    reload: bool = typer.Option(
+        False, help="Restart on code changes. Templates always reload; Python does not."),
+):
     """Serve the read-only website."""
     import uvicorn
-    uvicorn.run("gwnetwork.web.app:app", host=host, port=port, reload=False)
+    uvicorn.run("gwnetwork.web.app:app", host=host, port=port, reload=reload,
+                reload_includes=["*.py", "*.html"] if reload else None)
 
 
 def main():  # pragma: no cover

@@ -20,6 +20,7 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy import func, select
 
 from ..db import session
+from ..version import build_info, data_info
 from ..models import (
     AnalysisRun, Event, EventDesignation, EventRecord, EventUsage, EventView,
     Mention, Paper,
@@ -55,6 +56,11 @@ def mentions_in(run):
 
 
 def render(request: Request, name: str, **ctx) -> HTMLResponse:
+    """Every page carries build and data provenance in its footer."""
+    ctx.setdefault("build", build_info())
+    if "data" not in ctx:
+        with session() as s:
+            ctx["data"] = data_info(s)
     return templates.TemplateResponse(request, name, ctx)
 
 

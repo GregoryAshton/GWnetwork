@@ -73,6 +73,18 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
 .key{display:inline-flex;align-items:center;gap:6px}
 .swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
 .swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
 .swatch.triangle{border-radius:0;background:none;width:0;height:0;
   border-left:6px solid transparent;border-right:6px solid transparent;
   border-bottom:11px solid var(--c)}
@@ -107,7 +119,7 @@ button.ghost{background:none;color:var(--accent)}
 <nav><a href="./index.html">GWnetwork</a><a href="./events.html">Events</a><a href="./explore.html">Explore</a><a href="./papers.html">Papers</a></nav>
 
 <h1>GWnetwork</h1>
-<p class="mut">Which papers discuss or use which gravitational-wave events.</p>
+<p class="lede">Which papers discuss or use which gravitational-wave events.</p>
 
 <div class="stats">
   
@@ -117,16 +129,45 @@ button.ghost{background:none;color:var(--accent)}
   
   <div class="stat"><b class="tnum">13,904</b><span>Papers</span></div>
   
-  <div class="stat"><b class="tnum">15,291</b><span>Event–paper links</span></div>
+  <div class="stat"><b class="tnum">18,913</b><span>Event–paper links</span></div>
   
   <div class="stat"><b class="tnum">20</b><span>Classified usages</span></div>
   
 </div>
 
-<p class="note"><b>These are mentions, not citations.</b> A count means the paper writes
-the event's name in text we hold. Full text has been fetched for
-978 of 13,904 papers, so counts are a
-lower bound. Usage classification has not been run.</p>
+<div class="readme">
+  <h2>What this is</h2>
+  <p>Every gravitational-wave event in the GWOSC catalogues, linked to the arXiv
+  papers that name it. The event list is built from GWOSC and extended by hand
+  where a signal was reported elsewhere; the literature is found by searching the
+  NASA ADS full-text index for every designation an event has ever been known
+  by — including electromagnetic counterpart names like
+  <code>AT2017gfo</code> and short forms like <code>GW230529</code>.</p>
+
+  <h2>What a mention is</h2>
+  <p>A <b>mention</b> is an occurrence of an event's name in the text of a paper
+  we hold, recorded with its character offset, the section it appeared in, and
+  the surrounding sentence. Nothing is inferred: if the string is not in the
+  text, there is no mention.</p>
+  <p>A mention is <b>not a citation</b>, and the two sets differ more than you
+  might expect. For GW170817, 9,775 papers cite the discovery paper and 11,313
+  name the event somewhere in their full text — but only 6,005 do both. Roughly
+  3,800 cite the paper without ever writing the event's name, and 5,300 write the
+  name without citing that paper. Counting citations and counting mentions
+  answer different questions, and neither answers <em>who actually used the
+  event</em> — that is what the usage classification is for.</p>
+
+  <h2>The data set is incomplete</h2>
+  <p>Coverage is partial and openly so. Full text has been fetched for
+  1,975 of 13,904 papers
+  (14%); for the rest only the
+  abstract has been searched, so their mentions are undercounted. Each event page shows
+  what we found against the number ADS reports, so the shortfall is visible
+  rather than implied. Usage classification — whether a paper reanalysed an
+  event, used its posterior samples, or merely cited it — has been run on a
+  handful of papers as a sample, not the corpus. Treat every count here as a
+  lower bound.</p>
+</div>
 
 <h2>Most-mentioned events</h2>
 <div class="wrapx"><table>
@@ -136,7 +177,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW170817.html">GW170817</a></td>
   <td class="small">BNS</td>
   <td class="small">O2</td>
-  <td class="num">2,384</td>
+  <td class="num">2,932</td>
   <td class="num mut">9,456</td>
 </tr>
 
@@ -144,7 +185,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW150914.html">GW150914</a></td>
   <td class="small">BBH</td>
   <td class="small">O1</td>
-  <td class="num">1,019</td>
+  <td class="num">1,377</td>
   <td class="num mut">4,000</td>
 </tr>
 
@@ -152,7 +193,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW190814.html">GW190814</a></td>
   <td class="small">NSBH</td>
   <td class="small">O3a</td>
-  <td class="num">604</td>
+  <td class="num">814</td>
   <td class="num mut">1,618</td>
 </tr>
 
@@ -160,7 +201,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW151226.html">GW151226</a></td>
   <td class="small">BBH</td>
   <td class="small">O1</td>
-  <td class="num">578</td>
+  <td class="num">751</td>
   <td class="num mut">1,316</td>
 </tr>
 
@@ -168,7 +209,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW190521.html">GW190521</a></td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">507</td>
+  <td class="num">673</td>
   <td class="num mut">1,456</td>
 </tr>
 
@@ -176,31 +217,31 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW170814.html">GW170814</a></td>
   <td class="small">BBH</td>
   <td class="small">O2</td>
-  <td class="num">495</td>
+  <td class="num">642</td>
   <td class="num mut">798</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170104.html">GW170104</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">471</td>
-  <td class="num mut">789</td>
 </tr>
 
 <tr>
   <td><a class="mono" href="./event/GW190425.html">GW190425</a></td>
   <td class="small">BNS</td>
   <td class="small">O3a</td>
-  <td class="num">427</td>
+  <td class="num">616</td>
   <td class="num mut">1,290</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW170104.html">GW170104</a></td>
+  <td class="small">BBH</td>
+  <td class="small">O2</td>
+  <td class="num">603</td>
+  <td class="num mut">789</td>
 </tr>
 
 <tr>
   <td><a class="mono" href="./event/GW170608.html">GW170608</a></td>
   <td class="small">BBH</td>
   <td class="small">O2</td>
-  <td class="num">395</td>
+  <td class="num">474</td>
   <td class="num mut">488</td>
 </tr>
 
@@ -208,7 +249,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW190412.html">GW190412</a></td>
   <td class="small">BBH</td>
   <td class="small">O3a</td>
-  <td class="num">295</td>
+  <td class="num">390</td>
   <td class="num mut">477</td>
 </tr>
 
@@ -216,7 +257,7 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW170729.html">GW170729</a></td>
   <td class="small">BBH</td>
   <td class="small">O2</td>
-  <td class="num">203</td>
+  <td class="num">245</td>
   <td class="num mut">302</td>
 </tr>
 
@@ -224,36 +265,47 @@ lower bound. Usage classification has not been run.</p>
   <td><a class="mono" href="./event/GW200115_042309.html">GW200115_042309</a></td>
   <td class="small">NSBH</td>
   <td class="small">O3b</td>
-  <td class="num">185</td>
+  <td class="num">243</td>
   <td class="num mut">384</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200105_162426.html">GW200105_162426</a></td>
+  <td class="small">NSBH</td>
+  <td class="small">O3b</td>
+  <td class="num">202</td>
+  <td class="num mut">352</td>
+</tr>
+
+<tr>
+  <td><a class="mono" href="./event/GW200129_065458.html">GW200129_065458</a></td>
+  <td class="small">BBH</td>
+  <td class="small">O3b</td>
+  <td class="num">188</td>
+  <td class="num mut">248</td>
 </tr>
 
 <tr>
   <td><a class="mono" href="./event/GW170818.html">GW170818</a></td>
   <td class="small">BBH</td>
   <td class="small">O2</td>
-  <td class="num">162</td>
+  <td class="num">186</td>
   <td class="num mut">173</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170809.html">GW170809</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">159</td>
-  <td class="num mut">141</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170823.html">GW170823</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">157</td>
-  <td class="num mut">133</td>
 </tr>
 
 </table></div>
 
+
+<footer class="sitefoot">
+  <span>Data extracted 2026-09-17 ·
+    434 events ·
+    13,904 papers,
+    1,975 with full text (14%)</span>
+  <span>Built 2026-09-17 09:26 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/2606aa4"><code>2606aa4</code></a><span title="uncommitted changes present at build time">+local</span>
+     ·
+    <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
+</footer>
 </div>
 </body>
 </html>

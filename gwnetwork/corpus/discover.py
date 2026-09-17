@@ -117,7 +117,8 @@ class FetchStats:
 
 
 def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
-                   min_designations: int = 0) -> FetchStats:
+                   min_designations: int = 0,
+                   rate_delay: float = 3.0) -> FetchStats:
     """Fetch full text, optionally only for event-dense papers.
 
     Event coverage saturates fast: papers matching >=5 ADS designations number
@@ -135,19 +136,18 @@ def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
                      .group_by(PaperDiscovery.paper_id)
                      .having(func.count() >= min_designations))
             q = q.where(Paper.id.in_(dense))
-            # Densest first, so an interrupted run still maximises coverage.
-            counts = dict(s.execute(
-                select(PaperDiscovery.paper_id, func.count())
-                .group_by(PaperDiscovery.paper_id)).all())
-        else:
-            counts = {}
+        # Always order densest-first: a partial run then maximises event
+        # coverage rather than fetching an arbitrary slice.
+        counts = dict(s.execute(
+            select(PaperDiscovery.paper_id, func.count())
+            .group_by(PaperDiscovery.paper_id)).all())
         papers = s.scalars(q).all()
         if counts:
             papers.sort(key=lambda p: -counts.get(p.id, 0))
         if limit:
             papers = papers[:limit]
 
-        with ArxivFetcher() as fetcher:
+        with ArxivFetcher(rate_delay=rate_delay) as fetcher:
             for paper in papers:
                 stats.attempted += 1
                 got = fetcher.fetch(paper.arxiv_id, force=force)
