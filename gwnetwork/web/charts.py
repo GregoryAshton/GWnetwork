@@ -90,21 +90,40 @@ def place_labels(points: list, w: float, h: float) -> None:
     nine pairs on top of each other. Walk them in y order, push each clear of
     the last, and flip to the left of the mark when the text would run off the
     right edge.
+
+    A single downward pass is not enough on short plots: clamping at the bottom
+    edge stacks whatever is left on the same line. A second pass lifts the run
+    back up when it overflows, which is what a crowded timeline needs.
     """
     labelled = sorted([p for p in points if p.get("label")], key=lambda p: p["y"])
+    if not labelled:
+        return
+
+    # Pass 1: push each label clear of the one above it.
     last_bottom = -1e9
     for p in labelled:
         y = max(p["y"] + 4, last_bottom + LABEL_H)
-        y = min(y, h - 2)
+        p["ly"] = y
+        last_bottom = y
+
+    # Pass 2: if the run overflowed the bottom, lift it and re-space upward.
+    overflow = labelled[-1]["ly"] - (h - 2)
+    if overflow > 0:
+        next_top = h - 2
+        for p in reversed(labelled):
+            y = min(p["ly"] - overflow, next_top)
+            p["ly"] = max(y, LABEL_H)
+            next_top = p["ly"] - LABEL_H
+
+    for p in labelled:
         width = len(p["label"]) * CHAR_W
         if p["x"] + p["r"] + 5 + width > w:
             p["lx"], p["anchor"] = p["x"] - p["r"] - 5, "end"
         else:
             p["lx"], p["anchor"] = p["x"] + p["r"] + 5, "start"
-        p["ly"] = round(y, 2)
+        p["ly"] = round(p["ly"], 2)
         # A leader line keeps the association visible once a label is nudged.
-        p["leader"] = abs(y - (p["y"] + 4)) > 3
-        last_bottom = y
+        p["leader"] = abs(p["ly"] - (p["y"] + 4)) > 3
 
 
 def _fmt(v: float) -> str:
@@ -300,3 +319,119 @@ def attention_vs_snr(s) -> dict:
                         "light": DIVERGING["mid"][0], "dark": DIVERGING["mid"][1]},
                        {"label": "far below trend", "pole": "low",
                         "light": DIVERGING["low"][0], "dark": DIVERGING["low"][1]}]}
+
+
+# --------------------------------------------------------------------------
+# 4. Per-event timeline: when papers appeared, and how cited they became
+# --------------------------------------------------------------------------
+
+TIMELINE = {"w": 760, "h": 300, "l": 54, "r": 16, "t": 14, "b": 42}
+
+# Citation counts include real zeros (10% of GW170817's papers), and zero has
+# no place on a log axis. Rather than drop those papers or fake them as 1, the
+# bottom band of the plot is a dedicated "0" row, separated by a rule.
+ZERO_BAND = 26
+MAX_POINTS = 600
+KEEP_TOP = 120      # always plotted: these carry the direct labels
+
+
+def event_timeline(s, event, view, run) -> dict:
+    from datetime import datetime
+
+    from ..events.aliases import gps_to_utc
+
+    rows = s.execute(
+        select(Paper.arxiv_id, Paper.title, Paper.submitted_at, Paper.citation_count)
+        .join(Mention, Mention.paper_id == Paper.id)
+        .where(Mention.event_id == event.id,
+               Mention.analysis_run_id == (run.id if run else None),
+               Paper.submitted_at.is_not(None))
+        .group_by(Paper.id)).all()
+    if len(rows) < 3:
+        return {"empty": True}
+
+    # Sampling must not distort the time axis. Taking simply the most-cited
+    # N drops recent low-citation papers wholesale -- on GW170817 that removed
+    # every one of its ~300 zero-citation papers and made recent activity look
+    # like it had stopped. Keep the most-cited (they carry the labels) and add
+    # an evenly spaced sample of the rest in date order.
+    by_cites = sorted(rows, key=lambda r: -(r[3] or 0))
+    total = len(rows)
+    if total > MAX_POINTS:
+        keep = by_cites[:KEEP_TOP]
+        rest = sorted(by_cites[KEEP_TOP:], key=lambda r: r[2])
+        budget = max(MAX_POINTS - KEEP_TOP, 1)
+        if len(rest) > budget:
+            # Evenly spaced indices rather than a slice stride. An integer
+            # stride either overshoots the budget -- and a trailing cut then
+            # deletes the most recent papers, which erased 2026 entirely -- or
+            # undershoots it badly: 673 papers became 397 points while the
+            # caption still claimed 600. Interpolating hits the budget and
+            # keeps both endpoints.
+            idx = sorted({round(i * (len(rest) - 1) / (budget - 1))
+                          for i in range(budget)})
+            rest = [rest[i] for i in idx]
+        rows = sorted(keep + rest, key=lambda r: -(r[3] or 0))
+    else:
+        rows = by_cites
+    truncated = total - len(rows)
+
+    event_dt = gps_to_utc(view.gps) if (view and view.gps) else None
+    dates = [r[2] for r in rows] + ([event_dt] if event_dt else [])
+    lo_d, hi_d = min(dates), max(dates)
+    span = max((hi_d - lo_d).days, 1)
+    pad = max(span * 0.03, 30)
+
+    w = TIMELINE["w"] - TIMELINE["l"] - TIMELINE["r"]
+    h = TIMELINE["h"] - TIMELINE["t"] - TIMELINE["b"]
+    plot_h = h - ZERO_BAND
+
+    xa = Axis(-pad, span + pad)
+
+    def xpx(d):
+        return xa.px((d - lo_d).days, w)
+
+    cites = [c or 0 for *_, c in rows]
+    top = max(cites) or 1
+    ya = Axis(1, max(top * 1.3, 2), log=True)
+
+    ya.ticks = [(v, ya.px(v, plot_h, flip=True), _fmt(v))
+                for v in _nice_log_ticks(1, ya.hi)]
+    ya.ticks.append((0, h - 7, "0"))
+
+    years = sorted({d.year for d in dates})
+    xa.ticks = []
+    for y in years:
+        d = datetime(y, 1, 1)
+        if lo_d <= d <= hi_d:
+            xa.ticks.append((y, xpx(d), str(y)))
+    if not xa.ticks:
+        xa.ticks = [(lo_d.year, xpx(lo_d), str(lo_d.year))]
+
+    points = []
+    for arxiv, title, dt, c in rows:
+        c = c or 0
+        points.append({
+            "x": round(xpx(dt), 2),
+            "y": round(h - 7 if c == 0 else ya.px(c, plot_h, flip=True), 2),
+            "r": 3.2 if c < 50 else (4.6 if c < 500 else 6.2),
+            "arxiv": arxiv, "title": title,
+            "date": dt.strftime("%Y-%m"), "cites": c,
+            "before": bool(event_dt and dt < event_dt),
+            "label": None,
+        })
+    for p in points[:3]:
+        p["label"] = p["title"][:34] + ("…" if len(p["title"]) > 34 else "")
+    place_labels(points, w, h)
+
+    marker = None
+    if event_dt:
+        marker = {"x": round(xpx(event_dt), 2), "label": event_dt.strftime("%Y-%m-%d")}
+
+    return {
+        "empty": False, "points": points, "xa": xa, "ya": ya, "w": w, "h": h,
+        "box": TIMELINE, "marker": marker, "n": len(points),
+        "truncated": truncated, "zero_rule": round(h - ZERO_BAND + 4, 2),
+        "n_zero": sum(1 for p in points if p["cites"] == 0),
+        "n_before": sum(1 for p in points if p["before"]),
+    }

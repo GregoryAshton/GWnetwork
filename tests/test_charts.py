@@ -57,3 +57,34 @@ def test_leader_flag_set_only_when_nudged():
     place_labels(pts, w=760, h=460)
     assert pts[0]["leader"] is False       # sits where it wants
     assert pts[1]["leader"] is True        # pushed clear, needs a leader
+
+
+EPS = 1e-6      # label gaps land exactly on LABEL_H; compare with tolerance
+
+
+def test_two_pass_placement_lifts_labels_that_overflow_the_bottom():
+    """A single downward pass stacks labels on the bottom edge.
+
+    On a short plot the clamp put several labels on the same line, which looked
+    like a collision the placement had already been written to prevent.
+    """
+    pts = [{"x": 100, "y": 238 + i, "r": 4, "label": f"paper {i}"} for i in range(5)]
+    place_labels(pts, w=760, h=244)
+    ys = sorted(p["ly"] for p in pts)
+    assert all(b - a >= LABEL_H - EPS for a, b in zip(ys, ys[1:])), ys
+    assert all(0 <= p["ly"] <= 244 for p in pts)
+
+
+def test_labels_stay_ordered_after_the_upward_pass():
+    pts = [{"x": 50, "y": 240, "r": 4, "label": "a"},
+           {"x": 50, "y": 241, "r": 4, "label": "b"},
+           {"x": 50, "y": 242, "r": 4, "label": "c"}]
+    place_labels(pts, w=760, h=244)
+    assert pts[0]["ly"] < pts[1]["ly"] < pts[2]["ly"]
+
+
+def test_single_label_is_not_moved():
+    pts = [{"x": 100, "y": 120, "r": 4, "label": "only"}]
+    place_labels(pts, w=760, h=244)
+    assert pts[0]["ly"] == 124.0
+    assert pts[0]["leader"] is False

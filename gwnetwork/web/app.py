@@ -196,6 +196,8 @@ def event_page(request: Request, name: str):
                           message=f"No event named {name}.")
         erun, crun = current_run(s, "extract"), current_run(s, "classify")
         view = s.scalar(select(EventView).where(EventView.event_id == ev.id))
+        from .charts import event_timeline
+        timeline = event_timeline(s, ev, view, erun)
         records = s.scalars(select(EventRecord).where(EventRecord.event_id == ev.id)
                             .order_by(EventRecord.catalog, EventRecord.version)).all()
         aliases = s.scalars(select(EventDesignation.designation)
@@ -218,7 +220,8 @@ def event_page(request: Request, name: str):
                       func.count(Mention.id).desc())
             .limit(ROW_LIMIT)).all()
     return render(request, "event.html", event=ev, view=view, records=records,
-                  aliases=aliases, usages=usages, mentions=mentions)
+                  aliases=aliases, usages=usages, mentions=mentions,
+                  timeline=timeline)
 
 
 @app.get("/explore", response_class=HTMLResponse)

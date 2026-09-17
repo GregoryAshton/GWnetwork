@@ -28,6 +28,70 @@ Values taken from <b>{{ view.params_from_catalog or "—" }}</b>; primary record
 GPS {{ "%.1f"|format(view.gps) if view.gps else "—" }}.</p>
 {% endif %}
 
+{% if not timeline.empty %}
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 {{ timeline.box.w }} {{ timeline.box.h }}"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate({{ timeline.box.l }},{{ timeline.box.t }})">
+      {% for v, px, lab in timeline.ya.ticks %}
+      <line class="grid" x1="0" y1="{{ px }}" x2="{{ timeline.w }}" y2="{{ px }}"/>
+      <text class="tick" x="-9" y="{{ px }}" text-anchor="end"
+            dominant-baseline="middle">{{ lab }}</text>
+      {% endfor %}
+      {% for v, px, lab in timeline.xa.ticks %}
+      <line class="grid" x1="{{ px }}" y1="0" x2="{{ px }}" y2="{{ timeline.h }}"/>
+      <text class="tick" x="{{ px }}" y="{{ timeline.h + 18 }}" text-anchor="middle">{{ lab }}</text>
+      {% endfor %}
+
+      {# Citation counts include real zeros, which have no place on a log axis.
+         The bottom band is a dedicated "0" row, ruled off from the log scale. #}
+      <line class="zerorule" x1="0" y1="{{ timeline.zero_rule }}"
+            x2="{{ timeline.w }}" y2="{{ timeline.zero_rule }}"/>
+
+      {% if timeline.marker %}
+      <line class="eventline" x1="{{ timeline.marker.x }}" y1="0"
+            x2="{{ timeline.marker.x }}" y2="{{ timeline.h }}"/>
+      <text class="eventlabel" x="{{ timeline.marker.x + 5 }}" y="11">
+        event detected {{ timeline.marker.label }}</text>
+      {% endif %}
+
+      <line class="axis" x1="0" y1="{{ timeline.h }}" x2="{{ timeline.w }}" y2="{{ timeline.h }}"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="{{ timeline.h }}"/>
+
+      {% for p in timeline.points %}
+      <a href="https://arxiv.org/abs/{{ p.arxiv }}" target="_blank" rel="noopener">
+        <circle class="mark" cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}">
+          <title>{{ p.title[:90] }} — {{ p.date }}, {{ "{:,}".format(p.cites) }} citations</title>
+        </circle>
+      </a>
+      {% endfor %}
+      {% for p in timeline.points if p.label %}
+      {% if p.leader %}<line class="leader" x1="{{ p.x }}" y1="{{ p.y }}"
+        x2="{{ p.lx }}" y2="{{ p.ly - 4 }}"/>{% endif %}
+      <text class="datalabel" x="{{ p.lx }}" y="{{ p.ly }}"
+            text-anchor="{{ p.anchor }}">{{ p.label }}</text>
+      {% endfor %}
+
+      <text class="axis-label" transform="translate(-42,{{ timeline.h / 2 }}) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    {% if timeline.truncated %}Showing {{ "{:,}".format(timeline.n) }} of
+    {{ "{:,}".format(timeline.n + timeline.truncated) }} — the most-cited papers plus an
+    evenly spaced sample of the rest, so the shape over time stays representative
+    while the early, heavily-cited papers are over-represented.{% endif %}
+    {% if timeline.n_before %}{{ timeline.n_before }} point{{ "s" if timeline.n_before != 1 }}
+    sit{{ "" if timeline.n_before != 1 else "s" }} left of the detection line: papers first
+    posted earlier whose revised versions mention the event, dated by original submission.{% endif %}
+  </figcaption>
+</figure>
+{% endif %}
+
 <h2>Catalogue history</h2>
 <div class="wrapx"><table>
 <tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
