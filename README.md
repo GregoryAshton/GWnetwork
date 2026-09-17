@@ -119,3 +119,6 @@ arXiv rather than local pages — exporting all 13,904 paper pages would add
 ~49 MB to host what arXiv already hosts.
 
 Regenerate and commit `docs/` after any pipeline run that changes the data.
+Order matters for the provenance footer: **commit code first, then export, then
+commit `docs/`**. The footer records the commit that built the page, so
+exporting from a dirty tree stamps it `+local`.
