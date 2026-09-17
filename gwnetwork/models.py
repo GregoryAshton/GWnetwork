@@ -329,6 +329,10 @@ class Engagement(str, enum.Enum):
 ROLES = [
     "single_event", "population", "multimessenger", "test_of_gr", "cosmology",
     "lensing", "formation_channels", "waveform_systematics",
+    # Dense-matter / equation-of-state work is one of the largest uses of
+    # GW170817 and had no slot in the original taxonomy; papers doing it were
+    # being filed under multimessenger, which undersells them.
+    "dense_matter_eos",
     "exotic_compact_object", "detector_characterisation", "methods_demo",
     "review", "forecast",
 ]
