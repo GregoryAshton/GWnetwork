@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -145,6 +152,151 @@ IAS-O3a v1.
 GPS 1246272532.7.</p>
 
 
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="190.99305768960352" x2="690" y2="190.99305768960352"/>
+      <text class="tick" x="-9" y="190.99305768960352" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="155.2918218924882" x2="690" y2="155.2918218924882"/>
+      <text class="tick" x="-9" y="155.2918218924882" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="128.28487958209175" x2="690" y2="128.28487958209175"/>
+      <text class="tick" x="-9" y="128.28487958209175" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="101.27793727169527" x2="690" y2="101.27793727169527"/>
+      <text class="tick" x="-9" y="101.27793727169527" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="65.57670147457996" x2="690" y2="65.57670147457996"/>
+      <text class="tick" x="-9" y="65.57670147457996" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="38.569759164183466" x2="690" y2="38.569759164183466"/>
+      <text class="tick" x="-9" y="38.569759164183466" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="11.562816853786995" x2="690" y2="11.562816853786995"/>
+      <text class="tick" x="-9" y="11.562816853786995" text-anchor="end"
+            dominant-baseline="middle">200</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="251.80775114737378" y1="0" x2="251.80775114737378" y2="244"/>
+      <text class="tick" x="251.80775114737378" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="344.87251402345737" y1="0" x2="344.87251402345737" y2="244"/>
+      <text class="tick" x="344.87251402345737" y="262" text-anchor="middle">2023</text>
+      
+      <line class="grid" x1="437.93727689954096" y1="0" x2="437.93727689954096" y2="244"/>
+      <text class="tick" x="437.93727689954096" y="262" text-anchor="middle">2024</text>
+      
+      <line class="grid" x1="531.2570117287098" y1="0" x2="531.2570117287098" y2="244"/>
+      <text class="tick" x="531.2570117287098" y="262" text-anchor="middle">2025</text>
+      
+      <line class="grid" x1="624.3217746047934" y1="0" x2="624.3217746047934" y2="244"/>
+      <text class="tick" x="624.3217746047934" y="262" text-anchor="middle">2026</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2019-07-04</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2201.02252" target="_blank" rel="noopener">
+        <circle class="mark" cx="305.86" cy="10.22" r="4.6">
+          <title>New binary black hole mergers in the LIGO-Virgo O3a data — 2022-08, 207 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2312.06631" target="_blank" rel="noopener">
+        <circle class="mark" cx="430.03" cy="43.11" r="4.6">
+          <title>New black hole mergers in the LIGO-Virgo O3 data from a gravitational wave search includin — 2023-12, 89 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2306.00050" target="_blank" rel="noopener">
+        <circle class="mark" cx="500.15" cy="63.31" r="4.6">
+          <title>In pursuit of Love numbers: First templated search for compact objects with large tidal de — 2024-09, 53 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2303.17628" target="_blank" rel="noopener">
+        <circle class="mark" cx="484.34" cy="107.61" r="3.2">
+          <title>Visualizing the Number of Existing and Future Gravitational-wave Detections from Merging D — 2024-07, 17 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2509.05283" target="_blank" rel="noopener">
+        <circle class="mark" cx="593.22" cy="190.99" r="3.2">
+          <title>Robustness of Sensitivity Evaluations for Gravitational Wave Detection Algorithms — 2025-09, 2 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2512.04516" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="218.0" r="3.2">
+          <title>Searching for binary black hole mergers with deep learning in Advanced LIGO&#39;s third observ — 2026-07, 1 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2607.07272" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="237" r="3.2">
+          <title>Combining gravitational wave search pipelines to find subthreshold signals in GWTC-5.0 — 2026-07, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="315.46000000000004" y="14.22"
+            text-anchor="start">New binary black hole mergers in t…</text>
+      
+      
+      <text class="datalabel" x="439.63" y="47.11"
+            text-anchor="start">New black hole mergers in the LIGO…</text>
+      
+      
+      <text class="datalabel" x="490.54999999999995" y="67.31"
+            text-anchor="end">In pursuit of Love numbers: First …</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
+
+
 <h2>Catalogue history</h2>
 <div class="wrapx"><table>
 <tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
@@ -213,8 +365,8 @@ hold 117%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

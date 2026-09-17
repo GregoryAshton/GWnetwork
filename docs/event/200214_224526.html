@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -145,6 +152,129 @@ GWTC-3-marginal v2.
 GPS 1265755544.5.</p>
 
 
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="187.14371902580274" x2="690" y2="187.14371902580274"/>
+      <text class="tick" x="-9" y="187.14371902580274" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="146.35393430227302" x2="690" y2="146.35393430227302"/>
+      <text class="tick" x="-9" y="146.35393430227302" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="115.49765332807576" x2="690" y2="115.49765332807576"/>
+      <text class="tick" x="-9" y="115.49765332807576" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="84.64137235387851" x2="690" y2="84.64137235387851"/>
+      <text class="tick" x="-9" y="84.64137235387851" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="43.851587630348796" x2="690" y2="43.851587630348796"/>
+      <text class="tick" x="-9" y="43.851587630348796" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="12.995306656151522" x2="690" y2="12.995306656151522"/>
+      <text class="tick" x="-9" y="12.995306656151522" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="145.40350079563538" y1="0" x2="145.40350079563538" y2="244"/>
+      <text class="tick" x="145.40350079563538" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="288.5326210502387" y1="0" x2="288.5326210502387" y2="244"/>
+      <text class="tick" x="288.5326210502387" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="574.7908615594454" y1="0" x2="574.7908615594454" y2="244"/>
+      <text class="tick" x="574.7908615594454" y="262" text-anchor="middle">2024</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2020-02-14</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2105.15120" target="_blank" rel="noopener">
+        <circle class="mark" cx="311.67" cy="11.68" r="4.6">
+          <title>Search for intermediate-mass black hole binaries in the third observing run of Advanced LI — 2022-03, 103 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2201.01495" target="_blank" rel="noopener">
+        <circle class="mark" cx="323.82" cy="65.13" r="3.2">
+          <title>Search for binary black hole mergers in the third observing run of Advanced LIGO-Virgo usi — 2022-04, 31 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2312.01211" target="_blank" rel="noopener">
+        <circle class="mark" cx="598.32" cy="146.35" r="3.2">
+          <title>Unmasking noise transients masquerading as intermediate-mass black hole binaries — 2024-03, 5 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2309.05093" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="169.09" r="3.2">
+          <title>Searching for topological dark matter in LIGO data — 2024-09, 3 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2111.03606" target="_blank" rel="noopener">
+        <circle class="mark" cx="266.18" cy="237" r="3.2">
+          <title>GWTC-3: Compact Binary Coalescences Observed by LIGO and Virgo During the Second Part of t — 2021-11, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="321.27000000000004" y="15.68"
+            text-anchor="start">Search for intermediate-mass black…</text>
+      
+      
+      <text class="datalabel" x="332.02" y="69.13"
+            text-anchor="start">Search for binary black hole merge…</text>
+      
+      
+      <text class="datalabel" x="590.12" y="150.35"
+            text-anchor="end">Unmasking noise transients masquer…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
+
+
 <h2>Catalogue history</h2>
 <div class="wrapx"><table>
 <tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
@@ -207,8 +337,8 @@ hold 71%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -145,6 +152,162 @@ GWTC-2.1-marginal v1.
 GPS 1243305426.3.</p>
 
 
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="197.19161069593102" x2="690" y2="197.19161069593102"/>
+      <text class="tick" x="-9" y="197.19161069593102" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="169.68441626552854" x2="690" y2="169.68441626552854"/>
+      <text class="tick" x="-9" y="169.68441626552854" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="148.87602696145953" x2="690" y2="148.87602696145953"/>
+      <text class="tick" x="-9" y="148.87602696145953" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="128.06763765739055" x2="690" y2="128.06763765739055"/>
+      <text class="tick" x="-9" y="128.06763765739055" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="100.56044322698807" x2="690" y2="100.56044322698807"/>
+      <text class="tick" x="-9" y="100.56044322698807" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="79.75205392291907" x2="690" y2="79.75205392291907"/>
+      <text class="tick" x="-9" y="79.75205392291907" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="58.943664618850086" x2="690" y2="58.943664618850086"/>
+      <text class="tick" x="-9" y="58.943664618850086" text-anchor="end"
+            dominant-baseline="middle">200</text>
+      
+      <line class="grid" x1="0" y1="31.43647018844761" x2="690" y2="31.43647018844761"/>
+      <text class="tick" x="-9" y="31.43647018844761" text-anchor="end"
+            dominant-baseline="middle">500</text>
+      
+      <line class="grid" x1="0" y1="10.628080884378619" x2="690" y2="10.628080884378619"/>
+      <text class="tick" x="-9" y="10.628080884378619" text-anchor="end"
+            dominant-baseline="middle">1,000</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="257.310099116774" y1="0" x2="257.310099116774" y2="244"/>
+      <text class="tick" x="257.310099116774" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="349.1517456659202" y1="0" x2="349.1517456659202" y2="244"/>
+      <text class="tick" x="349.1517456659202" y="262" text-anchor="middle">2023</text>
+      
+      <line class="grid" x1="440.99339221506654" y1="0" x2="440.99339221506654" y2="244"/>
+      <text class="tick" x="440.99339221506654" y="262" text-anchor="middle">2024</text>
+      
+      <line class="grid" x1="624.928306262809" y1="0" x2="624.928306262809" y2="244"/>
+      <text class="tick" x="624.928306262809" y="262" text-anchor="middle">2026</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2019-05-31</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2108.01045" target="_blank" rel="noopener">
+        <circle class="mark" cx="440.99" cy="7.88" r="6.2">
+          <title>GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO and Virgo  — 2024-01, 1,096 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2111.03604" target="_blank" rel="noopener">
+        <circle class="mark" cx="387.15" cy="40.56" r="4.6">
+          <title>Constraints on the Cosmic Expansion History from GWTC─3 — 2023-06, 369 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2201.02252" target="_blank" rel="noopener">
+        <circle class="mark" cx="310.65" cy="57.91" r="4.6">
+          <title>New binary black hole mergers in the LIGO-Virgo O3a data — 2022-08, 207 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2207.01568" target="_blank" rel="noopener">
+        <circle class="mark" cx="356.95" cy="99.97" r="4.6">
+          <title>Population properties and multimessenger prospects of neutron star-black hole mergers foll — 2023-02, 51 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2308.13666" target="_blank" rel="noopener">
+        <circle class="mark" cx="463.89" cy="138.78" r="3.2">
+          <title>A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the Third G — 2024-04, 14 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2512.16289" target="_blank" rel="noopener">
+        <circle class="mark" cx="647.57" cy="152.04" r="3.2">
+          <title>Astrophysical implications of eccentricity in gravitational waves from neutron star-black  — 2026-04, 9 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2504.17587" target="_blank" rel="noopener">
+        <circle class="mark" cx="624.93" cy="176.38" r="3.2">
+          <title>Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Approach w — 2026-01, 4 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2607.07272" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="237" r="3.2">
+          <title>Combining gravitational wave search pipelines to find subthreshold signals in GWTC-5.0 — 2026-07, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="452.19" y="11.88"
+            text-anchor="start">GWTC-2.1: Deep extended catalog of…</text>
+      
+      
+      <text class="datalabel" x="396.75" y="44.56"
+            text-anchor="start">Constraints on the Cosmic Expansio…</text>
+      
+      
+      <text class="datalabel" x="320.25" y="61.91"
+            text-anchor="start">New binary black hole mergers in t…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
+
+
 <h2>Catalogue history</h2>
 <div class="wrapx"><table>
 <tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
@@ -218,8 +381,8 @@ hold 133%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

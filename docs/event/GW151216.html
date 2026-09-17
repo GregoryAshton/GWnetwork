@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -143,6 +150,265 @@ button.ghost{background:none;color:var(--accent)}
 Values taken from <b>IAS-O1</b>; primary record
 IAS-O1.
 GPS 1134293073.0.</p>
+
+
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="197.81589202837213" x2="690" y2="197.81589202837213"/>
+      <text class="tick" x="-9" y="197.81589202837213" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="171.13395263043728" x2="690" y2="171.13395263043728"/>
+      <text class="tick" x="-9" y="171.13395263043728" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="150.9498446588094" x2="690" y2="150.9498446588094"/>
+      <text class="tick" x="-9" y="150.9498446588094" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="130.76573668718157" x2="690" y2="130.76573668718157"/>
+      <text class="tick" x="-9" y="130.76573668718157" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="104.0837972892467" x2="690" y2="104.0837972892467"/>
+      <text class="tick" x="-9" y="104.0837972892467" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="83.89968931761882" x2="690" y2="83.89968931761882"/>
+      <text class="tick" x="-9" y="83.89968931761882" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="63.715581345990955" x2="690" y2="63.715581345990955"/>
+      <text class="tick" x="-9" y="63.715581345990955" text-anchor="end"
+            dominant-baseline="middle">200</text>
+      
+      <line class="grid" x1="0" y1="37.03364194805612" x2="690" y2="37.03364194805612"/>
+      <text class="tick" x="-9" y="37.03364194805612" text-anchor="end"
+            dominant-baseline="middle">500</text>
+      
+      <line class="grid" x1="0" y1="16.849533976428244" x2="690" y2="16.849533976428244"/>
+      <text class="tick" x="-9" y="16.849533976428244" text-anchor="end"
+            dominant-baseline="middle">1,000</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="213.57126223225723" y1="0" x2="213.57126223225723" y2="244"/>
+      <text class="tick" x="213.57126223225723" y="262" text-anchor="middle">2019</text>
+      
+      <line class="grid" x1="277.32074965448464" y1="0" x2="277.32074965448464" y2="244"/>
+      <text class="tick" x="277.32074965448464" y="262" text-anchor="middle">2020</text>
+      
+      <line class="grid" x1="341.24489320663594" y1="0" x2="341.24489320663594" y2="244"/>
+      <text class="tick" x="341.24489320663594" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="468.7438680510907" y1="0" x2="468.7438680510907" y2="244"/>
+      <text class="tick" x="468.7438680510907" y="262" text-anchor="middle">2023</text>
+      
+      <line class="grid" x1="596.4174990254694" y1="0" x2="596.4174990254694" y2="244"/>
+      <text class="tick" x="596.4174990254694" y="262" text-anchor="middle">2025</text>
+      
+      <line class="grid" x1="660.1669864476968" y1="0" x2="660.1669864476968" y2="244"/>
+      <text class="tick" x="660.1669864476968" y="262" text-anchor="middle">2026</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2015-12-16</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2111.03634" target="_blank" rel="noopener">
+        <circle class="mark" cx="468.74" cy="7.64" r="6.2">
+          <title>Population of Merging Compact Binaries Inferred Using Gravitational Waves through GWTC-3 — 2023-01, 1,372 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2503.12263" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="42.88" r="4.6">
+          <title>The Science of the Einstein Telescope — 2026-03, 409 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1904.07214" target="_blank" rel="noopener">
+        <circle class="mark" cx="293.21" cy="45.18" r="4.6">
+          <title>New binary black hole mergers in the second observing run of Advanced LIGO and Advanced Vi — 2020-04, 378 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2005.05641" target="_blank" rel="noopener">
+        <circle class="mark" cx="303.87" cy="64.01" r="4.6">
+          <title>Primordial black holes confront LIGO/Virgo data: current situation — 2020-06, 198 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1902.10341" target="_blank" rel="noopener">
+        <circle class="mark" cx="245.18" cy="64.9" r="4.6">
+          <title>New search pipeline for compact binary mergers: Results for binary black holes in the firs — 2019-07, 192 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2012.00011" target="_blank" rel="noopener">
+        <circle class="mark" cx="346.66" cy="70.21" r="4.6">
+          <title>Mass-gap Mergers in Active Galactic Nuclei — 2021-02, 160 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2105.10580" target="_blank" rel="noopener">
+        <circle class="mark" cx="388.93" cy="78.35" r="4.6">
+          <title>Distribution of effective spins and masses of binary black holes from the LIGO and Virgo O — 2021-10, 121 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2008.07014" target="_blank" rel="noopener">
+        <circle class="mark" cx="335.83" cy="92.67" r="4.6">
+          <title>Binary black hole mergers from LIGO/Virgo O1 and O2: Population inference combining confid — 2020-12, 74 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1905.13019" target="_blank" rel="noopener">
+        <circle class="mark" cx="250.6" cy="99.76" r="4.6">
+          <title>Unraveling the origin of black holes from effective spin measurements with LIGO-Virgo — 2019-08, 58 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1912.09708" target="_blank" rel="noopener">
+        <circle class="mark" cx="325.18" cy="106.51" r="3.2">
+          <title>Gravitational-wave inference in the catalog era: Evolving priors and marginal events — 2020-10, 46 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2003.04513" target="_blank" rel="noopener">
+        <circle class="mark" cx="330.59" cy="113.65" r="3.2">
+          <title>Source properties of the lowest signal-to-noise-ratio binary black hole detections — 2020-11, 36 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2010.08584" target="_blank" rel="noopener">
+        <circle class="mark" cx="383.69" cy="120.97" r="3.2">
+          <title>Improving significance of binary black hole mergers in Advanced LIGO data using deep learn — 2021-09, 28 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2011.10425" target="_blank" rel="noopener">
+        <circle class="mark" cx="378.27" cy="125.46" r="3.2">
+          <title>Exploring gravitational-wave detection and parameter inference using deep learning methods — 2021-08, 24 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2005.06519" target="_blank" rel="noopener">
+        <circle class="mark" cx="309.11" cy="129.34" r="3.2">
+          <title>Being Careful with the Field Formation Interpretation of GW190412 — 2020-07, 21 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2210.01718" target="_blank" rel="noopener">
+        <circle class="mark" cx="505.77" cy="130.77" r="3.2">
+          <title>Detecting and denoising gravitational wave signals from binary black holes using deep lear — 2023-08, 20 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1904.00570" target="_blank" rel="noopener">
+        <circle class="mark" cx="239.94" cy="137.26" r="3.2">
+          <title>Spins of primordial binary black holes before coalescence — 2019-06, 16 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2006.05039" target="_blank" rel="noopener">
+        <circle class="mark" cx="325.18" cy="141.15" r="3.2">
+          <title>The astrophysical odds of GW151216 — 2020-10, 14 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2008.00509" target="_blank" rel="noopener">
+        <circle class="mark" cx="399.58" cy="143.31" r="3.2">
+          <title>Assessing gravitational-wave binary black hole candidates with Bayesian odds — 2021-12, 13 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2005.05472" target="_blank" rel="noopener">
+        <circle class="mark" cx="298.45" cy="143.31" r="3.2">
+          <title>Pi from the sky -- A null test of general relativity from a population of gravitational wa — 2020-05, 13 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2302.00666" target="_blank" rel="noopener">
+        <circle class="mark" cx="474.16" cy="143.31" r="3.2">
+          <title>Rapid Identification and Classification of Eccentric Gravitational Wave Inspirals with Mac — 2023-02, 13 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2509.05283" target="_blank" rel="noopener">
+        <circle class="mark" cx="638.86" cy="197.82" r="3.2">
+          <title>Robustness of Sensitivity Evaluations for Gravitational Wave Detection Algorithms — 2025-09, 2 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1902.10331" target="_blank" rel="noopener">
+        <circle class="mark" cx="223.53" cy="237" r="3.2">
+          <title>A Highly Spinning and Aligned Binary Black Hole Merger in the Advanced LIGO First Observin — 2019-02, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1908.09676" target="_blank" rel="noopener">
+        <circle class="mark" cx="256.01" cy="237" r="3.2">
+          <title>Ultra-high energy neutrino searches and GW follow-up with the Pierre Auger Observatory — 2019-09, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2602.15073" target="_blank" rel="noopener">
+        <circle class="mark" cx="665.58" cy="237" r="3.2">
+          <title>GW-FALCON: A Novel Feature-Driven Deep Learning Approach for Early Warning Alerts of BNS a — 2026-02, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="457.54" y="11.64"
+            text-anchor="end">Population of Merging Compact Bina…</text>
+      
+      
+      <text class="datalabel" x="660.87" y="46.88"
+            text-anchor="end">The Science of the Einstein Telesc…</text>
+      
+      <line class="leader" x1="293.21" y1="45.18"
+        x2="302.81" y2="55.88"/>
+      <text class="datalabel" x="302.81" y="59.88"
+            text-anchor="start">New binary black hole mergers in t…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
 
 
 <h2>Catalogue history</h2>
@@ -298,8 +564,8 @@ hold 71%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

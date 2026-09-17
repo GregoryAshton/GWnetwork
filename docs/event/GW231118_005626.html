@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -143,6 +150,218 @@ button.ghost{background:none;color:var(--accent)}
 Values taken from <b>GWTC-4.1</b>; primary record
 GWTC-4.1 v2.
 GPS 1384304204.8.</p>
+
+
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="194.67025935947447" x2="690" y2="194.67025935947447"/>
+      <text class="tick" x="-9" y="194.67025935947447" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="163.83001976032827" x2="690" y2="163.83001976032827"/>
+      <text class="tick" x="-9" y="163.83001976032827" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="140.50027911980277" x2="690" y2="140.50027911980277"/>
+      <text class="tick" x="-9" y="140.50027911980277" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="117.17053847927724" x2="690" y2="117.17053847927724"/>
+      <text class="tick" x="-9" y="117.17053847927724" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="86.33029888013105" x2="690" y2="86.33029888013105"/>
+      <text class="tick" x="-9" y="86.33029888013105" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="63.00055823960554" x2="690" y2="63.00055823960554"/>
+      <text class="tick" x="-9" y="63.00055823960554" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="39.67081759908002" x2="690" y2="39.67081759908002"/>
+      <text class="tick" x="-9" y="39.67081759908002" text-anchor="end"
+            dominant-baseline="middle">200</text>
+      
+      <line class="grid" x1="0" y1="8.830577999933839" x2="690" y2="8.830577999933839"/>
+      <text class="tick" x="-9" y="8.830577999933839" text-anchor="end"
+            dominant-baseline="middle">500</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="281.3137975176713" y1="0" x2="281.3137975176713" y2="244"/>
+      <text class="tick" x="281.3137975176713" y="262" text-anchor="middle">2025</text>
+      
+      <line class="grid" x1="514.9365503422941" y1="0" x2="514.9365503422941" y2="244"/>
+      <text class="tick" x="514.9365503422941" y="262" text-anchor="middle">2026</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2023-11-18</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2508.18082" target="_blank" rel="noopener">
+        <circle class="mark" cx="417.01" cy="8.83" r="6.2">
+          <title>GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the Fir — 2025-08, 500 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2509.04348" target="_blank" rel="noopener">
+        <circle class="mark" cx="650.63" cy="67.69" r="4.6">
+          <title>GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propaga — 2026-08, 87 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2603.19019" target="_blank" rel="noopener">
+        <circle class="mark" cx="552.7" cy="85.01" r="4.6">
+          <title>GWTC-4.0: Tests of General Relativity. I. Overview and General Tests — 2026-03, 52 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2603.19020" target="_blank" rel="noopener">
+        <circle class="mark" cx="552.7" cy="87.7" r="3.2">
+          <title>GWTC-4.0: Tests of General Relativity. II. Parameterized Tests — 2026-03, 48 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2605.27225" target="_blank" rel="noopener">
+        <circle class="mark" cx="591.74" cy="88.41" r="3.2">
+          <title>GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run a — 2026-05, 47 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2603.19021" target="_blank" rel="noopener">
+        <circle class="mark" cx="552.7" cy="93.84" r="3.2">
+          <title>GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants — 2026-03, 40 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2511.05316" target="_blank" rel="noopener">
+        <circle class="mark" cx="475.89" cy="98.34" r="3.2">
+          <title>A subpopulation of low-mass, spinning black holes: signatures of dynamical assembly — 2025-11, 35 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2509.04706" target="_blank" rel="noopener">
+        <circle class="mark" cx="495.09" cy="118.9" r="3.2">
+          <title>Do Both Black Holes Spin in Merging Binaries? Evidence from GWTC-4 and Astrophysical Impli — 2025-12, 19 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2512.19513" target="_blank" rel="noopener">
+        <circle class="mark" cx="572.54" cy="131.67" r="3.2">
+          <title>Parameter estimation for the GWTC-4.0 catalog with phenomenological waveform models that i — 2026-04, 13 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2605.27227" target="_blank" rel="noopener">
+        <circle class="mark" cx="591.74" cy="134.36" r="3.2">
+          <title>GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propaga — 2026-05, 12 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2604.01420" target="_blank" rel="noopener">
+        <circle class="mark" cx="572.54" cy="148.01" r="3.2">
+          <title>Low-mass failed supernovae and the $10\,M_{\odot}$ peak in the merging black hole mass dis — 2026-04, 8 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2603.29019" target="_blank" rel="noopener">
+        <circle class="mark" cx="552.7" cy="148.01" r="3.2">
+          <title>Eccentricity constraints disfavor single-single capture in nuclear star clusters as the or — 2026-03, 8 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2605.25980" target="_blank" rel="noopener">
+        <circle class="mark" cx="591.74" cy="157.69" r="3.2">
+          <title>Reversible-jump MCMC reveals binary black hole subpopulations with distinct redshift evolu — 2026-05, 6 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2602.11030" target="_blank" rel="noopener">
+        <circle class="mark" cx="611.59" cy="157.69" r="3.2">
+          <title>Population properties of binary black holes with eccentricity — 2026-06, 6 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2606.12205" target="_blank" rel="noopener">
+        <circle class="mark" cx="611.59" cy="181.02" r="3.2">
+          <title>Evidence for additional structure in the effective spin distribution hints at multiple for — 2026-06, 3 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2606.23305" target="_blank" rel="noopener">
+        <circle class="mark" cx="611.59" cy="218.0" r="3.2">
+          <title>When the black holes align: a subpopulation of aligned massive binary black holes observed — 2026-06, 1 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2609.06728" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="237" r="3.2">
+          <title>Physics-based phenomenological modeling of binary black hole hierarchical formation 2: Aut — 2026-09, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2608.16563" target="_blank" rel="noopener">
+        <circle class="mark" cx="650.63" cy="237" r="3.2">
+          <title>Population-Level Verification of the Black-Hole Area Law with First- and Second-Generation — 2026-08, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2608.29072" target="_blank" rel="noopener">
+        <circle class="mark" cx="650.63" cy="237" r="3.2">
+          <title>Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0 — 2026-08, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="428.21" y="12.83"
+            text-anchor="start">GWTC-4.0: Updating the Gravitation…</text>
+      
+      
+      <text class="datalabel" x="641.03" y="71.69"
+            text-anchor="end">GWTC-4.0: Constraints on the Cosmi…</text>
+      
+      
+      <text class="datalabel" x="543.1" y="89.01"
+            text-anchor="end">GWTC-4.0: Tests of General Relativ…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
 
 
 <h2>Catalogue history</h2>
@@ -277,8 +496,8 @@ hold 86%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

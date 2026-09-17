@@ -61,6 +61,13 @@ svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
 svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
 svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
 /* A 2px surface ring keeps overlapping marks readable where they crowd. */
@@ -143,6 +150,146 @@ button.ghost{background:none;color:var(--accent)}
 Values taken from <b>O4_Discovery_Papers</b>; primary record
 O4_Discovery_Papers v1.
 GPS 1422964623.3.</p>
+
+
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="177.12020633555065" x2="690" y2="177.12020633555065"/>
+      <text class="tick" x="-9" y="177.12020633555065" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="123.08005857731663" x2="690" y2="123.08005857731663"/>
+      <text class="tick" x="-9" y="123.08005857731663" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="82.20026491286731" x2="690" y2="82.20026491286731"/>
+      <text class="tick" x="-9" y="82.20026491286731" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="41.32047124841796" x2="690" y2="41.32047124841796"/>
+      <text class="tick" x="-9" y="41.32047124841796" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="391.0" y1="0" x2="391.0" y2="244"/>
+      <text class="tick" x="391.0" y="262" text-anchor="middle">2026</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="32.86" y1="0"
+            x2="32.86" y2="244"/>
+      <text class="eventlabel" x="37.86" y="11">
+        event detected 2025-02-07</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2605.27223" target="_blank" rel="noopener">
+        <circle class="mark" cx="522.43" cy="15.47" r="3.2">
+          <title>GWTC-5.0: An Introduction to Version 5.0 of the Gravitational-Wave Transient Catalog — 2026-05, 31 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2605.27226" target="_blank" rel="noopener">
+        <circle class="mark" cx="522.43" cy="21.48" r="3.2">
+          <title>GWTC-5.0: Population Properties of Merging Compact Binaries — 2026-05, 28 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2606.06209" target="_blank" rel="noopener">
+        <circle class="mark" cx="589.24" cy="136.24" r="3.2">
+          <title>The First Decade of Gravitational-Wave Measurements of Black Hole Spins — 2026-07, 4 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2605.11703" target="_blank" rel="noopener">
+        <circle class="mark" cx="623.19" cy="153.21" r="3.2">
+          <title>GW240925 and GW250207: Astrophysical Calibration of Gravitational Wave Detectors — 2026-08, 3 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2608.11620" target="_blank" rel="noopener">
+        <circle class="mark" cx="623.19" cy="237" r="3.2">
+          <title>Constraints on ultralight bosons from merging binary and remnant black holes observed duri — 2026-08, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2608.07237" target="_blank" rel="noopener">
+        <circle class="mark" cx="623.19" cy="237" r="3.2">
+          <title>Testing the spin-induced multipole moments of compact binary coalescences using the flexib — 2026-08, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2607.19293" target="_blank" rel="noopener">
+        <circle class="mark" cx="589.24" cy="237" r="3.2">
+          <title>GWTC-5.0: Tests of General Relativity — 2026-07, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2607.04909" target="_blank" rel="noopener">
+        <circle class="mark" cx="589.24" cy="237" r="3.2">
+          <title>A stepping stone toward detecting gravitational wave memory: a cumulative analysis with th — 2026-07, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2609.03859" target="_blank" rel="noopener">
+        <circle class="mark" cx="657.14" cy="237" r="3.2">
+          <title>A catalogue of insights from the fourth LIGO-Virgo-KAGRA observing run — 2026-09, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2607.17439" target="_blank" rel="noopener">
+        <circle class="mark" cx="589.24" cy="237" r="3.2">
+          <title>The impact of physically motivated calibration errors on search pipeline detection paramet — 2026-07, 0 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="514.2299999999999" y="19.47"
+            text-anchor="end">GWTC-5.0: An Introduction to Versi…</text>
+      
+      <line class="leader" x1="522.43" y1="21.48"
+        x2="514.2299999999999" y2="28.47"/>
+      <text class="datalabel" x="514.2299999999999" y="32.47"
+            text-anchor="end">GWTC-5.0: Population Properties of…</text>
+      
+      
+      <text class="datalabel" x="581.04" y="140.24"
+            text-anchor="end">The First Decade of Gravitational-…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
 
 
 <h2>Catalogue history</h2>
@@ -232,8 +379,8 @@ hold 125%. These are
     434 events ·
     13,904 papers,
     1,975 with full text (14%)</span>
-  <span>Built 2026-09-17 09:33 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/ec22046"><code>ec22046</code></a>
+  <span>Built 2026-09-17 09:57 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/55f75d6"><code>55f75d6</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>
