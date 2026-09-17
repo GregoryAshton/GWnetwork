@@ -66,6 +66,13 @@ def _rewrite(html: str, base: str, depth: int) -> str:
 
 
 def export(out_dir: Path, base: str = "") -> ExportStats:
+    # Capture provenance BEFORE writing anything. Rewriting the output
+    # directory dirties the working tree, so computing it later would stamp
+    # every exported page "+local" purely because the export was running.
+    # build_info() is lru_cached, so this pins the value for the whole run.
+    from ..version import build_info
+    build_info()
+
     stats = ExportStats()
     out_dir = Path(out_dir)
     if out_dir.exists():
