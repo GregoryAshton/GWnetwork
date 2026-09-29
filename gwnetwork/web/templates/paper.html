@@ -10,12 +10,12 @@
 </p>
 <p class="small">{{ paper.abstract[:900] }}</p>
 <h2>Events</h2>
-<div class="wrapx"><table>
+<div class="wrapx"><table class="sortable">
 <tr><th>Event</th><th class="num">Mentions</th><th>Engagement</th></tr>
 {% for name, n in rows %}
 <tr><td><a class="mono" href="/event/{{ name }}">{{ name }}</a></td>
     <td class="num">{{ n }}</td>
-    <td class="small">{{ usages.get(name, "—") }}</td></tr>
+    <td class="small"{% if name in usages %} data-sort="{{ engagement_rank[usages[name]] }}"{% endif %}>{{ usages.get(name, "—") }}</td></tr>
 {% endfor %}
 </table></div>
 {% endblock %}

@@ -265,4 +265,7 @@ def paper_page(request: Request, paper_id: str):
             .join(EventUsage, EventUsage.event_id == Event.id)
             .where(EventUsage.paper_id == paper_id,
                    EventUsage.analysis_run_id == (crun.id if crun else None))).all())
-    return render(request, "paper.html", paper=p, rows=rows, usages=usages)
+    # Engagement sorts by depth, not alphabetically: ascending = deepest first.
+    engagement_rank = {e: i for i, e in enumerate(ENGAGEMENT_ORDER)}
+    return render(request, "paper.html", paper=p, rows=rows, usages=usages,
+                  engagement_rank=engagement_rank)

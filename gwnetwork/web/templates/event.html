@@ -93,7 +93,7 @@ GPS {{ "%.1f"|format(view.gps) if view.gps else "—" }}.</p>
 {% endif %}
 
 <h2>Catalogue history</h2>
-<div class="wrapx"><table>
+<div class="wrapx"><table class="sortable">
 <tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
 {% for r in records %}
 <tr><td>{{ r.catalog or "—" }}</td><td>{{ r.version or "—" }}</td>
@@ -127,7 +127,7 @@ matches <b>{{ "{:,}".format(event.ads_ceiling) }}</b> for this event's designati
 hold {{ (100*mentions|length/event.ads_ceiling)|round|int }}%. These are
 <b>mentions</b>, not citations.</p>
 {% endif %}
-<div class="wrapx"><table>
+<div class="wrapx"><table class="sortable">
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 {% for paper, n in mentions %}
 <tr><td><a href="/paper/{{ paper.id }}">{{ paper.title[:82] }}</a></td>

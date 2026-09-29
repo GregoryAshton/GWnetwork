@@ -78,7 +78,7 @@ filter can only include events where that quantity was measured, so the
 <span id="hiddenn">{{ hidden_no_value }}</span> excluded here are absent for lack of
 data, not because they fail the criterion.</p>
 
-<div class="wrapx"><table id="eventtable">
+<div class="wrapx"><table id="eventtable" class="sortable">
 <tr>
   <th>Event</th><th>Class</th><th>Run</th>
   <th class="num">m₁</th><th class="num">m₂</th><th class="num">χ<sub>eff</sub></th>
@@ -122,6 +122,9 @@ data, not because they fail the criterion.</p>
   fetch('events.json').then(function(r){ return r.json(); }).then(function(data){
     rows = data;
     tbody = document.getElementById('eventtable');
+    /* The dropdown and a clicked header are two sort controls; the one used
+       last wins. The select's own listener fires before the form's. */
+    f.elements['sort'].addEventListener('change', function(){ gwnSort.clear(tbody); });
     f.addEventListener('input', render);
     f.addEventListener('change', render);
     render();
@@ -181,6 +184,7 @@ data, not because they fail the criterion.</p>
         '<td class="num">' + fmt(e.s,1) + '</td>' +
         '<td class="num">' + e.p.toLocaleString() + '</td>';
     });
+    gwnSort.apply(tbody);
   }
 })();
 </script>

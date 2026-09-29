@@ -113,3 +113,14 @@ def test_numeric_filter_discloses_events_with_no_measurement(temp_db):
     body = TestClient(app).get("/events?m1_min=1").text
     assert "hidden because they have no" in body
     assert "GW000000" not in set(re.findall(r'/event/([A-Za-z0-9_]+)"', body))
+
+
+def test_tables_are_sortable(temp_db):
+    """Column-header sorting is client-side; the server only has to mark tables."""
+    _seed(temp_db, n_runs=1)
+    from gwnetwork.web.app import app
+    c = TestClient(app)
+    for path in ["/", "/events", "/papers", "/event/GW150914"]:
+        body = c.get(path).text
+        assert 'class="sortable"' in body, path
+        assert "window.gwnSort" in body, path

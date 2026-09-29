@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Papers</h1>
 <p class="mut small">{{ "{:,}".format(total) }} papers, ordered by citations.</p>
-<div class="wrapx"><table>
+<div class="wrapx"><table class="sortable">
 <tr><th>Title</th><th>arXiv</th><th>Text</th><th class="num">Citations</th><th class="num">Events</th></tr>
 {% for paper, n in rows %}
 <tr><td><a href="/paper/{{ paper.id }}">{{ paper.title[:86] }}</a></td>
