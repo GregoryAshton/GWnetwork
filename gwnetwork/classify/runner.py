@@ -259,6 +259,11 @@ def _run_batch(requests: list, poll_seconds: int = 30) -> list:
     # Results arrive in arbitrary order -- key by custom_id, never by position.
     for result in client.messages.batches.results(batch.id):
         paper_id, needs_llm = index[result.custom_id]
+        if result.result.type == "errored":
+            err = result.result.error
+            out.append((paper_id, needs_llm, {},
+                        getattr(getattr(err, "error", err), "message", str(err))))
+            continue
         if result.result.type != "succeeded":
             out.append((paper_id, needs_llm, {}, result.result.type))
             continue

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from typing import List, Literal
 
+from anthropic import transform_schema
 from pydantic import BaseModel, Field
 
 from ..models import ROLES
@@ -44,4 +45,7 @@ class PaperClassification(BaseModel):
     events: List[EventUsageOut]
 
 
-SCHEMA = PaperClassification.model_json_schema()
+# The API requires additionalProperties: false on every object and rejects
+# numeric bounds; transform_schema adds the former and moves the latter into
+# descriptions.
+SCHEMA = transform_schema(PaperClassification)
