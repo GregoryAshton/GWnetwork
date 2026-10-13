@@ -50,3 +50,13 @@ def test_no_mentions_is_not_sent_to_llm():
 def test_evidence_is_always_attached_when_a_call_is_made():
     v = classify_engagement([FakeMention("results", "GW190814 posterior samples were reweighted.")])
     assert v.evidence and "quote" in v.evidence[0]
+
+
+def test_classify_chunks_large_papers():
+    from gwnetwork.classify.runner import MAX_EVENTS_PER_CALL, _chunks
+
+    needs = [(i, []) for i in range(2 * MAX_EVENTS_PER_CALL + 3)]
+    chunks = _chunks(needs)
+    assert [len(c) for c in chunks] == [MAX_EVENTS_PER_CALL, MAX_EVENTS_PER_CALL, 3]
+    assert [x for c in chunks for x in c] == needs
+    assert _chunks([]) == []

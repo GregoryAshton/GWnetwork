@@ -3,7 +3,9 @@
 Two cost decisions are baked into the shape of this module (DESIGN.md 7a):
 
 1. One call per PAPER, not per (paper, event) pair. A GWTC population paper
-   mentioning 90 events is one call, not 90 near-identical ones.
+   mentioning 90 events is a handful of calls, not 90 near-identical ones.
+   Papers with more than MAX_EVENTS_PER_CALL events are split into chunks:
+   asked about 130 events at once, Haiku 5.5 returned 19 and dropped the rest.
 2. Pairs the rules settle confidently never reach the model at all.
 
 Prompt caching is not used. It was ruled out under Haiku 4.5, whose 4096-token
@@ -28,10 +30,11 @@ from .prompts import PROMPT_SHA256, SYSTEM, build_user_prompt
 from .rules import classify_engagement
 from .schemas import SCHEMA
 
-PIPELINE_VERSION = "classify-0.1"
+PIPELINE_VERSION = "classify-0.2"
 
 MAX_EXCERPTS_PER_EVENT = 3
 MAX_EXCERPTS_TOTAL = 40
+MAX_EVENTS_PER_CALL = 25
 # Haiku 5.5 thinks by default and thinking counts toward this cap; at 4000,
 # 7/20 large papers were truncated, 2 of them before writing any answer.
 MAX_TOKENS = 16000
@@ -124,6 +127,10 @@ def _write_rule_usages(s, run_id, paper_id, rule_settled) -> int:
     return n
 
 
+def _chunks(needs_llm: list, size: int = MAX_EVENTS_PER_CALL) -> list:
+    return [needs_llm[i:i + size] for i in range(0, len(needs_llm), size)]
+
+
 def _request_for(paper: Paper, needs_llm: list, names: dict) -> Optional[dict]:
     if not needs_llm:
         return None
@@ -144,10 +151,12 @@ def _request_for(paper: Paper, needs_llm: list, names: dict) -> Optional[dict]:
 def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> int:
     by_name = {names[eid]: eid for eid, _ in needs_llm if eid in names}
     n = 0
+    seen = set()
     for item in payload.get("events", []):
         event_id = by_name.get(item.get("event_name"))
-        if event_id is None:
+        if event_id is None or event_id in seen:
             continue
+        seen.add(event_id)
         s.add(EventUsage(
             paper_id=paper_id, event_id=event_id, analysis_run_id=run_id,
             engagement=item["engagement"], roles=item.get("roles", []),
@@ -189,9 +198,10 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
             stats.pairs_to_llm += len(needs_llm)
             if not dry_run:
                 stats.usages_written += _write_rule_usages(s, run.id, paper_id, rule_settled)
-            req = _request_for(papers[paper_id], needs_llm, names)
-            if req is not None:
-                requests.append((paper_id, needs_llm, req))
+            for chunk in _chunks(needs_llm):
+                req = _request_for(papers[paper_id], chunk, names)
+                if req is not None:
+                    requests.append((paper_id, chunk, req))
 
         stats.papers_called = len(requests)
 
@@ -206,8 +216,12 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
             if err:
                 stats.errors.append(f"{paper_id}: {err}")
                 continue
-            stats.usages_written += _apply_response(
-                s, run.id, paper_id, needs_llm, names, payload)
+            written = _apply_response(s, run.id, paper_id, needs_llm, names, payload)
+            stats.usages_written += written
+            expected = sum(1 for eid, _ in needs_llm if eid in names)
+            if written < expected:
+                stats.errors.append(
+                    f"{paper_id}: model returned {written} of {expected} events")
 
         s.execute(update(AnalysisRun)
                   .where(AnalysisRun.stage == "classify", AnalysisRun.id != run.id)

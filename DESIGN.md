@@ -220,6 +220,11 @@ near-identical context once per event -- a GWTC population paper mentioning 90
 events would cost 90 calls. Per-paper batching cuts call count ~5x on average
 and far more on catalog papers.
 
+Papers with more than 25 LLM-bound events are split into chunks of 25
+(`MAX_EVENTS_PER_CALL`). Asked about 130 events in one call, Haiku 5.5
+returned 19 and silently dropped the rest; the runner now reports any event
+the model fails to return. This takes the full corpus from 1709 to 1896 calls.
+
 ### Document chunking
 
 Do not send whole papers. Per call: abstract + a window around each mention
