@@ -32,7 +32,9 @@ PIPELINE_VERSION = "classify-0.1"
 
 MAX_EXCERPTS_PER_EVENT = 3
 MAX_EXCERPTS_TOTAL = 40
-MAX_TOKENS = 4000
+# Haiku 5.5 thinks by default and thinking counts toward this cap; at 4000,
+# 7/20 large papers were truncated, 2 of them before writing any answer.
+MAX_TOKENS = 16000
 
 
 @dataclass
@@ -222,7 +224,13 @@ def _client():
 
 
 def _text_of(message) -> str:
-    return next(b.text for b in message.content if b.type == "text")
+    if message.stop_reason != "end_turn":
+        raise ValueError(f"stop_reason={message.stop_reason} "
+                         f"after {message.usage.output_tokens} output tokens")
+    text = next((b.text for b in message.content if b.type == "text"), None)
+    if text is None:
+        raise ValueError("response has no text block")
+    return text
 
 
 def _run_sync(requests: list) -> list:
