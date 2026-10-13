@@ -6,10 +6,10 @@ Two cost decisions are baked into the shape of this module (DESIGN.md 7a):
    mentioning 90 events is one call, not 90 near-identical ones.
 2. Pairs the rules settle confidently never reach the model at all.
 
-Prompt caching is deliberately NOT used: Haiku 4.5 has a 4096-token minimum
-cacheable prefix and this system prompt is ~1k tokens, so a cache_control marker
-would bill the 1.25x write premium and never produce a read. The Batch API's 50%
-is the real lever.
+Prompt caching is not used. It was ruled out under Haiku 4.5, whose 4096-token
+minimum cacheable prefix exceeds this ~1k-token system prompt; Haiku 5.5's
+minimum is 512, so it would now engage (DESIGN.md 7a). The Batch API's 50% is
+the real lever.
 """
 from __future__ import annotations
 

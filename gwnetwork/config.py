@@ -57,7 +57,7 @@ class Config:
     # Default to Haiku: the recurring cost here is re-runs after prompt changes,
     # and cheap re-runs are what make iteration possible. See DESIGN.md 7a.
     classify_model: str = field(default_factory=lambda: os.environ.get(
-        "GWN_CLASSIFY_MODEL", "claude-haiku-4-5"))
+        "GWN_CLASSIFY_MODEL", "claude-haiku-5-5"))
     escalate_model: str = field(default_factory=lambda: os.environ.get(
         "GWN_ESCALATE_MODEL", "claude-sonnet-5"))
 

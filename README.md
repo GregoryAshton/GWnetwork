@@ -97,7 +97,7 @@ Get an ADS token at <https://ui.adsabs.harvard.edu/user/settings/token>
 | `ADS_DEV_KEY` | ADS API token, for `gwn corpus discover` |
 | `ANTHROPIC_API_KEY` | for `gwn classify` |
 | `GWN_DB_URL` | defaults to local SQLite |
-| `GWN_CLASSIFY_MODEL` | defaults to `claude-haiku-4-5` |
+| `GWN_CLASSIFY_MODEL` | defaults to `claude-haiku-5-5` |
 | `GWN_ENV_FILE` | alternative path to the `.env` file |
 
 ## Tests

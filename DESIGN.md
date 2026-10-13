@@ -231,7 +231,8 @@ truncating.
 
 ## 7a. Cost model
 
-Pricing (2026-06): Haiku 4.5 $1/$5 per MTok in/out; Sonnet 5 $2/$10;
+Pricing (2026-10): Haiku 5.5 $0.10/$0.50 per MTok in/out (prompts <=100k
+tokens); Haiku 4.5 $1/$5; Sonnet 5 $2/$10;
 Opus 5 $5/$25. **Batch API is 50% off** and this workload is entirely
 latency-insensitive -- always use it.
 
@@ -240,11 +241,13 @@ Assumptions: ~20k GW-mentioning papers for a full backfill; ~3.5k input and
 
 | Model | Standard | With batch |
 |---|---|---|
-| Haiku 4.5 | $130 | **$65** |
+| Haiku 5.5 | $13 | **$6.50** |
+| Haiku 4.5 | $130 | $65 |
 | Sonnet 5 | $260 | $130 |
 | Opus 5 | $650 | $325 |
 
-**Default: Haiku 4.5 + Batch API.**
+**Default: Haiku 5.5 + Batch API.** (Haiku 4.5 was the original default; 5.5
+is 10x cheaper and better at instruction following.)
 
 ### Cost levers, in order
 
@@ -256,13 +259,14 @@ Assumptions: ~20k GW-mentioning papers for a full backfill; ~3.5k input and
 4. **Escalation, not uniform upgrade.** Route to Sonnet 5 only where Haiku
    returns low confidence or a high event count. Expect <10% of papers.
 
-### Do NOT use prompt caching here
+### Prompt caching: ruled out under Haiku 4.5, open again under 5.5
 
 Haiku 4.5 has a **4096-token minimum cacheable prefix**; below it, caching
-silently does not engage (no error, `cache_creation_input_tokens: 0`) while
-still billing the 1.25x write premium. The constant prompt here is ~1k tokens.
-Batch already provides the 2x. Revisit only if the model changes -- Opus 5's
-minimum is 512 tokens.
+silently does not engage (no error, `cache_creation_input_tokens: 0`). The
+constant prompt here is ~1k tokens, so caching was left off and Batch provided
+the 2x. Haiku 5.5's minimum is **512 tokens**, so the system prompt would now
+cache. Caching is still not enabled: at Haiku 5.5 prices the saving is cents
+per run. If it is turned on, verify `cache_read_input_tokens > 0` on a batch.
 
 ### The recurring cost is re-runs
 

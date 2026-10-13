@@ -75,8 +75,9 @@ Layers communicate only through the database; no layer imports another's logic.
   treat NULL as zero in filters or charts.
 - Cross-provider event merges are proposals only (`EventMergeProposal`); never
   auto-merge.
-- Don't enable prompt caching for the classifier (Haiku's 4096-token minimum
-  exceeds the prompt; see DESIGN.md §7a).
+- Prompt caching is not enabled for the classifier. The original reason (Haiku
+  4.5's 4096-token minimum) no longer applies on Haiku 5.5; see DESIGN.md §7a
+  before turning it on.
 
 ## Eval
 
