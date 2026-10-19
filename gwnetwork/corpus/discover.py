@@ -149,6 +149,10 @@ def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
 
         with ArxivFetcher(rate_delay=rate_delay) as fetcher:
             for paper in papers:
+                # A full run takes hours; commit as we go so an interruption
+                # keeps what was fetched rather than rolling it all back.
+                if stats.attempted and stats.attempted % 25 == 0:
+                    s.commit()
                 stats.attempted += 1
                 got = fetcher.fetch(paper.arxiv_id, force=force)
                 if got is None:
