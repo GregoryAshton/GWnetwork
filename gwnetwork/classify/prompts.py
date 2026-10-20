@@ -54,6 +54,12 @@ Rules:
 - Confidence reflects the text's clarity, not how plausible the claim feels.
 - A paper analysing 90 events in a population is population, not single_event.
 - When torn between cited_only and qualitative, choose qualitative.
+- An excerpt whose heading says it "names the counterpart" mentions the
+  event's electromagnetic counterpart (e.g. GRB 170817A, AT2017gfo), not its
+  GW signal. Engagement measures use of the GW results: a paper that only
+  discusses or analyses the counterpart is cited_only or qualitative for the
+  event, unless other excerpts show it using GW results. If it observes the
+  counterpart itself, give the role counterpart_followup.
 - Using a released sky map or alert localisation (e.g. to plan or interpret
   follow-up observations) is published_results, not posterior_samples.
 - An excerpt headed "cites reference [N], which names EVENT" is a sentence where

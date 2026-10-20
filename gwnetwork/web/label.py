@@ -22,6 +22,7 @@ from sqlalchemy import select
 from ..citations import find_citations
 from ..classify.prompts import SYSTEM
 from ..config import ROOT
+from ..counterparts import counterpart_names, is_counterpart
 from ..db import session
 from ..evalset import GOLD_PATH
 from ..models import ROLES, AnalysisRun, Engagement, Event, Mention, Paper
@@ -99,9 +100,10 @@ def _context(arxiv_id: str, event: str) -> dict:
         run = s.scalar(select(AnalysisRun).where(
             AnalysisRun.stage == "extract", AnalysisRun.is_current == True))  # noqa: E712
         if paper is None or run is None:
-            return {"paper": None, "mentions": [], "n_mentions": 0}
+            return {"paper": None, "mentions": [], "n_mentions": 0, "n_counterpart": 0}
         ms = s.execute(
-            select(Mention.char_start, Mention.char_end, Mention.section, Mention.sentence)
+            select(Mention.char_start, Mention.char_end, Mention.section,
+                   Mention.sentence, Mention.matched_text)
             .join(Event, Event.id == Mention.event_id)
             .where(Mention.paper_id == paper.id, Mention.analysis_run_id == run.id,
                    Event.canonical_name == event)
@@ -109,11 +111,14 @@ def _context(arxiv_id: str, event: str) -> dict:
         info = {"title": paper.title, "abstract": paper.abstract,
                 "source": paper.fulltext_source}
         text = _fulltext(paper.fulltext_path)
+        counterparts = counterpart_names(s)
 
     mentions = []
-    for start, end, section, sentence in ms[:MAX_MENTIONS]:
+    n_counterpart = sum(is_counterpart(mt, counterparts) for *_, mt in ms)
+    for start, end, section, sentence, matched in ms[:MAX_MENTIONS]:
         if text and 0 <= start < end <= len(text):
-            m = {"section": section or "?", **_snippet(text, start, end, CONTEXT_CHARS)}
+            m = {"section": section or "?", **_snippet(text, start, end, CONTEXT_CHARS),
+                 "counterpart": is_counterpart(matched, counterparts)}
             # A bibliography hit is a cited paper's title; what matters is
             # where the citing paper cites it.
             if section == "references":
@@ -127,7 +132,8 @@ def _context(arxiv_id: str, event: str) -> dict:
         else:  # no text on disk: fall back to the stored sentence
             mentions.append({"section": section or "?", "pre": "", "hit": "",
                              "post": sentence})
-    return {"paper": info, "mentions": mentions, "n_mentions": len(ms)}
+    return {"paper": info, "mentions": mentions, "n_mentions": len(ms),
+            "n_counterpart": n_counterpart}
 
 
 def _snippet(text: str, start: int, end: int, width: int) -> dict:

@@ -77,3 +77,20 @@ def test_reference_only_mention_brings_the_citing_sentence():
     assert out[0]["section"] == "references"
     assert out[1] == {"section": "cites reference [84], which names GW150914",
                       "text": "We neglect any stochastic GW background [84]."}
+
+
+def test_counterpart_name_is_flagged_and_gw_name_preferred():
+    from gwnetwork.classify.runner import _excerpts
+
+    def m(section, matched, sentence):
+        x = FakeMention(section, sentence)
+        x.event_id, x.matched_text = "e1", matched
+        return x
+
+    cps = frozenset({"GRB170817A", "AT2017GFO"})
+    ms = [m("results", "GRB 170817A", "The GRB 170817A jet was off-axis."),
+          m("results", "GW170817", "GW170817 gives the inclination.")]
+    out = _excerpts(ms, {"e1": "GW170817"}, None, cps)
+    assert out[0] == {"section": "results", "text": "GW170817 gives the inclination."}
+    assert out[1]["section"] == ("results; names the counterpart GRB 170817A, "
+                                 "not the GW signal of GW170817")

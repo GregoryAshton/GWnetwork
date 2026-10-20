@@ -27,6 +27,7 @@ from ..config import CONFIG
 from ..db import session
 from ..models import AnalysisRun, Event, EventUsage, Mention, Paper
 from ..citations import citing_sentences
+from ..counterparts import counterpart_names, is_counterpart
 from .prompts import PROMPT_SHA256, SYSTEM, build_user_prompt
 from .rules import classify_engagement
 from .schemas import SCHEMA
@@ -64,18 +65,26 @@ class ClassifyStats:
 
 
 def _excerpts(mentions: list, names: Optional[dict] = None,
-              text: Optional[str] = None) -> list:
+              text: Optional[str] = None,
+              counterparts: frozenset = frozenset()) -> list:
     per_event: dict = defaultdict(list)
     for m in mentions:
         per_event[m.event_id].append(m)
     out = []
     for event_id, ms in per_event.items():
         # Prefer substantive sections when trimming -- an introduction sentence
-        # is the least informative excerpt we could spend tokens on.
-        ms = sorted(ms, key=lambda m: (m.section in ("introduction", "front_matter",
-                                                     "references"),))
+        # is the least informative excerpt we could spend tokens on -- and,
+        # within a section, the GW name over a counterpart name.
+        ms = sorted(ms, key=lambda m: (
+            m.section in ("introduction", "front_matter", "references"),
+            is_counterpart(getattr(m, "matched_text", ""), counterparts)))
         for m in ms[:MAX_EXCERPTS_PER_EVENT]:
-            out.append({"section": m.section or "unknown", "text": m.sentence})
+            section = m.section or "unknown"
+            matched = getattr(m, "matched_text", "")
+            if is_counterpart(matched, counterparts):
+                section += (f"; names the counterpart {matched}, not the GW signal of "
+                            f"{(names or {}).get(event_id, '?')}")
+            out.append({"section": section, "text": m.sentence})
         if text is not None:
             out += _citation_excerpts(ms, (names or {}).get(event_id, "?"), text)
     return out[:MAX_EXCERPTS_TOTAL]
@@ -167,7 +176,8 @@ def _chunks(needs_llm: list, size: int = MAX_EVENTS_PER_CALL) -> list:
     return [needs_llm[i:i + size] for i in range(0, len(needs_llm), size)]
 
 
-def _request_for(paper: Paper, needs_llm: list, names: dict) -> Optional[dict]:
+def _request_for(paper: Paper, needs_llm: list, names: dict,
+                 counterparts: frozenset = frozenset()) -> Optional[dict]:
     if not needs_llm:
         return None
     all_mentions = [m for _, ms in needs_llm for m in ms]
@@ -180,7 +190,7 @@ def _request_for(paper: Paper, needs_llm: list, names: dict) -> Optional[dict]:
         "system": SYSTEM,
         "messages": [{"role": "user", "content": build_user_prompt(
             paper.title, paper.abstract[:2000], event_names,
-            _excerpts(all_mentions, names, _fulltext(paper)))}],
+            _excerpts(all_mentions, names, _fulltext(paper), counterparts))}],
         "output_config": {"format": {"type": "json_schema", "schema": SCHEMA}},
     }
 
@@ -216,6 +226,7 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
             with_mentions = s.scalar(select(func.count(func.distinct(Mention.paper_id)))
                                      .where(Mention.analysis_run_id == run.id)) or 0
             stats.papers_skipped_no_fulltext = max(with_mentions - len(plans), 0)
+        counterparts = counterpart_names(s)
         papers = {p.id: p for p in s.scalars(
             select(Paper).where(Paper.id.in_([p[0] for p in plans]))).all()}
 
@@ -236,7 +247,7 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
             if not dry_run:
                 stats.usages_written += _write_rule_usages(s, run.id, paper_id, rule_settled)
             for chunk in _chunks(needs_llm):
-                req = _request_for(papers[paper_id], chunk, names)
+                req = _request_for(papers[paper_id], chunk, names, counterparts)
                 if req is not None:
                     requests.append((paper_id, chunk, req))
 

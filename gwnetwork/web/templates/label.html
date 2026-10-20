@@ -18,6 +18,9 @@ aside.panel{position:sticky;top:12px}
 .cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
 .cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
 .cite:first-of-type{border-top:0;padding-top:0}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
 mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
 mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
 details summary{cursor:pointer;color:var(--muted);font-size:.85rem}
@@ -75,9 +78,9 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
   <div>{% for j, ev, done in siblings %}<a class="chip{% if j == k %} on{% elif done %} done{% endif %}" href="/row/{{ j }}">{{ ev }}</a>{% endfor %}</div>
   {% endif %}
 
-  <h3>{{ n_mentions }} mention{{ "" if n_mentions == 1 else "s" }} of {{ row.event }}{% if n_mentions > mentions|length %} · first {{ mentions|length }} shown{% endif %}</h3>
+  <h3>{{ n_mentions }} mention{{ "" if n_mentions == 1 else "s" }} of {{ row.event }}{% if n_mentions > mentions|length %} · first {{ mentions|length }} shown{% endif %}{% if n_counterpart %} · <span class="cptag">{{ n_counterpart }} by counterpart name</span>{% endif %}</h3>
   {% for m in mentions %}
-  <div class="mention"><span class="sec">{{ m.section }}</span>{{ m.pre }}<mark>{{ m.hit }}</mark>{{ m.post }}
+  <div class="mention{% if m.counterpart %} cp{% endif %}"><span class="sec">{{ m.section }}{% if m.counterpart %} · <span class="cptag">counterpart name, not the GW signal</span>{% endif %}</span>{{ m.pre }}<mark{% if m.counterpart %} class="cp"{% endif %}>{{ m.hit }}</mark>{{ m.post }}
   {%- if m.cite_lookup %}
   <div class="cites">
     {%- if m.cite and m.cite.n %}
