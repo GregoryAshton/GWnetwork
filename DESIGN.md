@@ -189,8 +189,9 @@ test of GR.
 
 `engagement` (ordinal — how deeply the paper touches the event):
 
-    cited_only          appears in intro/discussion, no analysis
-    published_results   uses quoted catalog parameters
+    cited_only          cited in passing; nothing the event showed is used
+    qualitative         uses what the event showed, in words (read broadly)
+    published_results   catalogue parameters enter the paper's own analysis
     posterior_samples   uses released PE samples
     strain_reanalysis   reanalyses the strain data itself
 
@@ -256,9 +257,13 @@ is 10x cheaper and better at instruction following.)
 
 ### Cost levers, in order
 
-1. **Rule-based `cited_only` pre-filter.** One mention, introduction only, no
-   data/methods reference -> classify deterministically, never send to the LLM.
-   Plausibly ~60% of the corpus. Backfill drops to ~$26.
+1. ~~**Rule-based `cited_only` pre-filter.**~~ Retired in classify-0.3. It
+   settled pairs with <=2 mentions in passing sections without an LLM call
+   (36% of pairs on the full corpus), but once `qualitative` was split out of
+   `cited_only` a single introduction sentence can be either -- "GWs have been
+   observed [1]" vs "GW150914 revealed ~30 Msun black holes exist in binaries"
+   -- and no rule tells them apart. Every pair now goes to the LLM; at Haiku
+   5.5 batch prices that costs a few dollars per full run.
 2. **One call per paper** (above), ~5x.
 3. **Batch API**, 2x.
 4. **Escalation, not uniform upgrade.** Route to Sonnet 5 only where Haiku
@@ -443,6 +448,40 @@ ADS-discovered corpus. **Do not treat 8% as evidence against the cost model.**
 
 The other lever is confirmed, though: 181 pairs collapsed into 8 LLM calls, a
 22x reduction from one-call-per-paper.
+
+**Resolved (2026-10).** On the full ADS corpus the filter settled 36% of pairs,
+not 60% -- and it was then retired anyway (§7a): once `qualitative` was split
+out of `cited_only`, a passing-section mention is no longer safely decidable
+by rule.
+
+### arXiv HTML opens with a table of contents
+
+Native arXiv HTML and ar5iv pages start with site navigation and a TOC whose
+entries look exactly like headings, ending in "References". The section
+indexer read them as real headings, so everything up to the first heading it
+recognised -- the title, the abstract, in one review 212k characters of body
+-- was labelled `references`. About 1 in 8 sampled `references` mentions were
+really title or body text. The indexer now ignores headings before the
+`arXiv:NNNN.NNNNNvN [cat]` stamp line that marks where the paper begins
+(present in every HTML file sampled).
+
+### ar5iv redirects unconverted papers to the abstract page
+
+208 of 291 "ar5iv" full texts were the arXiv abstract page: ar5iv redirects
+papers it never converted, and the page is long enough to pass a length check.
+They included the GW170817 discovery paper. The fetcher now rejects them
+(`is_abstract_page`) and falls through to the PDF.
+
+### Bibliography mentions hide how an event is used
+
+A designation found in the reference list is usually the title of a cited
+paper ("GW150914: Implications for the stochastic background..."), and says
+nothing about how the citing paper uses the event. The sentence that cites it
+("...a stochastic GW background [84]...") does, but never contains the event's
+name. `gwnetwork/citations.py` maps a bibliography offset back to its in-text
+citations (numbered and author-year styles; ~90% located on a 300-mention
+sample), and both the classifier and the labelling UI are given those
+sentences.
 
 ---
 

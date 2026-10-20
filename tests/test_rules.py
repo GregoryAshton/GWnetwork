@@ -14,11 +14,12 @@ class FakeMention:
     char_end: int = 8
 
 
-def test_single_intro_mention_is_settled_without_an_llm():
-    """The cost lever: this pair must never reach the model."""
-    v = classify_engagement([FakeMention("introduction", "Since GW150914 was detected...")])
-    assert v.engagement == Engagement.cited_only.value
-    assert v.needs_llm is False
+def test_single_intro_mention_still_goes_to_the_llm():
+    """It may be qualitative use, which only reading can tell (classify-0.3)."""
+    v = classify_engagement([FakeMention(
+        "introduction", "GW150914 revealed that ~30 Msun black holes exist in binaries.")])
+    assert v.engagement == Engagement.cited_only.value  # a hint, not a verdict
+    assert v.needs_llm is True
     assert v.evidence
 
 
@@ -60,3 +61,19 @@ def test_classify_chunks_large_papers():
     assert [len(c) for c in chunks] == [MAX_EVENTS_PER_CALL, MAX_EVENTS_PER_CALL, 3]
     assert [x for c in chunks for x in c] == needs
     assert _chunks([]) == []
+
+
+def test_reference_only_mention_brings_the_citing_sentence():
+    """The bibliography entry says nothing about use; the citing sentence does."""
+    from gwnetwork.classify.runner import _excerpts
+
+    text = ("Intro. We neglect any stochastic GW background [84]. Fine.\n\n"
+            "References\n\n[84]\nLIGO, “GW150914: Implications for the stochastic background”.\n")
+    at = text.index("GW150914")
+    m = FakeMention("references", "GW150914: Implications for the stochastic background",
+                    char_start=at, char_end=at + 8)
+    m.event_id = "e1"
+    out = _excerpts([m], {"e1": "GW150914"}, text)
+    assert out[0]["section"] == "references"
+    assert out[1] == {"section": "cites reference [84], which names GW150914",
+                      "text": "We neglect any stochastic GW background [84]."}

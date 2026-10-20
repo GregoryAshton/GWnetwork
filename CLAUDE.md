@@ -44,8 +44,8 @@ Layers communicate only through the database; no layer imports another's logic.
 - `extract/` — deterministic matcher compiled **from the database** at run time
   (so a new YAML event makes the whole corpus searchable, no code change) →
   `Mention` rows with exact char offsets, plus `UnknownDesignation` queue.
-- `classify/` — rule pre-filter (`rules.py`) for obvious `cited_only` pairs,
-  then one LLM call **per paper** (not per pair) via the Batch API, structured
+- `classify/` — rule hints (`rules.py`; since classify-0.3 they no longer
+  settle any pair, see DESIGN.md §7a), then one LLM call **per paper** (not per pair) via the Batch API, structured
   output from `schemas.py` → `EventUsage` with mandatory evidence quotes.
 - `web/` — FastAPI + Jinja2 read-only site; `charts.py` renders SVG server-side;
   `export.py` renders the same routes through a TestClient into static HTML for

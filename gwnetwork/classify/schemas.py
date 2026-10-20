@@ -13,7 +13,8 @@ from pydantic import BaseModel, Field
 from ..models import ROLES
 
 Engagement = Literal[
-    "cited_only", "published_results", "posterior_samples", "strain_reanalysis"
+    "cited_only", "qualitative", "published_results", "posterior_samples",
+    "strain_reanalysis"
 ]
 Role = Literal[tuple(ROLES)]  # type: ignore[valid-type]
 
@@ -27,8 +28,9 @@ class EventUsageOut(BaseModel):
     event_name: str = Field(description="Event designation exactly as given in the input list")
     engagement: Engagement = Field(
         description=(
-            "cited_only: mentioned, no analysis. "
-            "published_results: uses quoted catalogue parameters. "
+            "cited_only: cited in passing, nothing it showed is used. "
+            "qualitative: uses what the event showed, in words (broad). "
+            "published_results: catalogue parameters enter the paper's own analysis. "
             "posterior_samples: uses released PE samples. "
             "strain_reanalysis: reanalyses the strain data itself."
         )

@@ -9,8 +9,22 @@ SYSTEM = f"""You classify how physics papers use gravitational-wave events.
 For each event listed, decide two independent things.
 
 ENGAGEMENT -- how deeply the paper touches the event. Exactly one of:
-  cited_only         Mentioned in passing. No analysis of this event.
-  published_results  Uses parameters quoted from a catalogue or discovery paper.
+  cited_only         Cited in passing only. The event is named or cited as
+                     background, or as an example that detections happen, and
+                     the paper draws on nothing it showed.
+                     e.g. "Gravitational waves have been observed [1]."
+  qualitative        Uses what the event showed, in words: its findings,
+                     implications or properties are discussed, or used to
+                     motivate, compare with, interpret or argue for the
+                     paper's own work. Quoting a value as context still counts
+                     here, as long as it does not feed the paper's own
+                     calculation. Read this broadly: anything beyond a bare
+                     in-passing citation is at least qualitative.
+                     e.g. "The detection revealed that black holes of ~30 solar
+                     masses exist in binaries."
+  published_results  The event's published parameters (masses, spins,
+                     distance, sky position, ...) are inputs to the paper's own
+                     calculation, analysis, figure or table.
   posterior_samples  Uses released posterior/PE samples for this event.
   strain_reanalysis  Reanalyses the strain data for this event.
 
@@ -29,6 +43,10 @@ Rules:
   not merely one of many in a sample.
 - Confidence reflects the text's clarity, not how plausible the claim feels.
 - A paper analysing 90 events in a population is population, not single_event.
+- When torn between cited_only and qualitative, choose qualitative.
+- An excerpt headed "cites reference [N], which names EVENT" is a sentence where
+  the paper cites a reference whose title or entry names the event. Judge the
+  event from how that sentence uses the reference.
 """
 
 

@@ -26,15 +26,17 @@ from sqlalchemy import func, select, update
 from ..config import CONFIG
 from ..db import session
 from ..models import AnalysisRun, Event, EventUsage, Mention, Paper
+from ..citations import citing_sentences
 from .prompts import PROMPT_SHA256, SYSTEM, build_user_prompt
 from .rules import classify_engagement
 from .schemas import SCHEMA
 
-PIPELINE_VERSION = "classify-0.2"
+PIPELINE_VERSION = "classify-0.3"
 
 MAX_EXCERPTS_PER_EVENT = 3
 MAX_EXCERPTS_TOTAL = 40
 MAX_EVENTS_PER_CALL = 25
+MAX_CITED_REFS_PER_EVENT = 2
 # Haiku 5.5 thinks by default and thinking counts toward this cap; at 4000,
 # 7/20 large papers were truncated, 2 of them before writing any answer.
 MAX_TOKENS = 16000
@@ -61,19 +63,45 @@ class ClassifyStats:
                 f"{self.usages_written} usages written")
 
 
-def _excerpts(mentions: list) -> list:
+def _excerpts(mentions: list, names: Optional[dict] = None,
+              text: Optional[str] = None) -> list:
     per_event: dict = defaultdict(list)
     for m in mentions:
         per_event[m.event_id].append(m)
     out = []
-    for ms in per_event.values():
+    for event_id, ms in per_event.items():
         # Prefer substantive sections when trimming -- an introduction sentence
         # is the least informative excerpt we could spend tokens on.
         ms = sorted(ms, key=lambda m: (m.section in ("introduction", "front_matter",
                                                      "references"),))
         for m in ms[:MAX_EXCERPTS_PER_EVENT]:
             out.append({"section": m.section or "unknown", "text": m.sentence})
+        if text is not None:
+            out += _citation_excerpts(ms, (names or {}).get(event_id, "?"), text)
     return out[:MAX_EXCERPTS_TOTAL]
+
+
+def _citation_excerpts(ms: list, event_name: str, text: str) -> list:
+    """Where the paper cites references whose entries name the event.
+
+    A bibliography hit is a cited paper's title ("GW150914: Implications for
+    the stochastic background..."); how the citing paper uses the event is in
+    the sentence that cites it, which never contains the event's name.
+    """
+    out, seen = [], set()
+    for m in ms:
+        if m.section != "references" or m.char_start is None:
+            continue
+        key, sentences = citing_sentences(text, m.char_start)
+        if key is None or key in seen:
+            continue
+        seen.add(key)
+        for sent in sentences:
+            out.append({"section": f"cites reference {key}, which names {event_name}",
+                        "text": sent})
+        if len(seen) >= MAX_CITED_REFS_PER_EVENT:
+            break
+    return out
 
 
 def _plan(s, limit: Optional[int], require_fulltext: bool = True) -> tuple:
@@ -127,6 +155,14 @@ def _write_rule_usages(s, run_id, paper_id, rule_settled) -> int:
     return n
 
 
+def _fulltext(paper: Paper) -> Optional[str]:
+    if not paper.fulltext_path:
+        return None
+    from pathlib import Path
+    p = Path(paper.fulltext_path)
+    return p.read_text(errors="replace") if p.exists() else None
+
+
 def _chunks(needs_llm: list, size: int = MAX_EVENTS_PER_CALL) -> list:
     return [needs_llm[i:i + size] for i in range(0, len(needs_llm), size)]
 
@@ -143,7 +179,8 @@ def _request_for(paper: Paper, needs_llm: list, names: dict) -> Optional[dict]:
         "max_tokens": MAX_TOKENS,
         "system": SYSTEM,
         "messages": [{"role": "user", "content": build_user_prompt(
-            paper.title, paper.abstract[:2000], event_names, _excerpts(all_mentions))}],
+            paper.title, paper.abstract[:2000], event_names,
+            _excerpts(all_mentions, names, _fulltext(paper)))}],
         "output_config": {"format": {"type": "json_schema", "schema": SCHEMA}},
     }
 

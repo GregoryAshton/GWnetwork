@@ -1,11 +1,11 @@
 """Rule-based engagement classification.
 
-This exists for two reasons. It makes a useful site possible with no LLM spend
-at all, and it removes the large `cited_only` majority from the LLM's workload
--- the single biggest cost lever in the pipeline (DESIGN.md 7a).
-
-The rules are deliberately conservative. Anything not confidently `cited_only`
-is handed to the LLM rather than guessed at.
+Originally the rules settled the large `cited_only` majority without an LLM
+call. That stopped being safe when `qualitative` was split out of
+`cited_only` (classify-0.3): a single introduction sentence can be either "GWs
+have been observed [1]" or "GW150914 revealed ~30 Msun black holes exist in
+binaries", and only reading tells them apart. So every pair with a mention now
+goes to the LLM; the rules only attach a hint and evidence (DESIGN.md 7a).
 """
 from __future__ import annotations
 
@@ -71,11 +71,11 @@ def classify_engagement(mentions: list) -> RuleVerdict:
         return RuleVerdict(Engagement.posterior_samples.value, 0.7, ev(mentions),
                            needs_llm=True, reason="posterior-sample language")
 
-    # The cost lever: a single passing mention outside any substantive section
-    # is `cited_only` with high confidence and never reaches the LLM.
+    # Few mentions in passing sections is *probably* cited_only, but it may be
+    # qualitative, so it still goes to the LLM.
     if not substantive and len(mentions) <= 2 and sections <= PASSING_SECTIONS:
-        return RuleVerdict(Engagement.cited_only.value, 0.9, ev(mentions),
-                           needs_llm=False,
+        return RuleVerdict(Engagement.cited_only.value, 0.6, ev(mentions),
+                           needs_llm=True,
                            reason="few mentions, no substantive section")
 
     if substantive and _PUBLISHED.search(blob):

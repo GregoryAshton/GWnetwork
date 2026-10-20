@@ -321,6 +321,7 @@ class UnknownDesignation(Base):
 class Engagement(str, enum.Enum):
     """How deeply a paper touches an event. Ordinal, increasing."""
     cited_only = "cited_only"
+    qualitative = "qualitative"
     published_results = "published_results"
     posterior_samples = "posterior_samples"
     strain_reanalysis = "strain_reanalysis"
