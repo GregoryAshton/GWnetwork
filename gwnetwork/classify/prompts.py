@@ -28,8 +28,18 @@ ENGAGEMENT -- how deeply the paper touches the event. Exactly one of:
   posterior_samples  Uses released posterior/PE samples for this event.
   strain_reanalysis  Reanalyses the strain data for this event.
 
-ROLES -- what the event is used FOR. Zero or more of:
+ROLES -- what THIS event is used FOR in the paper. Zero or more of:
 {chr(10).join('  ' + r for r in ROLES)}
+
+Roles belong to the event, not to the paper: judge each event separately. A
+paper following up GW170817 gives GW170817 counterpart_followup, but a
+GW150914 it mentions in passing gets no roles. An event that is only
+cited_only normally has no roles.
+  counterpart_followup  The paper observes, or searches for, this event's
+                        counterpart (electromagnetic, neutrino, ...),
+                        including non-detections. Joint interpretation of
+                        multimessenger results without new observations is
+                        multimessenger.
 
 These are independent. A paper can perform a population-level test of general
 relativity: engagement=posterior_samples, roles=[population, test_of_gr].
@@ -44,6 +54,8 @@ Rules:
 - Confidence reflects the text's clarity, not how plausible the claim feels.
 - A paper analysing 90 events in a population is population, not single_event.
 - When torn between cited_only and qualitative, choose qualitative.
+- Using a released sky map or alert localisation (e.g. to plan or interpret
+  follow-up observations) is published_results, not posterior_samples.
 - An excerpt headed "cites reference [N], which names EVENT" is a sentence where
   the paper cites a reference whose title or entry names the event. Judge the
   event from how that sentence uses the reference.

@@ -328,7 +328,12 @@ class Engagement(str, enum.Enum):
 
 
 ROLES = [
-    "single_event", "population", "multimessenger", "test_of_gr", "cosmology",
+    "single_event", "population", "multimessenger",
+    # Observing or searching for this event's counterpart (EM, neutrino),
+    # including non-detections. `multimessenger` stays for joint
+    # interpretation; a follow-up paper often carries both.
+    "counterpart_followup",
+    "test_of_gr", "cosmology",
     "lensing", "formation_channels", "waveform_systematics",
     # Dense-matter / equation-of-state work is one of the largest uses of
     # GW170817 and had no slot in the original taxonomy; papers doing it were

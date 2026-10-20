@@ -195,11 +195,19 @@ test of GR.
     posterior_samples   uses released PE samples
     strain_reanalysis   reanalyses the strain data itself
 
-`roles` (multi-label — what it is used for):
+`roles` (multi-label — what *this event* is used for in the paper; judged per
+event, so a GW170817 follow-up paper gives GW170817 `counterpart_followup` but
+gives a GW150914 cited in its introduction no roles):
 
-    single_event, population, multimessenger, test_of_gr, cosmology, lensing,
-    formation_channels, waveform_systematics, exotic_compact_object,
-    detector_characterisation, methods_demo, review, forecast
+    single_event, population, multimessenger, counterpart_followup, test_of_gr,
+    cosmology, lensing, formation_channels, waveform_systematics,
+    dense_matter_eos, exotic_compact_object, detector_characterisation,
+    methods_demo, review, forecast
+
+`counterpart_followup` is observing or searching for the event's EM/neutrino
+counterpart, non-detections included; `multimessenger` is joint interpretation
+without new observations. A follow-up's GW input is usually the alert sky map,
+which counts as `published_results`.
 
 ### `event_usage`
 
