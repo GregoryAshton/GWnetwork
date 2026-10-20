@@ -204,6 +204,11 @@ gives a GW150914 cited in its introduction no roles):
     dense_matter_eos, exotic_compact_object, detector_characterisation,
     methods_demo, review, forecast
 
+`single_event` vs `population`: does the paper produce a result about this
+event on its own (a catalogue's per-event PE counts), or is the event one input
+to a combined inference (rates, distributions, stacked tests)? Both when it
+reports per-event results and combines them.
+
 `counterpart_followup` is observing or searching for the event's EM/neutrino
 counterpart, non-detections included; `multimessenger` is joint interpretation
 without new observations. A follow-up's GW input is usually the alert sky map,

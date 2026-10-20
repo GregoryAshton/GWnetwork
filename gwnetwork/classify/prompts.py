@@ -54,7 +54,13 @@ Rules:
 - is_primary_subject is true only when the event is a main subject of the paper,
   not merely one of many in a sample.
 - Confidence reflects the text's clarity, not how plausible the claim feels.
-- A paper analysing 90 events in a population is population, not single_event.
+- single_event vs population: ask whether the paper produces a result about
+  this event on its own. single_event if it reports something specific to the
+  event (its parameters, a test or measurement on it alone) -- so a catalogue
+  that estimates each event's parameters gives each event single_event.
+  population if the event is one input to a combined inference (rates, mass or
+  spin distributions, a stacked or hierarchical test, a combined H0). Both if
+  the paper reports per-event results and also combines them.
 - When torn between cited_only and qualitative, choose qualitative.
 - An excerpt whose heading says it "names the counterpart" mentions the
   event's electromagnetic counterpart (e.g. GRB 170817A, AT2017gfo), not its

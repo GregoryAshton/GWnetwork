@@ -116,7 +116,7 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
 
   <fieldset style="margin-top:14px">
     <legend>Roles</legend>
-    <p class="small mut" style="margin:0 0 8px">What <b>{{ row.event }}</b> is used for in this paper, not the paper's topic. <span class="mono">counterpart_followup</span>: the paper observes or searches for this event's counterpart, including non-detections.</p>
+    <p class="small mut" style="margin:0 0 8px">What <b>{{ row.event }}</b> is used for in this paper, not the paper's topic. <span class="mono">counterpart_followup</span>: the paper observes or searches for this event's counterpart, including non-detections. <span class="mono">single_event</span>: a result about this event on its own (catalogue PE counts); <span class="mono">population</span>: one input to a combined inference; both if it does both.</p>
     <div class="roles">
     {% for r in roles %}
       <label><input type="checkbox" name="roles" value="{{ r }}" {% if r in row.roles %}checked{% endif %}>{{ r }}</label>
