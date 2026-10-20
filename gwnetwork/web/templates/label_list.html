@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gold set · {{ progress.done }}/{{ progress.total }}</title>
+{% include "_label_style.html" %}
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="/">Next unlabelled</a>
+  <span class="tnum">{{ progress.done }} / {{ progress.total }} labelled</span>
+  <span class="bar" aria-hidden="true"><i style="width:{{ (100*progress.done/progress.total)|round(1) if progress.total else 0 }}%"></i></span>
+</header>
+<div class="wrapx">
+<table>
+<thead><tr><th>#</th><th>Paper</th><th>Event</th><th>Mentions</th><th>Engagement</th><th>Roles</th></tr></thead>
+<tbody>
+{% for r in rows %}
+<tr>
+  <td class="tnum mut"><a href="/row/{{ loop.index0 }}">{{ loop.index }}</a></td>
+  <td><span class="mono small">{{ r.arxiv_id }}</span> <span class="small mut">{{ (r.get("_title") or "")[:70] }}</span></td>
+  <td class="mono small"><a href="/row/{{ loop.index0 }}">{{ r.event }}</a></td>
+  <td class="tnum">{{ r.get("_n_mentions", "") }}</td>
+  <td>{% if r.engagement %}<span class="chip on">{{ r.engagement }}</span>{% else %}<span class="mut small">—</span>{% endif %}</td>
+  <td>{% for x in r.roles or [] %}<span class="chip">{{ x }}</span>{% endfor %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

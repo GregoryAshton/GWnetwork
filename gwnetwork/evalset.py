@@ -37,37 +37,72 @@ from .models import AnalysisRun, Event, EventUsage, Mention, Paper
 GOLD_PATH = ROOT / "eval" / "gold.jsonl"
 
 
-def write_template(path: Optional[Path] = None, limit_papers: int = 20,
-                   max_pairs_per_paper: int = 8) -> int:
-    """Pre-fill a gold-set skeleton from the current extract run."""
+def write_template(path: Optional[Path] = None, n_papers: int = 100,
+                   max_pairs_per_paper: int = 8, seed: int = 0) -> int:
+    """Append unlabelled rows for a random sample of papers to the gold set.
+
+    Never rewrites existing rows -- they carry hand labels -- and skips papers
+    already in the file, so it can be re-run to grow the set. Papers are drawn
+    uniformly from those with full text and a current-run mention, so the set
+    reflects the corpus rather than the event-dense LVK papers that dominate
+    any ordering by mention count. Papers with more than `max_pairs_per_paper`
+    events get a random subset of them.
+    """
+    import random
+
     path = Path(path or GOLD_PATH)
     path.parent.mkdir(parents=True, exist_ok=True)
+    existing = path.read_text() if path.exists() else ""
+    seen = {json.loads(line)["arxiv_id"] for line in existing.splitlines()
+            if line.strip() and not line.startswith("#")}
+
     with session() as s:
         run = s.scalar(select(AnalysisRun).where(
             AnalysisRun.stage == "extract", AnalysisRun.is_current == True))  # noqa: E712
         if run is None:
             raise RuntimeError("no current extract run")
         rows = s.execute(
-            select(Paper.arxiv_id, Event.canonical_name, Mention.section, Mention.sentence)
+            select(Paper.arxiv_id, Paper.title, Event.canonical_name,
+                   Mention.section, Mention.sentence)
             .join(Mention, Mention.paper_id == Paper.id)
             .join(Event, Event.id == Mention.event_id)
-            .where(Mention.analysis_run_id == run.id)).all()
+            .where(Mention.analysis_run_id == run.id,
+                   Paper.fulltext_path.is_not(None))
+            .order_by(Paper.arxiv_id, Mention.char_start)).all()
 
+    titles: dict = {}
     per_paper: dict = defaultdict(lambda: defaultdict(list))
-    for arxiv_id, event, section, sentence in rows:
+    for arxiv_id, title, event, section, sentence in rows:
+        if arxiv_id in seen:
+            continue
+        titles[arxiv_id] = title
         per_paper[arxiv_id][event].append((section, sentence))
 
+    rng = random.Random(seed)
+    sample = rng.sample(sorted(per_paper), min(n_papers, len(per_paper)))
+
     written = 0
-    with path.open("w") as fh:
-        for arxiv_id in list(per_paper)[:limit_papers]:
-            for event, ms in list(per_paper[arxiv_id].items())[:max_pairs_per_paper]:
+    with path.open("a") as fh:
+        if not existing:
+            fh.write("# Gold set. `engagement: null` rows are unlabelled and "
+                     "skipped by the scorer.\n")
+        elif not existing.endswith("\n"):
+            fh.write("\n")
+        for arxiv_id in sorted(sample):
+            events = sorted(per_paper[arxiv_id])
+            if len(events) > max_pairs_per_paper:
+                events = sorted(rng.sample(events, max_pairs_per_paper))
+            for event in events:
+                ms = per_paper[arxiv_id][event]
                 fh.write(json.dumps({
                     "arxiv_id": arxiv_id,
                     "event": event,
                     "engagement": None,      # <- human fills these in
                     "roles": [],
+                    "_title": titles[arxiv_id][:150],
                     "_n_mentions": len(ms),
-                    "_sections": sorted({sec for sec, _ in ms}),
+                    "_n_events_in_paper": len(per_paper[arxiv_id]),
+                    "_sections": sorted({sec or "" for sec, _ in ms}),
                     "_example": ms[0][1][:200],
                 }) + "\n")
                 written += 1

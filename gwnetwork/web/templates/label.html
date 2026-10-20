@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Label {{ row.event }} · {{ row.arxiv_id }}</title>
+{% include "_label_style.html" %}
+<style>
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+aside.panel{position:sticky;top:12px}
+@media (max-width:900px){aside.panel{position:static}}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 14px;
+  font-size:.9rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+.cite:first-of-type{border-top:0;padding-top:0}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem}
+.abstract{font-size:.9rem;color:var(--ink-2);margin:8px 0 0}
+fieldset{border:0;margin:0;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.84rem}
+.eng b kbd{font:inherit;font-size:.7rem;color:var(--muted);border:1px solid var(--line-2);
+  border-radius:4px;padding:0 4px;margin-right:6px}
+.eng span{font-size:.8rem;color:var(--muted)}
+.roles{display:flex;flex-wrap:wrap;gap:4px}
+.roles label{font-family:"IBM Plex Mono",monospace;font-size:.75rem;padding:3px 9px;
+  border:1px solid var(--line-2);border-radius:999px;cursor:pointer;color:var(--ink-2);user-select:none}
+.roles label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.roles input{position:absolute;opacity:0;pointer-events:none}
+.roles label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:14px;font-size:.88rem}
+.saved{color:var(--ok);font-size:.85rem;margin-left:auto}
+.keys{font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="/list">All pairs</a>
+  <span class="tnum">{{ progress.done }} / {{ progress.total }} labelled</span>
+  <span class="bar" aria-hidden="true"><i style="width:{{ (100*progress.done/progress.total)|round(1) if progress.total else 0 }}%"></i></span>
+  <span class="mut tnum small">row {{ k + 1 }} of {{ n_rows }}</span>
+  {% if saved %}<span class="saved">✓ saved</span>{% endif %}
+</header>
+
+<div class="grid">
+<main>
+  <h1>{{ (paper.title if paper else row.get("_title")) or row.arxiv_id }}</h1>
+  <div class="small mut">
+    <a href="https://arxiv.org/abs/{{ row.arxiv_id }}" target="_blank" rel="noopener" class="mono">arXiv:{{ row.arxiv_id }}</a>
+    {% if paper and paper.source %}· text from {{ paper.source }}{% endif %}
+  </div>
+  {% if paper and paper.abstract %}
+  <details style="margin-top:8px"><summary>Abstract</summary>
+    <p class="abstract">{{ paper.abstract }}</p></details>
+  {% endif %}
+
+  {% if siblings|length > 1 %}
+  <h3>Events from this paper in the gold set</h3>
+  <div>{% for j, ev, done in siblings %}<a class="chip{% if j == k %} on{% elif done %} done{% endif %}" href="/row/{{ j }}">{{ ev }}</a>{% endfor %}</div>
+  {% endif %}
+
+  <h3>{{ n_mentions }} mention{{ "" if n_mentions == 1 else "s" }} of {{ row.event }}{% if n_mentions > mentions|length %} · first {{ mentions|length }} shown{% endif %}</h3>
+  {% for m in mentions %}
+  <div class="mention"><span class="sec">{{ m.section }}</span>{{ m.pre }}<mark>{{ m.hit }}</mark>{{ m.post }}
+  {%- if m.cite_lookup %}
+  <div class="cites">
+    {%- if m.cite and m.cite.n %}
+    <span class="sec">Cited in the text as <span class="mono">{{ m.cite.key }}</span> · {{ m.cite.n }} place{{ "" if m.cite.n == 1 else "s" }}{% if m.cite.n > m.cite.spans|length %}, first {{ m.cite.spans|length }} shown{% endif %}</span>
+    {%- for c in m.cite.spans %}
+    <div class="cite">{{ c.pre }}<mark class="ref">{{ c.hit }}</mark>{{ c.post }}</div>
+    {%- endfor %}
+    {%- elif m.cite %}
+    <span class="sec">Reference {{ m.cite.key }} — couldn't find where it is cited in the text; check the paper.</span>
+    {%- else %}
+    <span class="sec">Couldn't identify the reference entry. If the text above isn't a bibliography entry, the section label is wrong and the text above is the real context.</span>
+    {%- endif %}
+  </div>
+  {%- endif %}</div>
+  {% else %}
+  <p class="mut">No mentions in the current extract run — check the paper directly.</p>
+  {% endfor %}
+</main>
+
+<aside class="panel">
+<form method="post" action="/row/{{ k }}" id="f">
+  <input type="hidden" name="arxiv_id" value="{{ row.arxiv_id }}">
+  <input type="hidden" name="event" value="{{ row.event }}">
+  <div class="mono" style="font-size:1.05rem;font-weight:600;margin-bottom:12px">{{ row.event }}</div>
+
+  <fieldset class="eng">
+    <legend>Engagement</legend>
+    {% for e in engagements %}
+    <label><input type="radio" name="engagement" value="{{ e }}" {% if row.engagement == e %}checked{% endif %}>
+      <b><kbd>{{ loop.index }}</kbd>{{ e }}</b><span>{{ definitions.get(e, "") }}</span></label>
+    {% endfor %}
+  </fieldset>
+
+  <fieldset style="margin-top:14px">
+    <legend>Roles</legend>
+    <div class="roles">
+    {% for r in roles %}
+      <label><input type="checkbox" name="roles" value="{{ r }}" {% if r in row.roles %}checked{% endif %}>{{ r }}</label>
+    {% endfor %}
+    </div>
+  </fieldset>
+
+  <div class="actions">
+    <button class="primary" type="submit" name="action" value="next">Save &amp; next unlabelled</button>
+    <button type="submit" name="action" value="stay">Save</button>
+  </div>
+  <div class="nav">
+    {% if k > 0 %}<a href="/row/{{ k - 1 }}">← prev</a>{% else %}<span></span>{% endif %}
+    {% if next_unlabelled is not none and next_unlabelled != k %}<a href="/row/{{ next_unlabelled }}">skip to next unlabelled</a>{% endif %}
+    {% if k + 1 < n_rows %}<a href="/row/{{ k + 1 }}">next →</a>{% endif %}
+  </div>
+  <div class="keys">Keys: <b>1–{{ engagements|length }}</b> engagement · <b>Enter</b> save &amp; next · <b>←/→</b> prev/next row</div>
+</form>
+</aside>
+</div>
+</div>
+<script>
+const form = document.getElementById("f");
+const radios = form.querySelectorAll('input[name="engagement"]');
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.target.matches("input[type=text], textarea")) return;
+  const n = Number(e.key);
+  if (n >= 1 && n <= radios.length) { radios[n - 1].checked = true; e.preventDefault(); }
+  else if (e.key === "Enter") { e.preventDefault(); form.querySelector('button[value="next"]').click(); }
+  else if (e.key === "ArrowLeft" && {{ k }} > 0) location.href = "/row/{{ k - 1 }}";
+  else if (e.key === "ArrowRight" && {{ k + 1 }} < {{ n_rows }}) location.href = "/row/{{ k + 1 }}";
+});
+</script>
+</body>
+</html>

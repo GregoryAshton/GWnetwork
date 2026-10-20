@@ -16,8 +16,10 @@ from .models import (
 app = typer.Typer(add_completion=False, help="GWnetwork: GW events <-> literature")
 events_app = typer.Typer(help="Event database")
 corpus_app = typer.Typer(help="Paper corpus")
+eval_app = typer.Typer(help="Hand-labelled gold set")
 app.add_typer(events_app, name="events")
 app.add_typer(corpus_app, name="corpus")
+app.add_typer(eval_app, name="eval")
 
 
 @app.command("init")
@@ -198,6 +200,43 @@ def cmd_classify(
     typer.echo(str(stats))
     for e in stats.errors[:10]:
         typer.echo(f"  ! {e}")
+
+
+@eval_app.command("template")
+def cmd_eval_template(
+    papers: int = typer.Option(100, help="Papers to add to the gold set"),
+    max_pairs: int = typer.Option(8, help="Max events per paper"),
+    seed: int = typer.Option(0, help="Sampling seed; change it to draw a fresh sample"),
+):
+    """Append unlabelled rows for a random paper sample to eval/gold.jsonl."""
+    from .evalset import GOLD_PATH, write_template
+    from .models import ROLES, Engagement
+    n = write_template(n_papers=papers, max_pairs_per_paper=max_pairs, seed=seed)
+    typer.echo(f"appended {n} unlabelled rows to {GOLD_PATH}")
+    typer.echo("engagement: " + " | ".join(e.value for e in Engagement))
+    typer.echo("roles:      " + ", ".join(ROLES))
+
+
+@eval_app.command("score")
+def cmd_eval_score():
+    """Score the current extract and classify runs against the gold set."""
+    from .evalset import load_gold, score
+    from .models import ROLES, Engagement
+    valid = {e.value for e in Engagement}
+    for row in load_gold():
+        bad = ([row["engagement"]] if row["engagement"] not in valid else []) + \
+              [r for r in row.get("roles") or [] if r not in ROLES]
+        if bad:
+            typer.echo(f"  ! {row['arxiv_id']} {row['event']}: unknown label {bad}")
+    typer.echo(score().report())
+
+
+@eval_app.command("label")
+def cmd_eval_label(host: str = "127.0.0.1", port: int = 8001):
+    """Local web UI for labelling eval/gold.jsonl (writes to the file)."""
+    import uvicorn
+    typer.echo(f"labelling eval/gold.jsonl at http://{host}:{port}")
+    uvicorn.run("gwnetwork.web.label:app", host=host, port=port)
 
 
 @app.command("unknown")
