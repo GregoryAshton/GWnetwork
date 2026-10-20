@@ -12,7 +12,7 @@ from ..models import AnalysisRun, Mention, Paper, UnknownDesignation
 from .matcher import DesignationMatcher, normalise
 from .sections import SectionIndex, sentence_around
 
-PIPELINE_VERSION = "extract-0.1"
+PIPELINE_VERSION = "extract-0.2"
 
 
 @dataclass

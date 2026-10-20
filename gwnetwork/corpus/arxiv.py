@@ -34,6 +34,19 @@ def html_to_text(html: str) -> str:
     return _NL.sub("\n\n", text).strip()
 
 
+def is_abstract_page(url: str, text: str) -> bool:
+    """ar5iv redirects papers it never converted to the arXiv abstract page.
+
+    That page is long enough to pass the length checks, so 208 of the first
+    291 "ar5iv" fetches were silently just the abstract -- including the
+    GW170817 discovery paper. Fall through to the PDF instead.
+    """
+    if "arxiv.org/abs/" in url:
+        return True
+    head = text[:4000]
+    return "Skip to main content" in head and "Submitted on" in head
+
+
 class ArxivFetcher:
     def __init__(self, fulltext_dir: Optional[Path] = None, rate_delay: float = 3.0):
         self.dir = Path(fulltext_dir or CONFIG.fulltext_dir)
@@ -109,7 +122,7 @@ class ArxivFetcher:
             if r.status_code != 200 or len(r.text) < 2000:
                 continue
             text = html_to_text(r.text)
-            if len(text) < 1000:
+            if len(text) < 1000 or is_abstract_page(str(r.url), text):
                 continue
             path.write_text(text)
             return path, hashlib.sha256(text.encode()).hexdigest(), source

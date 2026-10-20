@@ -129,3 +129,17 @@ def test_word_designations_do_not_get_separator_tolerance():
 def test_digit_separator_tolerance_still_works():
     m = {"GW190521_074359": "e-x"}
     assert len(_find("GW190521 074359", m)) == 1
+
+
+def test_arxiv_table_of_contents_is_not_read_as_sections():
+    """The TOC ends in "References"; it used to label the title and abstract."""
+    text = ("Title of paper\n\nIntroduction\n\nII Methods\n\nReferences\n\n"
+            " License: arXiv.org perpetual non-exclusive license\n"
+            "arXiv:1903.06742v3 [gr-qc] 08 Nov 2019\n\n"
+            "On the properties of GW170729\n\nAbstract\n\nWe study GW170729.\n\n"
+            "Chapter 1 Introduction\n\nGW170729 is heavy.\n\nReferences\n\n[1] GW170729 paper.\n")
+    ix = SectionIndex(text)
+    assert ix.label_at(text.index("On the properties")) == "front_matter"
+    assert ix.label_at(text.index("We study")) == "abstract"
+    assert ix.label_at(text.index("is heavy")) == "introduction"
+    assert ix.label_at(text.index("[1] GW170729")) == "references"

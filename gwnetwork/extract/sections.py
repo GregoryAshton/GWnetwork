@@ -28,6 +28,7 @@ _COMPILED = [(name, re.compile(pat, re.I)) for name, pat in _SECTION_PATTERNS]
 # A heading line: optional numbering, then a short title, on its own line.
 _HEADING = re.compile(
     r"^[ \t]*(?:\\?(?:sub)*section\*?\{)?"
+    r"(?:(?:Chapter|Part)\s+\d+\s+)?"
     r"(?:(?:[IVXLC]+|\d+(?:\.\d+)*)[.)]?\s+)?"
     r"([A-Z][^\n{}]{2,60}?)\s*\}?[ \t]*$",
     re.M,
@@ -44,13 +45,28 @@ def _classify_heading(title: str) -> Optional[str]:
     return None
 
 
+# arXiv HTML (native and ar5iv) opens with site navigation and a table of
+# contents whose entries look exactly like headings. The TOC ends with
+# "References", so without this everything up to the first unrecognised real
+# heading -- title, abstract, sometimes the whole body -- was labelled
+# references. The stamp line marks where the paper itself begins.
+_ARXIV_STAMP = re.compile(
+    r"^[ \t]*arXiv:(?:\d{4}\.\d{4,5}|[a-z\-]+(?:\.[A-Z]{2})?/\d{7})v\d+\s+\[", re.M)
+
+
+def body_start(text: str) -> int:
+    """Offset where the paper's own text begins (0 when there is no stamp)."""
+    m = _ARXIV_STAMP.search(text)
+    return m.start() if m else 0
+
+
 class SectionIndex:
     """Maps a character offset to a coarse section label."""
 
     def __init__(self, text: str):
         self._starts: list = [0]
         self._labels: list = ["front_matter"]
-        for m in _HEADING.finditer(text):
+        for m in _HEADING.finditer(text, body_start(text)):
             label = _classify_heading(m.group(1))
             if label is not None:
                 self._starts.append(m.start())
