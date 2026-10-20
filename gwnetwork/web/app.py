@@ -30,7 +30,7 @@ app = FastAPI(title="GWnetwork")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 
 ROW_LIMIT = 500
-ENGAGEMENT_ORDER = ["strain_reanalysis", "posterior_samples",
+ENGAGEMENT_ORDER = ["strain_analysis", "posterior_samples",
                     "published_results", "qualitative", "cited_only"]
 SORTS = [("papers", "Most mentioning papers"), ("name", "Name"),
          ("gps", "Date (newest first)"), ("m1", "Primary mass"),

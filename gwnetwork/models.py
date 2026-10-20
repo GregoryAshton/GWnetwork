@@ -324,7 +324,7 @@ class Engagement(str, enum.Enum):
     qualitative = "qualitative"
     published_results = "published_results"
     posterior_samples = "posterior_samples"
-    strain_reanalysis = "strain_reanalysis"
+    strain_analysis = "strain_analysis"
 
 
 ROLES = [

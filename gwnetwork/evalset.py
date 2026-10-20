@@ -7,7 +7,7 @@ becomes the permanent regression suite for every later prompt change.
 Format: eval/gold.jsonl, one JSON object per line
 
     {"arxiv_id": "2006.12611", "event": "GW190814",
-     "engagement": "strain_reanalysis", "roles": ["single_event"]}
+     "engagement": "strain_analysis", "roles": ["single_event"]}
 
 `gwn eval template` writes a pre-filled skeleton from current extraction output;
 a human edits the labels. `gwn eval score` compares the current runs against it.

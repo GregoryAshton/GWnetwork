@@ -26,7 +26,9 @@ ENGAGEMENT -- how deeply the paper touches the event. Exactly one of:
                      distance, sky position, ...) are inputs to the paper's own
                      calculation, analysis, figure or table.
   posterior_samples  Uses released posterior/PE samples for this event.
-  strain_reanalysis  Reanalyses the strain data for this event.
+  strain_analysis    Analyses the strain data for this event. The original
+                     discovery or catalogue analysis and any independent
+                     analysis count alike.
 
 ROLES -- what THIS event is used FOR in the paper. Zero or more of:
 {chr(10).join('  ' + r for r in ROLES)}

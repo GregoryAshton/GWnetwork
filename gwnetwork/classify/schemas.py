@@ -14,7 +14,7 @@ from ..models import ROLES
 
 Engagement = Literal[
     "cited_only", "qualitative", "published_results", "posterior_samples",
-    "strain_reanalysis"
+    "strain_analysis"
 ]
 Role = Literal[tuple(ROLES)]  # type: ignore[valid-type]
 
@@ -32,7 +32,7 @@ class EventUsageOut(BaseModel):
             "qualitative: uses what the event showed, in words (broad). "
             "published_results: catalogue parameters enter the paper's own analysis. "
             "posterior_samples: uses released PE samples. "
-            "strain_reanalysis: reanalyses the strain data itself."
+            "strain_analysis: analyses the strain data itself (original or independent)."
         )
     )
     roles: List[Role] = Field(default_factory=list,

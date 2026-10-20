@@ -27,7 +27,7 @@ def test_strain_language_in_methods_defers_to_llm():
     v = classify_engagement([
         FakeMention("methods", "We reanalyse the strain data for GW170817 from GWOSC."),
     ])
-    assert v.engagement == Engagement.strain_reanalysis.value
+    assert v.engagement == Engagement.strain_analysis.value
     assert v.needs_llm is True
 
 

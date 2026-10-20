@@ -193,7 +193,7 @@ test of GR.
     qualitative         uses what the event showed, in words (read broadly)
     published_results   catalogue parameters enter the paper's own analysis
     posterior_samples   uses released PE samples
-    strain_reanalysis   reanalyses the strain data itself
+    strain_analysis     analyses the strain data itself (original or independent)
 
 `roles` (multi-label — what *this event* is used for in the paper; judged per
 event, so a GW170817 follow-up paper gives GW170817 `counterpart_followup` but
@@ -343,7 +343,7 @@ Read-only projection.
   engagement and role, publication timeline.
 - **Paper page** — events used, with evidence quotes.
 - **Cross-cutting** — event co-occurrence graph, role trends over time,
-  most-reanalysed events.
+  most-analysed events.
 
 FastAPI + server-rendered templates, or static generation. The database boundary
 means this choice is not load-bearing.

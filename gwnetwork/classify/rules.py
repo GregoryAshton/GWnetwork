@@ -64,7 +64,7 @@ def classify_engagement(mentions: list) -> RuleVerdict:
 
     # Strongest signal first: the paper touched the data itself.
     if substantive and _STRAIN.search(blob):
-        return RuleVerdict(Engagement.strain_reanalysis.value, 0.7, ev(mentions),
+        return RuleVerdict(Engagement.strain_analysis.value, 0.7, ev(mentions),
                            needs_llm=True, reason="strain language in a substantive section")
 
     if substantive and _POSTERIOR.search(blob):
