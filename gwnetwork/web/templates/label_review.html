@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review · {{ items|length }} disputed</title>
+{% include "_label_style.html" %}
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="/">Labelling</a> <a href="/list">All pairs</a>
+  <span class="tnum">{{ items|length }} disputed pair{{ "" if items|length == 1 else "s" }}</span>
+  <span class="small mut">vs {{ compare_path or "— no comparison file (run gwn eval label --compare FILE)" }}</span>
+</header>
+<div class="wrapx">
+<table>
+<thead><tr><th>#</th><th>Pair</th><th>Yours</th><th>Other</th><th>Other's note</th></tr></thead>
+<tbody>
+{% for j, r, o in items %}
+<tr>
+  <td class="tnum"><a href="/row/{{ j }}">{{ j + 1 }}</a></td>
+  <td><span class="mono small">{{ r.arxiv_id }}</span><br><a class="mono small" href="/row/{{ j }}">{{ r.event }}</a></td>
+  <td>{% for u in r.uses or [] %}<span class="chip on">{{ u }}</span>{% else %}<span class="chip">cited_only</span>{% endfor %}<br>{% for x in r.roles or [] %}<span class="chip">{{ x }}</span>{% endfor %}</td>
+  <td>{% for u in o.uses or [] %}<span class="chip on">{{ u }}</span>{% else %}<span class="chip">cited_only</span>{% endfor %}<br>{% for x in o.roles or [] %}<span class="chip">{{ x }}</span>{% endfor %}</td>
+  <td class="small mut">{{ o.note or "" }}</td>
+</tr>
+{% else %}
+<tr><td colspan="5" class="mut">No disputed pairs.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>

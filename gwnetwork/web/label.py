@@ -32,6 +32,30 @@ from ..models import (
 
 GUIDE_PATH = ROOT / "eval" / "GUIDELINES.md"
 
+# Optional second labelling of the same pairs (`gwn eval label --compare FILE`).
+# Disputed rows are listed at /review and each shows the other labeller's
+# answer and note next to the form. The reference labels are never changed
+# except by an explicit save.
+COMPARE_PATH: Optional[Path] = None
+
+
+def _other_labels() -> dict:
+    if COMPARE_PATH is None or not COMPARE_PATH.exists():
+        return {}
+    out = {}
+    for line in COMPARE_PATH.read_text().splitlines():
+        if line.strip() and not line.startswith("#"):
+            r = json.loads(line)
+            out[(r["arxiv_id"], r["event"])] = r
+    return out
+
+
+def _disputed(row: dict, other: Optional[dict]) -> bool:
+    if other is None or not _is_labelled(row):
+        return False
+    return (normalise_uses(row.get("uses") or []) != normalise_uses(other.get("uses") or [])
+            or set(row.get("roles") or []) != set(other.get("roles") or []))
+
 app = FastAPI(title="GWnetwork gold-set labeller")
 templates = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 
@@ -148,6 +172,16 @@ def guide(request: Request):
     return templates.TemplateResponse(request, "label_guide.html", {"text": text})
 
 
+@app.get("/review", response_class=HTMLResponse)
+def review(request: Request):
+    _, rows = _load(GOLD_PATH)
+    others = _other_labels()
+    items = [(j, r, others[(r["arxiv_id"], r["event"])]) for j, (_, r) in enumerate(rows)
+             if _disputed(r, others.get((r["arxiv_id"], r["event"])))]
+    return templates.TemplateResponse(request, "label_review.html", {
+        "items": items, "compare_path": COMPARE_PATH})
+
+
 @app.get("/list", response_class=HTMLResponse)
 def listing(request: Request):
     _, rows = _load(GOLD_PATH)
@@ -163,9 +197,16 @@ def row_page(request: Request, k: int, saved: int = 0):
     row = rows[k][1]
     siblings = [(j, r["event"], _is_labelled(r)) for j, (_, r) in enumerate(rows)
                 if r["arxiv_id"] == row["arxiv_id"]]
+    others = _other_labels()
+    other = others.get((row["arxiv_id"], row["event"]))
+    disputed = [j for j, (_, r) in enumerate(rows)
+                if _disputed(r, others.get((r["arxiv_id"], r["event"])))]
+    next_disputed = next((j for j in disputed if j > k), None)
     return templates.TemplateResponse(request, "label.html", {
         "k": k, "row": row, "progress": _progress(rows), "saved": saved,
         "n_rows": len(rows), "next_unlabelled": _next_unlabelled(rows, k),
+        "other": other, "is_disputed": _disputed(row, other),
+        "n_disputed": len(disputed), "next_disputed": next_disputed,
         "siblings": siblings, "data_questions": DATA_QUESTIONS,
         "fallback_question": FALLBACK_QUESTION, "roles": ROLES,
         "row_uses": row.get("uses") or [],
@@ -200,6 +241,12 @@ async def row_save(request: Request, k: int,
 
     if form.get("action") == "stay":
         return RedirectResponse(f"/row/{k}?saved=1", status_code=303)
+    if form.get("action") == "review":
+        others = _other_labels()
+        nxt = next((j for j, (_, r) in enumerate(rows) if j > k and
+                    _disputed(r, others.get((r["arxiv_id"], r["event"])))), None)
+        return RedirectResponse(f"/row/{nxt}?saved=1" if nxt is not None else "/review",
+                                status_code=303)
     nxt = _next_unlabelled(rows, k)
     return RedirectResponse(f"/row/{nxt if nxt is not None else k}?saved=1",
                             status_code=303)

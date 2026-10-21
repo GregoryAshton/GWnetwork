@@ -19,9 +19,11 @@ DATA_QUESTIONS = [
     ("published_results",
      "Does it use the event's published measurements with their uncertainties?",
      "Credible intervals, ranges or bounds for masses, spins, distance, sky "
-     "position, H0, ... -- as inputs to a calculation, figure or table, or to "
-     "compare its own results against, even in the text (e.g. \"exceeds the "
-     "1.61-2.52 solar mass primary of GW190425\"). A released sky map or alert "
+     "position, H0, ... that the paper USES: as inputs to a calculation, figure "
+     "or table, or to compare its own results against, even in the text (e.g. "
+     "\"exceeds the 1.61-2.52 solar mass primary of GW190425\"). Merely quoting "
+     "them as background (e.g. listing an H0 value among other measurements in "
+     "the introduction) does not count. A released sky map or alert "
      "localisation counts here."),
 ]
 FALLBACK_QUESTION = (
@@ -73,7 +75,8 @@ passing normally has no roles.
   single_event vs population: does the paper produce a result about this
                         event on its own? single_event if it reports something
                         specific to the event (its parameters, a test or
-                        measurement on it alone) -- a catalogue that estimates
+                        measurement on it alone), even when the paper does the
+                        same for many events -- a catalogue that estimates
                         each event's parameters gives each event single_event.
                         population if the event is one input to a combined
                         inference (rates, mass or spin distributions, a stacked

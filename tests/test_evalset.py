@@ -126,3 +126,24 @@ def test_cli_loads_every_command():
     from gwnetwork.cli import app
     for args in (["--help"], ["eval", "compare", "--help"], ["eval", "label", "--help"]):
         assert CliRunner().invoke(app, args).exit_code == 0, args
+
+
+def test_review_mode_lists_only_disputed_pairs(temp_db, tmp_path, monkeypatch):
+    from fastapi.testclient import TestClient
+    import gwnetwork.web.label as label
+    _seed(temp_db, n_papers=2)
+    row = lambda i, uses, roles: {"arxiv_id": f"2401.0000{i}", "event": "GW150914",
+                                  "engagement": "x" if uses is not None else None,
+                                  "uses": uses or [], "roles": roles}
+    gold, other = tmp_path / "gold.jsonl", tmp_path / "other.jsonl"
+    gold.write_text(json.dumps(row(0, ["qualitative"], [])) + "\n" +
+                    json.dumps(row(1, ["published_results"], ["cosmology"])) + "\n")
+    other.write_text(json.dumps({**row(0, ["qualitative"], []), "note": "same"}) + "\n" +
+                     json.dumps({**row(1, ["strain_analysis", "published_results"],
+                                       ["cosmology"]), "note": "also reanalyses"}) + "\n")
+    monkeypatch.setattr(label, "GOLD_PATH", gold)
+    monkeypatch.setattr(label, "COMPARE_PATH", other)
+    c = TestClient(label.app)
+    page = c.get("/review").text
+    assert "1 disputed pair" in page and "also reanalyses" in page and "same" not in page
+    assert "Disputed" in c.get("/row/1").text and "Disputed" not in c.get("/row/0").text

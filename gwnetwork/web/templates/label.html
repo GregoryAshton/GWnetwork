@@ -36,6 +36,8 @@ legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(
 .eng b kbd{font:inherit;font-size:.7rem;color:var(--muted);border:1px solid var(--line-2);
   border-radius:4px;padding:0 4px;margin-right:6px}
 .eng span{font-size:.8rem;color:var(--muted)}
+.other{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 12px}
+.other.disputed{border-color:var(--amber);background:var(--amber-soft)}
 .fallback.off{opacity:.4}
 .fallback.off label{pointer-events:none}
 .unsure{margin-top:10px;border-style:dashed !important}
@@ -108,6 +110,16 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
   <input type="hidden" name="arxiv_id" value="{{ row.arxiv_id }}">
   <input type="hidden" name="event" value="{{ row.event }}">
   <div class="mono" style="font-size:1.05rem;font-weight:600;margin-bottom:12px">{{ row.event }}</div>
+  {% if other %}
+  <div class="other{% if is_disputed %} disputed{% endif %}">
+    <div class="small"><b>{{ "Disputed — " if is_disputed else "" }}other labeller:</b>
+      {% for u in other.uses or [] %}<span class="chip on">{{ u }}</span>{% else %}<span class="chip">cited_only</span>{% endfor %}
+      {% for r in other.roles or [] %}<span class="chip">{{ r }}</span>{% endfor %}
+      {% if other.unsure %}<span class="chip" style="border-style:dashed">unsure</span>{% endif %}</div>
+    {% if other.note %}<div class="small mut" style="margin-top:4px">“{{ other.note }}”</div>{% endif %}
+    {% if is_disputed %}<button type="button" id="take" style="margin-top:6px;font-size:.8rem;padding:4px 10px">Fill the form with these</button>{% endif %}
+  </div>
+  {% endif %}
 
   <fieldset class="eng">
     <legend>Usage of {{ row.event }} — answer each <a href="/guide" target="_blank" style="text-transform:none;letter-spacing:0">guide</a></legend>
@@ -139,6 +151,7 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
   <div class="actions">
     <button class="primary" type="submit" name="action" value="next">Save &amp; next unlabelled</button>
     <button type="submit" name="action" value="stay">Save</button>
+    {% if n_disputed %}<button type="submit" name="action" value="review">Save &amp; next disputed ({{ n_disputed }})</button>{% endif %}
   </div>
   <div class="nav">
     {% if k > 0 %}<a href="/row/{{ k - 1 }}">← prev</a>{% else %}<span></span>{% endif %}
@@ -159,6 +172,16 @@ const fbBox = document.getElementById("fb");
 // Q4 only applies when Q1-Q3 are all "no".
 function sync() { fbBox.classList.toggle("off", [...data].some(x => x.checked)); }
 data.forEach(x => x.addEventListener("change", sync)); sync();
+{% if other and is_disputed %}
+// Copy the other labeller's answer into the form; nothing is saved until you click Save.
+document.getElementById("take").addEventListener("click", () => {
+  const uses = {{ (other.uses or [])|tojson }}, roles = {{ (other.roles or [])|tojson }};
+  data.forEach(x => x.checked = uses.includes(x.value));
+  fb.forEach(x => x.checked = (x.value === (uses.includes("qualitative") ? "qualitative" : "cited_only")));
+  form.querySelectorAll('input[name="roles"]').forEach(x => x.checked = roles.includes(x.value));
+  sync();
+});
+{% endif %}
 document.addEventListener("keydown", e => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.target.matches("input[type=text], textarea")) return;
