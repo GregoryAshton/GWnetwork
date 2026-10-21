@@ -25,6 +25,7 @@ from ..version import build_info, data_info
 from ..models import (
     AnalysisRun, Event, EventDesignation, EventRecord, EventUsage, EventView,
     Mention, Paper,
+    paper_date,
 )
 
 app = FastAPI(title="GWnetwork")
@@ -248,11 +249,23 @@ def event_page(request: Request, name: str):
             select(Paper, EventUsage).join(EventUsage, EventUsage.paper_id == Paper.id)
             .where(EventUsage.event_id == ev.id,
                    EventUsage.analysis_run_id == (crun.id if crun else None))).all()
+        # A summary only: counts per level and role, with the most-cited
+        # papers as examples. Every paper is on /event/NAME/papers.
         grouped = defaultdict(list)
+        role_counts: dict = defaultdict(int)
         for paper, usage in rows:
-            grouped[usage.engagement].append((paper, usage))
-        usages = [(lvl, grouped[lvl]) for lvl in ENGAGEMENT_ORDER if grouped.get(lvl)]
+            grouped[usage.engagement].append(paper)
+            for r in usage.roles or []:
+                role_counts[r] += 1
+        cites = lambda p: -(p.citation_count or 0)  # noqa: E731
+        usage_summary = [{"level": lvl, "n": len(grouped[lvl]),
+                          "top": sorted(grouped[lvl], key=cites)[:3]}
+                         for lvl in ENGAGEMENT_ORDER if grouped.get(lvl)]
+        roles = sorted(role_counts.items(), key=lambda kv: -kv[1])
 
+        n_mentioning = s.scalar(
+            select(func.count(func.distinct(Mention.paper_id)))
+            .where(Mention.event_id == ev.id, mentions_in(erun))) or 0
         mentions = s.execute(
             select(Paper, func.count(Mention.id))
             .join(Mention, Mention.paper_id == Paper.id)
@@ -260,10 +273,48 @@ def event_page(request: Request, name: str):
             .group_by(Paper.id)
             .order_by(Paper.citation_count.desc().nullslast(),
                       func.count(Mention.id).desc())
-            .limit(ROW_LIMIT)).all()
+            .limit(10)).all()
     return render(request, "event.html", event=ev, view=view, records=records,
-                  aliases=aliases, usages=usages, mentions=mentions,
-                  timeline=timeline)
+                  aliases=aliases, usage_summary=usage_summary, roles=roles,
+                  n_classified=len(rows), mentions=mentions,
+                  n_mentioning=n_mentioning, timeline=timeline)
+
+
+@app.get("/event/{name}/papers", response_class=HTMLResponse)
+def event_papers(request: Request, name: str):
+    """Every paper mentioning an event, with how it uses it. Filtering by usage
+    level and role happens in the browser (#strain_analysis, #role=lensing),
+    so the static export needs one file per event, not one per filter."""
+    with session() as s:
+        ev = s.scalar(select(Event).where(Event.canonical_name == name))
+        if ev is None:
+            return render(request, "not_found.html", message=f"No event named {name}.")
+        erun, crun = current_run(s, "extract"), current_run(s, "classify")
+        usage = {u.paper_id: u for u in s.scalars(
+            select(EventUsage).where(EventUsage.event_id == ev.id,
+                                     EventUsage.analysis_run_id == (crun.id if crun else None)))}
+        rows = s.execute(
+            select(Paper, func.count(Mention.id), paper_date())
+            .join(Mention, Mention.paper_id == Paper.id)
+            .where(Mention.event_id == ev.id, mentions_in(erun))
+            .group_by(Paper.id)).all()
+    rank = {e: i for i, e in enumerate(ENGAGEMENT_ORDER)}
+    items = sorted(
+        ({"paper": p, "n": n, "year": d.year if d else None, "usage": usage.get(p.id)}
+         for p, n, d in rows),
+        key=lambda it: (rank.get(it["usage"].engagement, 99) if it["usage"] else 100,
+                        -(it["paper"].citation_count or 0)))
+    level_counts = defaultdict(int)
+    role_counts: dict = defaultdict(int)
+    for it in items:
+        u = it["usage"]
+        level_counts[u.engagement if u else "unclassified"] += 1
+        for r in (u.roles if u else []) or []:
+            role_counts[r] += 1
+    levels = [(lvl, level_counts[lvl]) for lvl in ENGAGEMENT_ORDER + ["unclassified"]
+              if level_counts.get(lvl)]
+    return render(request, "event_papers.html", event=ev, items=items, levels=levels,
+                  roles=sorted(role_counts.items(), key=lambda kv: -kv[1]))
 
 
 @app.get("/explore", response_class=HTMLResponse)

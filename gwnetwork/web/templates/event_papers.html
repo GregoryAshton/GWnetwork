@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}{{ event.canonical_name }} · papers · GWnetwork{% endblock %}
+{% block content %}
+<p class="small"><a href="/event/{{ event.canonical_name }}">← {{ event.canonical_name }}</a></p>
+<h1>Papers mentioning <span class="mono">{{ event.canonical_name }}</span></h1>
+<p class="small mut">{{ "{:,}".format(items|length) }} papers, deepest use first, then most cited.
+Each classification links to the quoted evidence. Dates are the paper's latest arXiv version.</p>
+
+<div class="pfilters">
+  <div class="lvls">
+    <button type="button" data-level="" class="on">all <b>{{ "{:,}".format(items|length) }}</b></button>
+    {% for lvl, n in levels %}<button type="button" data-level="{{ lvl }}">{{ lvl.replace("_"," ") }} <b>{{ "{:,}".format(n) }}</b></button>{% endfor %}
+  </div>
+  {% if roles %}
+  <label class="small">used for
+    <select id="role"><option value="">any</option>
+    {% for r, n in roles %}<option value="{{ r }}">{{ r.replace("_"," ") }} ({{ n }})</option>{% endfor %}
+    </select></label>
+  {% endif %}
+  <span class="small mut" id="shown"></span>
+</div>
+
+<div class="wrapx"><table class="sortable" id="ptab">
+<thead><tr><th>Title</th><th class="num">Year</th><th class="num">Citations</th><th class="num">Mentions</th><th>Use</th><th>Used for</th></tr></thead>
+<tbody>
+{% for it in items %}{% set u = it.usage %}
+<tr data-level="{{ u.engagement if u else 'unclassified' }}" data-roles=" {{ (u.roles or [])|join(' ') if u else '' }} ">
+  <td><a href="https://arxiv.org/abs/{{ it.paper.arxiv_id }}">{{ it.paper.title[:110] }}</a>
+{% if u and u.evidence %}{% set ev = u.evidence[0] %}<details><summary>evidence</summary><blockquote>{{ ev.quote[:220] }}{{ "…" if ev.quote|length > 220 }}</blockquote></details>{% endif %}</td>
+  <td class="num small">{{ it.year or "—" }}</td>
+  <td class="num small">{{ "{:,}".format(it.paper.citation_count) if it.paper.citation_count is not none else "—" }}</td>
+  <td class="num small">{{ it.n }}</td>
+  <td class="small" data-sort="{{ loop.index }}">{% if u %}{% for x in (u.uses or []) %}<span class="chip on">{{ x.replace("_"," ") }}</span>{% else %}<span class="chip">cited only</span>{% endfor %}{% else %}<span class="mut">—</span>{% endif %}</td>
+  <td class="small">{% for r in (u.roles if u else []) or [] %}<span class="chip">{{ r.replace("_"," ") }}</span>{% endfor %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table></div>
+
+<script>
+(function () {
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#ptab tbody tr"));
+  var buttons = document.querySelectorAll(".lvls button");
+  var role = document.getElementById("role");
+  var shown = document.getElementById("shown");
+  var level = "";
+  function apply(push) {
+    var r = role ? role.value : "", n = 0;
+    rows.forEach(function (tr) {
+      var ok = (!level || tr.dataset.level === level) &&
+               (!r || tr.dataset.roles.indexOf(" " + r + " ") >= 0);
+      tr.hidden = !ok; if (ok) n++;
+    });
+    buttons.forEach(function (b) { b.classList.toggle("on", b.dataset.level === level); });
+    shown.textContent = n.toLocaleString() + " shown";
+    // Filters live in the URL fragment so they work on the static site too.
+    if (push) {
+      var h = [level, r ? "role=" + r : ""].filter(Boolean).join("&");
+      history.replaceState(null, "", h ? "#" + h : location.pathname);
+    }
+  }
+  function fromHash() {
+    level = ""; if (role) role.value = "";
+    location.hash.replace(/^#/, "").split("&").forEach(function (part) {
+      if (!part) return;
+      if (part.indexOf("role=") === 0) { if (role) role.value = part.slice(5); }
+      else level = part;
+    });
+    apply(false);
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { level = b.dataset.level; apply(true); }); });
+  if (role) role.addEventListener("change", function () { apply(true); });
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+{% endblock %}

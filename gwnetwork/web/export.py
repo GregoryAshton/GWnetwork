@@ -57,9 +57,11 @@ def _rewrite(html: str, base: str, depth: int) -> str:
                          ("/papers", "papers.html")):
         out = re.sub(rf'href="{path}(\?[^"]*)?"', f'href="{up}{target}"', out)
     out = out.replace('href="/"', f'href="{up}index.html"')
-    # /event/NAME -> event/NAME.html
-    out = re.sub(r'href="/event/([^"?]+)(\?[^"]*)?"',
-                 lambda m: f'href="{up}event/{m.group(1)}.html"', out)
+    # /event/NAME -> event/NAME.html; /event/NAME/papers#f -> event/NAME/papers.html#f.
+    # The fragment carries the papers-page filters, so it must survive.
+    out = re.sub(r'href="/event/([^"?#/]+)(/papers)?(\?[^"#]*)?(#[^"]*)?"',
+                 lambda m: f'href="{up}event/{m.group(1)}{m.group(2) or ""}.html{m.group(4) or ""}"',
+                 out)
     # Local paper pages are not exported; send readers to arXiv instead.
     out = re.sub(r'href="/paper/[0-9a-f-]+"', 'href="#"', out)
     return out
@@ -121,6 +123,11 @@ def export(out_dir: Path, base: str = "") -> ExportStats:
             stats.warnings.append(f"/event/{name} -> {r.status_code}")
             continue
         write(f"event/{name}.html", r.text, depth=1)
+        r = client.get(f"/event/{name}/papers")
+        if r.status_code != 200:
+            stats.warnings.append(f"/event/{name}/papers -> {r.status_code}")
+            continue
+        write(f"event/{name}/papers.html", r.text, depth=2)
 
     (out_dir / ".nojekyll").touch()          # keep Jekyll off our _-free paths
     return stats

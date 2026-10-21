@@ -140,3 +140,31 @@ def test_front_page_counts_usages_from_the_current_run_only(temp_db):
     body = TestClient(app).get("/").text
     m = re.search(r'<b class="tnum">([\d,]+)</b><span>Classified usages', body)
     assert m and m.group(1) == "1", "should count the current run only (1), not all runs (3)"
+
+
+def test_event_papers_page_lists_every_paper_with_its_use(temp_db):
+    from gwnetwork.models import EventUsage
+    ev_id, paper_id = _seed(temp_db, n_runs=1)
+    with temp_db.session() as s:
+        run = AnalysisRun(stage="classify", pipeline_version="c", is_current=True)
+        s.add(run); s.flush()
+        s.add(EventUsage(paper_id=paper_id, event_id=ev_id, analysis_run_id=run.id,
+                         engagement="strain_analysis", uses=["strain_analysis"],
+                         roles=["single_event"], evidence=[{"quote": "We reanalyse it."}]))
+    from gwnetwork.web.app import app
+    c = TestClient(app)
+    summary = c.get("/event/GW150914").text
+    assert 'href="/event/GW150914/papers#strain_analysis"' in summary
+    assert 'href="/event/GW150914/papers#role=single_event"' in summary
+    page = c.get("/event/GW150914/papers").text
+    assert 'data-level="strain_analysis"' in page and "We reanalyse it." in page
+
+
+def test_export_keeps_papers_page_filters_in_links():
+    from gwnetwork.web.export import _rewrite
+    html = ('<a href="/event/GW150914/papers#role=lensing">x</a>'
+            '<a href="/event/GW150914">y</a><a href="/event/151012.2/papers">z</a>')
+    out = _rewrite(html, "", depth=1)
+    assert 'href="../event/GW150914/papers.html#role=lensing"' in out
+    assert 'href="../event/GW150914.html"' in out
+    assert 'href="../event/151012.2/papers.html"' in out
