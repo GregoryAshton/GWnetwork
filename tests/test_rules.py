@@ -94,3 +94,23 @@ def test_counterpart_name_is_flagged_and_gw_name_preferred():
     assert out[0] == {"section": "results", "text": "GW170817 gives the inclination."}
     assert out[1]["section"] == ("results; names the counterpart GRB 170817A, "
                                  "not the GW signal of GW170817")
+
+
+def test_llm_answers_become_a_set_of_uses_and_a_derived_engagement(temp_db):
+    from gwnetwork.classify.runner import _apply_response
+    from gwnetwork.models import EventUsage
+
+    item = {"event_name": "GW150914", "strain_analysis": True, "posterior_samples": True,
+            "published_results": False, "qualitative": True, "roles": ["single_event"],
+            "confidence": 0.9, "evidence": [{"quote": "q"}]}
+    with temp_db.session() as s:
+        from gwnetwork.models import AnalysisRun, Event, Paper
+        ev, p, run = Event(canonical_name="GW150914"), Paper(arxiv_id="1", title="t"), \
+            AnalysisRun(stage="classify", pipeline_version="t")
+        s.add_all([ev, p, run]); s.flush()
+        assert _apply_response(s, run.id, p.id, [(ev.id, [])], {ev.id: "GW150914"},
+                               {"events": [item]}) == 1
+        s.flush()
+        u = s.query(EventUsage).one()
+        assert u.uses == ["strain_analysis", "posterior_samples"]   # no qualitative beside data
+        assert u.engagement == "strain_analysis"

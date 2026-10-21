@@ -61,15 +61,68 @@ def test_labeller_saves_one_line_and_refuses_stale_pages(temp_db, tmp_path, monk
     assert "GW150914" in c.get("/row/0").text
     assert c.get("/list").status_code == 200
     r = c.post("/row/1", data={"arxiv_id": b["arxiv_id"], "event": "GW150914",
-                               "engagement": "cited_only", "roles": ["population", "bogus"]},
+                               "fallback": "cited_only", "roles": ["population", "bogus"]},
                follow_redirects=False)
     assert r.status_code == 303 and r.headers["location"].startswith("/row/0")
     lines = gold.read_text().splitlines()
     assert lines[0] == "# keep me" and json.loads(lines[1]) == a
-    assert json.loads(lines[2])["engagement"] == "cited_only"
-    assert json.loads(lines[2])["roles"] == ["population"]
+    saved = json.loads(lines[2])
+    assert (saved["engagement"], saved["uses"], saved["roles"]) == ("cited_only", [], ["population"])
+
+    # Several uses at once; Q4 is ignored when a data product is ticked.
+    c.post("/row/1", data={"arxiv_id": b["arxiv_id"], "event": "GW150914",
+                           "uses": ["published_results", "strain_analysis"],
+                           "fallback": "qualitative", "unsure": "1"})
+    saved = json.loads(gold.read_text().splitlines()[2])
+    assert saved["uses"] == ["strain_analysis", "published_results"]
+    assert saved["engagement"] == "strain_analysis" and saved["unsure"] is True
+
+    # No data product and no Q4 answer is refused, not saved as a guess.
+    r = c.post("/row/0", data={"arxiv_id": a["arxiv_id"], "event": "GW150914"})
+    assert r.status_code == 400
 
     # A page for a different pair than the file now holds must not write.
     r = c.post("/row/0", data={"arxiv_id": "9999.99999", "event": "GW150914",
-                               "engagement": "cited_only"})
+                               "fallback": "cited_only"})
     assert r.status_code == 409
+
+
+def test_compare_reports_per_use_agreement(tmp_path):
+    from gwnetwork.evalset import compare
+
+    def write(path, rows):
+        path.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+
+    base = {"event": "GW150914", "roles": []}
+    ref, other = tmp_path / "a.jsonl", tmp_path / "b.jsonl"
+    write(ref, [{**base, "arxiv_id": "1", "engagement": "strain_analysis",
+                 "uses": ["strain_analysis", "posterior_samples"]},
+                {**base, "arxiv_id": "2", "engagement": "cited_only", "uses": []},
+                # an old-format row: uses derived from engagement
+                {**base, "arxiv_id": "3", "engagement": "qualitative"}])
+    write(other, [{**base, "arxiv_id": "1", "engagement": "strain_analysis",
+                   "uses": ["strain_analysis"]},
+                  {**base, "arxiv_id": "2", "engagement": "qualitative", "uses": ["qualitative"]},
+                  {**base, "arxiv_id": "3", "engagement": "qualitative", "uses": ["qualitative"]}])
+    ag = compare(ref, other)
+    assert ag.n == 3 and ag.engagement_same == 2
+    assert ag.use_counts["posterior_samples"] == [0, 0, 1]     # missed by "other"
+    assert (ag.fallback_same, ag.fallback_n) == (1, 2)
+    assert len(ag.disagreements) == 2
+
+
+def test_guidelines_quote_the_classifier_questions_verbatim():
+    """Humans and the model must answer the same questions."""
+    from gwnetwork.classify.prompts import DATA_QUESTIONS, FALLBACK_QUESTION
+    from gwnetwork.evalset import GOLD_PATH
+    guide = (GOLD_PATH.parent / "GUIDELINES.md").read_text()
+    for _, q, detail in DATA_QUESTIONS + [FALLBACK_QUESTION]:
+        assert q in guide and detail in guide
+
+
+def test_cli_loads_every_command():
+    """A NameError in one command's signature takes down the whole `gwn` CLI."""
+    from typer.testing import CliRunner
+    from gwnetwork.cli import app
+    for args in (["--help"], ["eval", "compare", "--help"], ["eval", "label", "--help"]):
+        assert CliRunner().invoke(app, args).exit_code == 0, args

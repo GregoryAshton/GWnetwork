@@ -1,6 +1,7 @@
 """GWnetwork command line."""
 from __future__ import annotations
 
+from pathlib import Path
 from typing import List, Optional
 
 import typer
@@ -210,25 +211,46 @@ def cmd_eval_template(
 ):
     """Append unlabelled rows for a random paper sample to eval/gold.jsonl."""
     from .evalset import GOLD_PATH, write_template
-    from .models import ROLES, Engagement
     n = write_template(n_papers=papers, max_pairs_per_paper=max_pairs, seed=seed)
-    typer.echo(f"appended {n} unlabelled rows to {GOLD_PATH}")
-    typer.echo("engagement: " + " | ".join(e.value for e in Engagement))
-    typer.echo("roles:      " + ", ".join(ROLES))
+    typer.echo(f"appended {n} unlabelled rows to {GOLD_PATH}; label them with "
+               "`gwn eval label` (guide: eval/GUIDELINES.md)")
+
+
+def _check_gold(path) -> None:
+    from .evalset import load_gold
+    from .models import FALLBACKS, ROLES, USES
+    for row in load_gold(path):
+        bad = [u for u in row.get("uses") or [] if u not in USES + FALLBACKS] + \
+              [r for r in row.get("roles") or [] if r not in ROLES]
+        if bad:
+            typer.echo(f"  ! {row['arxiv_id']} {row['event']}: unknown label {bad}")
 
 
 @eval_app.command("score")
 def cmd_eval_score():
     """Score the current extract and classify runs against the gold set."""
-    from .evalset import load_gold, score
-    from .models import ROLES, Engagement
-    valid = {e.value for e in Engagement}
-    for row in load_gold():
-        bad = ([row["engagement"]] if row["engagement"] not in valid else []) + \
-              [r for r in row.get("roles") or [] if r not in ROLES]
-        if bad:
-            typer.echo(f"  ! {row['arxiv_id']} {row['event']}: unknown label {bad}")
+    from .evalset import score
+    _check_gold(None)
     typer.echo(score().report())
+
+
+@eval_app.command("compare")
+def cmd_eval_compare(
+    reference: Path = typer.Argument(..., help="Reference labels, e.g. eval/gold.jsonl"),
+    other: Path = typer.Argument(..., help="A second labelling of the same pairs"),
+    show: int = typer.Option(50, help="Disagreements to list"),
+):
+    """Agreement between two labellings of the gold set (inter-annotator check)."""
+    import json as _json
+    from .evalset import compare
+    _check_gold(reference)
+    _check_gold(other)
+    ag = compare(reference, other)
+    typer.echo(ag.report(other_name="other"))
+    if ag.disagreements:
+        typer.echo(f"\ndisagreements ({len(ag.disagreements)}):")
+        for d in ag.disagreements[:show]:
+            typer.echo("  " + _json.dumps(d))
 
 
 @eval_app.command("label")

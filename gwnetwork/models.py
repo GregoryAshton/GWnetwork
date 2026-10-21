@@ -319,12 +319,39 @@ class UnknownDesignation(Base):
 
 
 class Engagement(str, enum.Enum):
-    """How deeply a paper touches an event. Ordinal, increasing."""
+    """How deeply a paper touches an event. Ordinal, increasing.
+
+    Derived, not asked: see USES. It is the deepest use recorded, kept as one
+    ordinal value so the site can group and sort by it.
+    """
     cited_only = "cited_only"
     qualitative = "qualitative"
     published_results = "published_results"
     posterior_samples = "posterior_samples"
     strain_analysis = "strain_analysis"
+
+
+# The GW data products a paper can use for an event, deepest first. These are
+# independent -- a paper can analyse the strain AND compare with the released
+# samples -- so they are recorded as a set, one yes/no question each. Only when
+# none applies is the paper either `qualitative` (uses anything the event
+# showed) or `cited_only`; `qualitative` is never recorded alongside a data
+# product, since nearly every such paper also discusses the event in words.
+USES = ["strain_analysis", "posterior_samples", "published_results"]
+FALLBACKS = ["qualitative", "cited_only"]
+
+
+def normalise_uses(uses) -> list:
+    """Canonical order; drop unknowns; drop `qualitative` beside a data product."""
+    got = set(uses or [])
+    data = [u for u in USES if u in got]
+    return data or (["qualitative"] if "qualitative" in got else [])
+
+
+def deepest_use(uses) -> str:
+    """The single ordinal engagement implied by a set of uses."""
+    uses = normalise_uses(uses)
+    return uses[0] if uses else Engagement.cited_only.value
 
 
 ROLES = [
@@ -356,7 +383,8 @@ class EventUsage(Base):
     event_id: Mapped[str] = mapped_column(ForeignKey("event.id"), index=True)
     analysis_run_id: Mapped[str] = mapped_column(ForeignKey("analysis_run.id"), index=True)
 
-    engagement: Mapped[str] = mapped_column(String(32), index=True)
+    engagement: Mapped[str] = mapped_column(String(32), index=True)  # = deepest_use(uses)
+    uses: Mapped[list] = mapped_column(JSON, default=list)  # subset of USES, or ["qualitative"]
     roles: Mapped[list] = mapped_column(JSON, default=list)
     is_primary_subject: Mapped[bool] = mapped_column(Boolean, default=False)
     confidence: Mapped[float] = mapped_column(Float, default=0.0)

@@ -29,8 +29,22 @@ def engine() -> Engine:
     return _engine
 
 
+# Columns added after their table first shipped. create_all() never alters an
+# existing table, so each is added here if missing. Idempotent.
+_ADDED_COLUMNS = [
+    ("event_usage", "uses", "JSON NOT NULL DEFAULT '[]'"),
+]
+
+
 def init_db() -> None:
-    Base.metadata.create_all(engine())
+    eng = engine()
+    Base.metadata.create_all(eng)
+    from sqlalchemy import inspect, text
+    insp = inspect(eng)
+    with eng.begin() as con:
+        for table, column, ddl in _ADDED_COLUMNS:
+            if column not in {c["name"] for c in insp.get_columns(table)}:
+                con.execute(text(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}"))
 
 
 @contextmanager

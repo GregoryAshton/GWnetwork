@@ -25,14 +25,16 @@ from sqlalchemy import func, select, update
 
 from ..config import CONFIG
 from ..db import session
-from ..models import AnalysisRun, Event, EventUsage, Mention, Paper
+from ..models import (
+    USES, AnalysisRun, Event, EventUsage, Mention, Paper, deepest_use, normalise_uses,
+)
 from ..citations import citing_sentences
 from ..counterparts import counterpart_names, is_counterpart
 from .prompts import PROMPT_SHA256, SYSTEM, build_user_prompt
 from .rules import classify_engagement
 from .schemas import SCHEMA
 
-PIPELINE_VERSION = "classify-0.3"
+PIPELINE_VERSION = "classify-0.4"
 
 MAX_EXCERPTS_PER_EVENT = 3
 MAX_EXCERPTS_TOTAL = 40
@@ -157,7 +159,8 @@ def _write_rule_usages(s, run_id, paper_id, rule_settled) -> int:
     for event_id, verdict in rule_settled:
         s.add(EventUsage(
             paper_id=paper_id, event_id=event_id, analysis_run_id=run_id,
-            engagement=verdict.engagement, roles=[], is_primary_subject=False,
+            engagement=verdict.engagement, uses=normalise_uses([verdict.engagement]),
+            roles=[], is_primary_subject=False,
             confidence=verdict.confidence, evidence=verdict.evidence, method="rule",
         ))
         n += 1
@@ -204,9 +207,10 @@ def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> int
         if event_id is None or event_id in seen:
             continue
         seen.add(event_id)
+        uses = normalise_uses([k for k in USES + ["qualitative"] if item.get(k)])
         s.add(EventUsage(
             paper_id=paper_id, event_id=event_id, analysis_run_id=run_id,
-            engagement=item["engagement"], roles=item.get("roles", []),
+            engagement=deepest_use(uses), uses=uses, roles=item.get("roles", []),
             is_primary_subject=bool(item.get("is_primary_subject")),
             confidence=float(item.get("confidence", 0.0)),
             evidence=item.get("evidence", []), method="llm",

@@ -187,15 +187,26 @@ Runs only on `(paper, event)` pairs with at least one mention.
 Analysis types are not mutually exclusive — a paper can do a population-level
 test of GR.
 
-`engagement` (ordinal — how deeply the paper touches the event):
+`uses` (multi-label since classify-0.4 -- which GW data products the paper
+uses for the event; one yes/no question each, answered independently):
 
-    cited_only          cited in passing; nothing the event showed is used
-    qualitative         uses what the event showed, in words or rounded values
-                        (read broadly)
+    strain_analysis     analyses the strain data itself (original or independent)
+    posterior_samples   uses released samples (PE, or sets conditioned on it)
     published_results   uses published measurements with their uncertainties,
                         in a calculation or a comparison
-    posterior_samples   uses released PE samples
-    strain_analysis     analyses the strain data itself (original or independent)
+
+Only when none applies: `qualitative` (uses what the event showed, in words or
+rounded values, read broadly) or `cited_only` (`uses` is empty).
+
+`engagement` (ordinal, derived = the deepest use; kept so the site can group and
+sort):
+
+    cited_only < qualitative < published_results < posterior_samples < strain_analysis
+
+Why a set: a paper can analyse the strain *and* compare with the released
+samples, and a single ordinal value forced labellers to drop one. The question
+text lives once in `classify/prompts.py` (`DATA_QUESTIONS`) and is shared by the
+prompt, the labelling UI and `eval/GUIDELINES.md`.
 
 `roles` (multi-label — what *this event* is used for in the paper; judged per
 event, so a GW170817 follow-up paper gives GW170817 `counterpart_followup` but

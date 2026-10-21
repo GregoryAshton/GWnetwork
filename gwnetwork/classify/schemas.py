@@ -12,10 +12,6 @@ from pydantic import BaseModel, Field
 
 from ..models import ROLES
 
-Engagement = Literal[
-    "cited_only", "qualitative", "published_results", "posterior_samples",
-    "strain_analysis"
-]
 Role = Literal[tuple(ROLES)]  # type: ignore[valid-type]
 
 
@@ -26,16 +22,14 @@ class Evidence(BaseModel):
 
 class EventUsageOut(BaseModel):
     event_name: str = Field(description="Event designation exactly as given in the input list")
-    engagement: Engagement = Field(
-        description=(
-            "cited_only: cited in passing, nothing it showed is used. "
-            "qualitative: uses what the event showed, in words or rounded values (broad). "
-            "published_results: uses published measurements with uncertainties, "
-            "including in comparisons. "
-            "posterior_samples: uses released PE samples. "
-            "strain_analysis: analyses the strain data itself (original or independent)."
-        )
-    )
+    # The usage questions (prompts.DATA_QUESTIONS, FALLBACK_QUESTION). Field
+    # names match models.USES so the runner can read them directly.
+    strain_analysis: bool = Field(description="Q1: analyses the strain data for this event")
+    posterior_samples: bool = Field(description="Q2: uses released samples for this event")
+    published_results: bool = Field(
+        description="Q3: uses published measurements with uncertainties, incl. comparisons")
+    qualitative: bool = Field(
+        description="Q4: uses anything the event showed (only matters if Q1-Q3 are false)")
     roles: List[Role] = Field(default_factory=list,
                               description="What the event is used FOR. May be empty or multiple.")
     is_primary_subject: bool = False

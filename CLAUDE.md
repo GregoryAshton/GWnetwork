@@ -82,6 +82,8 @@ Layers communicate only through the database; no layer imports another's logic.
 ## Eval
 
 `eval/gold.jsonl` is the hand-labelled set; `engagement: null` rows are skipped.
+Label with `gwn eval label` following the frozen guide `eval/GUIDELINES.md`;
+`gwn eval compare a.jsonl b.jsonl` measures agreement between two labellers.
 A template-derived gold set measures classification quality only, not
 extraction recall (see caveat in `gwnetwork/evalset.py`).
 
