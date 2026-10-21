@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -160,6 +181,115 @@ GPS 1261346253.9.</p>
 
 
 
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="187.14371902580274" x2="690" y2="187.14371902580274"/>
+      <text class="tick" x="-9" y="187.14371902580274" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="146.35393430227302" x2="690" y2="146.35393430227302"/>
+      <text class="tick" x="-9" y="146.35393430227302" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="115.49765332807576" x2="690" y2="115.49765332807576"/>
+      <text class="tick" x="-9" y="115.49765332807576" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="84.64137235387851" x2="690" y2="84.64137235387851"/>
+      <text class="tick" x="-9" y="84.64137235387851" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="43.851587630348796" x2="690" y2="43.851587630348796"/>
+      <text class="tick" x="-9" y="43.851587630348796" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="12.995306656151522" x2="690" y2="12.995306656151522"/>
+      <text class="tick" x="-9" y="12.995306656151522" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="162.13780918727915" y1="0" x2="162.13780918727915" y2="244"/>
+      <text class="tick" x="162.13780918727915" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="302.06380425361687" y1="0" x2="302.06380425361687" y2="244"/>
+      <text class="tick" x="302.06380425361687" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="581.9157943862924" y1="0" x2="581.9157943862924" y2="244"/>
+      <text class="tick" x="581.9157943862924" y="262" text-anchor="middle">2024</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2019-12-25</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2105.15120" target="_blank" rel="noopener">
+        <circle class="mark" cx="219.64" cy="11.68" r="4.6">
+          <title>Search for intermediate-mass black hole binaries in the third observing run of Advanced LI — 2021-05, 103 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2205.13580" target="_blank" rel="noopener">
+        <circle class="mark" cx="389.47" cy="30.16" r="4.6">
+          <title>Accurate modeling and mitigation of overlapping signals and glitches in gravitational-wave — 2022-08, 68 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2403.10439" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="63.72" r="3.2">
+          <title>Optimized search for a binary black hole merger population in LIGO-Virgo O3 data — 2024-08, 32 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="229.23999999999998" y="15.68"
+            text-anchor="start">Search for intermediate-mass black…</text>
+      
+      
+      <text class="datalabel" x="399.07000000000005" y="34.16"
+            text-anchor="start">Accurate modeling and mitigation o…</text>
+      
+      
+      <text class="datalabel" x="662.27" y="67.72"
+            text-anchor="end">Optimized search for a binary blac…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
+
 
 <h2>Catalogue history</h2>
 <div class="wrapx"><table class="sortable">
@@ -171,41 +301,61 @@ GPS 1261346253.9.</p>
 
 </table></div>
 
+<h2>How papers use 191225_215715</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">3 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/191225_215715/papers.html">Browse all
+3 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/191225_215715/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">3</td>
+  <td class="barcell"><span class="bar" style="width:100.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2105.15120">Search for intermediate-mass black hole binaries in the thir…</a> · <a href="https://arxiv.org/abs/2205.13580">Accurate modeling and mitigation of overlapping signals and …</a> · <a href="https://arxiv.org/abs/2403.10439">Optimized search for a binary black hole merger population i…</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/191225_215715/papers.html#role=single_event">single event <b>3</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">2 found here. ADS full-text search
-matches <b>3</b> for this event's designations — we
-hold 67%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">3 papers name this event;
+ADS full-text search matches <b>3</b> for its designations
+(we hold 100%). These are
+<b>mentions</b>, not citations. <a href="../event/191225_215715/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">Search for intermediate-mass black hole binaries in the third observing run of Adv</a></td>
+<tr><td><a href="https://arxiv.org/abs/2105.15120">Search for intermediate-mass black hole binaries in the third observing run of Adv</a></td>
     <td class="small mono">2105.15120</td>
     <td class="num small">103</td>
     <td class="num">2</td></tr>
 
-<tr><td><a href="#">Accurate modeling and mitigation of overlapping signals and glitches in gravitatio</a></td>
+<tr><td><a href="https://arxiv.org/abs/2205.13580">Accurate modeling and mitigation of overlapping signals and glitches in gravitatio</a></td>
     <td class="small mono">2205.13580</td>
     <td class="num small">68</td>
     <td class="num">3</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2403.10439">Optimized search for a binary black hole merger population in LIGO-Virgo O3 data</a></td>
+    <td class="small mono">2403.10439</td>
+    <td class="num small">32</td>
+    <td class="num">2</td></tr>
 
 </table></div>
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

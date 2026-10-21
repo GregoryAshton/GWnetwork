@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -216,14 +237,20 @@ GPS 1164686041.9.</p>
             dominant-baseline="middle">0</text>
       
       
-      <line class="grid" x1="236.31901611928438" y1="0" x2="236.31901611928438" y2="244"/>
-      <text class="tick" x="236.31901611928438" y="262" text-anchor="middle">2019</text>
+      <line class="grid" x1="220.95174580090384" y1="0" x2="220.95174580090384" y2="244"/>
+      <text class="tick" x="220.95174580090384" y="262" text-anchor="middle">2016</text>
       
-      <line class="grid" x1="340.5727851507199" y1="0" x2="340.5727851507199" y2="244"/>
-      <text class="tick" x="340.5727851507199" y="262" text-anchor="middle">2020</text>
+      <line class="grid" x1="380.8069916588807" y1="0" x2="380.8069916588807" y2="244"/>
+      <text class="tick" x="380.8069916588807" y="262" text-anchor="middle">2019</text>
       
-      <line class="grid" x1="653.6197190094961" y1="0" x2="653.6197190094961" y2="244"/>
-      <text class="tick" x="653.6197190094961" y="262" text-anchor="middle">2023</text>
+      <line class="grid" x1="434.04345583603543" y1="0" x2="434.04345583603543" y2="244"/>
+      <text class="tick" x="434.04345583603543" y="262" text-anchor="middle">2020</text>
+      
+      <line class="grid" x1="593.8987016940123" y1="0" x2="593.8987016940123" y2="244"/>
+      <text class="tick" x="593.8987016940123" y="262" text-anchor="middle">2023</text>
+      
+      <line class="grid" x1="647.135165871167" y1="0" x2="647.135165871167" y2="244"/>
+      <text class="tick" x="647.135165871167" y="262" text-anchor="middle">2024</text>
       
 
       
@@ -231,9 +258,9 @@ GPS 1164686041.9.</p>
             x2="690" y2="222"/>
 
       
-      <line class="eventline" x1="19.53" y1="0"
-            x2="19.53" y2="244"/>
-      <text class="eventlabel" x="24.53" y="11">
+      <line class="eventline" x1="269.96" y1="0"
+            x2="269.96" y2="244"/>
+      <text class="eventlabel" x="274.96" y="11">
         event detected 2016-12-02</text>
       
 
@@ -242,34 +269,46 @@ GPS 1164686041.9.</p>
 
       
       <a href="https://arxiv.org/abs/1811.12907" target="_blank" rel="noopener">
-        <circle class="mark" cx="288.02" cy="6.73" r="6.2">
-          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-07, 3,794 citations</title>
+        <circle class="mark" cx="421.06" cy="6.73" r="6.2">
+          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-10, 3,794 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2301.02471" target="_blank" rel="noopener">
-        <circle class="mark" cx="670.47" cy="126.13" r="3.2">
-          <title>The study of 11 contact binaries with mass ratios less than 0.1 — 2023-03, 36 citations</title>
+        <circle class="mark" cx="594.63" cy="126.13" r="3.2">
+          <title>The study of 11 contact binaries with mass ratios less than 0.1 — 2023-01, 36 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2001.00923" target="_blank" rel="noopener">
-        <circle class="mark" cx="366.56" cy="139.95" r="3.2">
-          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-04, 21 citations</title>
+        <circle class="mark" cx="442.07" cy="139.95" r="3.2">
+          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-02, 21 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2406.05664" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="200.23" r="3.2">
+          <title>Multi-color and TESS photometric investigation of four lo mass-ratio contact binary system — 2024-06, 2 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1203.4419" target="_blank" rel="noopener">
+        <circle class="mark" cx="19.53" cy="218.0" r="3.2">
+          <title>Notes on higher-dimensional partitions — 2012-03, 1 citations</title>
         </circle>
       </a>
       
       
       
-      <text class="datalabel" x="299.21999999999997" y="10.73"
+      <text class="datalabel" x="432.26" y="10.73"
             text-anchor="start">GWTC-1: A Gravitational-Wave Trans…</text>
       
       
-      <text class="datalabel" x="662.27" y="130.13"
+      <text class="datalabel" x="586.43" y="130.13"
             text-anchor="end">The study of 11 contact binaries w…</text>
       
       
-      <text class="datalabel" x="374.76" y="143.95"
+      <text class="datalabel" x="450.27" y="143.95"
             text-anchor="start">A Joint Fermi-GBM and LIGO/Virgo A…</text>
       
 
@@ -281,7 +320,9 @@ GPS 1164686041.9.</p>
   <figcaption class="mut">
     Each point is a paper mentioning this event, placed at its submission month.
     
-    
+    1 point
+    sits left of the detection line: papers first
+    posted earlier whose revised versions mention the event, dated by original submission.
   </figcaption>
 </figure>
 
@@ -296,46 +337,78 @@ GPS 1164686041.9.</p>
 
 </table></div>
 
+<h2>How papers use 161202</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">5 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/161202/papers.html">Browse all
+5 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/161202/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">1</td>
+  <td class="barcell"><span class="bar" style="width:20.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Bi…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/161202/papers.html#cited_only">cited only</a></td>
+  <td class="num">4</td>
+  <td class="barcell"><span class="bar" style="width:80.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2301.02471">The study of 11 contact binaries with mass ratios less than …</a> · <a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary …</a> · <a href="https://arxiv.org/abs/2406.05664">Multi-color and TESS photometric investigation of four lo ma…</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/161202/papers.html#role=detector_characterisation">detector characterisation <b>1</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">3 found here. ADS full-text search
-matches <b>16</b> for this event's designations — we
-hold 19%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">5 papers name this event;
+ADS full-text search matches <b>16</b> for its designations
+(we hold 31%). These are
+<b>mentions</b>, not citations. <a href="../event/161202/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
+<tr><td><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
     <td class="small mono">1811.12907</td>
     <td class="num small">3,794</td>
     <td class="num">4</td></tr>
 
-<tr><td><a href="#">The study of 11 contact binaries with mass ratios less than 0.1</a></td>
+<tr><td><a href="https://arxiv.org/abs/2301.02471">The study of 11 contact binaries with mass ratios less than 0.1</a></td>
     <td class="small mono">2301.02471</td>
     <td class="num small">36</td>
-    <td class="num">1</td></tr>
+    <td class="num">2</td></tr>
 
-<tr><td><a href="#">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
+<tr><td><a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
     <td class="small mono">2001.00923</td>
     <td class="num small">21</td>
     <td class="num">2</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2406.05664">Multi-color and TESS photometric investigation of four lo mass-ratio contact binar</a></td>
+    <td class="small mono">2406.05664</td>
+    <td class="num small">2</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1203.4419">Notes on higher-dimensional partitions</a></td>
+    <td class="small mono">1203.4419</td>
+    <td class="num small">1</td>
+    <td class="num">1</td></tr>
 
 </table></div>
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

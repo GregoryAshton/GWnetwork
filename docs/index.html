@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -133,7 +154,7 @@ button.ghost{background:none;color:var(--accent)}
 <nav><a href="./index.html">GWnetwork</a><a href="./events.html">Events</a><a href="./explore.html">Explore</a><a href="./papers.html">Papers</a></nav>
 
 <h1>GWnetwork</h1>
-<p class="lede">Which papers discuss or use which gravitational-wave events.</p>
+<p class="lede">A database of how transient gravitational-wave signals are discussed in the literature.</p>
 
 <div class="stats">
   
@@ -143,180 +164,81 @@ button.ghost{background:none;color:var(--accent)}
   
   <div class="stat"><b class="tnum">13,904</b><span>Papers</span></div>
   
-  <div class="stat"><b class="tnum">18,913</b><span>Event–paper links</span></div>
+  <div class="stat"><b class="tnum">35,314</b><span>Event–paper links</span></div>
   
-  <div class="stat"><b class="tnum">55</b><span>Classified usages</span></div>
+  <div class="stat"><b class="tnum">35,308</b><span>Classified usages</span></div>
   
 </div>
 
 <div class="readme">
   <h2>What this is</h2>
-  <p>Every gravitational-wave event in the GWOSC catalogues, linked to the arXiv
-  papers that name it. The event list is built from GWOSC and extended by hand
-  where a signal was reported elsewhere; the literature is found by searching the
-  NASA ADS full-text index for every designation an event has ever been known
-  by — including electromagnetic counterpart names like
-  <code>AT2017gfo</code> and short forms like <code>GW230529</code>.</p>
+  <p>Citation counts say which papers reference a discovery paper, not what they
+  did with the event. GWnetwork links every gravitational-wave event to the papers
+  that name it in their full text, then uses a large language model to classify
+  how each paper uses each event — with a quoted sentence from the paper as
+  evidence for every call.</p>
+  <p>A <b>mention</b> is an event's name (or any alias, including counterpart
+  names such as <code>AT2017gfo</code>) found in a paper's text. Mentions are
+  matched exactly, not inferred, and are not the same as citations: many papers
+  cite a discovery paper without naming the event, and many name it without
+  citing the paper.</p>
+  <p>Each paper–event pair is then labelled by its deepest use of the event:</p>
+  <dl class="levels">
+    <dt>strain analysis</dt><dd>analyses the detector data for the event</dd>
+    <dt>posterior samples</dt><dd>uses released parameter-estimation samples</dd>
+    <dt>published results</dt><dd>uses published measurements with their uncertainties</dd>
+    <dt>qualitative</dt><dd>discusses or builds on what the event showed</dd>
+    <dt>cited only</dt><dd>names the event in passing</dd>
+  </dl>
+  <p>and by <b>roles</b> — what the event is used for, such as a single-event
+  study, a population, a test of general relativity, cosmology or
+  dense-matter physics.</p>
 
-  <h2>What a mention is</h2>
-  <p>A <b>mention</b> is an occurrence of an event's name in the text of a paper
-  we hold, recorded with its character offset, the section it appeared in, and
-  the surrounding sentence. Nothing is inferred: if the string is not in the
-  text, there is no mention.</p>
-  <p>A mention is <b>not a citation</b>, and the two sets differ more than you
-  might expect. For GW170817, 9,775 papers cite the discovery paper and 11,313
-  name the event somewhere in their full text — but only 6,005 do both. Roughly
-  3,800 cite the paper without ever writing the event's name, and 5,300 write the
-  name without citing that paper. Counting citations and counting mentions
-  answer different questions, and neither answers <em>who actually used the
-  event</em> — that is what the usage classification is for.</p>
+  <h2>Status</h2>
+  <table class="status">
+    <tr><th>Version</th><td>
+      <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>,
+      built 2026-10-21 12:20 UTC</td></tr>
+    <tr><th>Corpus</th><td>
+      434 events; 13,904 papers,
+      13,892 with full text (the other 12 searched by abstract only);
+      mentions extracted 2026-10-20</td></tr>
+    
+    <tr><th>Classification</th><td>
+      Claude Haiku 5.5, reading
+      the sentences around each mention;
+      35,308 pairs, run 2026-10-21</td></tr>
+    
+    <tr><th>Accuracy</th><td>
+      81% agreement with a reference set of 234 pairs
+      (κ 0.75; 76% on the 127 labelled by a person,
+      the rest agreed by two independent AI labellers), read in full against a
+      <a href="https://github.com/GregoryAshton/GWnetwork/blob/main/eval/GUIDELINES.md">written guide</a>.
+      A first pass: strain-analysis and released-sample calls are reliable but
+      undercounted (~46% of released-sample uses found).</td></tr>
+    
+    
+  </table>
 
-  <h2>The data set is incomplete</h2>
-  <p>Coverage is partial and openly so. Full text has been fetched for
-  1,975 of 13,904 papers
-  (14%); for the rest only the
-  abstract has been searched, so their mentions are undercounted. Each event page shows
-  what we found against the number ADS reports, so the shortfall is visible
-  rather than implied. Usage classification — whether a paper reanalysed an
-  event, used its posterior samples, or merely cited it — has been run on a
-  handful of papers as a sample, not the corpus. Treat every count here as a
-  lower bound.</p>
+  <h2>Where to go</h2>
+  <ul class="goto">
+    <li><a href="./events.html">Events</a> — every event with its measured properties, filterable
+    and sortable; each event's page lists the papers that mention it, grouped by how they use it.</li>
+    <li><a href="./papers.html">Papers</a> — every paper in the corpus, with the events it mentions
+    and how it uses each.</li>
+    <li><a href="./explore.html">Explore</a> — charts across all events: where attention sits in the
+    mass plane, how it builds over time, and whether loud events get more of it.</li>
+  </ul>
 </div>
-
-<h2>Most-mentioned events</h2>
-<div class="wrapx"><table class="sortable">
-<tr><th>Event</th><th>Class</th><th>Run</th><th class="num">Mentioning</th><th class="num">ADS ceiling</th></tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170817.html">GW170817</a></td>
-  <td class="small">BNS</td>
-  <td class="small">O2</td>
-  <td class="num">2,932</td>
-  <td class="num mut">9,456</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW150914.html">GW150914</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O1</td>
-  <td class="num">1,377</td>
-  <td class="num mut">4,000</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190814.html">GW190814</a></td>
-  <td class="small">NSBH</td>
-  <td class="small">O3a</td>
-  <td class="num">814</td>
-  <td class="num mut">1,618</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW151226.html">GW151226</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O1</td>
-  <td class="num">751</td>
-  <td class="num mut">1,316</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190521.html">GW190521</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">673</td>
-  <td class="num mut">1,456</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170814.html">GW170814</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">642</td>
-  <td class="num mut">798</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190425.html">GW190425</a></td>
-  <td class="small">BNS</td>
-  <td class="small">O3a</td>
-  <td class="num">616</td>
-  <td class="num mut">1,290</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170104.html">GW170104</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">603</td>
-  <td class="num mut">789</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170608.html">GW170608</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">474</td>
-  <td class="num mut">488</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW190412.html">GW190412</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O3a</td>
-  <td class="num">390</td>
-  <td class="num mut">477</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170729.html">GW170729</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">245</td>
-  <td class="num mut">302</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200115_042309.html">GW200115_042309</a></td>
-  <td class="small">NSBH</td>
-  <td class="small">O3b</td>
-  <td class="num">243</td>
-  <td class="num mut">384</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200105_162426.html">GW200105_162426</a></td>
-  <td class="small">NSBH</td>
-  <td class="small">O3b</td>
-  <td class="num">202</td>
-  <td class="num mut">352</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW200129_065458.html">GW200129_065458</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O3b</td>
-  <td class="num">188</td>
-  <td class="num mut">248</td>
-</tr>
-
-<tr>
-  <td><a class="mono" href="./event/GW170818.html">GW170818</a></td>
-  <td class="small">BBH</td>
-  <td class="small">O2</td>
-  <td class="num">186</td>
-  <td class="num mut">173</td>
-</tr>
-
-</table></div>
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

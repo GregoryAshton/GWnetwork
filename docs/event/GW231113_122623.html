@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -208,11 +229,11 @@ GPS 1383913601.9.</p>
             dominant-baseline="middle">0</text>
       
       
-      <line class="grid" x1="291.4938154138915" y1="0" x2="291.4938154138915" y2="244"/>
-      <text class="tick" x="291.4938154138915" y="262" text-anchor="middle">2025</text>
+      <line class="grid" x1="274.0047570687904" y1="0" x2="274.0047570687904" y2="244"/>
+      <text class="tick" x="274.0047570687904" y="262" text-anchor="middle">2025</text>
       
-      <line class="grid" x1="531.1227402473835" y1="0" x2="531.1227402473835" y2="244"/>
-      <text class="tick" x="531.1227402473835" y="262" text-anchor="middle">2026</text>
+      <line class="grid" x1="498.36201827997223" y1="0" x2="498.36201827997223" y2="244"/>
+      <text class="tick" x="498.36201827997223" y="262" text-anchor="middle">2026</text>
       
 
       
@@ -220,9 +241,9 @@ GPS 1383913601.9.</p>
             x2="690" y2="222"/>
 
       
-      <line class="eventline" x1="19.7" y1="0"
-            x2="19.7" y2="244"/>
-      <text class="eventlabel" x="24.7" y="11">
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
         event detected 2023-11-13</text>
       
 
@@ -231,59 +252,77 @@ GPS 1383913601.9.</p>
 
       
       <a href="https://arxiv.org/abs/2508.18082" target="_blank" rel="noopener">
-        <circle class="mark" cx="430.68" cy="8.83" r="6.2">
-          <title>GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the Fir — 2025-08, 500 citations</title>
+        <circle class="mark" cx="606.55" cy="8.83" r="6.2">
+          <title>GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the Fir — 2026-06, 500 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2508.18079" target="_blank" rel="noopener">
+        <circle class="mark" cx="657.56" cy="63.0" r="4.6">
+          <title>Open Data from LIGO, Virgo, and KAGRA through the First Part of the Fourth Observing Run — 2026-09, 100 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2605.27225" target="_blank" rel="noopener">
-        <circle class="mark" cx="609.9" cy="88.41" r="3.2">
-          <title>GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run a — 2026-05, 47 citations</title>
+        <circle class="mark" cx="605.32" cy="88.41" r="3.2">
+          <title>GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run a — 2026-06, 47 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2412.03461" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="98.34" r="3.2">
+          <title>Revising the Spin and Kick Connection in Isolated Binary Black Holes — 2026-10, 35 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2512.19513" target="_blank" rel="noopener">
-        <circle class="mark" cx="590.21" cy="131.67" r="3.2">
-          <title>Parameter estimation for the GWTC-4.0 catalog with phenomenological waveform models that i — 2026-04, 13 citations</title>
+        <circle class="mark" cx="492.83" cy="131.67" r="3.2">
+          <title>Parameter estimation for the GWTC-4.0 catalog with phenomenological waveform models that i — 2025-12, 13 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2603.29019" target="_blank" rel="noopener">
-        <circle class="mark" cx="569.86" cy="148.01" r="3.2">
-          <title>Eccentricity constraints disfavor single-single capture in nuclear star clusters as the or — 2026-03, 8 citations</title>
+        <circle class="mark" cx="613.31" cy="148.01" r="3.2">
+          <title>Eccentricity constraints disfavor single-single capture in nuclear star clusters as the or — 2026-07, 8 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2602.11030" target="_blank" rel="noopener">
-        <circle class="mark" cx="630.26" cy="157.69" r="3.2">
-          <title>Population properties of binary black holes with eccentricity — 2026-06, 6 citations</title>
+        <circle class="mark" cx="580.73" cy="157.69" r="3.2">
+          <title>Population properties of binary black holes with eccentricity — 2026-05, 6 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2606.18081" target="_blank" rel="noopener">
+        <circle class="mark" cx="664.94" cy="194.67" r="3.2">
+          <title>The Chirp-Mass Ladder: A New Rung Emerges — 2026-09, 2 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2608.29072" target="_blank" rel="noopener">
-        <circle class="mark" cx="670.3" cy="237" r="3.2">
+        <circle class="mark" cx="645.88" cy="237" r="3.2">
           <title>Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0 — 2026-08, 0 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2604.02018" target="_blank" rel="noopener">
-        <circle class="mark" cx="590.21" cy="237" r="3.2">
+        <circle class="mark" cx="554.91" cy="237" r="3.2">
           <title>Case studies with GPBilby of glitch-contaminated transient gravitational waves — 2026-04, 0 citations</title>
         </circle>
       </a>
       
       
       
-      <text class="datalabel" x="441.88" y="12.83"
-            text-anchor="start">GWTC-4.0: Updating the Gravitation…</text>
+      <text class="datalabel" x="595.3499999999999" y="12.83"
+            text-anchor="end">GWTC-4.0: Updating the Gravitation…</text>
       
       
-      <text class="datalabel" x="601.6999999999999" y="92.41"
+      <text class="datalabel" x="647.9599999999999" y="67.0"
+            text-anchor="end">Open Data from LIGO, Virgo, and KA…</text>
+      
+      
+      <text class="datalabel" x="597.12" y="92.41"
             text-anchor="end">GWTC-5.0: Observations from the Se…</text>
-      
-      
-      <text class="datalabel" x="582.01" y="135.67"
-            text-anchor="end">Parameter estimation for the GWTC-…</text>
       
 
       <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
@@ -313,52 +352,103 @@ GPS 1383913601.9.</p>
 
 </table></div>
 
+<h2>How papers use GW231113_122623</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">10 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/GW231113_122623/papers.html">Browse all
+10 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/GW231113_122623/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">5</td>
+  <td class="barcell"><span class="bar" style="width:50.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LI…</a> · <a href="https://arxiv.org/abs/2512.19513">Parameter estimation for the GWTC-4.0 catalog with phenomeno…</a> · <a href="https://arxiv.org/abs/2603.29019">Eccentricity constraints disfavor single-single capture in n…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW231113_122623/papers.html#posterior_samples">posterior samples</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:20.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2412.03461">Revising the Spin and Kick Connection in Isolated Binary Bla…</a> · <a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black hole…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW231113_122623/papers.html#published_results">published results</a></td>
+  <td class="num">1</td>
+  <td class="barcell"><span class="bar" style="width:10.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2606.18081">The Chirp-Mass Ladder: A New Rung Emerges</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW231113_122623/papers.html#cited_only">cited only</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:20.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog …</a> · <a href="https://arxiv.org/abs/2508.18079">Open Data from LIGO, Virgo, and KAGRA through the First Part…</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/GW231113_122623/papers.html#role=population">population <b>5</b></a><a class="chip" href="../event/GW231113_122623/papers.html#role=single_event">single event <b>5</b></a><a class="chip" href="../event/GW231113_122623/papers.html#role=detector_characterisation">detector characterisation <b>1</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">7 found here. ADS full-text search
-matches <b>9</b> for this event's designations — we
-hold 78%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">10 papers name this event;
+ADS full-text search matches <b>9</b> for its designations
+(we hold 111%). These are
+<b>mentions</b>, not citations. <a href="../event/GW231113_122623/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from</a></td>
+<tr><td><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from</a></td>
     <td class="small mono">2508.18082</td>
     <td class="num small">500</td>
     <td class="num">4</td></tr>
 
-<tr><td><a href="#">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observi</a></td>
+<tr><td><a href="https://arxiv.org/abs/2508.18079">Open Data from LIGO, Virgo, and KAGRA through the First Part of the Fourth Observi</a></td>
+    <td class="small mono">2508.18079</td>
+    <td class="num small">100</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observi</a></td>
     <td class="small mono">2605.27225</td>
     <td class="num small">47</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">Parameter estimation for the GWTC-4.0 catalog with phenomenological waveform model</a></td>
+<tr><td><a href="https://arxiv.org/abs/2412.03461">Revising the Spin and Kick Connection in Isolated Binary Black Holes</a></td>
+    <td class="small mono">2412.03461</td>
+    <td class="num small">35</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2512.19513">Parameter estimation for the GWTC-4.0 catalog with phenomenological waveform model</a></td>
     <td class="small mono">2512.19513</td>
     <td class="num small">13</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">Eccentricity constraints disfavor single-single capture in nuclear star clusters a</a></td>
+<tr><td><a href="https://arxiv.org/abs/2603.29019">Eccentricity constraints disfavor single-single capture in nuclear star clusters a</a></td>
     <td class="small mono">2603.29019</td>
     <td class="num small">8</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">Population properties of binary black holes with eccentricity</a></td>
+<tr><td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a></td>
     <td class="small mono">2602.11030</td>
     <td class="num small">6</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">Case studies with GPBilby of glitch-contaminated transient gravitational waves</a></td>
+<tr><td><a href="https://arxiv.org/abs/2606.18081">The Chirp-Mass Ladder: A New Rung Emerges</a></td>
+    <td class="small mono">2606.18081</td>
+    <td class="num small">2</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2604.02018">Case studies with GPBilby of glitch-contaminated transient gravitational waves</a></td>
     <td class="small mono">2604.02018</td>
     <td class="num small">0</td>
     <td class="num">5</td></tr>
 
-<tr><td><a href="#">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a></td>
+<tr><td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a></td>
     <td class="small mono">2608.29072</td>
     <td class="num small">0</td>
     <td class="num">1</td></tr>
@@ -367,12 +457,12 @@ hold 78%. These are
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

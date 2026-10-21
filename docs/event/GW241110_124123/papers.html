@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW241110_124123 · papers · GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+th .sorth{all:unset;cursor:pointer}
+th .sorth:hover{color:var(--ink-2)}
+th .sorth:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+th .sorth::after{content:"\2195";opacity:.35;font-size:.9em;margin-left:4px}
+th[aria-sort] .sorth{color:var(--accent-ink)}
+th[aria-sort=ascending] .sorth::after{content:"\25B2";opacity:1;font-size:.75em}
+th[aria-sort=descending] .sorth::after{content:"\25BC";opacity:1;font-size:.75em}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../../index.html">GWnetwork</a><a href="../../events.html">Events</a><a href="../../explore.html">Explore</a><a href="../../papers.html">Papers</a></nav>
+
+<p class="small"><a href="../../event/GW241110_124123.html">← GW241110_124123</a></p>
+<h1>Papers mentioning <span class="mono">GW241110_124123</span></h1>
+<p class="small mut">76 papers, deepest use first, then most cited.
+Each classification links to the quoted evidence. Dates are the paper's latest arXiv version.</p>
+
+<div class="pfilters">
+  <div class="lvls">
+    <button type="button" data-level="" class="on">all <b>76</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>7</b></button><button type="button" data-level="posterior_samples">posterior samples <b>12</b></button><button type="button" data-level="published_results">published results <b>11</b></button><button type="button" data-level="qualitative">qualitative <b>19</b></button><button type="button" data-level="cited_only">cited only <b>27</b></button>
+  </div>
+  
+  <label class="small">used for
+    <select id="role"><option value="">any</option>
+    <option value="formation_channels">formation channels (26)</option><option value="single_event">single event (17)</option><option value="population">population (17)</option><option value="test_of_gr">test of gr (1)</option><option value="cosmology">cosmology (1)</option>
+    </select></label>
+  
+  <span class="small mut" id="shown"></span>
+</div>
+
+<div class="wrapx"><table class="sortable" id="ptab">
+<thead><tr><th>Title</th><th class="num">Year</th><th class="num">Citations</th><th class="num">Mentions</th><th>Use</th><th>Used for</th></tr></thead>
+<tbody>
+
+<tr data-level="strain_analysis" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2510.26931">GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hol</a>
+<details><summary>evidence</summary><blockquote>We report the observation of gravitational waves from two binary black hole coalescences during the fourth observing run of the LIGO–Virgo–KAGRA detector network, GW241011 and GW241110.</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">76</td>
+  <td class="num small">152</td>
+  <td class="small" data-sort="1"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gr</a>
+<details><summary>evidence</summary><blockquote>GW241110_124123 is another unequal-mass BH merger, with a spinning primary about twice as mas- sive as the secondary, and might also be a result of a hierarchical merger in a dense environment</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">47</td>
+  <td class="num small">11</td>
+  <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2606.07679">PyCBC Live Search for Compact Binary Mergers in Advanced LIGO and Virgo&#39;s Fourth Observing Run</a>
+<details><summary>evidence</summary><blockquote>Over the course of O4, PyCBC Live contributed to the low-latency detections of numerous high-profile events [19, 7], including GW230529_181500 [20], GW231123_135430 [21], GW241011_233834, GW241110_124123 [22], and GW2501…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2607.19293">GWTC-5.0: Tests of General Relativity</a>
+<details><summary>evidence</summary><blockquote>GW241110 124123 9.9+0.3 −0.5 HLV 11.33+0.22 −0.23</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2607.04909">A stepping stone toward detecting gravitational wave memory: a cumulative analysis with the full $(\ell=2, m=0</a>
+<details><summary>evidence</summary><blockquote>GW241110_124123 [1] is a low SNR=9.9−0.5+0.3=9.9^{+0.3}_{-0.5} event, with unequal masses and high spins χeff=−0.31−0.18+0.23.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="5"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2608.16563">Population-Level Verification of the Black-Hole Area Law with First- and Second-Generation Black Holes</a>
+<details><summary>evidence</summary><blockquote>Using parameter estimation restricted to the inspiral of 241 events</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="6"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2608.24822">Measurement of spin-orbit misalignment in binary black holes via the total spin</a>
+<details><summary>evidence</summary><blockquote>Other second-generation candidates discussed in the literature are GW241110 (second in terms of SDRali,cos⁡θL​Siso, see Fig. 6) and GW241011, which are also consistent with a tilted primary spin of ≈0.7 and unequal masse…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="7"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2511.05316">A subpopulation of low-mass, spinning black holes: signatures of dynamical assembly</a>
+<details><summary>evidence</summary><blockquote>In this work, we reveal confident evidence of another subpopulation with rapid and isotropic spins at low mass containing the two exceptional events GW241011 and GW241110 [1], consistent with a hierarchical merger hypoth…</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">35</td>
+  <td class="num small">18</td>
+  <td class="small" data-sort="8"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2412.03461">Revising the Spin and Kick Connection in Isolated Binary Black Holes</a>
+<details><summary>evidence</summary><blockquote>Four events yield ln⁡(BF)Iso/Natal&gt;1\ln{\rm BF}_{\rm Iso/Natal}&gt;1: GW241127_061008, GW241225_082815, GW241110_124123, and GW200225.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">35</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="9"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2605.27226">GWTC-5.0: Population Properties of Merging Compact Binaries</a>
+<details><summary>evidence</summary><blockquote>Note, however, that the Default BBH model, Three Subpopulation model, χeff\chi_{\mathrm{eff}} Three Transitions and the copula analyses used Mixed samples for a small handful of events from O4b, namely GW241111_111552, G…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">28</td>
+  <td class="num small">7</td>
+  <td class="small" data-sort="10"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2601.07908">Signatures of a Subpopulation of Hierarchical Mergers in the GWTC-4 Gravitational-Wave Dataset</a>
+<details><summary>evidence</summary><blockquote>alongside GW241011 and GW241110, two events from the second part of the fourth observing run (O4b) whose spin properties imply a hierarchical origin [3].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">24</td>
+  <td class="num small">9</td>
+  <td class="small" data-sort="11"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2510.25579">Population of Binary Black Holes Inferred from One Hundred and Fifty Gravitational Wave Signals</a>
+<details><summary>evidence</summary><blockquote>Figures presented in Section IV also use data from the recently released (and not part of GWTC-4.0) observations GW241110_124123 and GW241011_233834 [2].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">19</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="12"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population cosmology ">
+  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW241110_124123 739−256+261739^{+261}_{-256} 0.15−0.05+0.050.15^{+0.05}_{-0.05}</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="13"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2605.25980">Reversible-jump MCMC reveals binary black hole subpopulations with distinct redshift evolution</a>
+<details><summary>evidence</summary><blockquote>With the skewt (NPLNP) population model, we find that the probability that GW241011 belongs in the high-spin continuum is 90.4%90.4\% (99.9996%99.9996\%), while the corresponding probability for GW241110 is 35%35\% (91%9…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">6</td>
+  <td class="num small">6</td>
+  <td class="small" data-sort="14"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.12205">Evidence for additional structure in the effective spin distribution hints at multiple formation pathways in G</a>
+<details><summary>evidence</summary><blockquote>It is followed by GW241110, the exceptional event with strong support for a hierarchical origin [2].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="15"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2604.04546">Recoil kicks from binary black hole mergers in GWTC catalogs: implications for retention and hierarchical merg</a>
+<details><summary>evidence</summary><blockquote>GW241110_124123: vkick=394−207+582 km s−1</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="16"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2602.05645">Coalescence Forensics: Weighing the Hosts of Hierarchical Binary Black Hole Mergers</a>
+<details><summary>evidence</summary><blockquote>For the recoil velocity, we employ two alternative LVK posteriors [18], referred to as the “Forwards” (low-vrv_{r}) and “Backwards” (high-vrv_{r}) estimates [4].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">12</td>
+  <td class="small" data-sort="17"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2607.01317">No Evidence for Superradiant Axions in LIGO-Virgo-KAGRA GWTC-5 Binary Black Hole Spins</a>
+<details><summary>evidence</summary><blockquote>Using binary BH (BBH) spin measurements obtained from the LIGO-Virgo-KAGRA GWTC-5 catalog, the most extensive public BBH catalog to date containing $N=257$ mergers with BH masses spanning roughly $5$-$135$ $M_\odot$, we …</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="18"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2607.00565">Distinct spin properties and astrophysical origin of low mass binary black holes in gravitational wave data</a>
+<details><summary>evidence</summary><blockquote>We focus in particular on GW241110 and GW241011 because they are low-mass events with substantial support at positive or negative χeff [1], and therefore are natural candidates for driving the inferred broadening of the …</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">7</td>
+  <td class="small" data-sort="19"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2601.02467">Exceptionality of exceptional gravitational-wave events</a>
+<details><summary>evidence</summary><blockquote>while GW241110 is the binary black hole with the most strongly misaligned spin relative to the orbital angular momentum.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">7</td>
+  <td class="num small">10</td>
+  <td class="small" data-sort="20"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2604.25994">Properties of Black Hole Mergers in Disks of Active Galactic Nuclei</a>
+<details><summary>evidence</summary><blockquote>Only a few events may exhibit such values, such as GW241110, which has χeff=−0.28−0.20+0.23 [2].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="21"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.06209">The First Decade of Gravitational-Wave Measurements of Black Hole Spins</a>
+<details><summary>evidence</summary><blockquote>provided the strongest evidence of mergers formed hierarchically, as both of these events have unequal mass ratios and primary spin magnitudes characteristic of second-generation black holes</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">6</td>
+  <td class="small" data-sort="22"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2508.07499">Comparing a compact-binary mass-shell model with select observed gravitational waves</a>
+<details><summary>evidence</summary><blockquote>GW241110 [33] 17.2−4.4+5.017.2^{+5.0}_{-4.4} 7.7−1.5+2.27.7^{+2.2}_{-1.5} - - 0.9350.935 - -</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="23"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2604.05492">Remnant recoil and host environments of GWTC-4.0 binary black-hole mergers</a>
+<details><summary>evidence</summary><blockquote>GW241011_233834 and GW241110_124123, detected during O4b, have been independently discussed in the literature as potential products of dense environments.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">8</td>
+  <td class="small" data-sort="24"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.18081">The Chirp-Mass Ladder: A New Rung Emerges</a>
+<details><summary>evidence</summary><blockquote>GW241011_233834 18.9–6.2 GW241110_124123 16.8–8.3</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">7</td>
+  <td class="small" data-sort="25"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.14852">Intermediate-mass black hole seeding in galactic nuclei from star cluster migration</a>
+<details><summary>evidence</summary><blockquote>We qualitatively compare our models with the primary components of GW190521 (Abbott et al. 2020a), GW231123 (Abac et al. 2025b), GW241011 and GW241110 (Abac et al. 2025a).</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="26"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.23788">Red vs. Blue: How metallicity shapes black hole dynamics and mergers in dense star clusters</a>
+<details><summary>evidence</summary><blockquote>high-metallicity cluster models produce low-mass hierarchical mergers consistent with the mass ratios and component masses of GW241011 and GW241110</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">11</td>
+  <td class="small" data-sort="27"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2609.06728">Physics-based phenomenological modeling of binary black hole hierarchical formation 2: Autodifferentiable func</a>
+<details><summary>evidence</summary><blockquote>Their opposite-sign effective spins — χeff=+0.49 for GW241011 (mildly aligned) and −0.28 for GW241110 (misaligned) — directly illustrate the isotropic second-generation orientations the model assumes</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="28"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2609.05996">Physics-based phenomenological modeling of binary black hole hierarchical formation 1: Synthetic universes fro</a>
+<details><summary>evidence</summary><blockquote>GW241110 at −0.39±0.11 on the negative</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="29"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>GW241110_124123 16.1116.11 8.108.10 0.6310.631</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="30"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2509.04637">Gravitational-wave constraints on the pair-instability mass gap and nuclear burning in massive stars</a>
+<details><summary>evidence</summary><blockquote>This aligns with the mass dip in Tiwari (2024) and with GW241011 and GW241110, two O4b events interpreted as hierarchical mergers Abac et al.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">55</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="31"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2605.27223">GWTC-5.0: An Introduction to Version 5.0 of the Gravitational-Wave Transient Catalog</a>
+<details><summary>evidence</summary><blockquote>exceptional O4b event papers have been published: GW241011_233834 and GW241110_124123 [12], a particularly interesting pair of asymmetric, high-spin BBH coalescences</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">31</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="32"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2512.03152">Inferring black hole formation channels in GWTC-4.0 via parametric mass-spin correlations derived from first p</a>
+<details><summary>evidence</summary><blockquote>In this work, we focused on events from the GWTC-4.0 catalog and neglected the recent highly spinning events GW241110 and GW241011, with masses below 30 M⊙M_{\odot} [2].</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">15</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="33"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2512.20054">Stable mass transfer in massive binaries leading to merging black holes</a>
+<details><summary>evidence</summary><blockquote>In addition, GW241011 and GW241110 show evidence for high-spin primary BHs [1].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">14</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="34"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2605.25994">Compactness Peaks and Subpopulations: Probing Stellar Physics and Formation Channels of Merging Binary Black H</a>
+<details><summary>evidence</summary><blockquote>along with the discovery of GW241011 and GW241110 as candidate low-mass hierarchical mergers [3].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">11</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="35"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2604.01420">Low-mass failed supernovae and the $10\,M_{\odot}$ peak in the merging black hole mass distribution</a>
+<details><summary>evidence</summary><blockquote>For the same reasons, we do not include post-GWTC-4.0 exceptional events [3, 4].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="36"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2605.28716">Eccentric and unbound compact binaries in the LIGO-Virgo-KAGRA catalog: parameter estimation and waveform syst</a>
+<details><summary>evidence</summary><blockquote>GW241011_233834 and GW241110_124123 [86] are asymmetric, high-spin BBH events from O4b, identified as potential products of hierarchical mergers and found consistent with QC orbits with SEOBNRv5EHM and TEOBResumS-Dalí [8…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="37"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2511.13820">Hierarchical Black Hole Mergers in Nuclear Star Clusters: A Combined Dynamical-secular Channel for GW231123-li</a>
+<details><summary>evidence</summary><blockquote>It may also provide physical insight into the origin of recent GW events such as GW241011 and GW241110 (which exhibit mass ratios ∼2:1\sim 2:1 and large primary spins, consistent with 2G/1G mergers) [49, e.g.,].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="38"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2603.20430">Isolated or Dynamical? Tracing Black Hole Binary Formation through the Population of Gravitational-Wave Source</a>
+<details><summary>evidence</summary><blockquote>We applied the same analysis to the recently discovered sources GW241011 and GW241110 [159], whose highly spinning components seem to support a hierarchical origin.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="39"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2602.20110">The Universal Eccentricity Distribution for Dynamical Gravitational-Wave Merger Channels</a>
+<details><summary>evidence</summary><blockquote>and GW241110 that shows a mass ratio ∼1:2\sim{1:2} with the second spinning around ∼0.7\sim 0.7, indicating that the most massive BH itself could be a product of a previous BBH merger [3].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="40"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2512.20965">GW241011 and GW241110: Hints of Hierarchical Mergers from the Merger Entropy Index</a>
+<details><summary>evidence</summary><blockquote>The origin of GW241110 remains under debate due to its large distribution uncertainty, which leads to method-dependent inference and should be taken into account when interpreting this event in terms of hierarchical merg…</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">3</td>
+  <td class="num small">32</td>
+  <td class="small" data-sort="41"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2511.19407">Probing the Formation Environment of Strongly Lensed Black Hole Mergers: Implications for the AGN-disk Channel</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110 that indicate that at least one of the components were produced through a previous merger [1]</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">2</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="42"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2512.02943">Can eccentric binary black hole signals mimic gravitational-wave microlensing?</a>
+<details><summary>evidence</summary><blockquote>several LVK events show hints of measurable eccentricity</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">2</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="43"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2606.31531">Probing globular clusters parameters through gravitational wave lensing with stellar-mass black hole binaries</a>
+<details><summary>evidence</summary><blockquote>as well as indications of non-trivial binary formation channels (GW241011 and GW241110 [3])</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="44"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2608.11620">Constraints on ultralight bosons from merging binary and remnant black holes observed during the second and th</a>
+<details><summary>evidence</summary><blockquote>Previous studies have shown that events such as GW190517_055101, GW231123, and GW241110_124123 disfavor scalar and vector bosons over the mass ranges</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="45"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2602.21261">Using thermodynamics to learn gravitational wave physics</a>
+<details><summary>evidence</summary><blockquote>The fact that component black holes of the mergers GW241011 and GW241110 present those features suggest they may have been formed in previous coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="46"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2609.03859">A catalogue of insights from the fourth LIGO-Virgo-KAGRA observing run</a>
+<details><summary>evidence</summary><blockquote>Both sources show some degree of spin–orbit misalignment, with GW241110’s source probably has a spin misalignment of the primary black hole of &gt;110∘&gt;110^{\circ}.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="47"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2607.05495">Formation of rotating supergiants via stellar mergers in dense clusters: Implications for black hole natal spi</a>
+<details><summary>evidence</summary><blockquote>The recent LVK events GW241011 and GW241110, which both feature rapid and well-measured primary spins, non-negligible spin-orbit misalignment, and unequal mass ratios, provide perhaps the most direct evidence yet for hie…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="48"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" formation_channels ">
+  <td><a href="https://arxiv.org/abs/2609.09083">Breaking binary formation mechanism degeneracies with gravitational wave clustering</a>
+<details><summary>evidence</summary><blockquote>Additionally, the recently detected GW241011 and GW241110 Abac and others (2025b) events present high primary spins and unequal mass ratios, which could be explained as a result of hierarchical BBH mergers in dense stell…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="49"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2508.00179">Eccentricity signatures in LIGO-Virgo-KAGRA&#39;s binary neutron star and neutron-star black holes</a>
+<details><summary>evidence</summary><blockquote>(LIGO Scientific, Virgo, KAGRA), GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences, Astrophys.</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">41</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="50"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2603.29019">Eccentricity constraints disfavor single-single capture in nuclear star clusters as the origin of all LIGO-Vir</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="51"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2511.11886">Testing general relativity with amplitudes of subdominant gravitational-wave modes</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">7</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="52"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Unequal-Mass, High-Spin Black Hole Coalescences Probing Compact Binary Formation and Fundamental Physics.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">6</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="53"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2511.04540">Environmental Effects in Stellar-mass Gravitational-wave Sources. II. Enhanced Detectability of Phase Shifts i</a>
+<details><summary>evidence</summary><blockquote>Interestingly, a non-zero contribution of clusters to the overall merger rate is suggested by the recent discoveries of two events with confidently negative effective spin and component spin magnitude close to the expect…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">5</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="54"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2510.02515">Neural Post-Einsteinian Test of General Relativity with the Third Gravitational Wave Transient Catalog</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences, Astrophys.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="55"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2511.21897">Gravitational waves from the late inspiral, transition, and plunge of small-mass-ratio eccentric binaries</a>
+<details><summary>evidence</summary><blockquote>As the LVK gravitational wave (GW) catalog grows, an increasing number of events show evidence of more complicated orbital configurations [3, 4, 5, 6, 7].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="56"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2601.18835">Beyond FINDCHIRP for gravitational-wave matched-filter searches with ratio-filter dechirping</a>
+<details><summary>evidence</summary><blockquote>These observations have provided a view of the population of stellar-mass black holes and neutron stars, offering insights into stellar evolution [32, 28, 75, 4, 2], the nuclear equation of state [18, 25, 7, 55], and fun…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="57"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2603.17072">Quantifying the scientific potential of intermediate and extreme mass ratio inspirals with the Laser Interfero</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="58"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2606.14472">Transitions in the Mass-ratio and Spin Properties of Binary Black Holes in GWTC-5</a>
+<details><summary>evidence</summary><blockquote>More recently, several studies have begun to identify evidence for multiple BBH subpopulations with distinct mass-ratio properties [71, 70, 96, 97].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="59"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2511.07520">Tests of General Relativity with Einstein Telescope</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="60"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2605.11703">GW240925 and GW250207: Astrophysical Calibration of Gravitational Wave Detectors</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="61"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2605.18742">A universal framework to identify eccentric binary mergers: GW200105 case study</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="62"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2606.28937">Quadrupole and quadratic-in-spin effects in quasicircular, spinning, asymmetric binaries</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences, Astrophys.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="63"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2606.27852">Mass-Ratio Reversal as an Alternative to Hierarchical Mergers for GW241011</a>
+<details><summary>evidence</summary><blockquote>During the second part of the fourth observing run (O4b) of the LIGO-Virgo-KAGRA (LVK) Collaboration network, two gravitational-wave (GW) signals from binary black hole (BBH) coalescences were first reported: GW241011-23…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="64"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2606.12931">Tests of general relativity at the fourth post-Newtonian order with GW230627 and GW250114</a>
+<details><summary>evidence</summary><blockquote>[cites reference [29], which names GW241110_124123] Over the past decade, the LIGO-Virgo-KAGRA (LVK) detector network has identified about 390 confident GW events [14, 20], including several exceptional sources [21, 22, …</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="65"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2601.18916">Reconsidering the consistent use of precessing, higher order multipole models for gravitational wave analyses</a>
+<details><summary>evidence</summary><blockquote>The LVK has started to see evidence that these binaries may exist in nature (Abac and others, 2025a).</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="66"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2603.05835">Multi-Segment Consistency Tests of General Relativity</a>
+<details><summary>evidence</summary><blockquote>Owing largely to these improvements, the detection of an increasing number of high-signal-to-noise signals [1, 2, 3, 97] and improvements in data analysis strategies, testing general relativity has become a central focus…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="67"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2604.09828">Testing the Kerr hypothesis beyond the quadrupole with GW241011</a>
+<details><summary>evidence</summary><blockquote>Our analysis employs a suite of complementary parameterizations, all of which consistently confirm the BBH hypothesis for GW241011, extending and complementing earlier tests based solely on the SIQM [3, 40].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="68"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2605.05563">How do the LIGO-Virgo-KAGRA&#39;s Heavy Black Holes Form? No evidence for core-collapse Intermediate-mass black ho</a>
+<details><summary>evidence</summary><blockquote>LIGO, Virgo, and KAGRA [63, 14, 21] have detected more than 300 gravitational-wave (GW) signals from binary black hole (BBH) mergers in the first four observing runs (see GraceDB), which have contributed to foudmantal Ph…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="69"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2607.15453">Assessing the waveform systematics from parameter estimation to population inference with eccentricity</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Unequal-Mass, High-Spin Black Hole Coalescences Probing Compact Binary Formation and Fundamental Physics.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="70"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2606.31304">A parametric signal plus noise inference framework for short duration non-Gaussian noise transients</a>
+<details><summary>evidence</summary><blockquote>Being able to extract the source properties from an observed GW signal enables key astrophysical insights into the nature of black holes (The LIGO Scientific and collaboration, 2026b, see e.g.) and their population prope…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="71"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2608.07237">Testing the spin-induced multipole moments of compact binary coalescences using the flexible theory-independen</a>
+<details><summary>evidence</summary><blockquote>[references] (LIGO Scientific, Virgo, KAGRA), GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences, Astrophys.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="72"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2608.17430">Formation of heavy double neutron stars II: the role of heavy first-born neutron stars and low metallicity</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="73"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2608.04005">Cosmology in the Einstein Telescope era: comparing traditional and simulation-based methods for population inf</a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="74"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2607.09111">Joint inference for gravitational-wave signal and noise glitch: Method and application</a>
+<details><summary>evidence</summary><blockquote>These include precise characterisation of hundreds of individual events [11, 12, 4, 5, 2, 9, 17, 19], inferences of population properties [14, 3, 18], and physics beyond general relativity [13, 15, 20, 7, 6, 8].</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="75"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2604.07388">GW190711_030756 and GW200114_020818: astrophysical interpretation of two asymmetric binary black hole mergers </a>
+<details><summary>evidence</summary><blockquote>GW241011 and GW241110: Exploring Binary Formation and Fundamental Physics with Asymmetric, High-spin Black Hole Coalescences.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="76"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+</tbody>
+</table></div>
+
+<script>
+(function () {
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#ptab tbody tr"));
+  var buttons = document.querySelectorAll(".lvls button");
+  var role = document.getElementById("role");
+  var shown = document.getElementById("shown");
+  var level = "";
+  function apply(push) {
+    var r = role ? role.value : "", n = 0;
+    rows.forEach(function (tr) {
+      var ok = (!level || tr.dataset.level === level) &&
+               (!r || tr.dataset.roles.indexOf(" " + r + " ") >= 0);
+      tr.hidden = !ok; if (ok) n++;
+    });
+    buttons.forEach(function (b) { b.classList.toggle("on", b.dataset.level === level); });
+    shown.textContent = n.toLocaleString() + " shown";
+    // Filters live in the URL fragment so they work on the static site too.
+    if (push) {
+      var h = [level, r ? "role=" + r : ""].filter(Boolean).join("&");
+      history.replaceState(null, "", h ? "#" + h : location.pathname);
+    }
+  }
+  function fromHash() {
+    level = ""; if (role) role.value = "";
+    location.hash.replace(/^#/, "").split("&").forEach(function (part) {
+      if (!part) return;
+      if (part.indexOf("role=") === 0) { if (role) role.value = part.slice(5); }
+      else level = part;
+    });
+    apply(false);
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { level = b.dataset.level; apply(true); }); });
+  if (role) role.addEventListener("change", function () { apply(true); });
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+
+
+<footer class="sitefoot">
+  <span>Data extracted 2026-10-20 ·
+    434 events ·
+    13,904 papers,
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
+     ·
+    <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
+</footer>
+</div>
+<script>
+/* Click a column header to sort a table.sortable. Reorders the rows already on
+   the page; it cannot surface rows the server capped. Missing values ("—")
+   always sort last, in either direction: they are unmeasured, not small. */
+window.gwnSort = (function(){
+  var collate = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
+
+  function value(row, col){
+    var td = row.cells[col];
+    if (!td) return null;
+    var v = td.hasAttribute('data-sort') ? td.getAttribute('data-sort') : td.textContent.trim();
+    return v === '' || v === '—' ? null : v;
+  }
+
+  function apply(table){
+    var st = table._gwnSort;
+    var head = table.rows[0];
+    if (!st || !head) return;
+    var width = head.cells.length, rows = [], rest = [];
+    for (var i = 1; i < table.rows.length; i++){
+      var r = table.rows[i];
+      /* Empty-state rows ("No papers found yet") span the table; leave them be. */
+      (r.cells.length === width ? rows : rest).push(r);
+    }
+    var keyed = rows.map(function(r, i){ return {r: r, v: value(r, st.col), i: i}; });
+    var numeric = keyed.every(function(k){
+      return k.v === null || !isNaN(Number(k.v.replace(/,/g, '')));
+    });
+    if (numeric) keyed.forEach(function(k){
+      if (k.v !== null) k.v = Number(k.v.replace(/,/g, ''));
+    });
+    var sign = st.dir === 'ascending' ? 1 : -1;
+    keyed.sort(function(a, b){
+      if (a.v === null || b.v === null){
+        if (a.v === b.v) return a.i - b.i;
+        return a.v === null ? 1 : -1;
+      }
+      var c = numeric ? a.v - b.v : collate(a.v, b.v);
+      return c ? sign * c : a.i - b.i;
+    });
+    var parent = head.parentNode;
+    keyed.forEach(function(k){ parent.appendChild(k.r); });
+    rest.forEach(function(r){ parent.appendChild(r); });
+    for (var j = 0; j < width; j++){
+      if (j === st.col) head.cells[j].setAttribute('aria-sort', st.dir);
+      else head.cells[j].removeAttribute('aria-sort');
+    }
+  }
+
+  function clear(table){
+    table._gwnSort = null;
+    var head = table.rows[0];
+    if (head) for (var j = 0; j < head.cells.length; j++) head.cells[j].removeAttribute('aria-sort');
+  }
+
+  function init(table){
+    var head = table.rows[0];
+    if (!head) return;
+    Array.prototype.forEach.call(head.cells, function(th, col){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sorth';
+      while (th.firstChild) b.appendChild(th.firstChild);
+      th.appendChild(b);
+      b.addEventListener('click', function(){
+        var st = table._gwnSort;
+        /* First click: numbers largest-first, text A-Z. Second click reverses. */
+        var dir = st && st.col === col
+          ? (st.dir === 'ascending' ? 'descending' : 'ascending')
+          : (th.classList.contains('num') ? 'descending' : 'ascending');
+        table._gwnSort = {col: col, dir: dir};
+        apply(table);
+      });
+    });
+  }
+
+  document.querySelectorAll('table.sortable').forEach(init);
+  return {apply: apply, clear: clear};
+})();
+</script>
+</body>
+</html>

@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -216,14 +237,20 @@ GPS 1170585583.8.</p>
             dominant-baseline="middle">0</text>
       
       
-      <line class="grid" x1="214.83958577409282" y1="0" x2="214.83958577409282" y2="244"/>
-      <text class="tick" x="214.83958577409282" y="262" text-anchor="middle">2019</text>
+      <line class="grid" x1="495.9540681294288" y1="0" x2="495.9540681294288" y2="244"/>
+      <text class="tick" x="495.9540681294288" y="262" text-anchor="middle">2017</text>
       
-      <line class="grid" x1="318.0069064960387" y1="0" x2="318.0069064960387" y2="244"/>
-      <text class="tick" x="318.0069064960387" y="262" text-anchor="middle">2020</text>
+      <line class="grid" x1="549.7084436096643" y1="0" x2="549.7084436096643" y2="244"/>
+      <text class="tick" x="549.7084436096643" y="262" text-anchor="middle">2019</text>
       
-      <line class="grid" x1="627.7915188556354" y1="0" x2="627.7915188556354" y2="244"/>
-      <text class="tick" x="627.7915188556354" y="262" text-anchor="middle">2023</text>
+      <line class="grid" x1="576.5856313497821" y1="0" x2="576.5856313497821" y2="244"/>
+      <text class="tick" x="576.5856313497821" y="262" text-anchor="middle">2020</text>
+      
+      <line class="grid" x1="603.5364552206948" y1="0" x2="603.5364552206948" y2="244"/>
+      <text class="tick" x="603.5364552206948" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="657.2908307009305" y1="0" x2="657.2908307009305" y2="244"/>
+      <text class="tick" x="657.2908307009305" y="262" text-anchor="middle">2023</text>
       
 
       
@@ -231,9 +258,9 @@ GPS 1170585583.8.</p>
             x2="690" y2="222"/>
 
       
-      <line class="eventline" x1="19.53" y1="0"
-            x2="19.53" y2="244"/>
-      <text class="eventlabel" x="24.53" y="11">
+      <line class="eventline" x1="498.75" y1="0"
+            x2="498.75" y2="244"/>
+      <text class="eventlabel" x="503.75" y="11">
         event detected 2017-02-08</text>
       
 
@@ -242,20 +269,26 @@ GPS 1170585583.8.</p>
 
       
       <a href="https://arxiv.org/abs/1811.12907" target="_blank" rel="noopener">
-        <circle class="mark" cx="266.0" cy="6.73" r="6.2">
-          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-07, 3,794 citations</title>
+        <circle class="mark" cx="570.03" cy="6.73" r="6.2">
+          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-10, 3,794 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/1910.05331" target="_blank" rel="noopener">
-        <circle class="mark" cx="334.97" cy="75.35" r="4.6">
+        <circle class="mark" cx="581.08" cy="75.35" r="4.6">
           <title>2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public Advanced  — 2020-03, 261 citations</title>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/hep-th/9811217" target="_blank" rel="noopener">
+        <circle class="mark" cx="19.53" cy="117.71" r="4.6">
+          <title>Heterotic String/F-theory Duality from Mirror Symmetry — 1999-04, 50 citations</title>
+        </circle>
+      </a>
+      
       <a href="https://arxiv.org/abs/2001.00923" target="_blank" rel="noopener">
-        <circle class="mark" cx="343.73" cy="139.95" r="3.2">
-          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-04, 21 citations</title>
+        <circle class="mark" cx="580.64" cy="139.95" r="3.2">
+          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-02, 21 citations</title>
         </circle>
       </a>
       
@@ -265,18 +298,24 @@ GPS 1170585583.8.</p>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/1907.00379" target="_blank" rel="noopener">
+        <circle class="mark" cx="624.45" cy="237" r="3.2">
+          <title>A nonparametric method to evaluate significance of events in search for gravitational wave — 2021-10, 0 citations</title>
+        </circle>
+      </a>
       
       
-      <text class="datalabel" x="277.2" y="10.73"
-            text-anchor="start">GWTC-1: A Gravitational-Wave Trans…</text>
+      
+      <text class="datalabel" x="558.8299999999999" y="10.73"
+            text-anchor="end">GWTC-1: A Gravitational-Wave Trans…</text>
       
       
-      <text class="datalabel" x="344.57000000000005" y="79.35"
-            text-anchor="start">2-OGC: Open Gravitational-wave Cat…</text>
+      <text class="datalabel" x="571.48" y="79.35"
+            text-anchor="end">2-OGC: Open Gravitational-wave Cat…</text>
       
       
-      <text class="datalabel" x="351.93" y="143.95"
-            text-anchor="start">A Joint Fermi-GBM and LIGO/Virgo A…</text>
+      <text class="datalabel" x="29.130000000000003" y="121.71"
+            text-anchor="start">Heterotic String/F-theory Duality …</text>
       
 
       <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
@@ -287,7 +326,9 @@ GPS 1170585583.8.</p>
   <figcaption class="mut">
     Each point is a paper mentioning this event, placed at its submission month.
     
-    
+    1 point
+    sits left of the detection line: papers first
+    posted earlier whose revised versions mention the event, dated by original submission.
   </figcaption>
 </figure>
 
@@ -302,51 +343,90 @@ GPS 1170585583.8.</p>
 
 </table></div>
 
+<h2>How papers use 170208</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">6 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/170208/papers.html">Browse all
+6 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/170208/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:33.3%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Bi…</a> · <a href="https://arxiv.org/abs/1910.05331">2-OGC: Open Gravitational-wave Catalog of Binary Mergers fro…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/170208/papers.html#qualitative">qualitative</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:33.3%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary …</a> · <a href="https://arxiv.org/abs/1907.00379">A nonparametric method to evaluate significance of events in…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/170208/papers.html#cited_only">cited only</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:33.3%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/hep-th/9811217">Heterotic String/F-theory Duality from Mirror Symmetry</a> · <a href="https://arxiv.org/abs/2306.17251">13 New Light Curves and Updated Mid-Transit Time and Period …</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/170208/papers.html#role=single_event">single event <b>2</b></a><a class="chip" href="../event/170208/papers.html#role=population">population <b>2</b></a><a class="chip" href="../event/170208/papers.html#role=detector_characterisation">detector characterisation <b>1</b></a><a class="chip" href="../event/170208/papers.html#role=counterpart_followup">counterpart followup <b>1</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">4 found here. ADS full-text search
-matches <b>10</b> for this event's designations — we
-hold 40%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">6 papers name this event;
+ADS full-text search matches <b>10</b> for its designations
+(we hold 60%). These are
+<b>mentions</b>, not citations. <a href="../event/170208/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
+<tr><td><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
     <td class="small mono">1811.12907</td>
     <td class="num small">3,794</td>
     <td class="num">4</td></tr>
 
-<tr><td><a href="#">2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public A</a></td>
+<tr><td><a href="https://arxiv.org/abs/1910.05331">2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public A</a></td>
     <td class="small mono">1910.05331</td>
     <td class="num small">261</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
+<tr><td><a href="https://arxiv.org/abs/hep-th/9811217">Heterotic String/F-theory Duality from Mirror Symmetry</a></td>
+    <td class="small mono">hep-th/9811217</td>
+    <td class="num small">50</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
     <td class="small mono">2001.00923</td>
     <td class="num small">21</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">13 New Light Curves and Updated Mid-Transit Time and Period for Hot Jupiter WASP-1</a></td>
+<tr><td><a href="https://arxiv.org/abs/2306.17251">13 New Light Curves and Updated Mid-Transit Time and Period for Hot Jupiter WASP-1</a></td>
     <td class="small mono">2306.17251</td>
     <td class="num small">9</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1907.00379">A nonparametric method to evaluate significance of events in search for gravitatio</a></td>
+    <td class="small mono">1907.00379</td>
+    <td class="num small">0</td>
     <td class="num">1</td></tr>
 
 </table></div>
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

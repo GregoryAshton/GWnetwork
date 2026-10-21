@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW200128_022011 · papers · GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+th .sorth{all:unset;cursor:pointer}
+th .sorth:hover{color:var(--ink-2)}
+th .sorth:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+th .sorth::after{content:"\2195";opacity:.35;font-size:.9em;margin-left:4px}
+th[aria-sort] .sorth{color:var(--accent-ink)}
+th[aria-sort=ascending] .sorth::after{content:"\25B2";opacity:1;font-size:.75em}
+th[aria-sort=descending] .sorth::after{content:"\25BC";opacity:1;font-size:.75em}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../../index.html">GWnetwork</a><a href="../../events.html">Events</a><a href="../../explore.html">Explore</a><a href="../../papers.html">Papers</a></nav>
+
+<p class="small"><a href="../../event/GW200128_022011.html">← GW200128_022011</a></p>
+<h1>Papers mentioning <span class="mono">GW200128_022011</span></h1>
+<p class="small mut">82 papers, deepest use first, then most cited.
+Each classification links to the quoted evidence. Dates are the paper's latest arXiv version.</p>
+
+<div class="pfilters">
+  <div class="lvls">
+    <button type="button" data-level="" class="on">all <b>82</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>41</b></button><button type="button" data-level="posterior_samples">posterior samples <b>10</b></button><button type="button" data-level="published_results">published results <b>20</b></button><button type="button" data-level="qualitative">qualitative <b>4</b></button><button type="button" data-level="cited_only">cited only <b>7</b></button>
+  </div>
+  
+  <label class="small">used for
+    <select id="role"><option value="">any</option>
+    <option value="single_event">single event (48)</option><option value="population">population (31)</option><option value="methods_demo">methods demo (8)</option><option value="test_of_gr">test of gr (6)</option><option value="cosmology">cosmology (4)</option><option value="formation_channels">formation channels (3)</option><option value="counterpart_followup">counterpart followup (3)</option><option value="detector_characterisation">detector characterisation (1)</option><option value="multimessenger">multimessenger (1)</option>
+    </select></label>
+  
+  <span class="small mut" id="shown"></span>
+</div>
+
+<div class="wrapx"><table class="sortable" id="ptab">
+<thead><tr><th>Title</th><th class="num">Year</th><th class="num">Citations</th><th class="num">Mentions</th><th>Use</th><th>Used for</th></tr></thead>
+<tbody>
+
+<tr data-level="strain_analysis" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2112.06878">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a>
+<details><summary>evidence</summary><blockquote>77 GW200128_022011 1264213229.90 HL HL 1.00 &gt;100 7.0 7.0 -</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">327</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="1"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2210.05686">Neural Importance Sampling for Rapid and Reliable Gravitational-Wave Inference</a>
+<details><summary>evidence</summary><blockquote>We carry out a large study analyzing 42 binary black hole mergers observed by LIGO and Virgo with the SEOBNRv4PHM and IMRPhenomXPHM waveform models.</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">150</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2206.14695">Four Eccentric Mergers Increase the Evidence that LIGO-Virgo-KAGRA&#39;s Binary Black Holes Form Dynamically</a>
+<details><summary>evidence</summary><blockquote>We investigate the orbital eccentricities of 62 binary black hole candidates from the third gravitational-wave transient catalog of the LIGO-Virgo-KAGRA Collaboration with an aligned-spin, moderate-eccentricity waveform …</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">144</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2404.14286">Evidence for eccentricity in the population of binary black holes observed by LIGO-Virgo-KAGRA</a>
+<details><summary>evidence</summary><blockquote>We analyze 57 GW events from the first, second, and third observing runs</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">143</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2312.06631">New black hole mergers in the LIGO-Virgo O3 data from a gravitational wave search including higher-order harmo</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 BBH_6 56.156.1 55.155.1 112.4112.4 1.001.00 0.990.99 1.01.0 &gt;1000&gt;1000 233233 307307</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">89</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="5"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2501.04598">The MBTA pipeline for detecting compact binary coalescences in the fourth LIGO-Virgo-KAGRA observing run</a>
+<details><summary>evidence</summary><blockquote>1264213229.91264213229.9 9.19.1 4.76 0.96 GW200128_022011 233 0.99 0.303 0.98</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">45</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="6"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2407.07820">New gravitational wave discoveries enabled by machine learning</a>
+<details><summary>evidence</summary><blockquote>11 GW200128_022011 GWTC 1.00</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">42</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="7"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2201.01495">Search for binary black hole mergers in the third observing run of Advanced LIGO-Virgo using coherent WaveBurs</a>
+<details><summary>evidence</summary><blockquote>The ML-enhanced cWB search identifies five additional GW candidate events from the catalog that were previously missed by the standard cWB search.</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">31</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="8"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2410.15191">Gravitational waves detected by a burst search in LIGO/Virgo&#39;s third observing run</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 1.3×10+0 2.8×10−1 10.9 0.9031</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">30</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="9"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2211.08801">Adapting to noise distribution shifts in flow-based gravitational-wave inference</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 33.933.9 29.829.8 29.829.8</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">29</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="10"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2203.08545">Establishing significance of gravitational-wave signals from a single observatory in the PyCBC offline search</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 HL, HL 0.60 9.9 1.3× 10−4 10.0</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">26</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="11"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event detector_characterisation ">
+  <td><a href="https://arxiv.org/abs/2208.12338">Identifying glitches near gravitational-wave signals from compact binary coalescences using the Q-transform</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 4 s 0.954 0.721 -</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">22</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="12"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">detector characterisation</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2208.02291">Concurrent estimation of noise and compact-binary signal parameters in gravitational-wave data</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 1264213229.901 4 1024 H, L 10.6</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">21</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="13"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2203.10080">Rapid source classification and distance estimation for compact binary mergers with PyCBC live</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 0 0 0 100 0 0 0 100 0 0 0 100 32.0</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">18</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="14"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" methods_demo ">
+  <td><a href="https://arxiv.org/abs/2505.23959">How Many Times Should We Matched Filter Gravitational Wave Data? A Comparison of GstLAL&#39;s Online and Offline P</a>
+<details><summary>evidence</summary><blockquote>The first five candidates correspond to the previously reported events of GW200129_065458, GW200115_042309, GW200128_022011, GW200208_130117, and GW200209_085452.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">15</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="15"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2406.17832">Searching for Asymmetric and Heavily Precessing Binary Black Holes in the Gravitational Wave Data from the LIG</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 9.0 10.6 0.0059</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">14</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="16"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2508.05018">Search for Gravitational Waves from Eccentric Binary Black Holes with an Effective-one-body Template</a>
+<details><summary>evidence</summary><blockquote>36 GW200128_022011 864.3 51.7 39.1 -0.42 -0.37 -0.40 0.03 6.7 6.9 -</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">13</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="17"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2505.11655">Narrowing RIFT: Focused simulation-based-inference for interpreting exceptional GW sources</a>
+<details><summary>evidence</summary><blockquote>Figure 8: Example analysis of GW200128_022011 with SEOBNRv5EHM</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">13</td>
+  <td class="num small">3</td>
+  <td class="small" data-sort="18"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2304.02665">Inferring the astrophysical population of gravitational wave sources in the presence of noise transients</a>
+<details><summary>evidence</summary><blockquote>GW190527_092055 1.8×10−91.8\times 10^{-9} 2.1×10−82.1\times 10^{-8} GW200128_022011 2.2×10−162.2\times 10^{-16} 2.0×10−142.0\times 10^{-14}</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="19"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event formation_channels ">
+  <td><a href="https://arxiv.org/abs/2211.05945">Searching for Candidates of Coalescing Binary Black Holes Formed through Chemically Homogeneous Evolution in G</a>
+<details><summary>evidence</summary><blockquote>We perform Bayesian inference on the BBH events officially reported in GWTC-3 with astrophysically predicted priors representing different formation channels of the isolated binary evolution</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">11</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="20"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2402.07492">Convolutional neural networks for signal detection in real LIGO data</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 10.6 25.5 3.1 0.0 11.7 10.4 2.2</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">10</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="21"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2204.00026">Constraining black-hole binary spin precession and nutation with sequential prior conditioning</a>
+<details><summary>evidence</summary><blockquote>[results] GW200128_022011 Uninformative Prior</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">10</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="22"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2309.02030">Using deep learning to predict matched signal-to-noise ratio of gravitational waves</a>
+<details><summary>evidence</summary><blockquote>GW200128-022011 8.8 10.1 9.4 9.8 9.9 10.1 10.1 9.8 0.00317</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">8</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="23"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2201.05220">Implementation of a generalized precession parameter in the RIFT parameter estimation algorithm</a>
+<details><summary>evidence</summary><blockquote>apply it to all 36 events from the second half of the Advanced LIGO and Advanced Virgo third observing run (O3b)</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">7</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="24"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" population test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2307.13099">Measuring gravitational wave speed and Lorentz violation with the first three gravitational-wave catalogs</a>
+<details><summary>evidence</summary><blockquote>We select 52 gravitational-wave events that were detected with high confidence by at least two detectors in the first three observing runs (O1, O2, and O3) of Advanced LIGO and Advanced Virgo.</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">7</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="25"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population ">
+  <td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 38.48</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">6</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="26"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2505.21261">Machine learning-enabled search for binary black hole mergers in LIGO-Virgo-KAGRA&#39;s third observing run</a>
+<details><summary>evidence</summary><blockquote>21 GW200128_022011 GWTC-3</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">5</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="27"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2605.12818">Assessing the imprint of eccentricity in GW signatures using two independent waveform models</a>
+<details><summary>evidence</summary><blockquote>20 4096 -0.67 TEOB</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">5</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="28"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2412.02999">Efficient reanalysis of events from GWTC-3</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 S200128d G361407 1264213229.901367</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">5</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="29"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2507.09705">Constraints on parity and Lorentz violations from gravitational waves: A comparison between single-parameter a</a>
+<details><summary>evidence</summary><blockquote>Model 1 βμ=−1 m GW200128_022011 [ 0.05 , 1 ] [ 29.2 , 64.4 ] [ 468 , 8485.2 ] [ -5 , 5 ] [ -2 , 2 ]</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">5</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="30"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2403.17718">Testing beyond-Kerr spacetimes with GWTC-3</a>
+<details><summary>evidence</summary><blockquote>GW200128 0.12−0.39+0.140.12^{+0.14}_{-0.39}</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">4</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="31"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2509.22561">Likelihood-free inference for gravitational-wave data analysis and public alerts</a>
+<details><summary>evidence</summary><blockquote>Figure 18: Posterior comparison between AMPLFI and GWTC-3 result for GW200128_022011.</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="32"><span class="chip on">strain analysis</span><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2601.04276">Search for precessing binary black holes in advanced LIGO&#39;s third observing run using harmonic decomposition</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 1264213229.89 232.5 1.1 2.2</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">3</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="33"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2512.17204">A Search for Binary Black Hole Mergers in LIGO O1-O3 Data with Convolutional Neural Networks</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 10.6 32.0</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="34"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2507.01294">A Gaussian Process Framework for Testing General Relativity with Gravitational Waves</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 0.35</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">2</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="35"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event population test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2511.06536">Constraining Black Hole Horizon Properties Through Long-Duration Gravitational Wave Observations</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 3.76 10.6 -13.33</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="36"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2606.31350">Compactness Inference in Gravitational-Wave Mergers with PhenomDECO: Catalog Benchmarks and Robustness Diagnos</a>
+<details><summary>evidence</summary><blockquote>58 GW200128_022011 75.0 0.77 11.0</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="37"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2511.04730">SGNL: Scalable Low-Latency Gravitational Wave Detection Pipeline for Compact Binary Mergers</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 H1L1 9.98 3.78×10−5\times 10^{-5} 9.98 3.52×10−5\times 10^{-5}</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="38"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2111.03606">GWTC-3: Compact Binary Coalescences Observed by LIGO and Virgo During the Second Part of the Third Observing R</a>
+<details><summary>evidence</summary><blockquote>GW200128 022011 HL 1 .3 8 .8 0 .63 0 .022 10 .1 0 .97 3 .3 9 .4 0 .98 0 .63 9 .8 0 .95 0 .0043 9 .9 &gt; 0.99</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">—</td>
+  <td class="num small">6</td>
+  <td class="small" data-sort="39"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2609.00339">A Fast and Scalable Transformer Pipeline for Binary Black Hole Detection</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 10.6 &lt;0.31&lt;0.31 &lt;0.39&lt;0.39 in</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="40"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" methods_demo ">
+  <td><a href="https://arxiv.org/abs/2512.12513">A Practical Study of Lightweight Neural Gravitational-Wave Detection in Real LIGO Noise: Models, Ablations, an</a>
+<details><summary>evidence</summary><blockquote>Figure 8: Representative recovery of the cataloged event GW200128_022011 by the final early-fusion TCN.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="41"><span class="chip on">strain analysis</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2208.11871">Potential Subpopulations and Assembling Tendency of the Merging Black Holes</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 0.011 0.908 0.009 0.063 0.003</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">49</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="42"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" single_event population test_of_gr ">
+  <td><a href="https://arxiv.org/abs/2201.02813">Search for the Birefringence of Gravitational Waves with the Third Observing Run of Advanced LIGO-Virgo</a>
+<details><summary>evidence</summary><blockquote>GW190527_092055 0.02−0.56+0.460.02^{+0.46}_{-0.56} 14.43 GW200128_022011 −0.00−0.25+0.26-0.00^{+0.26}_{-0.25} 12.79</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">42</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="43"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2404.09668">Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in GWTC-3</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 0.043 0.957</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">23</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="44"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2404.11919">Does spacetime have memories? Searching for gravitational-wave memory in the third LIGO-Virgo-KAGRA gravitatio</a>
+<details><summary>evidence</summary><blockquote>We recalculate the posterior distribution by removing the three events that appear to suffer from non-stationary noise the most (GW170104, GW170818 and GW200128) and obtain the green curve in Fig. 2.</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">23</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="45"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2404.16103">Validating prior-informed Fisher-matrix analyses against GWTC data</a>
+<details><summary>evidence</summary><blockquote>[appendix] GW200128_022011 ✓ ✓ ✓ [H1, L1]</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">22</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="46"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2405.05318">AGN flares as counterparts to LIGO/Virgo mergers: no confident causal connection in spatial correlation analys</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 J120437.98+500024.0 0.879</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">19</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="47"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2301.01312">Binary Black Hole Spins: Model Selection with GWTC-3</a>
+<details><summary>evidence</summary><blockquote>Here, we apply hierarchical Bayesian inference to derive constraints on spin models from the 59 most confident binary black hole merger events in the third gravitational-wave transient catalogue (GWTC-3).</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">16</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="48"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population cosmology ">
+  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 3871−1972+21313871^{+2131}_{-1972} 0.63−0.28+0.270.63^{+0.27}_{-0.28} 2.1×1032.1\times 10^{3} 6.2 0 8 ∼\sim1–∼\sim1 ∼\sim1–∼\sim1 100–100 100–100</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="49"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2406.11885">A trifecta of modelling tools: a Bayesian binary black hole model selection combining population synthesis and</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 ✓ ✓</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">7</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="50"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="posterior_samples" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>We test this prediction directly against the component spins of the catalogue.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="51"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2111.03634">Population of Merging Compact Binaries Inferred Using Gravitational Waves through GWTC-3</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 4.29 × 10−3 &gt;0.99 42.2þ11.6 −8.1 32.6þ9.5 −9.2 32.0þ7.5 −5.5</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">1,372</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="52"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population cosmology ">
+  <td><a href="https://arxiv.org/abs/2111.03604">Constraints on the Cosmic Expansion History from GWTC─3</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 10.1 200 65−9+1465^{+14}_{-9} 50−13+1050^{+10}_{-13} 4000−2000+20004000^{+2000}_{-2000} 40−7+1140^{+11}_{-7} 31−8+931^{+9}_{-8} 0.6−0.3+0.30.6^{+0.3}_{-0.3} 2000 1 7(3×1043\times 10^{4}) 0-0(4-0)</blockquote></details></td>
+  <td class="num small">2021</td>
+  <td class="num small">369</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="53"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population counterpart_followup ">
+  <td><a href="https://arxiv.org/abs/2209.13004">A Light in the Dark: Searching for Electromagnetic Counterparts to Black Hole-Black Hole Mergers in LIGO/Virgo</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 10.6−0.4+0.310.6^{+0.3}_{-0.4} 714 2415 3.4−1.8+2.13.4^{+2.1}_{-1.8} 0.435 34995</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">102</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="54"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">counterpart followup</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population cosmology ">
+  <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>[appendix] GW200128_022011 9.9 4.3×10−34.3\times 10^{-3} 65−9+1465^{+14}_{-9} 50−13+1050^{+10}_{-13} 3871−1972+21313871^{+2131}_{-1972} 0.63−0.28+0.270.63^{+0.27}_{-0.28} 2.2×1032.2\times 10^{3} 6.2 1 ∼\sim1–∼\sim1 100–1…</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">87</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="55"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2203.03651">Deep learning and Bayesian inference of gravitational-wave populations: Hierarchical black-hole mergers</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 GWTC-3</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">63</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="56"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2207.05792">(An)isotropy measurement with gravitational wave observations</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 38.41−6.73+9.0338.41^{+9.03}_{-6.73} 33.34−6.95+8.2433.34^{+8.24}_{-6.95} 0.57−0.27+0.280.57^{+0.28}_{-0.27} 3399.78−1801.03+2147.793399.78^{+2147.79}_{-1801.03} 2466.82466.8</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">24</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="57"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event counterpart_followup ">
+  <td><a href="https://arxiv.org/abs/2308.13666">A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the Third Gravitational-wave Ob</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 IMRPhenomXPHM (20, 12) 35,13,11{35,13,11} 18,8.1,7.0{18,8.1,7.0} 32,11,9.8{32,11,9.8} 27,9.5,8.3{27,9.5,8.3} 142</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">14</td>
+  <td class="num small">4</td>
+  <td class="small" data-sort="58"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">counterpart followup</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2406.03257">The Heavier the Faster: A Subpopulation of Heavy, Rapidly Spinning and Quickly Evolving Binary Black Holes</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 20.22−0.96+1.70 0.29−0.13+0.28 0.01 0.43</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="59"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2209.05475">False alarms induced by Gaussian noise in gravitational wave detectors</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 HL PyCBC-BBH 9.9 -2.37</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="60"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2507.01083">Searching for intermediate mass ratio binary black hole mergers in the third observing run of LIGO-Virgo-KAGRA</a>
+<details><summary>evidence</summary><blockquote>[appendix] GW200128_022011 1264213229.86 5 189.1 28.6 0.12 0.70 2.64 0.31 32.3 42.0</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">10</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="61"><span class="chip on">published results</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population multimessenger ">
+  <td><a href="https://arxiv.org/abs/2510.20767">Multimessenger Constraints on LIGO/Virgo/KAGRA Gravitational-wave Binary Black Holes Merging in Active Galacti</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 2415 3400−1800+2100 42.2−8.1+11.6 32.6−9.2+9.5 71.0−11.0+16.0 0.12−0.25+0.24</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="62"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">multimessenger</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2502.07675">Limits on the existence of totally reflective exotic compact objects with current and future gravitational-wav</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 0.60−0.53+0.36</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">7</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="63"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2204.05013">Are Binary Black Hole Mergers and Long Gamma-Ray Bursts Drawn from the Same Black Hole Population?</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011⧫ 42.2 32.6 10.6</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">7</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="64"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event population counterpart_followup ">
+  <td><a href="https://arxiv.org/abs/2311.03804">Searches for neutrino counterparts of gravitational waves from the LIGO/Virgo third observing run with KM3NeT</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 BBH 1.211.21 33</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">7</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="65"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">counterpart followup</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2307.06200">Binary Coalescences as Sources of Ultrahigh-Energy Cosmic Rays</a>
+<details><summary>evidence</summary><blockquote>GWTC-3 GW200128</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">6</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="66"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2112.07847">Unexpected correlations in outstanding subpopulations of the gravitational wave transient catalogue data</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 75−12+1775^{+17}_{-12} 32−5.5+7.532^{+7.5}_{-5.5} 0.5920.592</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">2</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="67"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2312.12557">Two-body problem in curved spacetime: exploring gravitational wave transient cases</a>
+<details><summary>evidence</summary><blockquote>[appendix] 79 GW200128_022011</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">1</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="68"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2508.09493">Gravitational wave distance estimation using intrinsic signal properties: dark sirens as distance indicators</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 53.8 23.4 142.01</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="69"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" single_event methods_demo ">
+  <td><a href="https://arxiv.org/abs/2505.18311">A neural network for estimating compact binary coalescence parameters of gravitational-wave events in real tim</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 3 49.8−6.5+7.249.8_{-6.5}^{+7.2} [38.3, 62.0]</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="70"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" cosmology population ">
+  <td><a href="https://arxiv.org/abs/2603.01043">Cosmological Evolution of the Universe in Torsion-based Modified Gravity</a>
+<details><summary>evidence</summary><blockquote>GW200128 0.56−0.28+0.280.56^{+0.28}_{-0.28} 3.4−1.8+2.13.4^{+2.1}_{-1.8}</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="71"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">cosmology</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2305.05625">Performance of the low-latency GstLAL inspiral search towards LIGO, Virgo, and KAGRA&#39;s fourth observing run</a>
+<details><summary>evidence</summary><blockquote>H1L1 9.989.98 1.44×10−41.44</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">74</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="72"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2208.09532">IceCube Search for Neutrinos Coincident with Gravitational Wave Events from LIGO/Virgo Run O3</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 BBH 2677.5 0.46 0.25 0.47 0.243 9.31× 10549.31\,\times\,10^{54}</blockquote></details></td>
+  <td class="num small">2023</td>
+  <td class="num small">35</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="73"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2303.15970">A Search for IceCube Sub-TeV Neutrinos Correlated with Gravitational-wave Events Detected By LIGO/Virgo</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 BBH</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">20</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="74"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2512.04516">Searching for binary black hole mergers with deep learning in Advanced LIGO&#39;s third observing run</a>
+<details><summary>evidence</summary><blockquote>Three of the remaining eight candidates that we do not produce triggers for are supported by detections from more than one independent search pipeline: GW190607_083827 [56, 71], GW200128_022011 [18], and GW200318_191337 …</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">1</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="75"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2311.06061">New binary black hole mergers in the LIGO-Virgo O3b data</a>
+<details><summary>evidence</summary><blockquote>The LIGO─Virgo─KAGRA (LVK) Collaboration reported 35 compact binary coalescences in their analysis of the O3b data</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">88</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="76"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2205.08448">Assessing the model waveform accuracy of gravitational waves</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 65.05−9.41+15.9965.05_{-9.41}^{+15.99}</blockquote></details></td>
+  <td class="num small">2022</td>
+  <td class="num small">45</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="77"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2502.20445">Searching for additional structure and redshift evolution in the observed binary black hole population with a </a>
+<details><summary>evidence</summary><blockquote>GW200128_022011</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">24</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="78"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2307.03736">Swarm-intelligent search for gravitational waves from eccentric binary mergers</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">21</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="79"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2105.13160">Probing neutrino emission at GeV energies from compact binary mergers with the IceCube Neutrino Observatory</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011 BBH 20.1020.10 2424 11.711.7 1.56×10031.56\text{\times}{10}^{03} 5.01×10035.01\text{\times}{10}^{03} 1.27×10041.27\text{\times}{10}^{04}</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">21</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="80"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2402.07564">Bright in the Black: Searching for Electromagnetic Counterparts to Gravitational-wave Candidates in LIGO-Virgo</a>
+<details><summary>evidence</summary><blockquote>Three GW events — GW151012, GW200128_022011, and GW200209_085452 occurred in a data gap for AstroSat-CZTI and hence are excluded from our sample.</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">4</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="81"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2405.05094">Mass Function of Stellar Black Holes as Revealed by the LIGO─Virgo─KAGRA Observations</a>
+<details><summary>evidence</summary><blockquote>GW200128_022011</blockquote></details></td>
+  <td class="num small">2024</td>
+  <td class="num small">2</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="82"><span class="chip">cited only</span></td>
+  <td class="small"></td>
+</tr>
+
+</tbody>
+</table></div>
+
+<script>
+(function () {
+  var rows = Array.prototype.slice.call(document.querySelectorAll("#ptab tbody tr"));
+  var buttons = document.querySelectorAll(".lvls button");
+  var role = document.getElementById("role");
+  var shown = document.getElementById("shown");
+  var level = "";
+  function apply(push) {
+    var r = role ? role.value : "", n = 0;
+    rows.forEach(function (tr) {
+      var ok = (!level || tr.dataset.level === level) &&
+               (!r || tr.dataset.roles.indexOf(" " + r + " ") >= 0);
+      tr.hidden = !ok; if (ok) n++;
+    });
+    buttons.forEach(function (b) { b.classList.toggle("on", b.dataset.level === level); });
+    shown.textContent = n.toLocaleString() + " shown";
+    // Filters live in the URL fragment so they work on the static site too.
+    if (push) {
+      var h = [level, r ? "role=" + r : ""].filter(Boolean).join("&");
+      history.replaceState(null, "", h ? "#" + h : location.pathname);
+    }
+  }
+  function fromHash() {
+    level = ""; if (role) role.value = "";
+    location.hash.replace(/^#/, "").split("&").forEach(function (part) {
+      if (!part) return;
+      if (part.indexOf("role=") === 0) { if (role) role.value = part.slice(5); }
+      else level = part;
+    });
+    apply(false);
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { level = b.dataset.level; apply(true); }); });
+  if (role) role.addEventListener("change", function () { apply(true); });
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+
+
+<footer class="sitefoot">
+  <span>Data extracted 2026-10-20 ·
+    434 events ·
+    13,904 papers,
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
+     ·
+    <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
+</footer>
+</div>
+<script>
+/* Click a column header to sort a table.sortable. Reorders the rows already on
+   the page; it cannot surface rows the server capped. Missing values ("—")
+   always sort last, in either direction: they are unmeasured, not small. */
+window.gwnSort = (function(){
+  var collate = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
+
+  function value(row, col){
+    var td = row.cells[col];
+    if (!td) return null;
+    var v = td.hasAttribute('data-sort') ? td.getAttribute('data-sort') : td.textContent.trim();
+    return v === '' || v === '—' ? null : v;
+  }
+
+  function apply(table){
+    var st = table._gwnSort;
+    var head = table.rows[0];
+    if (!st || !head) return;
+    var width = head.cells.length, rows = [], rest = [];
+    for (var i = 1; i < table.rows.length; i++){
+      var r = table.rows[i];
+      /* Empty-state rows ("No papers found yet") span the table; leave them be. */
+      (r.cells.length === width ? rows : rest).push(r);
+    }
+    var keyed = rows.map(function(r, i){ return {r: r, v: value(r, st.col), i: i}; });
+    var numeric = keyed.every(function(k){
+      return k.v === null || !isNaN(Number(k.v.replace(/,/g, '')));
+    });
+    if (numeric) keyed.forEach(function(k){
+      if (k.v !== null) k.v = Number(k.v.replace(/,/g, ''));
+    });
+    var sign = st.dir === 'ascending' ? 1 : -1;
+    keyed.sort(function(a, b){
+      if (a.v === null || b.v === null){
+        if (a.v === b.v) return a.i - b.i;
+        return a.v === null ? 1 : -1;
+      }
+      var c = numeric ? a.v - b.v : collate(a.v, b.v);
+      return c ? sign * c : a.i - b.i;
+    });
+    var parent = head.parentNode;
+    keyed.forEach(function(k){ parent.appendChild(k.r); });
+    rest.forEach(function(r){ parent.appendChild(r); });
+    for (var j = 0; j < width; j++){
+      if (j === st.col) head.cells[j].setAttribute('aria-sort', st.dir);
+      else head.cells[j].removeAttribute('aria-sort');
+    }
+  }
+
+  function clear(table){
+    table._gwnSort = null;
+    var head = table.rows[0];
+    if (head) for (var j = 0; j < head.cells.length; j++) head.cells[j].removeAttribute('aria-sort');
+  }
+
+  function init(table){
+    var head = table.rows[0];
+    if (!head) return;
+    Array.prototype.forEach.call(head.cells, function(th, col){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sorth';
+      while (th.firstChild) b.appendChild(th.firstChild);
+      th.appendChild(b);
+      b.addEventListener('click', function(){
+        var st = table._gwnSort;
+        /* First click: numbers largest-first, text A-Z. Second click reverses. */
+        var dir = st && st.col === col
+          ? (st.dir === 'ascending' ? 'descending' : 'ascending')
+          : (th.classList.contains('num') ? 'descending' : 'ascending');
+        table._gwnSort = {col: col, dir: dir};
+        apply(table);
+      });
+    });
+  }
+
+  document.querySelectorAll('table.sortable').forEach(init);
+  return {apply: apply, clear: clear};
+})();
+</script>
+</body>
+</html>

@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -216,11 +237,23 @@ GPS 1181677658.8.</p>
             dominant-baseline="middle">0</text>
       
       
-      <line class="grid" x1="317.9657058570464" y1="0" x2="317.9657058570464" y2="244"/>
-      <text class="tick" x="317.9657058570464" y="262" text-anchor="middle">2019</text>
+      <line class="grid" x1="127.64032442823473" y1="0" x2="127.64032442823473" y2="244"/>
+      <text class="tick" x="127.64032442823473" y="262" text-anchor="middle">2017</text>
       
-      <line class="grid" x1="511.44643844877396" y1="0" x2="511.44643844877396" y2="244"/>
-      <text class="tick" x="511.44643844877396" y="262" text-anchor="middle">2020</text>
+      <line class="grid" x1="293.4423758048164" y1="0" x2="293.4423758048164" y2="244"/>
+      <text class="tick" x="293.4423758048164" y="262" text-anchor="middle">2019</text>
+      
+      <line class="grid" x1="376.3434014931072" y1="0" x2="376.3434014931072" y2="244"/>
+      <text class="tick" x="376.3434014931072" y="262" text-anchor="middle">2020</text>
+      
+      <line class="grid" x1="459.4715532791742" y1="0" x2="459.4715532791742" y2="244"/>
+      <text class="tick" x="459.4715532791742" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="542.372578967465" y1="0" x2="542.372578967465" y2="244"/>
+      <text class="tick" x="542.372578967465" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="625.2736046557559" y1="0" x2="625.2736046557559" y2="244"/>
+      <text class="tick" x="625.2736046557559" y="262" text-anchor="middle">2023</text>
       
 
       
@@ -228,9 +261,9 @@ GPS 1181677658.8.</p>
             x2="690" y2="222"/>
 
       
-      <line class="eventline" x1="19.53" y1="0"
-            x2="19.53" y2="244"/>
-      <text class="eventlabel" x="24.53" y="11">
+      <line class="eventline" x1="165.57" y1="0"
+            x2="165.57" y2="244"/>
+      <text class="eventlabel" x="170.57" y="11">
         event detected 2017-06-16</text>
       
 
@@ -239,41 +272,66 @@ GPS 1181677658.8.</p>
 
       
       <a href="https://arxiv.org/abs/1811.12907" target="_blank" rel="noopener">
-        <circle class="mark" cx="413.91" cy="6.73" r="6.2">
-          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-07, 3,794 citations</title>
+        <circle class="mark" cx="356.36" cy="6.73" r="6.2">
+          <title>GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed by LIGO  — 2019-10, 3,794 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2206.10053" target="_blank" rel="noopener">
+        <circle class="mark" cx="581.21" cy="111.79" r="4.6">
+          <title>Low-Mass X-ray Binaries — 2022-06, 63 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2107.05286" target="_blank" rel="noopener">
+        <circle class="mark" cx="503.31" cy="111.79" r="4.6">
+          <title>A new radio census of neutron star X-ray binaries — 2021-07, 63 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1509.03714" target="_blank" rel="noopener">
+        <circle class="mark" cx="19.53" cy="131.67" r="3.2">
+          <title>Autoclassification of the Variable 3XMM Sources Using the Random Forest Machine Learning A — 2015-09, 29 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2001.00923" target="_blank" rel="noopener">
-        <circle class="mark" cx="559.68" cy="139.95" r="3.2">
-          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-04, 21 citations</title>
+        <circle class="mark" cx="388.84" cy="139.95" r="3.2">
+          <title>A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First and Sec — 2020-02, 21 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/1709.07562" target="_blank" rel="noopener">
-        <circle class="mark" cx="59.81" cy="176.74" r="3.2">
+        <circle class="mark" cx="187.6" cy="176.74" r="3.2">
           <title>3XMM J181923.7-170616: An X-Ray Binary with a 408 s Pulsar — 2017-09, 5 citations</title>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/2307.09224" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="189.84" r="3.2">
+          <title>Discovery of a magnetar candidate X-ray pulsar in the Large Magellanic Cloud — 2023-07, 3 citations</title>
+        </circle>
+      </a>
+      
       <a href="https://arxiv.org/abs/2010.14527" target="_blank" rel="noopener">
-        <circle class="mark" cx="670.47" cy="237" r="3.2">
-          <title>GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of th — 2020-10, 0 citations</title>
+        <circle class="mark" cx="474.69" cy="237" r="3.2">
+          <title>GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of th — 2021-03, 0 citations</title>
         </circle>
       </a>
       
       
       
-      <text class="datalabel" x="425.11" y="10.73"
+      <text class="datalabel" x="367.56" y="10.73"
             text-anchor="start">GWTC-1: A Gravitational-Wave Trans…</text>
       
       
-      <text class="datalabel" x="551.4799999999999" y="143.95"
-            text-anchor="end">A Joint Fermi-GBM and LIGO/Virgo A…</text>
+      <text class="datalabel" x="571.61" y="115.79"
+            text-anchor="end">Low-Mass X-ray Binaries</text>
       
-      
-      <text class="datalabel" x="68.01" y="180.74"
-            text-anchor="start">3XMM J181923.7-170616: An X-Ray Bi…</text>
+      <line class="leader" x1="503.31" y1="111.79"
+        x2="493.71" y2="124.78999999999999"/>
+      <text class="datalabel" x="493.71" y="128.79"
+            text-anchor="end">A new radio census of neutron star…</text>
       
 
       <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
@@ -284,7 +342,9 @@ GPS 1181677658.8.</p>
   <figcaption class="mut">
     Each point is a paper mentioning this event, placed at its submission month.
     
-    
+    1 point
+    sits left of the detection line: papers first
+    posted earlier whose revised versions mention the event, dated by original submission.
   </figcaption>
 </figure>
 
@@ -299,37 +359,79 @@ GPS 1181677658.8.</p>
 
 </table></div>
 
+<h2>How papers use 170616</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">8 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/170616/papers.html">Browse all
+8 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/170616/papers.html#qualitative">qualitative</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:25.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Bi…</a> · <a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary …</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/170616/papers.html#cited_only">cited only</a></td>
+  <td class="num">6</td>
+  <td class="barcell"><span class="bar" style="width:75.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2206.10053">Low-Mass X-ray Binaries</a> · <a href="https://arxiv.org/abs/2107.05286">A new radio census of neutron star X-ray binaries</a> · <a href="https://arxiv.org/abs/1509.03714">Autoclassification of the Variable 3XMM Sources Using the Ra…</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/170616/papers.html#role=detector_characterisation">detector characterisation <b>1</b></a><a class="chip" href="../event/170616/papers.html#role=counterpart_followup">counterpart followup <b>1</b></a><a class="chip" href="../event/170616/papers.html#role=population">population <b>1</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">4 found here. ADS full-text search
-matches <b>13</b> for this event's designations — we
-hold 31%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">8 papers name this event;
+ADS full-text search matches <b>13</b> for its designations
+(we hold 62%). These are
+<b>mentions</b>, not citations. <a href="../event/170616/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
+<tr><td><a href="https://arxiv.org/abs/1811.12907">GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary Mergers Observed </a></td>
     <td class="small mono">1811.12907</td>
     <td class="num small">3,794</td>
     <td class="num">5</td></tr>
 
-<tr><td><a href="#">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
+<tr><td><a href="https://arxiv.org/abs/2107.05286">A new radio census of neutron star X-ray binaries</a></td>
+    <td class="small mono">2107.05286</td>
+    <td class="num small">63</td>
+    <td class="num">10</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2206.10053">Low-Mass X-ray Binaries</a></td>
+    <td class="small mono">2206.10053</td>
+    <td class="num small">63</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1509.03714">Autoclassification of the Variable 3XMM Sources Using the Random Forest Machine Le</a></td>
+    <td class="small mono">1509.03714</td>
+    <td class="num small">29</td>
+    <td class="num">16</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2001.00923">A Joint Fermi-GBM and LIGO/Virgo Analysis of Compact Binary Mergers from the First</a></td>
     <td class="small mono">2001.00923</td>
     <td class="num small">21</td>
     <td class="num">2</td></tr>
 
-<tr><td><a href="#">3XMM J181923.7-170616: An X-Ray Binary with a 408 s Pulsar</a></td>
+<tr><td><a href="https://arxiv.org/abs/1709.07562">3XMM J181923.7-170616: An X-Ray Binary with a 408 s Pulsar</a></td>
     <td class="small mono">1709.07562</td>
     <td class="num small">5</td>
+    <td class="num">45</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2307.09224">Discovery of a magnetar candidate X-ray pulsar in the Large Magellanic Cloud</a></td>
+    <td class="small mono">2307.09224</td>
+    <td class="num small">3</td>
     <td class="num">2</td></tr>
 
-<tr><td><a href="#">GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Ha</a></td>
+<tr><td><a href="https://arxiv.org/abs/2010.14527">GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Ha</a></td>
     <td class="small mono">2010.14527</td>
     <td class="num small">—</td>
     <td class="num">1</td></tr>
@@ -338,12 +440,12 @@ hold 31%. These are
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

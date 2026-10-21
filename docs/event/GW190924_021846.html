@@ -93,6 +93,27 @@ figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
   letter-spacing:-.01em}
 .readme h2:first-child{margin-top:0}
 .readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
   font-size:.88em;color:var(--ink)}
 footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
@@ -212,26 +233,26 @@ GPS 1253326744.8.</p>
             dominant-baseline="middle">0</text>
       
       
-      <line class="grid" x1="45.02488575177594" y1="0" x2="45.02488575177594" y2="244"/>
-      <text class="tick" x="45.02488575177594" y="262" text-anchor="middle">2020</text>
+      <line class="grid" x1="44.73274788844741" y1="0" x2="44.73274788844741" y2="244"/>
+      <text class="tick" x="44.73274788844741" y="262" text-anchor="middle">2020</text>
       
-      <line class="grid" x1="140.2468214107959" y1="0" x2="140.2468214107959" y2="244"/>
-      <text class="tick" x="140.2468214107959" y="262" text-anchor="middle">2021</text>
+      <line class="grid" x1="138.86363805789344" y1="0" x2="138.86363805789344" y2="244"/>
+      <text class="tick" x="138.86363805789344" y="262" text-anchor="middle">2021</text>
       
-      <line class="grid" x1="235.20858784670378" y1="0" x2="235.20858784670378" y2="244"/>
-      <text class="tick" x="235.20858784670378" y="262" text-anchor="middle">2022</text>
+      <line class="grid" x1="232.7373400028328" y1="0" x2="232.7373400028328" y2="244"/>
+      <text class="tick" x="232.7373400028328" y="262" text-anchor="middle">2022</text>
       
-      <line class="grid" x1="330.17035428261164" y1="0" x2="330.17035428261164" y2="244"/>
-      <text class="tick" x="330.17035428261164" y="262" text-anchor="middle">2023</text>
+      <line class="grid" x1="326.6110419477722" y1="0" x2="326.6110419477722" y2="244"/>
+      <text class="tick" x="326.6110419477722" y="262" text-anchor="middle">2023</text>
       
-      <line class="grid" x1="425.1321207185195" y1="0" x2="425.1321207185195" y2="244"/>
-      <text class="tick" x="425.1321207185195" y="262" text-anchor="middle">2024</text>
+      <line class="grid" x1="420.4847438927116" y1="0" x2="420.4847438927116" y2="244"/>
+      <text class="tick" x="420.4847438927116" y="262" text-anchor="middle">2024</text>
       
-      <line class="grid" x1="520.3540563775395" y1="0" x2="520.3540563775395" y2="244"/>
-      <text class="tick" x="520.3540563775395" y="262" text-anchor="middle">2025</text>
+      <line class="grid" x1="514.6156340621576" y1="0" x2="514.6156340621576" y2="244"/>
+      <text class="tick" x="514.6156340621576" y="262" text-anchor="middle">2025</text>
       
-      <line class="grid" x1="615.3158228134473" y1="0" x2="615.3158228134473" y2="244"/>
-      <text class="tick" x="615.3158228134473" y="262" text-anchor="middle">2026</text>
+      <line class="grid" x1="608.489336007097" y1="0" x2="608.489336007097" y2="244"/>
+      <text class="tick" x="608.489336007097" y="262" text-anchor="middle">2026</text>
       
 
       
@@ -250,656 +271,812 @@ GPS 1253326744.8.</p>
 
       
       <a href="https://arxiv.org/abs/2111.03634" target="_blank" rel="noopener">
-        <circle class="mark" cx="330.17" cy="7.64" r="6.2">
-          <title>Population of Merging Compact Binaries Inferred Using Gravitational Waves through GWTC-3 — 2023-01, 1,372 citations</title>
+        <circle class="mark" cx="522.33" cy="7.64" r="6.2">
+          <title>Population of Merging Compact Binaries Inferred Using Gravitational Waves through GWTC-3 — 2025-01, 1,372 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2108.01045" target="_blank" rel="noopener">
-        <circle class="mark" cx="425.13" cy="14.18" r="6.2">
-          <title>GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO and Virgo  — 2024-01, 1,096 citations</title>
+        <circle class="mark" cx="266.17" cy="14.18" r="6.2">
+          <title>GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO and Virgo  — 2022-05, 1,096 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2010.14533" target="_blank" rel="noopener">
-        <circle class="mark" cx="171.47" cy="16.5" r="6.2">
-          <title>Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-Wave Tra — 2021-05, 1,012 citations</title>
+        <circle class="mark" cx="153.27" cy="16.5" r="6.2">
+          <title>Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-Wave Tra — 2021-02, 1,012 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2010.14529" target="_blank" rel="noopener">
-        <circle class="mark" cx="179.53" cy="19.12" r="6.2">
-          <title>Tests of general relativity with binary black holes from the second LIGO-Virgo gravitation — 2021-06, 925 citations</title>
+        <circle class="mark" cx="579.68" cy="19.12" r="6.2">
+          <title>Tests of general relativity with binary black holes from the second LIGO-Virgo gravitation — 2025-09, 925 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2311.09484" target="_blank" rel="noopener">
+        <circle class="mark" cx="408.65" cy="20.77" r="6.2">
+          <title>First Sagittarius A* Event Horizon Telescope Results. VI. Testing the Black Hole Metric — 2023-11, 874 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2111.03604" target="_blank" rel="noopener">
-        <circle class="mark" cx="369.46" cy="45.88" r="4.6">
-          <title>Constraints on the Cosmic Expansion History from GWTC─3 — 2023-06, 369 citations</title>
+        <circle class="mark" cx="221.94" cy="45.88" r="4.6">
+          <title>Constraints on the Cosmic Expansion History from GWTC─3 — 2021-11, 369 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2112.06878" target="_blank" rel="noopener">
-        <circle class="mark" cx="353.59" cy="49.4" r="4.6">
-          <title>4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers — 2023-04, 327 citations</title>
+        <circle class="mark" cx="298.58" cy="49.4" r="4.6">
+          <title>4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers — 2022-09, 327 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2306.03903" target="_blank" rel="noopener">
-        <circle class="mark" cx="433.2" cy="60.94" r="4.6">
+        <circle class="mark" cx="429.49" cy="60.94" r="4.6">
           <title>Observational evidence for primordial black holes: A positivist perspective — 2024-02, 220 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2105.09151" target="_blank" rel="noopener">
-        <circle class="mark" cx="219.34" cy="61.61" r="4.6">
-          <title>3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers — 2021-11, 215 citations</title>
+        <circle class="mark" cx="197.76" cy="61.61" r="4.6">
+          <title>3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers — 2021-08, 215 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2201.02252" target="_blank" rel="noopener">
-        <circle class="mark" cx="290.36" cy="62.71" r="4.6">
-          <title>New binary black hole mergers in the LIGO-Virgo O3a data — 2022-08, 207 citations</title>
+        <circle class="mark" cx="327.9" cy="62.71" r="4.6">
+          <title>New binary black hole mergers in the LIGO-Virgo O3a data — 2023-01, 207 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2310.19857" target="_blank" rel="noopener">
-        <circle class="mark" cx="520.35" cy="68.79" r="4.6">
-          <title>Primordial black holes and their gravitational-wave signatures — 2025-01, 168 citations</title>
+        <circle class="mark" cx="404.54" cy="68.79" r="4.6">
+          <title>Primordial black holes and their gravitational-wave signatures — 2023-10, 168 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2101.12660" target="_blank" rel="noopener">
+        <circle class="mark" cx="189.53" cy="74.73" r="4.6">
+          <title>Cosmology with LIGO/Virgo dark sirens: Hubble parameter and modified gravitational wave pr — 2021-07, 137 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2104.11189" target="_blank" rel="noopener">
-        <circle class="mark" cx="187.34" cy="74.95" r="4.6">
-          <title>Improved gravitational-wave constraints on higher-order curvature theories of gravity — 2021-07, 136 citations</title>
+        <circle class="mark" cx="193.9" cy="74.95" r="4.6">
+          <title>Improved gravitational-wave constraints on higher-order curvature theories of gravity — 2021-08, 136 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2209.05959" target="_blank" rel="noopener">
-        <circle class="mark" cx="322.11" cy="75.82" r="4.6">
-          <title>From inflation to black hole mergers and back again: Gravitational-wave data-driven constr — 2022-12, 132 citations</title>
+        <circle class="mark" cx="347.44" cy="75.82" r="4.6">
+          <title>From inflation to black hole mergers and back again: Gravitational-wave data-driven constr — 2023-03, 132 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2105.10580" target="_blank" rel="noopener">
-        <circle class="mark" cx="211.27" cy="78.35" r="4.6">
+        <circle class="mark" cx="210.1" cy="78.35" r="4.6">
           <title>Distribution of effective spins and masses of binary black holes from the LIGO and Virgo O — 2021-10, 121 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2209.13004" target="_blank" rel="noopener">
-        <circle class="mark" cx="330.17" cy="83.32" r="4.6">
-          <title>A Light in the Dark: Searching for Electromagnetic Counterparts to Black Hole-Black Hole M — 2023-01, 102 citations</title>
+        <circle class="mark" cx="301.92" cy="83.32" r="4.6">
+          <title>A Light in the Dark: Searching for Electromagnetic Counterparts to Black Hole-Black Hole M — 2022-09, 102 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2207.03429" target="_blank" rel="noopener">
-        <circle class="mark" cx="322.11" cy="84.49" r="4.6">
-          <title>Subtracting glitches from gravitational-wave detector data during the third LIGO-Virgo obs — 2022-12, 98 citations</title>
+        <circle class="mark" cx="281.09" cy="84.49" r="4.6">
+          <title>Subtracting glitches from gravitational-wave detector data during the third LIGO-Virgo obs — 2022-07, 98 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2111.03498" target="_blank" rel="noopener">
-        <circle class="mark" cx="274.49" cy="86.33" r="4.6">
-          <title>Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between Neutron — 2022-06, 92 citations</title>
+        <circle class="mark" cx="282.63" cy="86.33" r="4.6">
+          <title>Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between Neutron — 2022-07, 92 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2312.06631" target="_blank" rel="noopener">
-        <circle class="mark" cx="417.07" cy="87.29" r="4.6">
-          <title>New black hole mergers in the LIGO-Virgo O3 data from a gravitational wave search includin — 2023-12, 89 citations</title>
+        <circle class="mark" cx="573.25" cy="87.29" r="4.6">
+          <title>New black hole mergers in the LIGO-Virgo O3 data from a gravitational wave search includin — 2025-08, 89 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2509.04348" target="_blank" rel="noopener">
-        <circle class="mark" cx="670.47" cy="87.95" r="4.6">
+        <circle class="mark" cx="668.16" cy="87.95" r="4.6">
           <title>GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propaga — 2026-08, 87 citations</title>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/2208.12849" target="_blank" rel="noopener">
+        <circle class="mark" cx="336.64" cy="88.29" r="4.6">
+          <title>Data quality up to the third observing run of advanced LIGO: Gravity Spy glitch classifica — 2023-02, 86 citations</title>
+        </circle>
+      </a>
+      
       <a href="https://arxiv.org/abs/2408.11031" target="_blank" rel="noopener">
-        <circle class="mark" cx="512.29" cy="88.98" r="4.6">
-          <title>Hubble tension or distance ladder crisis? — 2024-12, 84 citations</title>
+        <circle class="mark" cx="483.75" cy="88.98" r="4.6">
+          <title>Hubble tension or distance ladder crisis? — 2024-09, 84 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2011.11948" target="_blank" rel="noopener">
-        <circle class="mark" cx="155.6" cy="93.47" r="4.6">
+        <circle class="mark" cx="160.47" cy="93.47" r="4.6">
           <title>A generalized precession parameter χ&lt;SUB&gt;p&lt;/SUB&gt; to interpret gravitational-wave data — 2021-03, 72 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2309.05061" target="_blank" rel="noopener">
-        <circle class="mark" cx="464.68" cy="95.56" r="4.6">
-          <title>First Constraints on Compact Binary Environments from LIGO-Virgo Data — 2024-06, 67 citations</title>
+        <circle class="mark" cx="479.12" cy="95.56" r="4.6">
+          <title>First Constraints on Compact Binary Environments from LIGO-Virgo Data — 2024-08, 67 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2203.03651" target="_blank" rel="noopener">
-        <circle class="mark" cx="314.3" cy="97.35" r="4.6">
+        <circle class="mark" cx="311.95" cy="97.35" r="4.6">
           <title>Deep learning and Bayesian inference of gravitational-wave populations: Hierarchical black — 2022-11, 63 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2112.06446" target="_blank" rel="noopener">
-        <circle class="mark" cx="243.27" cy="98.29" r="4.6">
+        <circle class="mark" cx="244.31" cy="98.29" r="4.6">
           <title>Gravitational wave constraints on Lorentz and parity violations in gravity: High-order spa — 2022-02, 61 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2105.02879" target="_blank" rel="noopener">
-        <circle class="mark" cx="187.34" cy="98.77" r="4.6">
-          <title>Memory remains undetected: Updates from the second LIGO/Virgo gravitational-wave transient — 2021-07, 60 citations</title>
+        <circle class="mark" cx="171.27" cy="98.77" r="4.6">
+          <title>Memory remains undetected: Updates from the second LIGO/Virgo gravitational-wave transient — 2021-05, 60 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2104.10253" target="_blank" rel="noopener">
+        <circle class="mark" cx="167.15" cy="99.76" r="4.6">
+          <title>Black Hole Mergers of AGN Origin in LIGO-Virgo&#39;s O1-O3a Observing Periods — 2021-04, 58 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2109.05960" target="_blank" rel="noopener">
-        <circle class="mark" cx="243.27" cy="100.27" r="4.6">
-          <title>(H)DPGMM: a hierarchy of Dirichlet process Gaussian mixture models for the inference of th — 2022-02, 57 citations</title>
+        <circle class="mark" cx="204.7" cy="100.27" r="4.6">
+          <title>(H)DPGMM: a hierarchy of Dirichlet process Gaussian mixture models for the inference of th — 2021-09, 57 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2110.13870" target="_blank" rel="noopener">
+        <circle class="mark" cx="243.02" cy="100.78" r="4.6">
+          <title>Constraints on the Nieh-Yan modified teleparallel gravity with gravitational waves — 2022-02, 56 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2306.00050" target="_blank" rel="noopener">
-        <circle class="mark" cx="488.61" cy="102.39" r="4.6">
-          <title>In pursuit of Love numbers: First templated search for compact objects with large tidal de — 2024-09, 53 citations</title>
+        <circle class="mark" cx="365.45" cy="102.39" r="4.6">
+          <title>In pursuit of Love numbers: First templated search for compact objects with large tidal de — 2023-05, 53 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2312.12515" target="_blank" rel="noopener">
-        <circle class="mark" cx="440.74" cy="102.39" r="4.6">
+        <circle class="mark" cx="437.46" cy="102.39" r="4.6">
           <title>Searching for ringdown higher modes with a numerical relativity-informed post-merger model — 2024-03, 53 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2603.19019" target="_blank" rel="noopener">
-        <circle class="mark" cx="630.67" cy="102.94" r="4.6">
+        <circle class="mark" cx="628.55" cy="102.94" r="4.6">
           <title>GWTC-4.0: Tests of General Relativity. I. Overview and General Tests — 2026-03, 52 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2208.11871" target="_blank" rel="noopener">
-        <circle class="mark" cx="322.11" cy="104.67" r="3.2">
-          <title>Potential Subpopulations and Assembling Tendency of the Merging Black Holes — 2022-12, 49 citations</title>
+        <circle class="mark" cx="329.7" cy="104.67" r="3.2">
+          <title>Potential Subpopulations and Assembling Tendency of the Merging Black Holes — 2023-01, 49 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2603.19020" target="_blank" rel="noopener">
-        <circle class="mark" cx="630.67" cy="105.27" r="3.2">
-          <title>GWTC-4.0: Tests of General Relativity. II. Parameterized Tests — 2026-03, 48 citations</title>
+        <circle class="mark" cx="660.18" cy="105.27" r="3.2">
+          <title>GWTC-4.0: Tests of General Relativity. II. Parameterized Tests — 2026-07, 48 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2106.15841" target="_blank" rel="noopener">
+        <circle class="mark" cx="225.54" cy="105.89" r="3.2">
+          <title>Probing the progenitors of spinning binary black-hole mergers with long gamma-ray bursts — 2021-12, 47 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2205.08448" target="_blank" rel="noopener">
-        <circle class="mark" cx="290.36" cy="107.15" r="3.2">
+        <circle class="mark" cx="291.63" cy="107.15" r="3.2">
           <title>Assessing the model waveform accuracy of gravitational waves — 2022-08, 45 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2201.02813" target="_blank" rel="noopener">
-        <circle class="mark" cx="266.43" cy="109.16" r="3.2">
-          <title>Search for the Birefringence of Gravitational Waves with the Third Observing Run of Advanc — 2022-05, 42 citations</title>
+        <circle class="mark" cx="256.14" cy="109.16" r="3.2">
+          <title>Search for the Birefringence of Gravitational Waves with the Third Observing Run of Advanc — 2022-04, 42 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2106.09193" target="_blank" rel="noopener">
-        <circle class="mark" cx="211.27" cy="109.86" r="3.2">
-          <title>Gravitational-wave constraints on the GWTC-2 events by measuring the tidal deformability a — 2021-10, 41 citations</title>
+        <circle class="mark" cx="538.28" cy="109.86" r="3.2">
+          <title>Gravitational-wave constraints on the GWTC-2 events by measuring the tidal deformability a — 2025-04, 41 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2109.00418" target="_blank" rel="noopener">
+        <circle class="mark" cx="201.62" cy="110.58" r="3.2">
+          <title>Probing Extremal Gravitational-wave Events with Coarse-grained Likelihoods — 2021-09, 40 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2603.19021" target="_blank" rel="noopener">
-        <circle class="mark" cx="630.67" cy="110.58" r="3.2">
+        <circle class="mark" cx="628.55" cy="110.58" r="3.2">
           <title>GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants — 2026-03, 40 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2310.13695" target="_blank" rel="noopener">
-        <circle class="mark" cx="433.2" cy="111.32" r="3.2">
-          <title>A dark siren measurement of the Hubble constant using gravitational wave events from the f — 2024-02, 39 citations</title>
+        <circle class="mark" cx="405.05" cy="111.32" r="3.2">
+          <title>A dark siren measurement of the Hubble constant using gravitational wave events from the f — 2023-11, 39 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2012.02117" target="_blank" rel="noopener">
-        <circle class="mark" cx="171.47" cy="113.65" r="3.2">
-          <title>Probing the black hole metric: Black hole shadows and binary black-hole inspirals — 2021-05, 36 citations</title>
+        <circle class="mark" cx="131.66" cy="113.65" r="3.2">
+          <title>Probing the black hole metric: Black hole shadows and binary black-hole inspirals — 2020-12, 36 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2209.06459" target="_blank" rel="noopener">
+        <circle class="mark" cx="455.98" cy="113.65" r="3.2">
+          <title>Frequency- and polarization-dependent lensing of gravitational waves in strong gravitation — 2024-05, 36 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2208.09532" target="_blank" rel="noopener">
-        <circle class="mark" cx="338.24" cy="114.47" r="3.2">
+        <circle class="mark" cx="338.96" cy="114.47" r="3.2">
           <title>IceCube Search for Neutrinos Coincident with Gravitational Wave Events from LIGO/Virgo Run — 2023-02, 35 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2404.16092" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="115.31" r="3.2">
-          <title>A dark standard siren measurement of the Hubble constant following LIGO/Virgo/KAGRA O4a an — 2024-11, 34 citations</title>
+        <circle class="mark" cx="495.33" cy="115.31" r="3.2">
+          <title>A dark standard siren measurement of the Hubble constant following LIGO/Virgo/KAGRA O4a an — 2024-10, 34 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2101.01188" target="_blank" rel="noopener">
-        <circle class="mark" cx="171.47" cy="115.31" r="3.2">
+        <circle class="mark" cx="171.27" cy="115.31" r="3.2">
           <title>Rapid and robust parameter inference for binary mergers — 2021-05, 34 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2210.15888" target="_blank" rel="noopener">
-        <circle class="mark" cx="361.39" cy="116.18" r="3.2">
-          <title>Deep learning detection and classification of gravitational waves from neutron star-black  — 2023-05, 33 citations</title>
+        <circle class="mark" cx="345.9" cy="116.18" r="3.2">
+          <title>Deep learning detection and classification of gravitational waves from neutron star-black  — 2023-03, 33 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2107.09692" target="_blank" rel="noopener">
-        <circle class="mark" cx="235.21" cy="117.08" r="3.2">
+        <circle class="mark" cx="237.62" cy="117.08" r="3.2">
           <title>Measuring binary black hole orbital-plane spin orientations — 2022-01, 32 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2110.13542" target="_blank" rel="noopener">
-        <circle class="mark" cx="250.56" cy="118.0" r="3.2">
-          <title>Understanding How Fast Black Holes Spin by Analyzing Data from the Second Gravitational-wa — 2022-03, 31 citations</title>
+        <circle class="mark" cx="262.31" cy="118.0" r="3.2">
+          <title>Understanding How Fast Black Holes Spin by Analyzing Data from the Second Gravitational-wa — 2022-04, 31 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2309.04528" target="_blank" rel="noopener">
-        <circle class="mark" cx="417.07" cy="118.0" r="3.2">
+        <circle class="mark" cx="417.66" cy="118.0" r="3.2">
           <title>Fortifying gravitational-wave tests of general relativity against astrophysical assumption — 2023-12, 31 citations</title>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/2109.12270" target="_blank" rel="noopener">
+        <circle class="mark" cx="207.79" cy="118.0" r="3.2">
+          <title>Search for gamma-ray bursts and gravitational wave electromagnetic counterparts with High  — 2021-09, 31 citations</title>
+        </circle>
+      </a>
+      
       <a href="https://arxiv.org/abs/2504.21147" target="_blank" rel="noopener">
-        <circle class="mark" cx="615.32" cy="118.0" r="3.2">
+        <circle class="mark" cx="610.55" cy="118.0" r="3.2">
           <title>Improved parametrized test of general relativity using the IMRPHENOMX waveform family: Inc — 2026-01, 31 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2410.02531" target="_blank" rel="noopener">
-        <circle class="mark" cx="543.77" cy="118.96" r="3.2">
+        <circle class="mark" cx="543.42" cy="118.96" r="3.2">
           <title>Tidal response beyond vacuum general relativity with a canonical definition — 2025-04, 30 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2108.02462" target="_blank" rel="noopener">
-        <circle class="mark" cx="211.27" cy="118.96" r="3.2">
-          <title>Population-informed priors in gravitational-wave astronomy — 2021-10, 30 citations</title>
+        <circle class="mark" cx="219.62" cy="118.96" r="3.2">
+          <title>Population-informed priors in gravitational-wave astronomy — 2021-11, 30 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2203.08545" target="_blank" rel="noopener">
-        <circle class="mark" cx="314.3" cy="123.13" r="3.2">
-          <title>Establishing significance of gravitational-wave signals from a single observatory in the P — 2022-11, 26 citations</title>
+        <circle class="mark" cx="487.87" cy="123.13" r="3.2">
+          <title>Establishing significance of gravitational-wave signals from a single observatory in the P — 2024-09, 26 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2107.12111" target="_blank" rel="noopener">
+        <circle class="mark" cx="192.1" cy="124.27" r="3.2">
+          <title>Bounding dark charges on binary black holes using gravitational waves — 2021-07, 25 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2111.10455" target="_blank" rel="noopener">
-        <circle class="mark" cx="282.3" cy="124.27" r="3.2">
-          <title>Evidence for subdominant multipole moments and precession in merging black-hole-binaries f — 2022-07, 25 citations</title>
+        <circle class="mark" cx="261.29" cy="124.27" r="3.2">
+          <title>Evidence for subdominant multipole moments and precession in merging black-hole-binaries f — 2022-04, 25 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2104.09196" target="_blank" rel="noopener">
-        <circle class="mark" cx="203.47" cy="124.27" r="3.2">
+        <circle class="mark" cx="204.7" cy="124.27" r="3.2">
           <title>Search for Neutrinos in Coincidence with Gravitational Wave Events from the LIGO-Virgo O3a — 2021-09, 25 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2502.12156" target="_blank" rel="noopener">
-        <circle class="mark" cx="551.57" cy="124.27" r="3.2">
-          <title>Sampling the full hierarchical population posterior distribution in gravitational-wave ast — 2025-05, 25 citations</title>
+        <circle class="mark" cx="545.48" cy="124.27" r="3.2">
+          <title>Sampling the full hierarchical population posterior distribution in gravitational-wave ast — 2025-04, 25 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2309.01894" target="_blank" rel="noopener">
-        <circle class="mark" cx="409.26" cy="124.27" r="3.2">
-          <title>Searching for gravitational wave echoes from black hole binary events in the third observi — 2023-11, 25 citations</title>
+        <circle class="mark" cx="390.14" cy="124.27" r="3.2">
+          <title>Searching for gravitational wave echoes from black hole binary events in the third observi — 2023-09, 25 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2207.05792" target="_blank" rel="noopener">
+        <circle class="mark" cx="282.37" cy="125.46" r="3.2">
+          <title>(An)isotropy measurement with gravitational wave observations — 2022-07, 24 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2108.04821" target="_blank" rel="noopener">
-        <circle class="mark" cx="235.21" cy="125.46" r="3.2">
-          <title>On the Angular Momentum Transport Efficiency within the Star Constrained from Gravitationa — 2022-01, 24 citations</title>
+        <circle class="mark" cx="224.25" cy="125.46" r="3.2">
+          <title>On the Angular Momentum Transport Efficiency within the Star Constrained from Gravitationa — 2021-11, 24 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2502.20445" target="_blank" rel="noopener">
+        <circle class="mark" cx="529.53" cy="125.46" r="3.2">
+          <title>Searching for additional structure and redshift evolution in the observed binary black hol — 2025-02, 24 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2011.10425" target="_blank" rel="noopener">
-        <circle class="mark" cx="195.4" cy="125.46" r="3.2">
-          <title>Exploring gravitational-wave detection and parameter inference using deep learning methods — 2021-08, 24 citations</title>
+        <circle class="mark" cx="128.32" cy="125.46" r="3.2">
+          <title>Exploring gravitational-wave detection and parameter inference using deep learning methods — 2020-11, 24 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2404.09668" target="_blank" rel="noopener">
-        <circle class="mark" cx="512.29" cy="126.7" r="3.2">
-          <title>Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in GWTC-3 — 2024-12, 23 citations</title>
+        <circle class="mark" cx="500.47" cy="126.7" r="3.2">
+          <title>Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in GWTC-3 — 2024-11, 23 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2404.11919" target="_blank" rel="noopener">
-        <circle class="mark" cx="464.68" cy="126.7" r="3.2">
-          <title>Does spacetime have memories? Searching for gravitational-wave memory in the third LIGO-Vi — 2024-06, 23 citations</title>
+        <circle class="mark" cx="448.52" cy="126.7" r="3.2">
+          <title>Does spacetime have memories? Searching for gravitational-wave memory in the third LIGO-Vi — 2024-04, 23 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2210.00425" target="_blank" rel="noopener">
-        <circle class="mark" cx="322.11" cy="126.7" r="3.2">
-          <title>On the Neutron Star/Black Hole Mass Gap and Black Hole Searches — 2022-12, 23 citations</title>
+        <circle class="mark" cx="303.46" cy="126.7" r="3.2">
+          <title>On the Neutron Star/Black Hole Mass Gap and Black Hole Searches — 2022-10, 23 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2208.12338" target="_blank" rel="noopener">
-        <circle class="mark" cx="338.24" cy="127.99" r="3.2">
-          <title>Identifying glitches near gravitational-wave signals from compact binary coalescences usin — 2023-02, 22 citations</title>
+        <circle class="mark" cx="330.73" cy="127.99" r="3.2">
+          <title>Identifying glitches near gravitational-wave signals from compact binary coalescences usin — 2023-01, 22 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2404.16103" target="_blank" rel="noopener">
+        <circle class="mark" cx="634.98" cy="127.99" r="3.2">
+          <title>Validating prior-informed Fisher-matrix analyses against GWTC data — 2026-04, 22 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2206.08234" target="_blank" rel="noopener">
-        <circle class="mark" cx="306.23" cy="127.99" r="3.2">
-          <title>Deep Learning-based Search for Microlensing Signature from Binary Black Hole Events in GWT — 2022-10, 22 citations</title>
+        <circle class="mark" cx="300.38" cy="127.99" r="3.2">
+          <title>Deep Learning-based Search for Microlensing Signature from Binary Black Hole Events in GWT — 2022-09, 22 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2302.10112" target="_blank" rel="noopener">
+        <circle class="mark" cx="339.73" cy="127.99" r="3.2">
+          <title>Constraining the Einstein-dilaton-Gauss-Bonnet theory with higher harmonics and the merger — 2023-02, 22 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2304.06734" target="_blank" rel="noopener">
-        <circle class="mark" cx="440.74" cy="129.34" r="3.2">
-          <title>Anatomy of parameter-estimation biases in overlapping gravitational-wave signals — 2024-03, 21 citations</title>
+        <circle class="mark" cx="425.11" cy="129.34" r="3.2">
+          <title>Anatomy of parameter-estimation biases in overlapping gravitational-wave signals — 2024-01, 21 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2112.09701" target="_blank" rel="noopener">
-        <circle class="mark" cx="250.56" cy="129.34" r="3.2">
-          <title>A Systematic Exploration of Kilonova Candidates from Neutron Star Mergers during the Third — 2022-03, 21 citations</title>
+        <circle class="mark" cx="240.97" cy="129.34" r="3.2">
+          <title>A Systematic Exploration of Kilonova Candidates from Neutron Star Mergers during the Third — 2022-02, 21 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2105.13160" target="_blank" rel="noopener">
-        <circle class="mark" cx="623.38" cy="129.34" r="3.2">
+        <circle class="mark" cx="620.83" cy="129.34" r="3.2">
           <title>Probing neutrino emission at GeV energies from compact binary mergers with the IceCube Neu — 2026-02, 21 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2303.15970" target="_blank" rel="noopener">
-        <circle class="mark" cx="417.07" cy="130.77" r="3.2">
-          <title>A Search for IceCube Sub-TeV Neutrinos Correlated with Gravitational-wave Events Detected  — 2023-12, 20 citations</title>
+        <circle class="mark" cx="474.75" cy="130.77" r="3.2">
+          <title>A Search for IceCube Sub-TeV Neutrinos Correlated with Gravitational-wave Events Detected  — 2024-07, 20 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2111.13882" target="_blank" rel="noopener">
-        <circle class="mark" cx="203.47" cy="130.77" r="3.2">
-          <title>Gravitational wave memory of the binary black hole events in GWTC-2 — 2021-09, 20 citations</title>
+        <circle class="mark" cx="223.99" cy="130.77" r="3.2">
+          <title>Gravitational wave memory of the binary black hole events in GWTC-2 — 2021-11, 20 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2405.05318" target="_blank" rel="noopener">
-        <circle class="mark" cx="520.35" cy="132.26" r="3.2">
+        <circle class="mark" cx="515.39" cy="132.26" r="3.2">
           <title>AGN flares as counterparts to LIGO/Virgo mergers: no confident causal connection in spatia — 2025-01, 19 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2203.10080" target="_blank" rel="noopener">
-        <circle class="mark" cx="306.23" cy="133.83" r="3.2">
-          <title>Rapid source classification and distance estimation for compact binary mergers with PyCBC  — 2022-10, 18 citations</title>
+        <circle class="mark" cx="252.54" cy="133.83" r="3.2">
+          <title>Rapid source classification and distance estimation for compact binary mergers with PyCBC  — 2022-03, 18 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2410.18274" target="_blank" rel="noopener">
-        <circle class="mark" cx="543.77" cy="133.83" r="3.2">
-          <title>Electromagnetic follow-up of gravitational waves: review and lessons learned — 2025-04, 18 citations</title>
+        <circle class="mark" cx="496.87" cy="133.83" r="3.2">
+          <title>Electromagnetic follow-up of gravitational waves: review and lessons learned — 2024-10, 18 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2301.01312" target="_blank" rel="noopener">
-        <circle class="mark" cx="417.07" cy="137.26" r="3.2">
-          <title>Binary Black Hole Spins: Model Selection with GWTC-3 — 2023-12, 16 citations</title>
+        <circle class="mark" cx="354.64" cy="137.26" r="3.2">
+          <title>Binary Black Hole Spins: Model Selection with GWTC-3 — 2023-04, 16 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2503.17872" target="_blank" rel="noopener">
-        <circle class="mark" cx="559.64" cy="139.14" r="3.2">
-          <title>Possible binary neutron star merger history of the primary of GW230529 — 2025-06, 15 citations</title>
+        <circle class="mark" cx="595.12" cy="139.14" r="3.2">
+          <title>Possible binary neutron star merger history of the primary of GW230529 — 2025-11, 15 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2402.06305" target="_blank" rel="noopener">
+        <circle class="mark" cx="430.77" cy="139.14" r="3.2">
+          <title>The power of binary pulsars in testing Gauss-Bonnet gravity — 2024-02, 15 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2308.13666" target="_blank" rel="noopener">
-        <circle class="mark" cx="448.81" cy="141.15" r="3.2">
-          <title>A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the Third G — 2024-04, 14 citations</title>
+        <circle class="mark" cx="387.56" cy="141.15" r="3.2">
+          <title>A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the Third G — 2023-08, 14 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2406.17832" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="141.15" r="3.2">
-          <title>Searching for Asymmetric and Heavily Precessing Binary Black Holes in the Gravitational Wa — 2024-11, 14 citations</title>
+        <circle class="mark" cx="493.01" cy="141.15" r="3.2">
+          <title>Searching for Asymmetric and Heavily Precessing Binary Black Holes in the Gravitational Wa — 2024-10, 14 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2508.05018" target="_blank" rel="noopener">
-        <circle class="mark" cx="599.45" cy="143.31" r="3.2">
-          <title>Search for Gravitational Waves from Eccentric Binary Black Holes with an Effective-one-bod — 2025-11, 13 citations</title>
+        <circle class="mark" cx="570.94" cy="143.31" r="3.2">
+          <title>Search for Gravitational Waves from Eccentric Binary Black Holes with an Effective-one-bod — 2025-08, 13 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2402.13476" target="_blank" rel="noopener">
-        <circle class="mark" cx="559.64" cy="143.31" r="3.2">
-          <title>Assessing the effect of mass-model assumptions on measuring the Hubble constant from the c — 2025-06, 13 citations</title>
+        <circle class="mark" cx="548.05" cy="143.31" r="3.2">
+          <title>Assessing the effect of mass-model assumptions on measuring the Hubble constant from the c — 2025-05, 13 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2305.00071" target="_blank" rel="noopener">
-        <circle class="mark" cx="401.2" cy="143.31" r="3.2">
-          <title>Unified p&lt;SUB&gt;astro&lt;/SUB&gt; for gravitational waves: Consistently combining information from — 2023-10, 13 citations</title>
+        <circle class="mark" cx="407.88" cy="143.31" r="3.2">
+          <title>Unified p&lt;SUB&gt;astro&lt;/SUB&gt; for gravitational waves: Consistently combining information from — 2023-11, 13 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2211.01447" target="_blank" rel="noopener">
-        <circle class="mark" cx="322.11" cy="143.31" r="3.2">
-          <title>Quantifying the Evidence Against a Mass Gap between Black Holes and Neutron Stars — 2022-12, 13 citations</title>
+        <circle class="mark" cx="311.44" cy="143.31" r="3.2">
+          <title>Quantifying the Evidence Against a Mass Gap between Black Holes and Neutron Stars — 2022-11, 13 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2406.03257" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="145.64" r="3.2">
-          <title>The Heavier the Faster: A Subpopulation of Heavy, Rapidly Spinning and Quickly Evolving Bi — 2024-11, 12 citations</title>
+        <circle class="mark" cx="460.86" cy="145.64" r="3.2">
+          <title>The Heavier the Faster: A Subpopulation of Heavy, Rapidly Spinning and Quickly Evolving Bi — 2024-06, 12 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2304.02665" target="_blank" rel="noopener">
-        <circle class="mark" cx="385.33" cy="145.64" r="3.2">
-          <title>Inferring the astrophysical population of gravitational wave sources in the presence of no — 2023-08, 12 citations</title>
+        <circle class="mark" cx="369.05" cy="145.64" r="3.2">
+          <title>Inferring the astrophysical population of gravitational wave sources in the presence of no — 2023-06, 12 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2301.00025" target="_blank" rel="noopener">
+        <circle class="mark" cx="577.11" cy="145.64" r="3.2">
+          <title>Search for echoes on the edge of quantum black holes — 2025-08, 12 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2605.27227" target="_blank" rel="noopener">
-        <circle class="mark" cx="646.54" cy="145.64" r="3.2">
-          <title>GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propaga — 2026-05, 12 citations</title>
+        <circle class="mark" cx="664.04" cy="145.64" r="3.2">
+          <title>GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propaga — 2026-08, 12 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2502.17681" target="_blank" rel="noopener">
-        <circle class="mark" cx="559.64" cy="148.17" r="3.2">
-          <title>Properties of &#34;Lite&#34; Intermediate-mass Black Hole Candidates in LIGO-Virgo&#39;s Third Observi — 2025-06, 11 citations</title>
+        <circle class="mark" cx="528.76" cy="148.17" r="3.2">
+          <title>Properties of &#34;Lite&#34; Intermediate-mass Black Hole Candidates in LIGO-Virgo&#39;s Third Observi — 2025-02, 11 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2311.00045" target="_blank" rel="noopener">
+        <circle class="mark" cx="500.73" cy="148.17" r="3.2">
+          <title>Bayesian real-time classification of multi-messenger electromagnetic and gravitational-wav — 2024-11, 11 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2204.00026" target="_blank" rel="noopener">
-        <circle class="mark" cx="282.3" cy="150.95" r="3.2">
-          <title>Constraining black-hole binary spin precession and nutation with sequential prior conditio — 2022-07, 10 citations</title>
+        <circle class="mark" cx="364.16" cy="150.95" r="3.2">
+          <title>Constraining black-hole binary spin precession and nutation with sequential prior conditio — 2023-05, 10 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2410.14801" target="_blank" rel="noopener">
+        <circle class="mark" cx="550.62" cy="154.02" r="3.2">
+          <title>Bayesian Search of Massive Scalar Fields from LIGO-Virgo-KAGRA Binaries — 2025-05, 9 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2510.20767" target="_blank" rel="noopener">
-        <circle class="mark" cx="638.73" cy="157.45" r="3.2">
-          <title>Multimessenger Constraints on LIGO/Virgo/KAGRA Gravitational-wave Binary Black Holes Mergi — 2026-04, 8 citations</title>
+        <circle class="mark" cx="624.18" cy="157.45" r="3.2">
+          <title>Multimessenger Constraints on LIGO/Virgo/KAGRA Gravitational-wave Binary Black Holes Mergi — 2026-03, 8 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2604.01420" target="_blank" rel="noopener">
-        <circle class="mark" cx="638.73" cy="157.45" r="3.2">
+        <circle class="mark" cx="631.89" cy="157.45" r="3.2">
           <title>Low-mass failed supernovae and the $10\,M_{\odot}$ peak in the merging black hole mass dis — 2026-04, 8 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2309.02030" target="_blank" rel="noopener">
-        <circle class="mark" cx="433.2" cy="157.45" r="3.2">
-          <title>Using deep learning to predict matched signal-to-noise ratio of gravitational waves — 2024-02, 8 citations</title>
+        <circle class="mark" cx="390.39" cy="157.45" r="3.2">
+          <title>Using deep learning to predict matched signal-to-noise ratio of gravitational waves — 2023-09, 8 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2409.11359" target="_blank" rel="noopener">
+        <circle class="mark" cx="487.61" cy="157.45" r="3.2">
+          <title>Constraints on the maximal number of dark degrees of freedom from black hole evaporation,  — 2024-09, 8 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2502.07675" target="_blank" rel="noopener">
+        <circle class="mark" cx="525.42" cy="161.34" r="3.2">
+          <title>Limits on the existence of totally reflective exotic compact objects with current and futu — 2025-02, 7 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2204.05013" target="_blank" rel="noopener">
+        <circle class="mark" cx="295.49" cy="161.34" r="3.2">
+          <title>Are Binary Black Hole Mergers and Long Gamma-Ray Bursts Drawn from the Same Black Hole Pop — 2022-09, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2106.06035" target="_blank" rel="noopener">
-        <circle class="mark" cx="203.47" cy="161.34" r="3.2">
-          <title>Extended search for supernovalike neutrinos in NOvA coincident with LIGO/Virgo detections — 2021-09, 7 citations</title>
+        <circle class="mark" cx="199.3" cy="161.34" r="3.2">
+          <title>Extended search for supernovalike neutrinos in NOvA coincident with LIGO/Virgo detections — 2021-08, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2311.03804" target="_blank" rel="noopener">
-        <circle class="mark" cx="448.81" cy="161.34" r="3.2">
-          <title>Searches for neutrino counterparts of gravitational waves from the LIGO/Virgo third observ — 2024-04, 7 citations</title>
+        <circle class="mark" cx="453.4" cy="161.34" r="3.2">
+          <title>Searches for neutrino counterparts of gravitational waves from the LIGO/Virgo third observ — 2024-05, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2307.13099" target="_blank" rel="noopener">
-        <circle class="mark" cx="512.29" cy="161.34" r="3.2">
+        <circle class="mark" cx="514.62" cy="161.34" r="3.2">
           <title>Measuring gravitational wave speed and Lorentz violation with the first three gravitationa — 2024-12, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2604.14290" target="_blank" rel="noopener">
-        <circle class="mark" cx="638.73" cy="161.34" r="3.2">
+        <circle class="mark" cx="635.49" cy="161.34" r="3.2">
           <title>Emergent structure in the binary black hole mass distribution and implications for populat — 2026-04, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2411.13897" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="161.34" r="3.2">
+        <circle class="mark" cx="504.33" cy="161.34" r="3.2">
           <title>Observing the eye of the storm I: testing regular black holes with LVK and EHT observation — 2024-11, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2406.11885" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="161.34" r="3.2">
-          <title>A trifecta of modelling tools: a Bayesian binary black hole model selection combining popu — 2024-11, 7 citations</title>
+        <circle class="mark" cx="495.58" cy="161.34" r="3.2">
+          <title>A trifecta of modelling tools: a Bayesian binary black hole model selection combining popu — 2024-10, 7 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2602.11030" target="_blank" rel="noopener">
-        <circle class="mark" cx="654.6" cy="165.82" r="3.2">
-          <title>Population properties of binary black holes with eccentricity — 2026-06, 6 citations</title>
+        <circle class="mark" cx="642.95" cy="165.82" r="3.2">
+          <title>Population properties of binary black holes with eccentricity — 2026-05, 6 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2506.15410" target="_blank" rel="noopener">
+        <circle class="mark" cx="558.08" cy="171.13" r="3.2">
+          <title>Estimating Hubble Constant with Gravitational Observations: A Concise Review — 2025-06, 5 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2605.12818" target="_blank" rel="noopener">
-        <circle class="mark" cx="646.54" cy="171.13" r="3.2">
+        <circle class="mark" cx="642.44" cy="171.13" r="3.2">
           <title>Assessing the imprint of eccentricity in GW signatures using two independent waveform mode — 2026-05, 5 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2507.09705" target="_blank" rel="noopener">
-        <circle class="mark" cx="638.73" cy="171.13" r="3.2">
-          <title>Constraints on parity and Lorentz violations from gravitational waves: A comparison betwee — 2026-04, 5 citations</title>
+        <circle class="mark" cx="654.53" cy="171.13" r="3.2">
+          <title>Constraints on parity and Lorentz violations from gravitational waves: A comparison betwee — 2026-06, 5 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2510.02515" target="_blank" rel="noopener">
-        <circle class="mark" cx="646.54" cy="177.63" r="3.2">
+        <circle class="mark" cx="642.18" cy="177.63" r="3.2">
           <title>Neural Post-Einsteinian Test of General Relativity with the Third Gravitational Wave Trans — 2026-05, 4 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2402.07564" target="_blank" rel="noopener">
-        <circle class="mark" cx="504.48" cy="177.63" r="3.2">
-          <title>Bright in the Black: Searching for Electromagnetic Counterparts to Gravitational-wave Cand — 2024-11, 4 citations</title>
+        <circle class="mark" cx="431.54" cy="177.63" r="3.2">
+          <title>Bright in the Black: Searching for Electromagnetic Counterparts to Gravitational-wave Cand — 2024-02, 4 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2504.17587" target="_blank" rel="noopener">
-        <circle class="mark" cx="615.32" cy="177.63" r="3.2">
+        <circle class="mark" cx="611.58" cy="177.63" r="3.2">
           <title>Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Approach w — 2026-01, 4 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2107.09663" target="_blank" rel="noopener">
-        <circle class="mark" cx="250.56" cy="177.63" r="3.2">
-          <title>Multi-messenger searches via IceCube&#39;s high-energy neutrinos and gravitational-wave detect — 2022-03, 4 citations</title>
+        <circle class="mark" cx="190.56" cy="177.63" r="3.2">
+          <title>Multi-messenger searches via IceCube&#39;s high-energy neutrinos and gravitational-wave detect — 2021-07, 4 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2403.16837" target="_blank" rel="noopener">
-        <circle class="mark" cx="448.81" cy="186.01" r="3.2">
-          <title>Impact of noise transients on gravitational-wave burst detection efficiency of the BayesWa — 2024-04, 3 citations</title>
+        <circle class="mark" cx="442.35" cy="186.01" r="3.2">
+          <title>Impact of noise transients on gravitational-wave burst detection efficiency of the BayesWa — 2024-03, 3 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2601.04276" target="_blank" rel="noopener">
-        <circle class="mark" cx="646.54" cy="186.01" r="3.2">
+        <circle class="mark" cx="642.44" cy="186.01" r="3.2">
           <title>Search for precessing binary black holes in advanced LIGO&#39;s third observing run using harm — 2026-05, 3 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2512.17204" target="_blank" rel="noopener">
-        <circle class="mark" cx="607.25" cy="197.82" r="3.2">
-          <title>A Search for Binary Black Hole Mergers in LIGO O1-O3 Data with Convolutional Neural Networ — 2025-12, 2 citations</title>
+        <circle class="mark" cx="615.43" cy="197.82" r="3.2">
+          <title>A Search for Binary Black Hole Mergers in LIGO O1-O3 Data with Convolutional Neural Networ — 2026-01, 2 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2405.05094" target="_blank" rel="noopener">
+        <circle class="mark" cx="497.13" cy="197.82" r="3.2">
+          <title>Mass Function of Stellar Black Holes as Revealed by the LIGO─Virgo─KAGRA Observations — 2024-10, 2 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2307.14042" target="_blank" rel="noopener">
-        <circle class="mark" cx="472.48" cy="197.82" r="3.2">
-          <title>Mass ratio of binary black holes determined from LIGO/Virgo data restricted to small false — 2024-07, 2 citations</title>
+        <circle class="mark" cx="466.52" cy="197.82" r="3.2">
+          <title>Mass ratio of binary black holes determined from LIGO/Virgo data restricted to small false — 2024-06, 2 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2605.15749" target="_blank" rel="noopener">
-        <circle class="mark" cx="646.54" cy="197.82" r="3.2">
-          <title>Constraints on primordial black holes from the first part of LIGO-Virgo-KAGRA fourth obser — 2026-05, 2 citations</title>
+        <circle class="mark" cx="658.9" cy="197.82" r="3.2">
+          <title>Constraints on primordial black holes from the first part of LIGO-Virgo-KAGRA fourth obser — 2026-07, 2 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2112.07847" target="_blank" rel="noopener">
-        <circle class="mark" cx="227.14" cy="197.82" r="3.2">
-          <title>Unexpected correlations in outstanding subpopulations of the gravitational wave transient  — 2021-12, 2 citations</title>
+        <circle class="mark" cx="314.01" cy="197.82" r="3.2">
+          <title>Unexpected correlations in outstanding subpopulations of the gravitational wave transient  — 2022-11, 2 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2206.07577" target="_blank" rel="noopener">
+        <circle class="mark" cx="275.43" cy="197.82" r="3.2">
+          <title>Black Hole Olympics: Metric Selection from the Event Horizon Telescope and LIGO-VIRGO Obse — 2022-06, 2 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2509.12882" target="_blank" rel="noopener">
-        <circle class="mark" cx="638.73" cy="218.0" r="3.2">
-          <title>Machine learning to assess the astrophysical origin of gravitational waves triggers — 2026-04, 1 citations</title>
+        <circle class="mark" cx="630.86" cy="218.0" r="3.2">
+          <title>Machine learning to assess the astrophysical origin of gravitational waves triggers — 2026-03, 1 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2508.17103" target="_blank" rel="noopener">
-        <circle class="mark" cx="575.51" cy="218.0" r="3.2">
+        <circle class="mark" cx="575.05" cy="218.0" r="3.2">
           <title>Are the Circular Polarizations of Observed Gravitational-Waves Even-Handed? — 2025-08, 1 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2606.31350" target="_blank" rel="noopener">
-        <circle class="mark" cx="654.6" cy="218.0" r="3.2">
-          <title>Compactness Inference in Gravitational-Wave Mergers with PhenomDECO: Catalog Benchmarks an — 2026-06, 1 citations</title>
+        <circle class="mark" cx="660.18" cy="218.0" r="3.2">
+          <title>Compactness Inference in Gravitational-Wave Mergers with PhenomDECO: Catalog Benchmarks an — 2026-07, 1 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2512.04516" target="_blank" rel="noopener">
-        <circle class="mark" cx="662.41" cy="218.0" r="3.2">
+        <circle class="mark" cx="656.84" cy="218.0" r="3.2">
           <title>Searching for binary black hole mergers with deep learning in Advanced LIGO&#39;s third observ — 2026-07, 1 citations</title>
         </circle>
       </a>
       
+      <a href="https://arxiv.org/abs/2312.12557" target="_blank" rel="noopener">
+        <circle class="mark" cx="417.4" cy="218.0" r="3.2">
+          <title>Two-body problem in curved spacetime: exploring gravitational wave transient cases — 2023-12, 1 citations</title>
+        </circle>
+      </a>
+      
       <a href="https://arxiv.org/abs/2111.03606" target="_blank" rel="noopener">
-        <circle class="mark" cx="220.38" cy="237" r="3.2">
-          <title>GWTC-3: Compact Binary Coalescences Observed by LIGO and Virgo During the Second Part of t — 2021-11, 0 citations</title>
+        <circle class="mark" cx="402.74" cy="237" r="3.2">
+          <title>GWTC-3: Compact Binary Coalescences Observed by LIGO and Virgo During the Second Part of t — 2023-10, 0 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2010.14527" target="_blank" rel="noopener">
-        <circle class="mark" cx="123.08" cy="237" r="3.2">
-          <title>GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of th — 2020-10, 0 citations</title>
+        <circle class="mark" cx="156.1" cy="237" r="3.2">
+          <title>GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of th — 2021-03, 0 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2508.09493" target="_blank" rel="noopener">
-        <circle class="mark" cx="575.51" cy="237" r="3.2">
+        <circle class="mark" cx="572.48" cy="237" r="3.2">
           <title>Gravitational wave distance estimation using intrinsic signal properties: dark sirens as d — 2025-08, 0 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2105.06384" target="_blank" rel="noopener">
-        <circle class="mark" cx="174.59" cy="237" r="3.2">
-          <title>Search for lensing signatures in the gravitational-wave observations from the first half o — 2021-05, 0 citations</title>
+        <circle class="mark" cx="224.76" cy="237" r="3.2">
+          <title>Search for lensing signatures in the gravitational-wave observations from the first half o — 2021-11, 0 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2505.18311" target="_blank" rel="noopener">
+        <circle class="mark" cx="574.28" cy="237" r="3.2">
+          <title>A neural network for estimating compact binary coalescence parameters of gravitational-wav — 2025-08, 0 citations</title>
         </circle>
       </a>
       
@@ -910,30 +1087,30 @@ GPS 1253326744.8.</p>
       </a>
       
       <a href="https://arxiv.org/abs/2607.12043" target="_blank" rel="noopener">
-        <circle class="mark" cx="662.41" cy="237" r="3.2">
+        <circle class="mark" cx="658.38" cy="237" r="3.2">
           <title>No persuasive evidence yet of gravitational-wave tails from perturbers along the line of s — 2026-07, 0 citations</title>
         </circle>
       </a>
       
       <a href="https://arxiv.org/abs/2603.01043" target="_blank" rel="noopener">
-        <circle class="mark" cx="630.67" cy="237" r="3.2">
+        <circle class="mark" cx="623.92" cy="237" r="3.2">
           <title>Cosmological Evolution of the Universe in Torsion-based Modified Gravity — 2026-03, 0 citations</title>
         </circle>
       </a>
       
       
       
-      <text class="datalabel" x="341.37" y="11.64"
-            text-anchor="start">Population of Merging Compact Bina…</text>
+      <text class="datalabel" x="511.13" y="11.64"
+            text-anchor="end">Population of Merging Compact Bina…</text>
       
-      <line class="leader" x1="425.13" y1="14.18"
-        x2="436.33" y2="20.64"/>
-      <text class="datalabel" x="436.33" y="24.64"
+      <line class="leader" x1="266.17" y1="14.18"
+        x2="277.37" y2="20.64"/>
+      <text class="datalabel" x="277.37" y="24.64"
             text-anchor="start">GWTC-2.1: Deep extended catalog of…</text>
       
-      <line class="leader" x1="171.47" y1="16.5"
-        x2="182.67" y2="33.64"/>
-      <text class="datalabel" x="182.67" y="37.64"
+      <line class="leader" x1="153.27" y1="16.5"
+        x2="164.47" y2="33.64"/>
+      <text class="datalabel" x="164.47" y="37.64"
             text-anchor="start">Population Properties of Compact O…</text>
       
 
@@ -968,591 +1145,124 @@ GPS 1253326744.8.</p>
 
 </table></div>
 
+<h2>How papers use GW190924_021846</h2>
 
-<h2>Classified usage</h2>
-<p class="mut small">Not classified yet — run <code>gwn classify</code>.</p>
+<p class="small mut">138 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/GW190924_021846/papers.html">Browse all
+138 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/GW190924_021846/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">46</td>
+  <td class="barcell"><span class="bar" style="width:33.3%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2108.01045">GWTC-2.1: Deep extended catalog of compact binary coalescenc…</a> · <a href="https://arxiv.org/abs/2010.14529">Tests of general relativity with binary black holes from the…</a> · <a href="https://arxiv.org/abs/2112.06878">4-OGC: Catalog of Gravitational Waves from Compact Binary Me…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW190924_021846/papers.html#posterior_samples">posterior samples</a></td>
+  <td class="num">19</td>
+  <td class="barcell"><span class="bar" style="width:13.8%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2111.03634">Population of Merging Compact Binaries Inferred Using Gravit…</a> · <a href="https://arxiv.org/abs/2010.14533">Population Properties of Compact Objects from the Second LIG…</a> · <a href="https://arxiv.org/abs/2111.03604">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW190924_021846/papers.html#published_results">published results</a></td>
+  <td class="num">38</td>
+  <td class="barcell"><span class="bar" style="width:27.5%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2311.09484">First Sagittarius A* Event Horizon Telescope Results. VI. Te…</a> · <a href="https://arxiv.org/abs/2306.03903">Observational evidence for primordial black holes: A positiv…</a> · <a href="https://arxiv.org/abs/2209.05959">From inflation to black hole mergers and back again: Gravita…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW190924_021846/papers.html#qualitative">qualitative</a></td>
+  <td class="num">18</td>
+  <td class="barcell"><span class="bar" style="width:13.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2310.19857">Primordial black holes and their gravitational-wave signatur…</a> · <a href="https://arxiv.org/abs/2208.12849">Data quality up to the third observing run of advanced LIGO:…</a> · <a href="https://arxiv.org/abs/2408.11031">Hubble tension or distance ladder crisis?</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW190924_021846/papers.html#cited_only">cited only</a></td>
+  <td class="num">17</td>
+  <td class="barcell"><span class="bar" style="width:12.3%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2105.10580">Distribution of effective spins and masses of binary black h…</a> · <a href="https://arxiv.org/abs/2104.10253">Black Hole Mergers of AGN Origin in LIGO-Virgo&#39;s O1-O3a Obse…</a> · <a href="https://arxiv.org/abs/2306.00050">In pursuit of Love numbers: First templated search for compa…</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/GW190924_021846/papers.html#role=single_event">single event <b>62</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=population">population <b>56</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=test_of_gr">test of gr <b>19</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=cosmology">cosmology <b>9</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=counterpart_followup">counterpart followup <b>6</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=methods_demo">methods demo <b>6</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=detector_characterisation">detector characterisation <b>4</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=formation_channels">formation channels <b>2</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=waveform_systematics">waveform systematics <b>1</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=exotic_compact_object">exotic compact object <b>1</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=review">review <b>1</b></a><a class="chip" href="../event/GW190924_021846/papers.html#role=lensing">lensing <b>1</b></a></div>
 
 
-<h2>Papers mentioning this event</h2>
 
-<p class="small mut">112 found here. ADS full-text search
-matches <b>81</b> for this event's designations — we
-hold 138%. These are
-<b>mentions</b>, not citations.</p>
-
-<div class="wrapx"><table class="sortable">
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">138 papers name this event;
+ADS full-text search matches <b>81</b> for its designations
+(we hold 170%). These are
+<b>mentions</b>, not citations. <a href="../event/GW190924_021846/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
 <tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
 
-<tr><td><a href="#">Population of Merging Compact Binaries Inferred Using Gravitational Waves through </a></td>
+<tr><td><a href="https://arxiv.org/abs/2111.03634">Population of Merging Compact Binaries Inferred Using Gravitational Waves through </a></td>
     <td class="small mono">2111.03634</td>
     <td class="num small">1,372</td>
     <td class="num">2</td></tr>
 
-<tr><td><a href="#">GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO an</a></td>
+<tr><td><a href="https://arxiv.org/abs/2108.01045">GWTC-2.1: Deep extended catalog of compact binary coalescences observed by LIGO an</a></td>
     <td class="small mono">2108.01045</td>
     <td class="num small">1,096</td>
     <td class="num">8</td></tr>
 
-<tr><td><a href="#">Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-</a></td>
+<tr><td><a href="https://arxiv.org/abs/2010.14533">Population Properties of Compact Objects from the Second LIGO-Virgo Gravitational-</a></td>
     <td class="small mono">2010.14533</td>
     <td class="num small">1,012</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">Tests of general relativity with binary black holes from the second LIGO-Virgo gra</a></td>
+<tr><td><a href="https://arxiv.org/abs/2010.14529">Tests of general relativity with binary black holes from the second LIGO-Virgo gra</a></td>
     <td class="small mono">2010.14529</td>
     <td class="num small">925</td>
     <td class="num">6</td></tr>
 
-<tr><td><a href="#">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
+<tr><td><a href="https://arxiv.org/abs/2311.09484">First Sagittarius A* Event Horizon Telescope Results. VI. Testing the Black Hole M</a></td>
+    <td class="small mono">2311.09484</td>
+    <td class="num small">874</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2111.03604">Constraints on the Cosmic Expansion History from GWTC─3</a></td>
     <td class="small mono">2111.03604</td>
     <td class="num small">369</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a></td>
+<tr><td><a href="https://arxiv.org/abs/2112.06878">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a></td>
     <td class="small mono">2112.06878</td>
     <td class="num small">327</td>
     <td class="num">4</td></tr>
 
-<tr><td><a href="#">Observational evidence for primordial black holes: A positivist perspective</a></td>
+<tr><td><a href="https://arxiv.org/abs/2306.03903">Observational evidence for primordial black holes: A positivist perspective</a></td>
     <td class="small mono">2306.03903</td>
     <td class="num small">220</td>
     <td class="num">1</td></tr>
 
-<tr><td><a href="#">3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers</a></td>
+<tr><td><a href="https://arxiv.org/abs/2105.09151">3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers</a></td>
     <td class="small mono">2105.09151</td>
     <td class="num small">215</td>
     <td class="num">4</td></tr>
 
-<tr><td><a href="#">New binary black hole mergers in the LIGO-Virgo O3a data</a></td>
+<tr><td><a href="https://arxiv.org/abs/2201.02252">New binary black hole mergers in the LIGO-Virgo O3a data</a></td>
     <td class="small mono">2201.02252</td>
     <td class="num small">207</td>
     <td class="num">4</td></tr>
-
-<tr><td><a href="#">Primordial black holes and their gravitational-wave signatures</a></td>
-    <td class="small mono">2310.19857</td>
-    <td class="num small">168</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Improved gravitational-wave constraints on higher-order curvature theories of grav</a></td>
-    <td class="small mono">2104.11189</td>
-    <td class="num small">136</td>
-    <td class="num">3</td></tr>
-
-<tr><td><a href="#">From inflation to black hole mergers and back again: Gravitational-wave data-drive</a></td>
-    <td class="small mono">2209.05959</td>
-    <td class="num small">132</td>
-    <td class="num">11</td></tr>
-
-<tr><td><a href="#">Distribution of effective spins and masses of binary black holes from the LIGO and</a></td>
-    <td class="small mono">2105.10580</td>
-    <td class="num small">121</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A Light in the Dark: Searching for Electromagnetic Counterparts to Black Hole-Blac</a></td>
-    <td class="small mono">2209.13004</td>
-    <td class="num small">102</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Subtracting glitches from gravitational-wave detector data during the third LIGO-V</a></td>
-    <td class="small mono">2207.03429</td>
-    <td class="num small">98</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Bridging the Gap: Categorizing Gravitational-wave Events at the Transition between</a></td>
-    <td class="small mono">2111.03498</td>
-    <td class="num small">92</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">New black hole mergers in the LIGO-Virgo O3 data from a gravitational wave search </a></td>
-    <td class="small mono">2312.06631</td>
-    <td class="num small">89</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave</a></td>
-    <td class="small mono">2509.04348</td>
-    <td class="num small">87</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Hubble tension or distance ladder crisis?</a></td>
-    <td class="small mono">2408.11031</td>
-    <td class="num small">84</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A generalized precession parameter χ&lt;SUB&gt;p&lt;/SUB&gt; to interpret gravitational-wave d</a></td>
-    <td class="small mono">2011.11948</td>
-    <td class="num small">72</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">First Constraints on Compact Binary Environments from LIGO-Virgo Data</a></td>
-    <td class="small mono">2309.05061</td>
-    <td class="num small">67</td>
-    <td class="num">3</td></tr>
-
-<tr><td><a href="#">Deep learning and Bayesian inference of gravitational-wave populations: Hierarchic</a></td>
-    <td class="small mono">2203.03651</td>
-    <td class="num small">63</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Gravitational wave constraints on Lorentz and parity violations in gravity: High-o</a></td>
-    <td class="small mono">2112.06446</td>
-    <td class="num small">61</td>
-    <td class="num">4</td></tr>
-
-<tr><td><a href="#">Memory remains undetected: Updates from the second LIGO/Virgo gravitational-wave t</a></td>
-    <td class="small mono">2105.02879</td>
-    <td class="num small">60</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">(H)DPGMM: a hierarchy of Dirichlet process Gaussian mixture models for the inferen</a></td>
-    <td class="small mono">2109.05960</td>
-    <td class="num small">57</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">In pursuit of Love numbers: First templated search for compact objects with large </a></td>
-    <td class="small mono">2306.00050</td>
-    <td class="num small">53</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Searching for ringdown higher modes with a numerical relativity-informed post-merg</a></td>
-    <td class="small mono">2312.12515</td>
-    <td class="num small">53</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. I. Overview and General Tests</a></td>
-    <td class="small mono">2603.19019</td>
-    <td class="num small">52</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Potential Subpopulations and Assembling Tendency of the Merging Black Holes</a></td>
-    <td class="small mono">2208.11871</td>
-    <td class="num small">49</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</a></td>
-    <td class="small mono">2603.19020</td>
-    <td class="num small">48</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Assessing the model waveform accuracy of gravitational waves</a></td>
-    <td class="small mono">2205.08448</td>
-    <td class="num small">45</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Search for the Birefringence of Gravitational Waves with the Third Observing Run o</a></td>
-    <td class="small mono">2201.02813</td>
-    <td class="num small">42</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Gravitational-wave constraints on the GWTC-2 events by measuring the tidal deforma</a></td>
-    <td class="small mono">2106.09193</td>
-    <td class="num small">41</td>
-    <td class="num">15</td></tr>
-
-<tr><td><a href="#">GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants</a></td>
-    <td class="small mono">2603.19021</td>
-    <td class="num small">40</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A dark siren measurement of the Hubble constant using gravitational wave events fr</a></td>
-    <td class="small mono">2310.13695</td>
-    <td class="num small">39</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Probing the black hole metric: Black hole shadows and binary black-hole inspirals</a></td>
-    <td class="small mono">2012.02117</td>
-    <td class="num small">36</td>
-    <td class="num">10</td></tr>
-
-<tr><td><a href="#">IceCube Search for Neutrinos Coincident with Gravitational Wave Events from LIGO/V</a></td>
-    <td class="small mono">2208.09532</td>
-    <td class="num small">35</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Rapid and robust parameter inference for binary mergers</a></td>
-    <td class="small mono">2101.01188</td>
-    <td class="num small">34</td>
-    <td class="num">4</td></tr>
-
-<tr><td><a href="#">A dark standard siren measurement of the Hubble constant following LIGO/Virgo/KAGR</a></td>
-    <td class="small mono">2404.16092</td>
-    <td class="num small">34</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Deep learning detection and classification of gravitational waves from neutron sta</a></td>
-    <td class="small mono">2210.15888</td>
-    <td class="num small">33</td>
-    <td class="num">4</td></tr>
-
-<tr><td><a href="#">Measuring binary black hole orbital-plane spin orientations</a></td>
-    <td class="small mono">2107.09692</td>
-    <td class="num small">32</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Understanding How Fast Black Holes Spin by Analyzing Data from the Second Gravitat</a></td>
-    <td class="small mono">2110.13542</td>
-    <td class="num small">31</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Fortifying gravitational-wave tests of general relativity against astrophysical as</a></td>
-    <td class="small mono">2309.04528</td>
-    <td class="num small">31</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Improved parametrized test of general relativity using the IMRPHENOMX waveform fam</a></td>
-    <td class="small mono">2504.21147</td>
-    <td class="num small">31</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Tidal response beyond vacuum general relativity with a canonical definition</a></td>
-    <td class="small mono">2410.02531</td>
-    <td class="num small">30</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Population-informed priors in gravitational-wave astronomy</a></td>
-    <td class="small mono">2108.02462</td>
-    <td class="num small">30</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Establishing significance of gravitational-wave signals from a single observatory </a></td>
-    <td class="small mono">2203.08545</td>
-    <td class="num small">26</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Sampling the full hierarchical population posterior distribution in gravitational-</a></td>
-    <td class="small mono">2502.12156</td>
-    <td class="num small">25</td>
-    <td class="num">6</td></tr>
-
-<tr><td><a href="#">Searching for gravitational wave echoes from black hole binary events in the third</a></td>
-    <td class="small mono">2309.01894</td>
-    <td class="num small">25</td>
-    <td class="num">3</td></tr>
-
-<tr><td><a href="#">Evidence for subdominant multipole moments and precession in merging black-hole-bi</a></td>
-    <td class="small mono">2111.10455</td>
-    <td class="num small">25</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Search for Neutrinos in Coincidence with Gravitational Wave Events from the LIGO-V</a></td>
-    <td class="small mono">2104.09196</td>
-    <td class="num small">25</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">On the Angular Momentum Transport Efficiency within the Star Constrained from Grav</a></td>
-    <td class="small mono">2108.04821</td>
-    <td class="num small">24</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Exploring gravitational-wave detection and parameter inference using deep learning</a></td>
-    <td class="small mono">2011.10425</td>
-    <td class="num small">24</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Does spacetime have memories? Searching for gravitational-wave memory in the third</a></td>
-    <td class="small mono">2404.11919</td>
-    <td class="num small">23</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Exploring Field-evolution and Dynamical-capture Coalescing Binary Black Holes in G</a></td>
-    <td class="small mono">2404.09668</td>
-    <td class="num small">23</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">On the Neutron Star/Black Hole Mass Gap and Black Hole Searches</a></td>
-    <td class="small mono">2210.00425</td>
-    <td class="num small">23</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Deep Learning-based Search for Microlensing Signature from Binary Black Hole Event</a></td>
-    <td class="small mono">2206.08234</td>
-    <td class="num small">22</td>
-    <td class="num">4</td></tr>
-
-<tr><td><a href="#">Identifying glitches near gravitational-wave signals from compact binary coalescen</a></td>
-    <td class="small mono">2208.12338</td>
-    <td class="num small">22</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Anatomy of parameter-estimation biases in overlapping gravitational-wave signals</a></td>
-    <td class="small mono">2304.06734</td>
-    <td class="num small">21</td>
-    <td class="num">3</td></tr>
-
-<tr><td><a href="#">A Systematic Exploration of Kilonova Candidates from Neutron Star Mergers during t</a></td>
-    <td class="small mono">2112.09701</td>
-    <td class="num small">21</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Probing neutrino emission at GeV energies from compact binary mergers with the Ice</a></td>
-    <td class="small mono">2105.13160</td>
-    <td class="num small">21</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A Search for IceCube Sub-TeV Neutrinos Correlated with Gravitational-wave Events D</a></td>
-    <td class="small mono">2303.15970</td>
-    <td class="num small">20</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Gravitational wave memory of the binary black hole events in GWTC-2</a></td>
-    <td class="small mono">2111.13882</td>
-    <td class="num small">20</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">AGN flares as counterparts to LIGO/Virgo mergers: no confident causal connection i</a></td>
-    <td class="small mono">2405.05318</td>
-    <td class="num small">19</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Rapid source classification and distance estimation for compact binary mergers wit</a></td>
-    <td class="small mono">2203.10080</td>
-    <td class="num small">18</td>
-    <td class="num">7</td></tr>
-
-<tr><td><a href="#">Electromagnetic follow-up of gravitational waves: review and lessons learned</a></td>
-    <td class="small mono">2410.18274</td>
-    <td class="num small">18</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Binary Black Hole Spins: Model Selection with GWTC-3</a></td>
-    <td class="small mono">2301.01312</td>
-    <td class="num small">16</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Possible binary neutron star merger history of the primary of GW230529</a></td>
-    <td class="small mono">2503.17872</td>
-    <td class="num small">15</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the</a></td>
-    <td class="small mono">2308.13666</td>
-    <td class="num small">14</td>
-    <td class="num">6</td></tr>
-
-<tr><td><a href="#">Searching for Asymmetric and Heavily Precessing Binary Black Holes in the Gravitat</a></td>
-    <td class="small mono">2406.17832</td>
-    <td class="num small">14</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Quantifying the Evidence Against a Mass Gap between Black Holes and Neutron Stars</a></td>
-    <td class="small mono">2211.01447</td>
-    <td class="num small">13</td>
-    <td class="num">8</td></tr>
-
-<tr><td><a href="#">Search for Gravitational Waves from Eccentric Binary Black Holes with an Effective</a></td>
-    <td class="small mono">2508.05018</td>
-    <td class="num small">13</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Assessing the effect of mass-model assumptions on measuring the Hubble constant fr</a></td>
-    <td class="small mono">2402.13476</td>
-    <td class="num small">13</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Unified p&lt;SUB&gt;astro&lt;/SUB&gt; for gravitational waves: Consistently combining informat</a></td>
-    <td class="small mono">2305.00071</td>
-    <td class="num small">13</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">The Heavier the Faster: A Subpopulation of Heavy, Rapidly Spinning and Quickly Evo</a></td>
-    <td class="small mono">2406.03257</td>
-    <td class="num small">12</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Inferring the astrophysical population of gravitational wave sources in the presen</a></td>
-    <td class="small mono">2304.02665</td>
-    <td class="num small">12</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave</a></td>
-    <td class="small mono">2605.27227</td>
-    <td class="num small">12</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Properties of &#34;Lite&#34; Intermediate-mass Black Hole Candidates in LIGO-Virgo&#39;s Third</a></td>
-    <td class="small mono">2502.17681</td>
-    <td class="num small">11</td>
-    <td class="num">8</td></tr>
-
-<tr><td><a href="#">Constraining black-hole binary spin precession and nutation with sequential prior </a></td>
-    <td class="small mono">2204.00026</td>
-    <td class="num small">10</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Low-mass failed supernovae and the $10\,M_{\odot}$ peak in the merging black hole </a></td>
-    <td class="small mono">2604.01420</td>
-    <td class="num small">8</td>
-    <td class="num">6</td></tr>
-
-<tr><td><a href="#">Multimessenger Constraints on LIGO/Virgo/KAGRA Gravitational-wave Binary Black Hol</a></td>
-    <td class="small mono">2510.20767</td>
-    <td class="num small">8</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Using deep learning to predict matched signal-to-noise ratio of gravitational wave</a></td>
-    <td class="small mono">2309.02030</td>
-    <td class="num small">8</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Observing the eye of the storm I: testing regular black holes with LVK and EHT obs</a></td>
-    <td class="small mono">2411.13897</td>
-    <td class="num small">7</td>
-    <td class="num">5</td></tr>
-
-<tr><td><a href="#">Searches for neutrino counterparts of gravitational waves from the LIGO/Virgo thir</a></td>
-    <td class="small mono">2311.03804</td>
-    <td class="num small">7</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Measuring gravitational wave speed and Lorentz violation with the first three grav</a></td>
-    <td class="small mono">2307.13099</td>
-    <td class="num small">7</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Extended search for supernovalike neutrinos in NOvA coincident with LIGO/Virgo det</a></td>
-    <td class="small mono">2106.06035</td>
-    <td class="num small">7</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Emergent structure in the binary black hole mass distribution and implications for</a></td>
-    <td class="small mono">2604.14290</td>
-    <td class="num small">7</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A trifecta of modelling tools: a Bayesian binary black hole model selection combin</a></td>
-    <td class="small mono">2406.11885</td>
-    <td class="num small">7</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Population properties of binary black holes with eccentricity</a></td>
-    <td class="small mono">2602.11030</td>
-    <td class="num small">6</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Constraints on parity and Lorentz violations from gravitational waves: A compariso</a></td>
-    <td class="small mono">2507.09705</td>
-    <td class="num small">5</td>
-    <td class="num">5</td></tr>
-
-<tr><td><a href="#">Assessing the imprint of eccentricity in GW signatures using two independent wavef</a></td>
-    <td class="small mono">2605.12818</td>
-    <td class="num small">5</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Neural Post-Einsteinian Test of General Relativity with the Third Gravitational Wa</a></td>
-    <td class="small mono">2510.02515</td>
-    <td class="num small">4</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Bright in the Black: Searching for Electromagnetic Counterparts to Gravitational-w</a></td>
-    <td class="small mono">2402.07564</td>
-    <td class="num small">4</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Ap</a></td>
-    <td class="small mono">2504.17587</td>
-    <td class="num small">4</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Multi-messenger searches via IceCube&#39;s high-energy neutrinos and gravitational-wav</a></td>
-    <td class="small mono">2107.09663</td>
-    <td class="num small">4</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Impact of noise transients on gravitational-wave burst detection efficiency of the</a></td>
-    <td class="small mono">2403.16837</td>
-    <td class="num small">3</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Search for precessing binary black holes in advanced LIGO&#39;s third observing run us</a></td>
-    <td class="small mono">2601.04276</td>
-    <td class="num small">3</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">A Search for Binary Black Hole Mergers in LIGO O1-O3 Data with Convolutional Neura</a></td>
-    <td class="small mono">2512.17204</td>
-    <td class="num small">2</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Mass ratio of binary black holes determined from LIGO/Virgo data restricted to sma</a></td>
-    <td class="small mono">2307.14042</td>
-    <td class="num small">2</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Constraints on primordial black holes from the first part of LIGO-Virgo-KAGRA four</a></td>
-    <td class="small mono">2605.15749</td>
-    <td class="num small">2</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Unexpected correlations in outstanding subpopulations of the gravitational wave tr</a></td>
-    <td class="small mono">2112.07847</td>
-    <td class="num small">2</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Machine learning to assess the astrophysical origin of gravitational waves trigger</a></td>
-    <td class="small mono">2509.12882</td>
-    <td class="num small">1</td>
-    <td class="num">3</td></tr>
-
-<tr><td><a href="#">Are the Circular Polarizations of Observed Gravitational-Waves Even-Handed?</a></td>
-    <td class="small mono">2508.17103</td>
-    <td class="num small">1</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Compactness Inference in Gravitational-Wave Mergers with PhenomDECO: Catalog Bench</a></td>
-    <td class="small mono">2606.31350</td>
-    <td class="num small">1</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Searching for binary black hole mergers with deep learning in Advanced LIGO&#39;s thir</a></td>
-    <td class="small mono">2512.04516</td>
-    <td class="num small">1</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Cosmological Evolution of the Universe in Torsion-based Modified Gravity</a></td>
-    <td class="small mono">2603.01043</td>
-    <td class="num small">0</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Gravitational wave distance estimation using intrinsic signal properties: dark sir</a></td>
-    <td class="small mono">2508.09493</td>
-    <td class="num small">0</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a></td>
-    <td class="small mono">2608.29072</td>
-    <td class="num small">0</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">No persuasive evidence yet of gravitational-wave tails from perturbers along the l</a></td>
-    <td class="small mono">2607.12043</td>
-    <td class="num small">0</td>
-    <td class="num">1</td></tr>
-
-<tr><td><a href="#">GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During the First Ha</a></td>
-    <td class="small mono">2010.14527</td>
-    <td class="num small">—</td>
-    <td class="num">15</td></tr>
-
-<tr><td><a href="#">GWTC-3: Compact Binary Coalescences Observed by LIGO and Virgo During the Second P</a></td>
-    <td class="small mono">2111.03606</td>
-    <td class="num small">—</td>
-    <td class="num">2</td></tr>
-
-<tr><td><a href="#">Search for lensing signatures in the gravitational-wave observations from the firs</a></td>
-    <td class="small mono">2105.06384</td>
-    <td class="num small">—</td>
-    <td class="num">1</td></tr>
 
 </table></div>
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-09-17 ·
+  <span>Data extracted 2026-10-20 ·
     434 events ·
     13,904 papers,
-    1,975 with full text (14%)</span>
-  <span>Built 2026-09-29 13:39 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/a61caf5"><code>a61caf5</code></a>
+    13,892 with full text (99.9%)</span>
+  <span>Built 2026-10-21 12:20 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>
