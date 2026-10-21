@@ -192,12 +192,25 @@ def cmd_classify(
     batch: bool = typer.Option(True, help="Use the Batch API (50% cheaper)"),
     require_fulltext: bool = typer.Option(
         True, help="Skip abstract-only papers (engagement is undecidable without full text)"),
+    gold_only: bool = typer.Option(
+        False, "--gold-only",
+        help="Only the papers in eval/gold.jsonl: a cheap agreement check before a full run"),
+    context: str = typer.Option(
+        "excerpts", help="What the model reads: 'excerpts' (sentences around mentions) "
+                         "or 'fulltext' (the whole paper)"),
+    effort: Optional[str] = typer.Option(
+        None, help="Model effort (low|medium|high|xhigh|max); default: the model's own"),
 ):
     """Classify how papers use events. Rules first, LLM for the remainder."""
     from .classify.runner import classify
     init_db()
+    only = None
+    if gold_only:
+        from .evalset import load_gold
+        only = {r["arxiv_id"] for r in load_gold()}
     stats = classify(limit=limit, dry_run=dry_run, use_batch=batch,
-                     require_fulltext=require_fulltext)
+                     require_fulltext=require_fulltext, only_arxiv=only,
+                     scope="gold" if gold_only else "all", context=context, effort=effort)
     typer.echo(str(stats))
     for e in stats.errors[:10]:
         typer.echo(f"  ! {e}")

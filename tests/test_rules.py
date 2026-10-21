@@ -114,3 +114,40 @@ def test_llm_answers_become_a_set_of_uses_and_a_derived_engagement(temp_db):
         u = s.query(EventUsage).one()
         assert u.uses == ["strain_analysis", "posterior_samples"]   # no qualitative beside data
         assert u.engagement == "strain_analysis"
+
+
+def test_fulltext_request_lists_aliases_and_marks_counterparts(tmp_path):
+    from gwnetwork.classify.runner import _request_for
+    from gwnetwork.models import Paper
+    f = tmp_path / "p.txt"
+    f.write_text("We reanalyse all events in Table 1. GRB 170817A was bright.")
+    paper = Paper(arxiv_id="1", title="T", abstract="A", fulltext_path=str(f))
+    m = FakeMention("methods", "x")
+    req = _request_for(paper, [("e1", [m])], {"e1": "GW170817"}, frozenset(), "fulltext",
+                       {"e1": [("GW170817", "gw_name"), ("GRB 170817A", "em_counterpart")]})
+    content = req["messages"][0]["content"]
+    assert "We reanalyse all events in Table 1." in content
+    assert "GRB 170817A [EM counterpart, not the GW signal]" in content
+
+
+def test_batches_split_under_the_size_limit(monkeypatch):
+    import gwnetwork.classify.runner as runner
+
+    created = []
+
+    class Batches:
+        def create(self, requests):
+            created.append(len(requests)); return type("B", (), {"id": f"b{len(created)}"})()
+        def retrieve(self, bid):
+            return type("S", (), {"processing_status": "ended"})()
+        def results(self, bid):
+            return []
+
+    monkeypatch.setattr(runner, "_client", lambda: type("C", (), {
+        "messages": type("M", (), {"batches": Batches()})()})())
+    monkeypatch.setattr(runner, "BATCH_MAX_BYTES", 2500)
+    reqs = [(i, [], lambda: {"model": "m", "max_tokens": 1,
+                             "messages": [{"role": "user", "content": "x" * 1000}]})
+            for i in range(5)]
+    runner._run_batch(reqs, poll_seconds=0)
+    assert created == [2, 2, 1]

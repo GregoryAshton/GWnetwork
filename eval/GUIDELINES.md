@@ -1,6 +1,6 @@
 # Gold-set labelling guide
 
-Version 3, frozen 2026-10-21 (classifier `classify-0.4`). Changes are listed
+Version 3.1, frozen 2026-10-21 (classifier `classify-0.4`). Changes are listed
 at the end. The usage questions
 below are generated from `gwnetwork/classify/prompts.py`, the same text the
 classifier gets; `tests/test_evalset.py` fails if they drift apart.
@@ -34,10 +34,10 @@ all "no".
 Its own analysis of the detector data. The original discovery or catalogue analysis and any independent analysis count alike.
 
 **Q2. Does it use released samples for this event?** (`posterior_samples`)
-Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis.
+Released posterior/PE samples, or sample sets conditioned on the event (e.g. EOS samples informed by GW170817), used in its own analysis. The samples must come from someone else or an earlier paper: a paper's own posteriors from analysing the strain are Q1, not Q2.
 
 **Q3. Does it use the event's published measurements with their uncertainties?** (`published_results`)
-Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. "exceeds the 1.61-2.52 solar mass primary of GW190425"). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here.
+Credible intervals, ranges or bounds for masses, spins, distance, sky position, H0, ... that the paper USES: as inputs to a calculation, figure or table, or to compare its own results against, even in the text (e.g. "exceeds the 1.61-2.52 solar mass primary of GW190425"). Merely quoting them as background (e.g. listing an H0 value among other measurements in the introduction) does not count. A released sky map or alert localisation counts here. The numbers must be published by someone else or an earlier paper: a paper reporting its own new measurements (e.g. a catalogue giving the masses it inferred) is Q1, not Q3.
 
 **Q4. If none of those: does it use anything the event showed?** (`qualitative` if yes, `cited_only` if no)
 Its findings, implications or properties are discussed, or used to motivate, compare with, interpret or argue for the paper's own work; a central or rounded value ("~1.4 solar masses", "black holes of ~30 solar masses exist in binaries") counts. Read this broadly. If not -- the event is only named or cited as background, as in "gravitational waves have been observed [1]" -- it is cited_only.
@@ -124,3 +124,8 @@ once the guide was applied consistently):
 - Q3: a bound used without restating its numbers, or a third-party bound
   derived from the event, counts when used.
 - Full role list added. These rules are also in the classifier prompt.
+
+**Version 3.1** (clarification, no label changes): Q2 and Q3 are about results
+someone else or an earlier paper released or published. A paper's own new
+measurements or posteriors -- a catalogue reporting the masses it inferred --
+are Q1, not Q2/Q3. Labellers already applied this; the classifier did not.

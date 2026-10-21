@@ -15,7 +15,9 @@ the real lever.
 """
 from __future__ import annotations
 
+import functools
 import json
+import os
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -26,11 +28,12 @@ from sqlalchemy import func, select, update
 from ..config import CONFIG
 from ..db import session
 from ..models import (
+    EventDesignation,
     USES, AnalysisRun, Event, EventUsage, Mention, Paper, deepest_use, normalise_uses,
 )
 from ..citations import citing_sentences
 from ..counterparts import counterpart_names, is_counterpart
-from .prompts import PROMPT_SHA256, SYSTEM, build_user_prompt
+from .prompts import PROMPT_SHA256, SYSTEM, build_fulltext_prompt, build_user_prompt
 from .rules import classify_engagement
 from .schemas import SCHEMA
 
@@ -39,10 +42,25 @@ PIPELINE_VERSION = "classify-0.4"
 MAX_EXCERPTS_PER_EVENT = 3
 MAX_EXCERPTS_TOTAL = 40
 MAX_EVENTS_PER_CALL = 25
+# Full text asks more of each answer; at 25 events per call the model dropped
+# 12 of 498 events on the gold set, so large papers are split more finely.
+MAX_EVENTS_PER_CALL_FULLTEXT = 10
+# What the classifier reads. "excerpts": sentences around each mention (cheap,
+# but misses collective statements such as "we reanalyse all events in Table
+# 1"). "fulltext": the whole paper, as the gold-set labellers read it.
+CONTEXTS = ("excerpts", "fulltext")
+# A sanity cap, not a budget: ~150k tokens covers ~99% of the corpus.
+MAX_FULLTEXT_CHARS = 600_000
+# The Batch API takes at most 256 MB / 100k requests per batch.
+BATCH_MAX_BYTES = 150_000_000
+BATCH_MAX_REQUESTS = 50_000
 MAX_CITED_REFS_PER_EVENT = 2
 # Haiku 5.5 thinks by default and thinking counts toward this cap; at 4000,
 # 7/20 large papers were truncated, 2 of them before writing any answer.
 MAX_TOKENS = 16000
+# Higher effort means more thinking, which also counts toward max_tokens.
+MAX_TOKENS_HIGH_EFFORT = 32000
+EFFORTS = ("low", "medium", "high", "xhigh", "max")
 
 
 @dataclass
@@ -54,6 +72,7 @@ class ClassifyStats:
     pairs_to_llm: int = 0
     papers_called: int = 0
     usages_written: int = 0
+    est_input_tokens: int = 0       # full-text mode: rough paper-text tokens to send
     errors: list = field(default_factory=list)
 
     def __str__(self) -> str:
@@ -63,7 +82,9 @@ class ClassifyStats:
         return (f"{self.papers_considered} papers{skip}, {self.pairs_total} pairs: "
                 f"{self.pairs_by_rule} by rule ({saved:.0f}% of LLM spend avoided), "
                 f"{self.pairs_to_llm} to LLM in {self.papers_called} calls, "
-                f"{self.usages_written} usages written")
+                f"{self.usages_written} usages written"
+                + (f", ~{self.est_input_tokens / 1e6:.1f}M paper-text input tokens"
+                   if self.est_input_tokens else ""))
 
 
 def _excerpts(mentions: list, names: Optional[dict] = None,
@@ -115,7 +136,8 @@ def _citation_excerpts(ms: list, event_name: str, text: str) -> list:
     return out
 
 
-def _plan(s, limit: Optional[int], require_fulltext: bool = True) -> tuple:
+def _plan(s, limit: Optional[int], require_fulltext: bool = True,
+          only_arxiv: Optional[set] = None) -> tuple:
     """Group current mentions by paper; split pairs into rule-settled and LLM."""
     run = s.scalar(select(AnalysisRun).where(
         AnalysisRun.stage == "extract", AnalysisRun.is_current == True))  # noqa: E712
@@ -133,6 +155,13 @@ def _plan(s, limit: Optional[int], require_fulltext: bool = True) -> tuple:
     if require_fulltext:
         allowed = {pid for (pid,) in s.execute(
             select(Paper.id).where(Paper.fulltext_path.is_not(None))).all()}
+    if only_arxiv is not None:
+        # e.g. the gold-set papers, to measure agreement before a full run.
+        # Every event in each paper is still classified, exactly as in a full
+        # run, so the calls (and the scores) are representative.
+        scoped = {pid for (pid,) in s.execute(
+            select(Paper.id).where(Paper.arxiv_id.in_(only_arxiv))).all()}
+        allowed = scoped if allowed is None else allowed & scoped
 
     by_paper: dict = defaultdict(lambda: defaultdict(list))
     for m in rows:
@@ -175,26 +204,46 @@ def _fulltext(paper: Paper) -> Optional[str]:
     return p.read_text(errors="replace") if p.exists() else None
 
 
+def _file_size(path: str) -> int:
+    try:
+        return os.path.getsize(path)
+    except OSError:
+        return 0
+
+
 def _chunks(needs_llm: list, size: int = MAX_EVENTS_PER_CALL) -> list:
     return [needs_llm[i:i + size] for i in range(0, len(needs_llm), size)]
 
 
 def _request_for(paper: Paper, needs_llm: list, names: dict,
-                 counterparts: frozenset = frozenset()) -> Optional[dict]:
+                 counterparts: frozenset = frozenset(), context: str = "excerpts",
+                 aliases: Optional[dict] = None,
+                 effort: Optional[str] = None) -> Optional[dict]:
     if not needs_llm:
         return None
-    all_mentions = [m for _, ms in needs_llm for m in ms]
-    event_names = [names[eid] for eid, _ in needs_llm if eid in names]
-    if not event_names:
+    event_ids = [eid for eid, _ in needs_llm if eid in names]
+    if not event_ids:
         return None
+    if context == "fulltext":
+        text = _fulltext(paper) or f"Abstract\n\n{paper.abstract}"
+        content = build_fulltext_prompt(
+            paper.title, [(names[eid], (aliases or {}).get(eid, [])) for eid in event_ids],
+            text[:MAX_FULLTEXT_CHARS], truncated=len(text) > MAX_FULLTEXT_CHARS)
+    else:
+        all_mentions = [m for _, ms in needs_llm for m in ms]
+        content = build_user_prompt(
+            paper.title, paper.abstract[:2000], [names[eid] for eid in event_ids],
+            _excerpts(all_mentions, names, _fulltext(paper), counterparts))
+    output_config = {"format": {"type": "json_schema", "schema": SCHEMA}}
+    if effort:
+        output_config["effort"] = effort    # model default (medium on Haiku 5.5) otherwise
     return {
         "model": CONFIG.classify_model,
-        "max_tokens": MAX_TOKENS,
+        "max_tokens": (MAX_TOKENS_HIGH_EFFORT if effort in ("high", "xhigh", "max")
+                       else MAX_TOKENS),
         "system": SYSTEM,
-        "messages": [{"role": "user", "content": build_user_prompt(
-            paper.title, paper.abstract[:2000], event_names,
-            _excerpts(all_mentions, names, _fulltext(paper), counterparts))}],
-        "output_config": {"format": {"type": "json_schema", "schema": SCHEMA}},
+        "messages": [{"role": "user", "content": content}],
+        "output_config": output_config,
     }
 
 
@@ -220,11 +269,18 @@ def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> int
 
 
 def classify(limit: Optional[int] = None, dry_run: bool = False,
-             use_batch: bool = True, require_fulltext: bool = True) -> ClassifyStats:
+             use_batch: bool = True, require_fulltext: bool = True,
+             only_arxiv: Optional[set] = None, scope: str = "all",
+             context: str = "excerpts", effort: Optional[str] = None) -> ClassifyStats:
+    if context not in CONTEXTS:
+        raise ValueError(f"context must be one of {CONTEXTS}")
+    if effort is not None and effort not in EFFORTS:
+        raise ValueError(f"effort must be one of {EFFORTS}")
     stats = ClassifyStats()
     with session() as s:
-        plans, names = _plan(s, limit, require_fulltext=require_fulltext)
-        if require_fulltext:
+        plans, names = _plan(s, limit, require_fulltext=require_fulltext,
+                             only_arxiv=only_arxiv)
+        if require_fulltext and only_arxiv is None:
             run = s.scalar(select(AnalysisRun).where(
                 AnalysisRun.stage == "extract", AnalysisRun.is_current == True))  # noqa: E712
             with_mentions = s.scalar(select(func.count(func.distinct(Mention.paper_id)))
@@ -237,11 +293,21 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
         run = AnalysisRun(
             stage="classify", pipeline_version=PIPELINE_VERSION,
             model_id=CONFIG.classify_model, prompt_sha256=PROMPT_SHA256,
-            config={"batch": use_batch, "dry_run": dry_run},
+            config={"batch": use_batch, "dry_run": dry_run, "scope": scope,
+                    "context": context, "effort": effort},
         )
         s.add(run)
         s.flush()
 
+        aliases: dict = defaultdict(list)
+        if context == "fulltext":
+            for eid, d, kind in s.execute(select(EventDesignation.event_id,
+                                                 EventDesignation.designation,
+                                                 EventDesignation.kind)):
+                aliases[eid].append((d, kind))
+
+        # Requests are built lazily: in full-text mode the whole corpus is over
+        # a gigabyte of text, so each is materialised only when it is sent.
         requests = []
         for paper_id, rule_settled, needs_llm in plans:
             stats.papers_considered += 1
@@ -250,10 +316,16 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
             stats.pairs_to_llm += len(needs_llm)
             if not dry_run:
                 stats.usages_written += _write_rule_usages(s, run.id, paper_id, rule_settled)
-            for chunk in _chunks(needs_llm):
-                req = _request_for(papers[paper_id], chunk, names, counterparts)
-                if req is not None:
-                    requests.append((paper_id, chunk, req))
+            size = MAX_EVENTS_PER_CALL_FULLTEXT if context == "fulltext" else MAX_EVENTS_PER_CALL
+            for chunk in _chunks(needs_llm, size):
+                if not any(eid in names for eid, _ in chunk):
+                    continue
+                paper = papers[paper_id]
+                requests.append((paper_id, chunk, functools.partial(
+                    _request_for, paper, chunk, names, counterparts, context, aliases, effort)))
+                if context == "fulltext" and paper.fulltext_path:
+                    stats.est_input_tokens += min(
+                        _file_size(paper.fulltext_path), MAX_FULLTEXT_CHARS) // 4
 
         stats.papers_called = len(requests)
 
@@ -302,9 +374,9 @@ def _text_of(message) -> str:
 def _run_sync(requests: list) -> list:
     client = _client()
     out = []
-    for paper_id, needs_llm, req in requests:
+    for paper_id, needs_llm, make in requests:
         try:
-            msg = client.messages.create(**req)
+            msg = client.messages.create(**make())
             out.append((paper_id, needs_llm, json.loads(_text_of(msg)), None))
         except Exception as exc:  # noqa: BLE001
             out.append((paper_id, needs_llm, {}, str(exc)))
@@ -319,19 +391,38 @@ def _run_batch(requests: list, poll_seconds: int = 30) -> list:
 
     client = _client()
     index = {f"p{i}": (pid, needs) for i, (pid, needs, _) in enumerate(requests)}
-    batch = client.messages.batches.create(requests=[
-        Request(custom_id=f"p{i}", params=req)
-        for i, (_, _, req) in enumerate(requests)
-    ])
-    while True:
-        status = client.messages.batches.retrieve(batch.id)
-        if status.processing_status == "ended":
-            break
-        time.sleep(poll_seconds)
+
+    # Split under the API's per-batch size limit, building each request only
+    # when its batch is sent.
+    batch_ids, pending, size = [], [], 0
+
+    def flush():
+        nonlocal pending, size
+        if pending:
+            batch_ids.append(client.messages.batches.create(requests=pending).id)
+        pending, size = [], 0
+
+    for i, (_, _, make) in enumerate(requests):
+        params = make()
+        n = len(json.dumps(params))
+        if pending and (size + n > BATCH_MAX_BYTES or len(pending) >= BATCH_MAX_REQUESTS):
+            flush()
+        pending.append(Request(custom_id=f"p{i}", params=params))
+        size += n
+    flush()
+
+    waiting = set(batch_ids)
+    while waiting:
+        for bid in list(waiting):
+            if client.messages.batches.retrieve(bid).processing_status == "ended":
+                waiting.discard(bid)
+        if waiting:
+            time.sleep(poll_seconds)
 
     out = []
     # Results arrive in arbitrary order -- key by custom_id, never by position.
-    for result in client.messages.batches.results(batch.id):
+    results = (r for bid in batch_ids for r in client.messages.batches.results(bid))
+    for result in results:
         paper_id, needs_llm = index[result.custom_id]
         if result.result.type == "errored":
             err = result.result.error

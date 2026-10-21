@@ -15,7 +15,9 @@ DATA_QUESTIONS = [
     ("posterior_samples",
      "Does it use released samples for this event?",
      "Released posterior/PE samples, or sample sets conditioned on the event "
-     "(e.g. EOS samples informed by GW170817), used in its own analysis."),
+     "(e.g. EOS samples informed by GW170817), used in its own analysis. The "
+     "samples must come from someone else or an earlier paper: a paper's own "
+     "posteriors from analysing the strain are Q1, not Q2."),
     ("published_results",
      "Does it use the event's published measurements with their uncertainties?",
      "Credible intervals, ranges or bounds for masses, spins, distance, sky "
@@ -24,7 +26,9 @@ DATA_QUESTIONS = [
      "\"exceeds the 1.61-2.52 solar mass primary of GW190425\"). Merely quoting "
      "them as background (e.g. listing an H0 value among other measurements in "
      "the introduction) does not count. A released sky map or alert "
-     "localisation counts here."),
+     "localisation counts here. The numbers must be published by someone else "
+     "or an earlier paper: a paper reporting its own new measurements (e.g. a "
+     "catalogue giving the masses it inferred) is Q1, not Q3."),
 ]
 FALLBACK_QUESTION = (
     "qualitative",
@@ -133,3 +137,28 @@ def build_user_prompt(title: str, abstract: str, event_names: list, excerpts: li
 
 
 PROMPT_SHA256 = hashlib.sha256(SYSTEM.encode()).hexdigest()
+
+
+def build_fulltext_prompt(title: str, events: list, text: str, truncated: bool) -> str:
+    """Full-text mode: the whole paper, as a human labeller reads it.
+
+    events: [(canonical name, [(other designation, kind), ...])]. Listing every
+    form an event goes by lets the model find mentions it would otherwise miss
+    (catalogue aliases, EM-counterpart names, PDF-mangled separators).
+    """
+    lines = [f"TITLE: {title}", "", "EVENTS TO CLASSIFY:"]
+    for name, aliases in events:
+        alt = [f"{d} [EM counterpart, not the GW signal]" if kind == "em_counterpart" else d
+               for d, kind in aliases if d != name]
+        lines.append(f"- {name}" + (f" (also written: {'; '.join(alt)})" if alt else ""))
+    lines += [
+        "",
+        "Reading notes: a separator in a name may appear as a space (PDF text). "
+        "A name found only in the reference list is the title of a cited work: "
+        "judge the event by where the paper cites that work. The usage questions "
+        "are about the GW results; counterpart names are marked above.",
+        "",
+        "FULL TEXT OF THE PAPER" + (" (truncated)" if truncated else "") + ":",
+        text,
+    ]
+    return "\n".join(lines)
