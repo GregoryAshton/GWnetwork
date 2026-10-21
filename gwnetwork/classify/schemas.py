@@ -29,8 +29,9 @@ class EventUsageOut(BaseModel):
     engagement: Engagement = Field(
         description=(
             "cited_only: cited in passing, nothing it showed is used. "
-            "qualitative: uses what the event showed, in words (broad). "
-            "published_results: catalogue parameters enter the paper's own analysis. "
+            "qualitative: uses what the event showed, in words or rounded values (broad). "
+            "published_results: uses published measurements with uncertainties, "
+            "including in comparisons. "
             "posterior_samples: uses released PE samples. "
             "strain_analysis: analyses the strain data itself (original or independent)."
         )

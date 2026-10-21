@@ -16,15 +16,19 @@ ENGAGEMENT -- how deeply the paper touches the event. Exactly one of:
   qualitative        Uses what the event showed, in words: its findings,
                      implications or properties are discussed, or used to
                      motivate, compare with, interpret or argue for the
-                     paper's own work. Quoting a value as context still counts
-                     here, as long as it does not feed the paper's own
-                     calculation. Read this broadly: anything beyond a bare
-                     in-passing citation is at least qualitative.
+                     paper's own work. A central or rounded value (e.g.
+                     "~1.4 solar masses", "black holes of ~30 solar masses")
+                     still counts here. Read this broadly: anything beyond a
+                     bare in-passing citation is at least qualitative.
                      e.g. "The detection revealed that black holes of ~30 solar
                      masses exist in binaries."
-  published_results  The event's published parameters (masses, spins,
-                     distance, sky position, ...) are inputs to the paper's own
-                     calculation, analysis, figure or table.
+  published_results  Uses the event's published measurements WITH their
+                     uncertainties (credible intervals, ranges, bounds) for
+                     masses, spins, distance, sky position, H0, ... -- as
+                     inputs to a calculation, figure or table, or to compare
+                     the paper's own results against. A comparison in the text
+                     counts if it uses the published numbers, e.g. "exceeds
+                     the 1.61-2.52 solar mass primary of GW190425".
   posterior_samples  Uses released posterior/PE samples for this event.
   strain_analysis    Analyses the strain data for this event. The original
                      discovery or catalogue analysis and any independent

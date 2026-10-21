@@ -190,8 +190,10 @@ test of GR.
 `engagement` (ordinal — how deeply the paper touches the event):
 
     cited_only          cited in passing; nothing the event showed is used
-    qualitative         uses what the event showed, in words (read broadly)
-    published_results   catalogue parameters enter the paper's own analysis
+    qualitative         uses what the event showed, in words or rounded values
+                        (read broadly)
+    published_results   uses published measurements with their uncertainties,
+                        in a calculation or a comparison
     posterior_samples   uses released PE samples
     strain_analysis     analyses the strain data itself (original or independent)
 
