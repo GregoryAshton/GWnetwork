@@ -45,6 +45,7 @@ MAX_EVENTS_PER_CALL = 25
 # Full text asks more of each answer; at 25 events per call the model dropped
 # 12 of 498 events on the gold set, so large papers are split more finely.
 MAX_EVENTS_PER_CALL_FULLTEXT = 10
+MAX_RETRIES = 2
 # What the classifier reads. "excerpts": sentences around each mention (cheap,
 # but misses collective statements such as "we reanalyse all events in Table
 # 1"). "fulltext": the whole paper, as the gold-set labellers read it.
@@ -73,6 +74,7 @@ class ClassifyStats:
     papers_called: int = 0
     usages_written: int = 0
     est_input_tokens: int = 0       # full-text mode: rough paper-text tokens to send
+    retried: int = 0                # events re-requested after a short or failed answer
     errors: list = field(default_factory=list)
 
     def __str__(self) -> str:
@@ -83,6 +85,7 @@ class ClassifyStats:
                 f"{self.pairs_by_rule} by rule ({saved:.0f}% of LLM spend avoided), "
                 f"{self.pairs_to_llm} to LLM in {self.papers_called} calls, "
                 f"{self.usages_written} usages written"
+                + (f" ({self.retried} events retried)" if self.retried else "")
                 + (f", ~{self.est_input_tokens / 1e6:.1f}M paper-text input tokens"
                    if self.est_input_tokens else ""))
 
@@ -247,9 +250,9 @@ def _request_for(paper: Paper, needs_llm: list, names: dict,
     }
 
 
-def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> int:
+def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> set:
+    """Write the usages in one response; return the event ids written."""
     by_name = {names[eid]: eid for eid, _ in needs_llm if eid in names}
-    n = 0
     seen = set()
     for item in payload.get("events", []):
         event_id = by_name.get(item.get("event_name"))
@@ -264,8 +267,7 @@ def _apply_response(s, run_id, paper_id, needs_llm, names, payload: dict) -> int
             confidence=float(item.get("confidence", 0.0)),
             evidence=item.get("evidence", []), method="llm",
         ))
-        n += 1
-    return n
+    return seen
 
 
 def classify(limit: Optional[int] = None, dry_run: bool = False,
@@ -335,17 +337,32 @@ def classify(limit: Optional[int] = None, dry_run: bool = False,
                 s.rollback()
             return stats
 
-        results = (_run_batch(requests) if use_batch else _run_sync(requests))
-        for paper_id, needs_llm, payload, err in results:
-            if err:
-                stats.errors.append(f"{paper_id}: {err}")
-                continue
-            written = _apply_response(s, run.id, paper_id, needs_llm, names, payload)
-            stats.usages_written += written
-            expected = sum(1 for eid, _ in needs_llm if eid in names)
-            if written < expected:
-                stats.errors.append(
-                    f"{paper_id}: model returned {written} of {expected} events")
+        # Models occasionally return fewer events than asked (1-15 of 498 on
+        # the gold set), and single requests can error. Re-ask for exactly
+        # what is missing, a couple of times, before reporting it.
+        pending = requests
+        for attempt in range(1 + MAX_RETRIES):
+            results = (_run_batch(pending) if use_batch else _run_sync(pending))
+            pending = []
+            for paper_id, needs_llm, payload, err in results:
+                written = set() if err else _apply_response(
+                    s, run.id, paper_id, needs_llm, names, payload)
+                stats.usages_written += len(written)
+                missing = [(eid, ms) for eid, ms in needs_llm
+                           if eid in names and eid not in written]
+                if not missing:
+                    continue
+                if attempt < MAX_RETRIES:
+                    stats.retried += len(missing)
+                    pending.append((paper_id, missing, functools.partial(
+                        _request_for, papers[paper_id], missing, names, counterparts,
+                        context, aliases, effort)))
+                else:
+                    stats.errors.append(
+                        f"{paper_id}: {len(missing)} events unclassified after "
+                        f"{MAX_RETRIES} retries" + (f" ({err})" if err else ""))
+            if not pending:
+                break
 
         s.execute(update(AnalysisRun)
                   .where(AnalysisRun.stage == "classify", AnalysisRun.id != run.id)
@@ -400,6 +417,9 @@ def _run_batch(requests: list, poll_seconds: int = 30) -> list:
         nonlocal pending, size
         if pending:
             batch_ids.append(client.messages.batches.create(requests=pending).id)
+            # Logged so a run killed while polling can still be recovered:
+            # results stay retrievable from the API by batch id.
+            print(f"submitted batch {batch_ids[-1]} ({len(pending)} requests)", flush=True)
         pending, size = [], 0
 
     for i, (_, _, make) in enumerate(requests):

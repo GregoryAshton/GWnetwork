@@ -109,7 +109,7 @@ def test_llm_answers_become_a_set_of_uses_and_a_derived_engagement(temp_db):
             AnalysisRun(stage="classify", pipeline_version="t")
         s.add_all([ev, p, run]); s.flush()
         assert _apply_response(s, run.id, p.id, [(ev.id, [])], {ev.id: "GW150914"},
-                               {"events": [item]}) == 1
+                               {"events": [item]}) == {ev.id}
         s.flush()
         u = s.query(EventUsage).one()
         assert u.uses == ["strain_analysis", "posterior_samples"]   # no qualitative beside data
@@ -151,3 +151,36 @@ def test_batches_split_under_the_size_limit(monkeypatch):
             for i in range(5)]
     runner._run_batch(reqs, poll_seconds=0)
     assert created == [2, 2, 1]
+
+
+def test_events_missing_from_an_answer_are_retried(temp_db, monkeypatch):
+    import gwnetwork.classify.runner as runner
+    from gwnetwork.models import AnalysisRun, Event, EventUsage, Mention, Paper
+
+    with temp_db.session() as s:
+        p = Paper(arxiv_id="1", title="t", abstract="a", fulltext_path="/x")
+        e1, e2 = Event(canonical_name="GW1"), Event(canonical_name="GW2")
+        run = AnalysisRun(stage="extract", pipeline_version="t", is_current=True)
+        s.add_all([p, e1, e2, run]); s.flush()
+        for e in (e1, e2):
+            s.add(Mention(paper_id=p.id, event_id=e.id, analysis_run_id=run.id, matched_text=e.canonical_name,
+                          char_start=0, char_end=3, section="methods", sentence="s"))
+
+    calls = []
+    def fake_sync(requests):
+        out = []
+        for pid, needs, make in requests:
+            asked = [n for n in make()["messages"][0]["content"].split() if n.startswith("GW")]
+            calls.append(len(needs))
+            # first answer omits GW2; the retry answers it
+            names = ["GW1"] if len(calls) == 1 else ["GW2"]
+            out.append((pid, needs, {"events": [
+                {"event_name": n, "strain_analysis": True, "posterior_samples": False,
+                 "published_results": False, "qualitative": False, "roles": [],
+                 "confidence": 1, "evidence": [{"quote": "q"}]} for n in names]}, None))
+        return out
+    monkeypatch.setattr(runner, "_run_sync", fake_sync)
+    stats = runner.classify(use_batch=False, require_fulltext=False)
+    assert calls == [2, 1] and stats.retried == 1 and not stats.errors
+    with temp_db.session() as s:
+        assert s.query(EventUsage).count() == 2
