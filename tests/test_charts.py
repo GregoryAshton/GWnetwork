@@ -88,3 +88,24 @@ def test_single_label_is_not_moved():
     place_labels(pts, w=760, h=244)
     assert pts[0]["ly"] == 124.0
     assert pts[0]["leader"] is False
+
+
+def test_named_events_keep_their_colour_and_order_across_measures():
+    """Colour follows the event, not its rank: the second view reuses the first's order."""
+    from gwnetwork.web.charts import STACK_LIGHT, STACK_OTHER
+
+    class Fake:
+        pass
+    import gwnetwork.web.charts as charts
+    rows = [("A", "2016", 5), ("B", "2016", 9), ("A", "2017", 7), ("C", "2017", 1)]
+
+    class S:
+        def execute(self, *_):
+            class R:
+                def all(self_inner): return rows
+            return R()
+    out = charts.attention_over_time(S(), None, top_n=2, named=["A", "B"])
+    colours = {b["name"]: b["light"] for b in out["bands"]}
+    assert out["named"] == ["A", "B"]
+    assert colours["A"] == STACK_LIGHT[0] and colours["B"] == STACK_LIGHT[1]
+    assert colours["Other events"] == STACK_OTHER

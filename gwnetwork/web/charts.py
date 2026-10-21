@@ -138,7 +138,27 @@ def _fmt(v: float) -> str:
 # 1. Mass plane, sized by literature attention
 # --------------------------------------------------------------------------
 
-def mass_plane(s) -> dict:
+# Usage levels that mean the paper used the event's data or results (strain,
+# released samples, or published measurements), as opposed to discussing or
+# citing it. Engagement is the deepest use, so these three are exactly the
+# pairs with any data-product use.
+DATA_LEVELS = ("strain_analysis", "posterior_samples", "published_results")
+
+
+def using_counts(s, crun) -> dict:
+    """{event_id: papers using its data or results} for the current classify run."""
+    from ..models import EventUsage
+    if crun is None:
+        return {}
+    return dict(s.execute(
+        select(EventUsage.event_id, func.count(func.distinct(EventUsage.paper_id)))
+        .where(EventUsage.analysis_run_id == crun.id,
+               EventUsage.engagement.in_(DATA_LEVELS))
+        .group_by(EventUsage.event_id)).all())
+
+
+def mass_plane(s, counts: Optional[dict] = None) -> dict:
+    """counts: {event_id: n} to size markers by; default papers mentioning."""
     rows = s.execute(
         select(Event.canonical_name, EventView)
         .join(EventView, EventView.event_id == Event.id)
@@ -146,6 +166,9 @@ def mass_plane(s) -> dict:
                EventView.mass_2_source.is_not(None))).all()
     if not rows:
         return {"points": [], "empty": True}
+
+    def papers(v):
+        return (counts.get(v.event_id, 0) if counts is not None else v.n_papers) or 0
 
     m1s = [v.mass_1_source for _, v in rows]
     m2s = [v.mass_2_source for _, v in rows]
@@ -157,21 +180,21 @@ def mass_plane(s) -> dict:
 
     # Area encodes papers, so radius goes as the square root -- radius-encoding
     # would exaggerate GW170817 by a factor of its own count.
-    most = max((v.n_papers for _, v in rows), default=1) or 1
-    labelled = sorted(rows, key=lambda r: -r[1].n_papers)[:6]
+    most = max((papers(v) for _, v in rows), default=1) or 1
+    labelled = sorted(rows, key=lambda r: -papers(r[1]))[:6]
     label_names = {n for n, _ in labelled}
 
     points = []
-    for name, v in sorted(rows, key=lambda r: -(r[1].n_papers or 0)):
+    for name, v in sorted(rows, key=lambda r: -papers(r[1])):
         style = CLASS_STYLE.get(v.mass_class or "", CLASS_STYLE["BBH"])
         points.append({
             "name": name, "cls": v.mass_class or "unknown",
             "x": round(xa.px(v.mass_1_source, w), 2),
             "y": round(ya.px(v.mass_2_source, h, flip=True), 2),
-            "r": round(4 + 13 * math.sqrt((v.n_papers or 0) / most), 2),
+            "r": round(4 + 13 * math.sqrt(papers(v) / most), 2),
             "shape": style["shape"], "light": style["light"], "dark": style["dark"],
             "m1": v.mass_1_source, "m2": v.mass_2_source,
-            "papers": v.n_papers, "label": name if name in label_names else None,
+            "papers": papers(v), "label": name if name in label_names else None,
         })
 
     # m1 = m2 is a real boundary: masses are ordered by convention, so no event
@@ -191,15 +214,49 @@ def mass_plane(s) -> dict:
 # 2. Attention over time
 # --------------------------------------------------------------------------
 
-def attention_over_time(s, run, top_n: int = 5) -> dict:
+# Ten named events plus a grey "Other" is past the usual eight-hue cap, so
+# identity never rests on colour alone: bands carry direct labels where they
+# are thick enough, plus a legend and hover titles. The order was searched so
+# that every pair of *adjacent* bands (the only pairs a stack puts side by
+# side, "Other" included) clears the dataviz gates in both modes: worst
+# adjacent CVD dE 13.0, normal-vision dE 17.7. Three light steps sit below 3:1
+# on the light surface, which the direct labels cover. Grey is "Other" only.
+STACK_LIGHT = ["#2a78d6", "#1baf7a", "#6250d6", "#e34948", "#1798c4",
+               "#eb6834", "#9c3f8f", "#eda100", "#e87ba4", "#008300"]
+STACK_DARK = ["#3987e5", "#199e70", "#9085e9", "#e66767", "#2aa3cc",
+              "#d95926", "#b45ca6", "#c98500", "#d55181", "#008300"]
+STACK_OTHER = "#8d8d86"
+BAND_LABEL_MIN_PX = 13
+
+
+def attention_over_time(s, run, top_n: int = 10, crun=None, using: bool = False,
+                        named: Optional[list] = None) -> dict:
+    """Papers per year per event: mentioning it, or (using=True, needs the
+    current classify run) using its data or results.
+
+    named: fix which events get their own band, in this order. Toggling between
+    measures passes the first view's order to the second, so an event keeps its
+    colour and position (colour follows the entity, never its rank) and the
+    validated adjacent pairs stay the ones checked."""
+    from ..models import EventUsage
     year = func.strftime("%Y", paper_date())
-    rows = s.execute(
-        select(Event.canonical_name, year, func.count(func.distinct(Mention.paper_id)))
-        .join(Mention, Mention.event_id == Event.id)
-        .join(Paper, Paper.id == Mention.paper_id)
-        .where(Mention.analysis_run_id == (run.id if run else None),
-               paper_date().is_not(None))
-        .group_by(Event.id, year)).all()
+    if using:
+        rows = s.execute(
+            select(Event.canonical_name, year, func.count(func.distinct(EventUsage.paper_id)))
+            .join(EventUsage, EventUsage.event_id == Event.id)
+            .join(Paper, Paper.id == EventUsage.paper_id)
+            .where(EventUsage.analysis_run_id == (crun.id if crun else None),
+                   EventUsage.engagement.in_(DATA_LEVELS),
+                   paper_date().is_not(None))
+            .group_by(Event.id, year)).all()
+    else:
+        rows = s.execute(
+            select(Event.canonical_name, year, func.count(func.distinct(Mention.paper_id)))
+            .join(Mention, Mention.event_id == Event.id)
+            .join(Paper, Paper.id == Mention.paper_id)
+            .where(Mention.analysis_run_id == (run.id if run else None),
+                   paper_date().is_not(None))
+            .group_by(Event.id, year)).all()
     if not rows:
         return {"empty": True}
 
@@ -212,10 +269,12 @@ def attention_over_time(s, run, top_n: int = 5) -> dict:
     totals: dict = {}
     for name, _, c in rows:
         totals[name] = totals.get(name, 0) + c
-    top = [n for n, _ in sorted(totals.items(), key=lambda kv: -kv[1])[:top_n]]
+    top = (list(named) if named is not None
+           else [n for n, _ in sorted(totals.items(), key=lambda kv: -kv[1])[:top_n]])
 
     years = sorted({y for _, y, _ in rows})
     series: dict = {n: {y: 0 for y in years} for n in top}
+    totals.update({n: totals.get(n, 0) for n in top})
     other = {y: 0 for y in years}
     for name, y, c in rows:
         (series[name] if name in top else other)[y] += c
@@ -230,10 +289,6 @@ def attention_over_time(s, run, top_n: int = 5) -> dict:
     xa.ticks = [(y, xa.px(y, w), str(y)) for y in years if y % 2 == 0 or y == years[-1]]
     ya.ticks = [(v, ya.px(v, h, flip=True), _fmt(v)) for v in _nice_linear_ticks(0, ya.hi)]
 
-    # Slot 1-3 then muted greys: the first three are the validated all-pairs set.
-    ramp_light = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#8d8d86"]
-    ramp_dark = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#8d8d86"]
-
     bands, baseline = [], {y: 0.0 for y in years}
     for i, name in enumerate(names):
         upper, lower = [], []
@@ -245,30 +300,82 @@ def attention_over_time(s, run, top_n: int = 5) -> dict:
             baseline[y] = top_v
         path = ("M " + " L ".join(f"{x},{y}" for x, y in upper) +
                 " L " + " L ".join(f"{x},{y}" for x, y in reversed(lower)) + " Z")
+        is_other = name == "Other events"
+        # Direct label at the band's thickest interior year, if it fits.
+        label = None
+        inner = range(1, len(years) - 1) if len(years) > 2 else range(len(years))
+        k = max(inner, key=lambda j: lower[j][1] - upper[j][1])
+        if lower[k][1] - upper[k][1] >= BAND_LABEL_MIN_PX:
+            label = {"x": upper[k][0], "y": round((upper[k][1] + lower[k][1]) / 2, 2)}
         bands.append({"name": name, "path": path, "total": totals.get(name, sum(other.values())),
-                      "light": ramp_light[i % len(ramp_light)],
-                      "dark": ramp_dark[i % len(ramp_dark)]})
+                      "light": STACK_OTHER if is_other else STACK_LIGHT[i],
+                      "dark": STACK_OTHER if is_other else STACK_DARK[i],
+                      "label": label})
 
     per_year = [{"year": y, "x": round(xa.px(y, w), 2),
                  "total": sum(series[n][y] for n in names)} for y in years]
     return {"bands": bands, "xa": xa, "ya": ya, "w": w, "h": h, "box": PLOT,
-            "years": years, "per_year": per_year, "empty": False}
+            "years": years, "per_year": per_year, "named": top, "empty": False}
 
 
 # --------------------------------------------------------------------------
 # 3. Attention against loudness
 # --------------------------------------------------------------------------
 
-def attention_vs_snr(s) -> dict:
-    rows = s.execute(
+MIN_PUBLIC_YEARS = 0.5
+
+
+def public_ages(s, run) -> dict:
+    """{event_id: years in the public literature}, to the extraction date.
+
+    An event's publication date is the earliest arXiv date (latest version, as
+    everywhere on the site) of a paper naming it -- usually its discovery or
+    catalogue paper. Detection is the wrong start: O3 events were published a
+    year or two after they were observed. Papers dated before the observation
+    itself are coincidental matches and are ignored. Floored at six months so a
+    just-announced event is not divided by almost nothing.
+    """
+    from ..events.aliases import gps_to_utc
+    if run is None or run.completed_at is None:
+        return {}
+    gps = dict(s.execute(select(EventView.event_id, EventView.gps)).all())
+    first: dict = {}
+    for eid, d in s.execute(
+            select(Mention.event_id, paper_date())
+            .join(Paper, Paper.id == Mention.paper_id)
+            .where(Mention.analysis_run_id == run.id, paper_date().is_not(None))
+            .group_by(Mention.event_id, Paper.id)):
+        g = gps.get(eid)
+        if g is not None and d < gps_to_utc(g):
+            continue
+        if eid not in first or d < first[eid]:
+            first[eid] = d
+    return {eid: max((run.completed_at - d).days / 365.25, MIN_PUBLIC_YEARS)
+            for eid, d in first.items()}
+
+
+def attention_vs_snr(s, counts: Optional[dict] = None, ages: Optional[dict] = None) -> dict:
+    """counts: {event_id: n} for the y axis; default papers mentioning.
+    ages: {event_id: years public}; when given, the y axis is papers per year
+    since publication, so recent events are not penalised for being recent."""
+    def total(v):
+        return (counts.get(v.event_id, 0) if counts is not None else v.n_papers) or 0
+
+    def papers(v):
+        if ages is None:
+            return total(v)
+        age = ages.get(v.event_id)
+        return total(v) / age if age else 0
+
+    rows = [(n, v) for n, v in s.execute(
         select(Event.canonical_name, EventView)
         .join(EventView, EventView.event_id == Event.id)
-        .where(EventView.network_matched_filter_snr.is_not(None),
-               EventView.n_papers > 0)).all()
+        .where(EventView.network_matched_filter_snr.is_not(None))).all()
+        if papers(v) > 0]            # the axis is logarithmic
     if len(rows) < 5:
         return {"empty": True}
 
-    pts = [(v.network_matched_filter_snr, math.log10(v.n_papers), n, v) for n, v in rows]
+    pts = [(v.network_matched_filter_snr, math.log10(papers(v)), n, v) for n, v in rows]
     n = len(pts)
     mx = sum(p[0] for p in pts) / n
     my = sum(p[1] for p in pts) / n
@@ -282,8 +389,10 @@ def attention_vs_snr(s) -> dict:
     lo_snr, hi_snr = min(p[0] for p in pts), max(p[0] for p in pts)
     pad = (hi_snr - lo_snr) * (8.0 / w) or 0.5      # >= widest marker radius
     xa = Axis(lo_snr - pad, hi_snr + pad)
-    ya = Axis(math.log10(0.8), math.log10(max(v.n_papers for _, v in rows) * 1.35), log=True)
-    ya.lo, ya.hi = 0.8, max(v.n_papers for _, v in rows) * 1.35
+    # Rates go below one paper a year, so the floor follows the data.
+    lo_y = min(0.8, min(papers(v) for _, v in rows) * 0.7)
+    ya = Axis(math.log10(lo_y), math.log10(max(papers(v) for _, v in rows) * 1.35), log=True)
+    ya.lo, ya.hi = lo_y, max(papers(v) for _, v in rows) * 1.35
     xa.ticks = [(v, xa.px(v, w), _fmt(v)) for v in _nice_linear_ticks(xa.lo, xa.hi)]
     ya.ticks = [(v, ya.px(v, h, flip=True), _fmt(v)) for v in _nice_log_ticks(ya.lo, ya.hi)]
 
@@ -293,10 +402,12 @@ def attention_vs_snr(s) -> dict:
         pole = "high" if z > 1 else ("low" if z < -1 else "mid")
         points.append({
             "name": name, "x": round(xa.px(snr, w), 2),
-            "y": round(ya.px(v.n_papers, h, flip=True), 2),
+            "y": round(ya.px(papers(v), h, flip=True), 2),
             "r": 5.0 if pole == "mid" else 6.5,
             "light": DIVERGING[pole][0], "dark": DIVERGING[pole][1],
-            "snr": round(snr, 1), "papers": v.n_papers, "z": round(z, 2), "pole": pole,
+            "snr": round(snr, 1), "papers": papers(v), "total": total(v),
+            "years": round(ages[v.event_id], 1) if ages and v.event_id in ages else None,
+            "z": round(z, 2), "pole": pole,
             "label": None,
         })
     for p in sorted(points, key=lambda p: -abs(p["z"]))[:7]:

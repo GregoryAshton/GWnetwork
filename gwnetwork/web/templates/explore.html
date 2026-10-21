@@ -3,13 +3,27 @@
 {% block title %}Explore — GWnetwork{% endblock %}
 {% block content %}
 <h1>Explore</h1>
-<p class="mut">Three views of how the literature attends to the event catalogue.
+<p class="mut">Three views of how the literature covers the event catalogue.
 Every mark links to its event.</p>
 
+{% if variants|length > 1 %}
+<div class="metric-toggle" role="group" aria-label="What the charts count">
+  <span class="small mut">Count:</span>
+  {% for v in variants %}<button type="button" data-metric="{{ v.key }}"{% if loop.first %} class="on"{% endif %}>{{ v.label }}</button>{% endfor %}
+</div>
+<p class="small mut">“Using its data or results” means the classifier found the paper
+analysing the event's strain, using its released samples, or using its published
+measurements — not just discussing or citing it. Those labels are a first pass
+(see the <a href="/">front page</a> for their measured accuracy).</p>
+{% endif %}
+
+{% for v in variants %}
+<div class="metric-variant" data-metric="{{ v.key }}"{% if not loop.first %} hidden{% endif %}>
+{% set mass = v.mass %}{% set time = v.time %}{% set snr = v.snr %}
 {# ---------------------------------------------------------------- 1 #}
-<h2>Where the attention sits in the mass plane</h2>
+<h2>Across the mass plane</h2>
 <p class="small mut">{{ mass.n }} events with both component masses measured.
-Marker area is proportional to the number of papers mentioning the event; shape
+Marker area is proportional to the number of {{ v.noun }}; shape
 and colour give the compact-object class. Axes are logarithmic.</p>
 
 {% if mass.empty %}<p class="mut">No events with masses yet.</p>{% else %}
@@ -66,9 +80,11 @@ uncertainty, so events near the line are genuinely ambiguous — GW190814's
 {% endif %}
 
 {# ---------------------------------------------------------------- 2 #}
-<h2>Attention over time</h2>
-<p class="small mut">Papers per year mentioning each event, stacked. The five
-most-discussed events are named; everything else is grouped.</p>
+<h2>Over time</h2>
+<p class="small mut">{{ v.noun[0]|upper }}{{ v.noun[1:] }}, per year and stacked. The ten
+most-mentioned events are named (the same ten, in the same colours, for both counts);
+everything else is grouped. Hover a band for its event and total. Papers are dated by their latest
+arXiv version.</p>
 
 {% if time.empty %}<p class="mut">No dated papers yet.</p>{% else %}
 <figure>
@@ -88,12 +104,16 @@ most-discussed events are named; everything else is grouped.</p>
         <title>{{ b.name }} — {{ "{:,}".format(b.total) }} papers total</title>
       </path>
       {% endfor %}
+      {% for b in time.bands if b.label %}
+      <text class="datalabel bandlabel" x="{{ b.label.x }}" y="{{ b.label.y }}"
+            text-anchor="middle" dominant-baseline="middle">{{ b.name }}</text>
+      {% endfor %}
       <line class="axis" x1="0" y1="{{ time.h }}" x2="{{ time.w }}" y2="{{ time.h }}"/>
       <line class="axis" x1="0" y1="0" x2="0" y2="{{ time.h }}"/>
       <text class="axis-label" x="{{ time.w / 2 }}" y="{{ time.h + 40 }}" text-anchor="middle">
-        Year of submission</text>
+        Year (latest arXiv version)</text>
       <text class="axis-label" transform="translate(-46,{{ time.h / 2 }}) rotate(-90)"
-            text-anchor="middle">Papers mentioning</text>
+            text-anchor="middle">{{ v.axis }}</text>
     </g>
   </svg>
   </div>
@@ -109,8 +129,10 @@ we have extracted, not the full literature — see the ADS ceiling on each event
 {% endif %}
 
 {# ---------------------------------------------------------------- 3 #}
-<h2>Is attention explained by loudness?</h2>
-<p class="small mut">Network SNR against papers mentioning the event, with a
+<h2>Is it explained by loudness?</h2>
+<p class="small mut">Network SNR against {{ v.noun }} <b>per year since the event was
+published</b> (the earliest arXiv paper naming it), so recent events are not penalised for
+being recent; ages are floored at six months. With a
 fitted log-linear trend. {{ snr.above }} events sit more than one standard
 deviation above the trend and {{ snr.below }} below.</p>
 
@@ -135,7 +157,7 @@ deviation above the trend and {{ snr.below }} below.</p>
       {% for p in snr.points %}
       <a href="/event/{{ p.name }}"><circle class="mark" cx="{{ p.x }}" cy="{{ p.y }}"
         r="{{ p.r }}" style="--c:{{ p.light }};--cd:{{ p.dark }}">
-        <title>{{ p.name }} — SNR {{ p.snr }}, {{ "{:,}".format(p.papers) }} papers ({{ p.z }}σ from trend)</title>
+        <title>{{ p.name }} — SNR {{ p.snr }}, {{ "%.0f"|format(p.papers) }} papers/yr ({{ "{:,}".format(p.total) }} over {{ p.years }} yr; {{ p.z }}σ from trend)</title>
       </circle></a>
       {% endfor %}
       {% for p in snr.points if p.label %}
@@ -147,7 +169,7 @@ deviation above the trend and {{ snr.below }} below.</p>
       <text class="axis-label" x="{{ snr.w / 2 }}" y="{{ snr.h + 40 }}" text-anchor="middle">
         Network matched-filter SNR</text>
       <text class="axis-label" transform="translate(-46,{{ snr.h / 2 }}) rotate(-90)"
-            text-anchor="middle">Papers mentioning (log)</text>
+            text-anchor="middle">{{ v.axis }} per year (log)</text>
     </g>
   </svg>
   </div>
@@ -158,5 +180,25 @@ deviation above the trend and {{ snr.below }} below.</p>
     {% endfor %}
   </figcaption>
 </figure>
+{% endif %}
+</div>
+{% endfor %}
+
+{% if variants|length > 1 %}
+<script>
+(function () {
+  var buttons = document.querySelectorAll(".metric-toggle button");
+  var panes = document.querySelectorAll(".metric-variant");
+  function show(key, push) {
+    panes.forEach(function (p) { p.hidden = p.dataset.metric !== key; });
+    buttons.forEach(function (b) { b.classList.toggle("on", b.dataset.metric === key); });
+    // In the fragment so the choice survives on the static site and in links.
+    if (push) history.replaceState(null, "", key === "mentions" ? location.pathname : "#" + key);
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.metric, true); }); });
+  var h = location.hash.replace(/^#/, "");
+  show(document.querySelector('.metric-variant[data-metric="' + h + '"]') ? h : "mentions", false);
+})();
+</script>
 {% endif %}
 {% endblock %}

@@ -319,12 +319,28 @@ def event_papers(request: Request, name: str):
 
 @app.get("/explore", response_class=HTMLResponse)
 def explore(request: Request):
-    from .charts import attention_over_time, attention_vs_snr, mass_plane
+    from .charts import (attention_over_time, attention_vs_snr, mass_plane, public_ages,
+                         using_counts)
     with session() as s:
-        run = current_run(s, "extract")
-        ctx = {"mass": mass_plane(s), "time": attention_over_time(s, run),
-               "snr": attention_vs_snr(s)}
-    return render(request, "explore.html", **ctx)
+        run, crun = current_run(s, "extract"), current_run(s, "classify")
+        # Every chart is rendered for both measures and the page toggles
+        # between them in the browser, so the static export needs no server.
+        time_mentions = attention_over_time(s, run)
+        ages = public_ages(s, run)
+        variants = [{"key": "mentions", "label": "Papers mentioning",
+                     "noun": "papers mentioning the event", "axis": "Papers mentioning",
+                     "mass": mass_plane(s), "time": time_mentions,
+                     "snr": attention_vs_snr(s, ages=ages)}]
+        if crun is not None:
+            counts = using_counts(s, crun)
+            variants.append({"key": "using", "label": "Papers using its data or results",
+                             "noun": "papers using the event's data or results",
+                             "axis": "Papers using data or results",
+                             "mass": mass_plane(s, counts),
+                             "time": attention_over_time(s, run, crun=crun, using=True,
+                                                         named=time_mentions.get("named")),
+                             "snr": attention_vs_snr(s, counts, ages=ages)})
+    return render(request, "explore.html", variants=variants)
 
 
 @app.get("/papers", response_class=HTMLResponse)

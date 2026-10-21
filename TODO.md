@@ -41,4 +41,9 @@ Overall engagement agreement 81% (kappa 0.75); 76% on person-labelled pairs.
   totals; show them separately or exclude by default. Derivable from
   `Mention.section`, no new label needed.
 - **Show the full set of uses**, not only the derived deepest engagement.
-- Export and publish the rebuilt site (`gwn export --out docs`).
+- **Loudness chart: fixed-window comparison.** It now plots papers per year
+  since publication, which still favours young events in their post-announcement
+  burst and extrapolates the trend to GW250114's unusually high SNR. Counting
+  papers within the first N years (young events hollow, out of the fit) would
+  compare like with like. The corpus also lags the newest literature (ADS
+  full-text ingestion), undercounting recent events.

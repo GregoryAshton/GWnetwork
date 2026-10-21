@@ -168,3 +168,21 @@ def test_export_keeps_papers_page_filters_in_links():
     assert 'href="../event/GW150914/papers.html#role=lensing"' in out
     assert 'href="../event/GW150914.html"' in out
     assert 'href="../event/151012.2/papers.html"' in out
+
+
+def test_explore_offers_both_measures_once_classified(temp_db):
+    from gwnetwork.models import EventUsage
+    ev_id, paper_id = _seed(temp_db, n_runs=1)
+    from gwnetwork.web.app import app
+    c = TestClient(app)
+    assert 'data-metric="using"' not in c.get("/explore").text   # nothing classified yet
+    with temp_db.session() as s:
+        run = AnalysisRun(stage="classify", pipeline_version="c", is_current=True)
+        s.add(run); s.flush()
+        s.add(EventUsage(paper_id=paper_id, event_id=ev_id, analysis_run_id=run.id,
+                         engagement="posterior_samples", uses=["posterior_samples"],
+                         roles=[], evidence=[]))
+    body = c.get("/explore").text
+    assert 'class="metric-variant" data-metric="mentions"' in body
+    assert 'class="metric-variant" data-metric="using" hidden' in body
+    assert "attention" not in body.lower()
