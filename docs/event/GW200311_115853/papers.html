@@ -66,6 +66,11 @@ svg.chart .tick{fill:var(--muted);font-size:11px}
 svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
 svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
   paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .bandlabel{pointer-events:none;font-size:10.5px}
+.charttip{position:fixed;z-index:20;pointer-events:none;max-width:320px;padding:5px 9px;
+  border-radius:6px;font-size:.8rem;line-height:1.35;background:var(--ink);color:var(--ground);
+  box-shadow:0 2px 8px rgba(0,0,0,.18)}
+svg.chart .band:hover{opacity:.85}
 svg.chart .annot{fill:var(--muted);font-size:11px}
 svg.chart .leader{stroke:var(--line-2);stroke-width:1}
 svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
@@ -112,6 +117,10 @@ a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
   border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
 .pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
 .pfilters select{font:inherit;font-size:.85rem}
+.metric-toggle{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 4px}
+.metric-toggle button{font:inherit;font-size:.85rem;padding:4px 12px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.metric-toggle button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
 #ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
 @media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
 .readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
@@ -1343,8 +1352,8 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 12:20 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/9bae916"><code>9bae916</code></a>
+  <span>Built 2026-10-21 13:01 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>
@@ -1427,6 +1436,32 @@ window.gwnSort = (function(){
 
   document.querySelectorAll('table.sortable').forEach(init);
   return {apply: apply, clear: clear};
+})();
+</script>
+<div id="charttip" class="charttip" hidden></div>
+<script>
+// Hover tooltips for chart marks. SVG <title> tooltips are slow or absent in
+// many browsers, so each mark's <title> text is shown in a positioned box
+// instead (and removed, so the native one does not appear as well).
+(function () {
+  var tip = document.getElementById("charttip");
+  document.querySelectorAll("svg.chart title").forEach(function (t) {
+    var el = t.parentNode;
+    if (el && el.tagName.toLowerCase() !== "svg") { el.setAttribute("data-tip", t.textContent.trim()); t.remove(); }
+  });
+  function place(e) {
+    var pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+    var x = e.clientX + pad, y = e.clientY + pad;
+    if (x + w > window.innerWidth - 8) x = e.clientX - w - pad;
+    if (y + h > window.innerHeight - 8) y = e.clientY - h - pad;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("svg.chart [data-tip]");
+    if (!el) { tip.hidden = true; return; }
+    tip.textContent = el.getAttribute("data-tip"); tip.hidden = false; place(e);
+  });
+  document.addEventListener("mouseleave", function () { tip.hidden = true; });
 })();
 </script>
 </body>
