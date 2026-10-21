@@ -222,6 +222,19 @@ class EventView(Base):
     rebuilt_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
 
 
+def paper_date():
+    """SQL expression for the date a paper is shown at.
+
+    The latest arXiv version, falling back to the first submission. Mentions
+    come from the text we fetched, which is the latest version, so this is the
+    date of the words we actually matched: astro-ph/0211481 (first submitted
+    2002, revised through v8) names GW150914, which a 2002 date put a decade
+    before the event.
+    """
+    from sqlalchemy import func
+    return func.coalesce(Paper.updated_at_src, Paper.submitted_at)
+
+
 class PaperDiscovery(Base):
     """Every (paper, designation) pair ADS returned.
 

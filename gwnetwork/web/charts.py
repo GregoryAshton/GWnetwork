@@ -17,7 +17,7 @@ from typing import Optional
 
 from sqlalchemy import func, select
 
-from ..models import AnalysisRun, Event, EventView, Mention, Paper
+from ..models import AnalysisRun, Event, EventView, Mention, Paper, paper_date
 
 # Categorical slots 1-3, light / dark.
 CLASS_STYLE = {
@@ -192,13 +192,13 @@ def mass_plane(s) -> dict:
 # --------------------------------------------------------------------------
 
 def attention_over_time(s, run, top_n: int = 5) -> dict:
-    year = func.strftime("%Y", Paper.submitted_at)
+    year = func.strftime("%Y", paper_date())
     rows = s.execute(
         select(Event.canonical_name, year, func.count(func.distinct(Mention.paper_id)))
         .join(Mention, Mention.event_id == Event.id)
         .join(Paper, Paper.id == Mention.paper_id)
         .where(Mention.analysis_run_id == (run.id if run else None),
-               Paper.submitted_at.is_not(None))
+               paper_date().is_not(None))
         .group_by(Event.id, year)).all()
     if not rows:
         return {"empty": True}
@@ -341,11 +341,11 @@ def event_timeline(s, event, view, run) -> dict:
     from ..events.aliases import gps_to_utc
 
     rows = s.execute(
-        select(Paper.arxiv_id, Paper.title, Paper.submitted_at, Paper.citation_count)
+        select(Paper.arxiv_id, Paper.title, paper_date(), Paper.citation_count)
         .join(Mention, Mention.paper_id == Paper.id)
         .where(Mention.event_id == event.id,
                Mention.analysis_run_id == (run.id if run else None),
-               Paper.submitted_at.is_not(None))
+               paper_date().is_not(None))
         .group_by(Paper.id)).all()
     if len(rows) < 3:
         return {"empty": True}

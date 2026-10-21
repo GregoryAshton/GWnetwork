@@ -159,6 +159,20 @@ def cmd_add_arxiv(arxiv_ids: List[str] = typer.Argument(..., help="arXiv ids, e.
     typer.echo(f"{add_arxiv(list(arxiv_ids))} papers added")
 
 
+@corpus_app.command("update-versions")
+def cmd_update_versions(
+    all_papers: bool = typer.Option(False, "--all", help="Refresh every paper, not just undated ones"),
+    rate_delay: float = typer.Option(3.0, help="Seconds between arXiv API requests"),
+):
+    """Record first-submission and latest-version dates from the arXiv API.
+
+    The site dates papers by their latest version -- the text we searched.
+    """
+    from .corpus.discover import update_versions
+    init_db()
+    typer.echo(str(update_versions(rate_delay=rate_delay, only_missing=not all_papers)))
+
+
 @corpus_app.command("fetch")
 def cmd_fetch(
     limit: Optional[int] = None,

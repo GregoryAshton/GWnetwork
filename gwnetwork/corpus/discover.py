@@ -192,3 +192,61 @@ def add_arxiv(arxiv_ids: list) -> int:
             ))
             added += 1
     return added
+
+
+def update_versions(batch_size: int = 100, rate_delay: float = 3.0,
+                    only_missing: bool = True) -> dict:
+    """Fill first-submission and latest-version dates from the arXiv API.
+
+    The text we fetch is the latest arXiv version, so that version's date is
+    the one the site shows (models.paper_date). ADS gave only a month-level
+    publication date, and nothing recorded later revisions.
+
+    Commits after every batch, so an interrupted run keeps its progress and a
+    re-run with only_missing picks up where it stopped.
+    """
+    import time
+
+    from .arxiv import fetch_metadata
+
+    with session() as s:
+        q = select(Paper.arxiv_id).where(Paper.arxiv_id.is_not(None))
+        if only_missing:
+            q = q.where(Paper.updated_at_src.is_(None))
+        ids = [a for (a,) in s.execute(q).all()]
+
+    stats = {"papers": len(ids), "updated": 0, "revised_after_first_year": 0, "missing": 0}
+    for i in range(0, len(ids), batch_size):
+        chunk = ids[i:i + batch_size]
+        try:
+            meta = {m["arxiv_id"]: m for m in fetch_metadata(chunk)}
+        except Exception as exc:  # noqa: BLE001 -- one bad batch must not lose the rest
+            print(f"batch {i // batch_size}: {exc}", flush=True)
+            time.sleep(rate_delay * 5)
+            continue
+        with session() as s:
+            for paper in s.scalars(select(Paper).where(Paper.arxiv_id.in_(chunk))):
+                m = meta.get(paper.arxiv_id)
+                if not m or not m.get("updated"):
+                    stats["missing"] += 1
+                    continue
+                first = _iso(m.get("published"))
+                latest = _iso(m["updated"])
+                if first:
+                    paper.submitted_at = first
+                paper.updated_at_src = latest
+                paper.version = m.get("version")
+                stats["updated"] += 1
+                if first and latest and latest.year > first.year:
+                    stats["revised_after_first_year"] += 1
+        time.sleep(rate_delay)
+    return stats
+
+
+def _iso(value: Optional[str]) -> Optional[datetime]:
+    if not value:
+        return None
+    try:
+        return datetime.strptime(value[:19], "%Y-%m-%dT%H:%M:%S")
+    except ValueError:
+        return None

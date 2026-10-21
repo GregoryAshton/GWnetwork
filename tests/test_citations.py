@@ -35,3 +35,27 @@ def test_ar5iv_redirect_to_abstract_page_is_not_full_text():
     assert is_abstract_page("https://ar5iv.labs.arxiv.org/html/1710.05832", page + "x" * 2000)
     assert not is_abstract_page("https://ar5iv.labs.arxiv.org/html/1602.03837",
                                 "Abstract\n\nOn September 14, 2015 ..." + "x" * 2000)
+
+
+def test_arxiv_entry_parsing_keeps_old_style_ids_and_reads_versions():
+    from gwnetwork.corpus.arxiv import _parse_entry
+    e = ("<id>http://arxiv.org/abs/solv-int/9901001v3</id><updated>2024-05-01T10:00:00Z</updated>"
+         "<published>1999-01-05T00:00:00Z</published><title>T</title>")
+    m = _parse_entry(e)
+    assert m["arxiv_id"] == "solv-int/9901001"            # used to become "sol"
+    assert m["version"] == 3
+    assert (m["published"][:4], m["updated"][:4]) == ("1999", "2024")
+
+
+def test_papers_are_dated_by_their_latest_version(temp_db):
+    from datetime import datetime
+    from sqlalchemy import select
+    from gwnetwork.models import Paper, paper_date
+    with temp_db.session() as s:
+        s.add_all([Paper(arxiv_id="astro-ph/0211481", title="Palle", abstract="",
+                         submitted_at=datetime(2002, 11, 1), updated_at_src=datetime(2024, 3, 1)),
+                   Paper(arxiv_id="1", title="never revised", abstract="",
+                         submitted_at=datetime(2019, 1, 1))])
+    with temp_db.session() as s:
+        got = dict(s.execute(select(Paper.title, paper_date())).all())
+    assert got["Palle"].year == 2024 and got["never revised"].year == 2019

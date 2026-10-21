@@ -141,7 +141,9 @@ _ATOM = {
     "title": re.compile(r"<title>(.*?)</title>", re.S),
     "summary": re.compile(r"<summary>(.*?)</summary>", re.S),
     "published": re.compile(r"<published>([^<]+)</published>"),
+    "updated": re.compile(r"<updated>([^<]+)</updated>"),
 }
+_VERSION = re.compile(r"v(\d+)$")
 _AUTHOR = re.compile(r"<author>\s*<name>([^<]+)</name>", re.S)
 _CATEGORY = re.compile(r'<category[^>]*term="([^"]+)"')
 
@@ -149,28 +151,35 @@ _CATEGORY = re.compile(r'<category[^>]*term="([^"]+)"')
 def fetch_metadata(arxiv_ids: list) -> list:
     """Metadata for explicit arXiv ids via the public API.
 
-    Used to seed a gold/eval set, and to run the pipeline end to end without an
-    ADS token.
+    Used to seed a gold/eval set, to run the pipeline end to end without an
+    ADS token, and for version dates: `published` is the first version,
+    `updated` and `version` the latest -- which is the text we fetch.
     """
-    import html as _html
-
-    out = []
     with httpx.Client(timeout=60.0, headers={"User-Agent": CONFIG.user_agent},
                       follow_redirects=True) as c:
         r = c.get("https://export.arxiv.org/api/query",
                   params={"id_list": ",".join(arxiv_ids), "max_results": len(arxiv_ids)})
         r.raise_for_status()
-    for entry in r.text.split("<entry>")[1:]:
-        def one(key):
-            m = _ATOM[key].search(entry)
-            return _html.unescape(" ".join(m.group(1).split())) if m else ""
-        raw_id = one("id")
-        out.append({
-            "arxiv_id": raw_id.split("v")[0] if re.search(r"v\d+$", raw_id) else raw_id,
-            "title": one("title"),
-            "abstract": one("summary"),
-            "published": one("published"),
-            "authors": [_html.unescape(a) for a in _AUTHOR.findall(entry)],
-            "categories": _CATEGORY.findall(entry),
-        })
-    return out
+    return [_parse_entry(e) for e in r.text.split("<entry>")[1:]]
+
+
+def _parse_entry(entry: str) -> dict:
+    import html as _html
+
+    def one(key):
+        m = _ATOM[key].search(entry)
+        return _html.unescape(" ".join(m.group(1).split())) if m else ""
+    raw_id = one("id")
+    v = _VERSION.search(raw_id)
+    # Strip only a trailing vN: old-style ids such as solv-int/9901001 contain
+    # a "v" of their own, so splitting on "v" mangled them.
+    return {
+        "arxiv_id": _VERSION.sub("", raw_id),
+        "version": int(v.group(1)) if v else None,
+        "title": one("title"),
+        "abstract": one("summary"),
+        "published": one("published"),
+        "updated": one("updated"),
+        "authors": [_html.unescape(a) for a in _AUTHOR.findall(entry)],
+        "categories": _CATEGORY.findall(entry),
+    }
