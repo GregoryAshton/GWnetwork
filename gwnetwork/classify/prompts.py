@@ -100,11 +100,25 @@ Rules:
   event's electromagnetic counterpart (e.g. GRB 170817A, AT2017gfo), not its
   GW signal. The usage questions are about the GW results: a paper that only
   discusses or analyses the counterpart answers Q1-Q3 false for the event,
-  unless other excerpts show it using GW results. If it observes the
-  counterpart itself, give the role counterpart_followup.
+  unless other excerpts show it using GW results. Q4 is then true if it
+  discusses or interprets the counterpart or the event, but false if it only
+  takes counterpart data as an input (e.g. a kilonova abundance used to scale
+  yields) without discussing the event. If it observes the counterpart
+  itself, give the role counterpart_followup.
 - An excerpt headed "cites reference [N], which names EVENT" is a sentence where
   the paper cites a reference whose title or entry names the event. Judge the
-  event from how that sentence uses the reference.
+  event from how that sentence uses the reference. If the event appears only in
+  such titles, answer Q4 false even when the cited work is about GW findings.
+- Boundary cases for Q4: an event excluded from an analysis because of a
+  property (low significance, an outlier) is true; an event named only as the
+  occasion for something else (instruments that followed it up, a date or
+  sensitivity marker) is false; a one-line property in a list of events
+  ("weaker signal, no EM counterpart") is true.
+- Boundary cases for Q3: a published bound used without restating its numbers
+  ("lies within the GW170817 constraint", equations of state chosen to satisfy
+  GW170817's tidal limits) is true, as is a bound another paper derived from
+  the event when it is used or compared. Plotting released samples is Q2; also
+  comparing against their stated uncertainty makes Q3 true too.
 """
 
 

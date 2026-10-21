@@ -32,26 +32,56 @@ from ..models import (
 
 GUIDE_PATH = ROOT / "eval" / "GUIDELINES.md"
 
-# Optional second labelling of the same pairs (`gwn eval label --compare FILE`).
-# Disputed rows are listed at /review and each shows the other labeller's
-# answer and note next to the form. The reference labels are never changed
+# Optional other labellings of the same pairs (`gwn eval label --compare FILE`,
+# repeatable). Each is shown next to the form; labelled rows that disagree
+# with any of them are listed at /review. The reference labels never change
 # except by an explicit save.
-COMPARE_PATH: Optional[Path] = None
+COMPARE_PATHS: list = []
 
 
-def _other_labels() -> dict:
-    if COMPARE_PATH is None or not COMPARE_PATH.exists():
-        return {}
-    out = {}
-    for line in COMPARE_PATH.read_text().splitlines():
-        if line.strip() and not line.startswith("#"):
-            r = json.loads(line)
-            out[(r["arxiv_id"], r["event"])] = r
+def _others() -> list:
+    """[(name, {(arxiv_id, event): row})] for each comparison file."""
+    out = []
+    for path in COMPARE_PATHS:
+        labels = {}
+        if path.exists():
+            for line in path.read_text().splitlines():
+                if line.strip() and not line.startswith("#"):
+                    r = json.loads(line)
+                    labels[(r["arxiv_id"], r["event"])] = r
+        out.append((path.stem, labels))
     return out
 
 
+def _any_disputed(row: dict, others: list) -> bool:
+    key = (row["arxiv_id"], row["event"])
+    return any(_disputed(row, labels.get(key)) for _, labels in others)
+
+
+def _to_resolve(row: dict, others: list) -> bool:
+    """Needs a person: unlabelled but compared, or labelled and still disputed."""
+    key = (row["arxiv_id"], row["event"])
+    if not _is_labelled(row):
+        return any(key in labels for _, labels in others)
+    return _any_disputed(row, others)
+
+
+def _shared_answer(rows_: list) -> Optional[dict]:
+    """The comparison labellers' answer when they all agree, else None."""
+    if not rows_:
+        return None
+    answers = {(tuple(normalise_uses(o.get("uses") or [])), tuple(sorted(o.get("roles") or [])))
+               for o in rows_}
+    if len(answers) != 1:
+        return None
+    uses, roles = next(iter(answers))
+    return {"uses": list(uses), "roles": list(roles)}
+
+
 def _disputed(row: dict, other: Optional[dict]) -> bool:
-    if other is None or not _is_labelled(row):
+    # A row a person has saved since the comparison is resolved, even though it
+    # necessarily still differs from whichever labeller they did not side with.
+    if other is None or not _is_labelled(row) or row.get("adjudicated"):
         return False
     return (normalise_uses(row.get("uses") or []) != normalise_uses(other.get("uses") or [])
             or set(row.get("roles") or []) != set(other.get("roles") or []))
@@ -175,11 +205,16 @@ def guide(request: Request):
 @app.get("/review", response_class=HTMLResponse)
 def review(request: Request):
     _, rows = _load(GOLD_PATH)
-    others = _other_labels()
-    items = [(j, r, others[(r["arxiv_id"], r["event"])]) for j, (_, r) in enumerate(rows)
-             if _disputed(r, others.get((r["arxiv_id"], r["event"])))]
+    others = _others()
+    items = []
+    for j, (_, r) in enumerate(rows):
+        if not _to_resolve(r, others):
+            continue
+        key = (r["arxiv_id"], r["event"])
+        first = next((labels[key] for _, labels in others if key in labels), None)
+        items.append((j, r, first))
     return templates.TemplateResponse(request, "label_review.html", {
-        "items": items, "compare_path": COMPARE_PATH})
+        "items": items, "compare_path": ", ".join(str(p) for p in COMPARE_PATHS)})
 
 
 @app.get("/list", response_class=HTMLResponse)
@@ -190,22 +225,29 @@ def listing(request: Request):
 
 
 @app.get("/row/{k}", response_class=HTMLResponse)
-def row_page(request: Request, k: int, saved: int = 0):
+def row_page(request: Request, k: int, saved: int = 0, error: str = ""):
     _, rows = _load(GOLD_PATH)
     if not 0 <= k < len(rows):
         raise HTTPException(404)
     row = rows[k][1]
     siblings = [(j, r["event"], _is_labelled(r)) for j, (_, r) in enumerate(rows)
                 if r["arxiv_id"] == row["arxiv_id"]]
-    others = _other_labels()
-    other = others.get((row["arxiv_id"], row["event"]))
-    disputed = [j for j, (_, r) in enumerate(rows)
-                if _disputed(r, others.get((r["arxiv_id"], r["event"])))]
+    others = _others()
+    key = (row["arxiv_id"], row["event"])
+    other_rows = [(name, labels[key]) for name, labels in others if key in labels]
+    # Unlabelled rows: flag when the other labellers disagree with each other.
+    other_split = len({(tuple(normalise_uses(o.get("uses") or [])),
+                        tuple(sorted(o.get("roles") or []))) for _, o in other_rows}) > 1
+    disputed = [j for j, (_, r) in enumerate(rows) if _to_resolve(r, others)]
     next_disputed = next((j for j in disputed if j > k), None)
     return templates.TemplateResponse(request, "label.html", {
         "k": k, "row": row, "progress": _progress(rows), "saved": saved,
         "n_rows": len(rows), "next_unlabelled": _next_unlabelled(rows, k),
-        "other": other, "is_disputed": _disputed(row, other),
+        "other_rows": [(n, o, _disputed(row, o)) for n, o in other_rows],
+        "other_split": other_split, "is_disputed": _any_disputed(row, others),
+        "error": error,
+        # Unlabelled and the other labellers agree: start from their answer.
+        "prefill": None if _is_labelled(row) else _shared_answer([o for _, o in other_rows]),
         "n_disputed": len(disputed), "next_disputed": next_disputed,
         "siblings": siblings, "data_questions": DATA_QUESTIONS,
         "fallback_question": FALLBACK_QUESTION, "roles": ROLES,
@@ -231,20 +273,22 @@ async def row_save(request: Request, k: int,
         raise HTTPException(409, "gold.jsonl changed under this page; reload it")
     data = [u for u in form.getlist("uses") if u in USES]
     if not data and fallback not in FALLBACKS:
-        raise HTTPException(400, "Answer Q4 (qualitative or cited only) when Q1-Q3 are all no")
+        # Back to the form with a message, never a bare error page.
+        return RedirectResponse(f"/row/{k}?error=q4", status_code=303)
     uses = normalise_uses(data + ([fallback] if not data else []))
     roles = [r for r in form.getlist("roles") if r in ROLES]
     row = {**row, "engagement": deepest_use(uses), "uses": uses, "roles": roles,
-           "unsure": bool(form.get("unsure"))}
+           "unsure": bool(form.get("unsure")), "labelled_by": "human",
+           "adjudicated": bool(COMPARE_PATHS)}
     _save_line(GOLD_PATH, line_idx, row)
     rows[k] = (line_idx, row)
 
     if form.get("action") == "stay":
         return RedirectResponse(f"/row/{k}?saved=1", status_code=303)
     if form.get("action") == "review":
-        others = _other_labels()
+        others = _others()
         nxt = next((j for j, (_, r) in enumerate(rows) if j > k and
-                    _disputed(r, others.get((r["arxiv_id"], r["event"])))), None)
+                    _to_resolve(r, others)), None)
         return RedirectResponse(f"/row/{nxt}?saved=1" if nxt is not None else "/review",
                                 status_code=303)
     nxt = _next_unlabelled(rows, k)

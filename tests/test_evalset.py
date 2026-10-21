@@ -77,9 +77,14 @@ def test_labeller_saves_one_line_and_refuses_stale_pages(temp_db, tmp_path, monk
     assert saved["uses"] == ["strain_analysis", "published_results"]
     assert saved["engagement"] == "strain_analysis" and saved["unsure"] is True
 
-    # No data product and no Q4 answer is refused, not saved as a guess.
-    r = c.post("/row/0", data={"arxiv_id": a["arxiv_id"], "event": "GW150914"})
-    assert r.status_code == 400
+    # No data product and no Q4 answer is refused -- back to the form with a
+    # message, not saved as a guess and not a bare error page.
+    before = gold.read_text()
+    r = c.post("/row/0", data={"arxiv_id": a["arxiv_id"], "event": "GW150914"},
+               follow_redirects=False)
+    assert r.status_code == 303 and r.headers["location"] == "/row/0?error=q4"
+    assert gold.read_text() == before
+    assert "Not saved" in c.get("/row/0?error=q4").text
 
     # A page for a different pair than the file now holds must not write.
     r = c.post("/row/0", data={"arxiv_id": "9999.99999", "event": "GW150914",
@@ -118,6 +123,8 @@ def test_guidelines_quote_the_classifier_questions_verbatim():
     guide = (GOLD_PATH.parent / "GUIDELINES.md").read_text()
     for _, q, detail in DATA_QUESTIONS + [FALLBACK_QUESTION]:
         assert q in guide and detail in guide
+    from gwnetwork.models import ROLES
+    assert all(f"`{r}`" in guide for r in ROLES), "guide must list every role"
 
 
 def test_cli_loads_every_command():
@@ -142,8 +149,34 @@ def test_review_mode_lists_only_disputed_pairs(temp_db, tmp_path, monkeypatch):
                      json.dumps({**row(1, ["strain_analysis", "published_results"],
                                        ["cosmology"]), "note": "also reanalyses"}) + "\n")
     monkeypatch.setattr(label, "GOLD_PATH", gold)
-    monkeypatch.setattr(label, "COMPARE_PATH", other)
+    monkeypatch.setattr(label, "COMPARE_PATHS", [other])
     c = TestClient(label.app)
     page = c.get("/review").text
     assert "1 disputed pair" in page and "also reanalyses" in page and "same" not in page
     assert "Disputed" in c.get("/row/1").text and "Disputed" not in c.get("/row/0").text
+
+
+def test_resolving_a_dispute_takes_it_off_the_list(temp_db, tmp_path, monkeypatch):
+    """Regression: a resolved row still differs from one labeller, so it used to
+    reappear as disputed and "next disputed" looped back to it."""
+    from fastapi.testclient import TestClient
+    import gwnetwork.web.label as label
+    _seed(temp_db, n_papers=2)
+    pair = lambda i: {"arxiv_id": f"2401.0000{i}", "event": "GW150914"}
+    gold, fa, fb = tmp_path / "gold.jsonl", tmp_path / "a.jsonl", tmp_path / "b.jsonl"
+    gold.write_text("\n".join(json.dumps({**pair(i), "engagement": None, "uses": [], "roles": []})
+                              for i in range(2)) + "\n")
+    fa.write_text("\n".join(json.dumps({**pair(i), "uses": ["qualitative"], "roles": []})
+                            for i in range(2)) + "\n")
+    fb.write_text(json.dumps({**pair(0), "uses": [], "roles": []}) + "\n" +        # disagrees on row 0
+                  json.dumps({**pair(1), "uses": ["qualitative"], "roles": []}) + "\n")
+    monkeypatch.setattr(label, "GOLD_PATH", gold)
+    monkeypatch.setattr(label, "COMPARE_PATHS", [fa, fb])
+    c = TestClient(label.app)
+
+    assert "2 disputed pairs" in c.get("/review").text
+    assert "Pre-filled" in c.get("/row/1").text and "Pre-filled" not in c.get("/row/0").text
+    r = c.post("/row/0", data={**pair(0), "fallback": "cited_only", "action": "review"},
+               follow_redirects=False)
+    assert r.headers["location"].startswith("/row/1")             # moves on, not back
+    assert "1 disputed pair" in c.get("/review").text

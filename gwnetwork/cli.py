@@ -256,13 +256,14 @@ def cmd_eval_compare(
 @eval_app.command("label")
 def cmd_eval_label(
     host: str = "127.0.0.1", port: int = 8001,
-    compare: Optional[Path] = typer.Option(
-        None, help="A second labelling to review against: disputed pairs at /review"),
+    compare: List[Path] = typer.Option(
+        [], help="Another labelling to show beside the form (repeatable); "
+                 "labelled rows that disagree are listed at /review"),
 ):
     """Local web UI for labelling eval/gold.jsonl (writes to the file)."""
     import uvicorn
     from .web import label
-    label.COMPARE_PATH = compare.resolve() if compare else None
+    label.COMPARE_PATHS = [p.resolve() for p in compare]
     typer.echo(f"labelling eval/gold.jsonl at http://{host}:{port}")
     uvicorn.run(label.app, host=host, port=port)
 

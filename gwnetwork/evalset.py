@@ -10,6 +10,10 @@ Format: eval/gold.jsonl, one JSON object per line
      "uses": ["strain_analysis"], "engagement": "strain_analysis",
      "roles": ["single_event"], "unsure": false}
 
+`labelled_by` is "human" (labelled or adjudicated by a person) or
+"ai-consensus" (two independent model labellings agreed); `gwn eval score`
+reports the human subset separately.
+
 `uses` is the set of answers to the usage questions (models.USES, or
 ["qualitative"] when none applies, [] for cited_only); `engagement` is derived
 from it and also marks a row as labelled. eval/GUIDELINES.md is the labelling
@@ -228,6 +232,9 @@ class Score:
     n: int = 0
     mention_recall_hits: int = 0
     agreement: Agreement = field(default_factory=Agreement)
+    # Only rows a human labelled or adjudicated. AI-consensus rows come from
+    # the same model family as the classifier, so this is the stricter score.
+    human: Agreement = field(default_factory=Agreement)
 
     def report(self) -> str:
         if not self.n:
@@ -241,7 +248,11 @@ class Score:
                          "set (it only contains pairs the extractor already found). "
                          "Add hand-read pairs to measure real recall.")
         if self.agreement.n:
+            lines.append("== all gold pairs ==")
             lines.append(self.agreement.report())
+            if self.human.n and self.human.n < self.agreement.n:
+                lines.append("== human-labelled pairs only ==")
+                lines.append(self.human.report())
         else:
             lines.append("usage: no classify run to score against "
                          "(extraction-only scoring)")
@@ -286,6 +297,8 @@ def score(path: Optional[Path] = None) -> Score:
         if key in predicted:
             uses, roles = predicted[key]
             sc.agreement.add(key, row, uses, roles, row.get("unsure"))
+            if row.get("labelled_by", "human") == "human":
+                sc.human.add(key, row, uses, roles, row.get("unsure"))
     return sc
 
 

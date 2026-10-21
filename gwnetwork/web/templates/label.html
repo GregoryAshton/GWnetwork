@@ -110,28 +110,32 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
   <input type="hidden" name="arxiv_id" value="{{ row.arxiv_id }}">
   <input type="hidden" name="event" value="{{ row.event }}">
   <div class="mono" style="font-size:1.05rem;font-weight:600;margin-bottom:12px">{{ row.event }}</div>
-  {% if other %}
-  <div class="other{% if is_disputed %} disputed{% endif %}">
-    <div class="small"><b>{{ "Disputed — " if is_disputed else "" }}other labeller:</b>
-      {% for u in other.uses or [] %}<span class="chip on">{{ u }}</span>{% else %}<span class="chip">cited_only</span>{% endfor %}
-      {% for r in other.roles or [] %}<span class="chip">{{ r }}</span>{% endfor %}
-      {% if other.unsure %}<span class="chip" style="border-style:dashed">unsure</span>{% endif %}</div>
-    {% if other.note %}<div class="small mut" style="margin-top:4px">“{{ other.note }}”</div>{% endif %}
-    {% if is_disputed %}<button type="button" id="take" style="margin-top:6px;font-size:.8rem;padding:4px 10px">Fill the form with these</button>{% endif %}
+  {% if other_split %}<div class="small" style="color:var(--amber);font-weight:600;margin:0 0 6px">The other labellers disagree on this pair.</div>{% endif %}
+  {% for name, o, dis in other_rows %}
+  <div class="other{% if dis or other_split %} disputed{% endif %}">
+    <div class="small"><b>{{ "Disputed — " if dis else "" }}{{ name }}:</b>
+      {% for u in o.uses or [] %}<span class="chip on">{{ u }}</span>{% else %}<span class="chip">cited_only</span>{% endfor %}
+      {% for r in o.roles or [] %}<span class="chip">{{ r }}</span>{% endfor %}
+      {% if o.unsure %}<span class="chip" style="border-style:dashed">unsure</span>{% endif %}</div>
+    {% if o.note %}<div class="small mut" style="margin-top:4px">“{{ o.note }}”</div>{% endif %}
+    <button type="button" class="take" data-uses='{{ (o.uses or [])|tojson }}' data-roles='{{ (o.roles or [])|tojson }}' style="margin-top:6px;font-size:.8rem;padding:4px 10px">Fill the form with these</button>
   </div>
-  {% endif %}
+  {% endfor %}
 
+  {% if prefill %}<div class="small" style="color:var(--ok);margin:0 0 8px">Pre-filled with the other labellers' shared answer — check it, then Enter to save.</div>{% endif %}
+  {% if error == "q4" %}<div class="small" style="color:#c0392b;font-weight:600;margin:0 0 8px">Not saved: tick one of Q1–Q3, or answer Q4.</div>{% endif %}
+  <div id="q4msg" class="small" style="color:#c0392b;font-weight:600;margin:0 0 8px" hidden>Tick one of Q1–Q3, or answer Q4 (keys 4/5), before saving.</div>
   <fieldset class="eng">
     <legend>Usage of {{ row.event }} — answer each <a href="/guide" target="_blank" style="text-transform:none;letter-spacing:0">guide</a></legend>
     {% for key, q, detail in data_questions %}
-    <label><input type="checkbox" name="uses" value="{{ key }}" {% if key in row_uses %}checked{% endif %}>
+    <label><input type="checkbox" name="uses" value="{{ key }}" {% if key in (prefill.uses if prefill else row_uses) %}checked{% endif %}>
       <b><kbd>{{ loop.index }}</kbd>{{ q }}</b><span>{{ detail }}</span></label>
     {% endfor %}
     <div id="fb" class="fallback">
       <div class="small mut" style="margin:10px 0 6px"><b>Q4.</b> {{ fallback_question[1] }}</div>
-      <label><input type="radio" name="fallback" value="qualitative" {% if fallback == "qualitative" %}checked{% endif %}>
+      <label><input type="radio" name="fallback" value="qualitative" {% if fallback == "qualitative" or (prefill and prefill.uses == ["qualitative"]) %}checked{% endif %}>
         <b><kbd>4</kbd>yes — qualitative</b><span>{{ fallback_question[2] }}</span></label>
-      <label><input type="radio" name="fallback" value="cited_only" {% if fallback == "cited_only" %}checked{% endif %}>
+      <label><input type="radio" name="fallback" value="cited_only" {% if fallback == "cited_only" or (prefill and prefill.uses == []) %}checked{% endif %}>
         <b><kbd>5</kbd>no — cited in passing</b><span>Named or cited as background only.</span></label>
     </div>
     <label class="unsure"><input type="checkbox" name="unsure" value="1" {% if row.get("unsure") %}checked{% endif %}>
@@ -143,7 +147,7 @@ button.primary{background:var(--accent);border-color:var(--accent);color:var(--s
     <p class="small mut" style="margin:0 0 8px">What <b>{{ row.event }}</b> is used for in this paper, not the paper's topic. <span class="mono">counterpart_followup</span>: the paper observes or searches for this event's counterpart, including non-detections. <span class="mono">single_event</span>: a result about this event on its own (catalogue PE counts); <span class="mono">population</span>: one input to a combined inference; both if it does both.</p>
     <div class="roles">
     {% for r in roles %}
-      <label><input type="checkbox" name="roles" value="{{ r }}" {% if r in row.roles %}checked{% endif %}>{{ r }}</label>
+      <label><input type="checkbox" name="roles" value="{{ r }}" {% if r in (prefill.roles if prefill else row.roles) %}checked{% endif %}>{{ r }}</label>
     {% endfor %}
     </div>
   </fieldset>
@@ -172,16 +176,20 @@ const fbBox = document.getElementById("fb");
 // Q4 only applies when Q1-Q3 are all "no".
 function sync() { fbBox.classList.toggle("off", [...data].some(x => x.checked)); }
 data.forEach(x => x.addEventListener("change", sync)); sync();
-{% if other and is_disputed %}
-// Copy the other labeller's answer into the form; nothing is saved until you click Save.
-document.getElementById("take").addEventListener("click", () => {
-  const uses = {{ (other.uses or [])|tojson }}, roles = {{ (other.roles or [])|tojson }};
+// Catch a missing answer here rather than round-tripping to the server.
+form.addEventListener("submit", e => {
+  if (![...data].some(x => x.checked) && ![...fb].some(x => x.checked)) {
+    e.preventDefault(); document.getElementById("q4msg").hidden = false; fbBox.scrollIntoView({block: "center"});
+  }
+});
+// Copy another labeller's answer into the form; nothing is saved until you click Save.
+document.querySelectorAll(".take").forEach(btn => btn.addEventListener("click", () => {
+  const uses = JSON.parse(btn.dataset.uses), roles = JSON.parse(btn.dataset.roles);
   data.forEach(x => x.checked = uses.includes(x.value));
   fb.forEach(x => x.checked = (x.value === (uses.includes("qualitative") ? "qualitative" : "cited_only")));
   form.querySelectorAll('input[name="roles"]').forEach(x => x.checked = roles.includes(x.value));
   sync();
-});
-{% endif %}
+}));
 document.addEventListener("keydown", e => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.target.matches("input[type=text], textarea")) return;

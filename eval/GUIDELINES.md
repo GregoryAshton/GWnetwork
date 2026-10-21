@@ -1,7 +1,7 @@
 # Gold-set labelling guide
 
-Version 2, frozen 2026-10-21 (classifier `classify-0.4`). Changes from
-version 1 are listed at the end. The usage questions
+Version 3, frozen 2026-10-21 (classifier `classify-0.4`). Changes are listed
+at the end. The usage questions
 below are generated from `gwnetwork/classify/prompts.py`, the same text the
 classifier gets; `tests/test_evalset.py` fails if they drift apart.
 
@@ -61,7 +61,15 @@ Its findings, implications or properties are discussed, or used to motivate, com
 | 1711.03553: "formation scenarios proposed to explain GW150914" motivate its study | Q4 yes (qualitative) -- motivation from what the event showed counts |
 | 1902.02265: GW170817's speed constraint "rules out" modified-gravity theories (no numbers) | Q4 yes |
 | 2105.06384 (lensing): per-event magnifications from released samples, plus joint PE / microlensing reanalyses of the strain | Q1 and Q2 yes; role single_event |
-| A paper analysing only GRB 170817A data, never using GW results | Q1-Q3 no; Q4 by how it uses what GW170817 showed |
+| Counterpart only, discussed or interpreted (2305.12974 interprets the kilonova) | Q1-Q3 no; Q4 yes; role multimessenger |
+| Counterpart data only as an input, event not discussed (2605.25201 scales yields by the AT2017gfo Sr measurement; 2104.09727 plots the AT2017gfo light curve as a reference) | all no -> cited_only |
+| Excluded from an analysis because of a property: low significance (2105.02879 GW190719_215514), an outlier (2404.03166 GW190814) | Q4 yes |
+| Named only as the occasion for something else: instruments that followed it up (2105.12268 GW190814), a sensitivity time marker (2511.19586) | all no -> cited_only |
+| A one-line property in a list of events: "weaker signal, no EM counterpart" (2110.08281 GW190425) | Q4 yes |
+| Only in a reference title, even when the cited work is about GW findings (2402.10755 GW150914, Lorentz-violation constraints) | all no -> cited_only |
+| A bound used without restating its numbers: "within the GW170817 constraint" (2406.05267); EOSs chosen to satisfy GW170817's tidal limits (2304.12356) | Q3 yes |
+| A bound another paper derived from the event, compared with the paper's own (2407.08825, f(R)) | Q3 yes |
+| Released posterior plotted against forecasts and its stated uncertainty compared (2608.11673 GW231123) | Q2 and Q3 yes |
 
 Mixed cases: answer each question on its own. A paper that quotes "~1.4 Msun"
 in the introduction *and* uses the PE samples later is Q2 yes; the rounded
@@ -69,7 +77,9 @@ value adds nothing once a data product is used.
 
 ## Roles: what this event is used for
 
-Zero or more. Roles belong to the event, not the paper: a GW170817 follow-up
+Zero or more of: `single_event`, `population`, `multimessenger`, `counterpart_followup`, `test_of_gr`, `cosmology`, `lensing`, `formation_channels`, `waveform_systematics`, `dense_matter_eos`, `exotic_compact_object`, `detector_characterisation`, `methods_demo`, `review`, `forecast`.
+
+Roles belong to the event, not the paper: a GW170817 follow-up
 paper gives GW170817 `counterpart_followup`, but a GW150914 cited in its
 introduction gets no roles. A cited-in-passing event normally has no roles; a
 qualitative one often does (e.g. qualitative + `formation_channels`).
@@ -104,3 +114,13 @@ once the guide was applied consistently):
   event showed is qualitative.
 - single_event: a per-event result counts in a multi-event paper.
 - Fixed the GW170814 worked case (the paper does quote its H0 interval).
+
+**Version 3** (after the two-model labelling of rows 101-234 and adjudication):
+- Counterpart-only: Q4 yes if the counterpart or event is discussed or
+  interpreted; cited_only if counterpart data is only taken as an input.
+- Q4 boundaries from adjudication: exclusion for a property and a one-line
+  property in a list are qualitative; naming an event only as the occasion
+  for something else, or only in reference titles, is cited_only.
+- Q3: a bound used without restating its numbers, or a third-party bound
+  derived from the event, counts when used.
+- Full role list added. These rules are also in the classifier prompt.
