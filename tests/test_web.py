@@ -120,7 +120,23 @@ def test_tables_are_sortable(temp_db):
     _seed(temp_db, n_runs=1)
     from gwnetwork.web.app import app
     c = TestClient(app)
-    for path in ["/", "/events", "/papers", "/event/GW150914"]:
+    for path in ["/events", "/papers", "/event/GW150914"]:   # the front page has no data table
         body = c.get(path).text
         assert 'class="sortable"' in body, path
         assert "window.gwnSort" in body, path
+
+
+def test_front_page_counts_usages_from_the_current_run_only(temp_db):
+    """It used to count every EventUsage row, so pilot runs inflated it."""
+    from gwnetwork.models import EventUsage
+    ev_id, paper_id = _seed(temp_db, n_runs=1)
+    with temp_db.session() as s:
+        for i, current in enumerate([False, False, True]):
+            run = AnalysisRun(stage="classify", pipeline_version=f"c{i}", is_current=current)
+            s.add(run); s.flush()
+            s.add(EventUsage(paper_id=paper_id, event_id=ev_id, analysis_run_id=run.id,
+                             engagement="cited_only", uses=[], roles=[], evidence=[]))
+    from gwnetwork.web.app import app
+    body = TestClient(app).get("/").text
+    m = re.search(r'<b class="tnum">([\d,]+)</b><span>Classified usages', body)
+    assert m and m.group(1) == "1", "should count the current run only (1), not all runs (3)"

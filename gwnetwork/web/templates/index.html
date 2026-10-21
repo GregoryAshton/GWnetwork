@@ -2,7 +2,7 @@
 {% block title %}GWnetwork{% endblock %}
 {% block content %}
 <h1>GWnetwork</h1>
-<p class="lede">Which papers discuss or use which gravitational-wave events.</p>
+<p class="lede">A database of how transient gravitational-wave signals are discussed in the literature.</p>
 
 <div class="stats">
   {% for label, value in stats %}
@@ -12,49 +12,64 @@
 
 <div class="readme">
   <h2>What this is</h2>
-  <p>Every gravitational-wave event in the GWOSC catalogues, linked to the arXiv
-  papers that name it. The event list is built from GWOSC and extended by hand
-  where a signal was reported elsewhere; the literature is found by searching the
-  NASA ADS full-text index for every designation an event has ever been known
-  by — including electromagnetic counterpart names like
-  <code>AT2017gfo</code> and short forms like <code>GW230529</code>.</p>
+  <p>Citation counts say which papers reference a discovery paper, not what they
+  did with the event. GWnetwork links every gravitational-wave event to the papers
+  that name it in their full text, then uses a large language model to classify
+  how each paper uses each event — with a quoted sentence from the paper as
+  evidence for every call.</p>
+  <p>A <b>mention</b> is an event's name (or any alias, including counterpart
+  names such as <code>AT2017gfo</code>) found in a paper's text. Mentions are
+  matched exactly, not inferred, and are not the same as citations: many papers
+  cite a discovery paper without naming the event, and many name it without
+  citing the paper.</p>
+  <p>Each paper–event pair is then labelled by its deepest use of the event:</p>
+  <dl class="levels">
+    <dt>strain analysis</dt><dd>analyses the detector data for the event</dd>
+    <dt>posterior samples</dt><dd>uses released parameter-estimation samples</dd>
+    <dt>published results</dt><dd>uses published measurements with their uncertainties</dd>
+    <dt>qualitative</dt><dd>discusses or builds on what the event showed</dd>
+    <dt>cited only</dt><dd>names the event in passing</dd>
+  </dl>
+  <p>and by <b>roles</b> — what the event is used for, such as a single-event
+  study, a population, a test of general relativity, cosmology or
+  dense-matter physics.</p>
 
-  <h2>What a mention is</h2>
-  <p>A <b>mention</b> is an occurrence of an event's name in the text of a paper
-  we hold, recorded with its character offset, the section it appeared in, and
-  the surrounding sentence. Nothing is inferred: if the string is not in the
-  text, there is no mention.</p>
-  <p>A mention is <b>not a citation</b>, and the two sets differ more than you
-  might expect. For GW170817, 9,775 papers cite the discovery paper and 11,313
-  name the event somewhere in their full text — but only 6,005 do both. Roughly
-  3,800 cite the paper without ever writing the event's name, and 5,300 write the
-  name without citing that paper. Counting citations and counting mentions
-  answer different questions, and neither answers <em>who actually used the
-  event</em> — that is what the usage classification is for.</p>
+  <h2>Status</h2>
+  <table class="status">
+    <tr><th>Version</th><td>
+      {% if build.sha %}<a href="{{ build.repo_url }}/commit/{{ build.sha }}"><code>{{ build.sha }}</code></a>{% if build.dirty %} <span class="mut">+local</span>{% endif %}{% else %}unknown{% endif %},
+      built {{ build.built_at }}</td></tr>
+    <tr><th>Corpus</th><td>
+      {{ "{:,}".format(data.n_events) }} events; {{ "{:,}".format(data.n_papers) }} papers,
+      {{ "{:,}".format(data.n_fulltext) }} with full text{% if data.n_fulltext < data.n_papers %} (the other {{ data.n_papers - data.n_fulltext }} searched by abstract only){% endif %};
+      mentions extracted {{ data.extracted_at or "—" }}</td></tr>
+    {% if classifier %}
+    <tr><th>Classification</th><td>
+      {{ classifier.model|model_name }}, reading
+      {{ "the sentences around each mention" if classifier.context == "excerpts" else "the full text" }};
+      {{ "{:,}".format(classifier.n) }} pairs, run {{ classifier.run_date }}</td></tr>
+    {% if classifier.quality %}{% set q = classifier.quality %}
+    <tr><th>Accuracy</th><td>
+      {{ q.pct }}% agreement with a reference set of {{ q.n }} pairs
+      (κ {{ "%.2f"|format(q.kappa) }}; {{ q.pct_human }}% on the {{ q.n_human }} labelled by a person,
+      the rest agreed by two independent AI labellers), read in full against a
+      <a href="{{ build.repo_url }}/blob/main/eval/GUIDELINES.md">written guide</a>.
+      A first pass: strain-analysis and released-sample calls are reliable but
+      undercounted{% if q.samples_recall %} (~{{ q.samples_recall }}% of released-sample uses found){% endif %}.</td></tr>
+    {% endif %}
+    {% else %}
+    <tr><th>Classification</th><td>not yet run</td></tr>
+    {% endif %}
+  </table>
 
-  <h2>The data set is incomplete</h2>
-  <p>Coverage is partial and openly so. Full text has been fetched for
-  {{ "{:,}".format(n_fulltext) }} of {{ "{:,}".format(n_papers) }} papers{% if n_papers %}
-  ({{ (100 * n_fulltext / n_papers)|round|int }}%){% endif %}; for the rest only the
-  abstract has been searched, so their mentions are undercounted. Each event page shows
-  what we found against the number ADS reports, so the shortfall is visible
-  rather than implied. Usage classification — whether a paper analysed an
-  event's strain data, used its posterior samples, or merely cited it — has been run on a
-  handful of papers as a sample, not the corpus. Treat every count here as a
-  lower bound.</p>
+  <h2>Where to go</h2>
+  <ul class="goto">
+    <li><a href="/events">Events</a> — every event with its measured properties, filterable
+    and sortable; each event's page lists the papers that mention it, grouped by how they use it.</li>
+    <li><a href="/papers">Papers</a> — every paper in the corpus, with the events it mentions
+    and how it uses each.</li>
+    <li><a href="/explore">Explore</a> — charts across all events: where attention sits in the
+    mass plane, how it builds over time, and whether loud events get more of it.</li>
+  </ul>
 </div>
-
-<h2>Most-mentioned events</h2>
-<div class="wrapx"><table class="sortable">
-<tr><th>Event</th><th>Class</th><th>Run</th><th class="num">Mentioning</th><th class="num">ADS ceiling</th></tr>
-{% for e in top %}
-<tr>
-  <td><a class="mono" href="/event/{{ e.name }}">{{ e.name }}</a></td>
-  <td class="small">{{ e.mass_class or "—" }}</td>
-  <td class="small">{{ e.run or "—" }}</td>
-  <td class="num">{{ "{:,}".format(e.n_papers) }}</td>
-  <td class="num mut">{{ "{:,}".format(e.ceiling) if e.ceiling else "—" }}</td>
-</tr>
-{% endfor %}
-</table></div>
 {% endblock %}

@@ -55,5 +55,5 @@ def data_info(s) -> dict:
         "n_events": s.scalar(select(func.count()).select_from(Event)) or 0,
         "n_papers": n_papers,
         "n_fulltext": n_fulltext,
-        "pct_fulltext": round(100 * n_fulltext / n_papers) if n_papers else 0,
+        "pct_fulltext": round(100 * n_fulltext / n_papers, 1) if n_papers else 0,
     }

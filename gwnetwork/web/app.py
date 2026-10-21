@@ -10,6 +10,7 @@ directly queryable.
 """
 from __future__ import annotations
 
+import functools
 from collections import defaultdict
 from pathlib import Path
 from typing import Optional
@@ -64,10 +65,43 @@ def render(request: Request, name: str, **ctx) -> HTMLResponse:
     return templates.TemplateResponse(request, name, ctx)
 
 
+def _model_name(model_id: Optional[str]) -> str:
+    """claude-haiku-5-5 -> Claude Haiku 5.5, for prose."""
+    if not model_id or not model_id.startswith("claude-"):
+        return model_id or "an LLM"
+    parts = model_id.split("-")[1:]
+    words = [p for p in parts if not p.isdigit()]
+    nums = [p for p in parts if p.isdigit()]
+    return "Claude " + " ".join(w.capitalize() for w in words) + (" " + ".".join(nums) if nums else "")
+
+
+templates.env.filters["model_name"] = _model_name
+
+
+@functools.lru_cache(maxsize=4)
+def _usage_quality(classify_run_id: str) -> Optional[dict]:
+    """Agreement of the current classify run with the gold set, for the front
+    page. Cached per run: scoring joins every current mention."""
+    from ..evalset import score
+    try:
+        sc = score()
+    except Exception:  # noqa: BLE001 -- a missing gold file must not break the site
+        return None
+    ag = sc.agreement
+    if not ag.n:
+        return None
+    tp, fp, fn = ag.use_counts["posterior_samples"]
+    return {"n": ag.n, "n_human": sc.human.n,
+            "pct": round(100 * ag.engagement_same / ag.n), "kappa": ag.kappa(),
+            "pct_human": round(100 * sc.human.engagement_same / sc.human.n) if sc.human.n else None,
+            "samples_recall": round(100 * tp / (tp + fn)) if tp + fn else None}
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     with session() as s:
         run = current_run(s, "extract")
+        crun = current_run(s, "classify")
 
         def count(model):
             return s.scalar(select(func.count()).select_from(model))
@@ -81,8 +115,10 @@ def index(request: Request):
                     select(Mention.paper_id, Mention.event_id)
                     .where(mentions_in(run))
                     .group_by(Mention.paper_id, Mention.event_id).subquery())) or 0),
+            # Current run only: superseded runs stay in the table.
             ("Classified usages", s.scalar(
-                select(func.count()).select_from(EventUsage)) or 0),
+                select(func.count()).select_from(EventUsage)
+                .where(EventUsage.analysis_run_id == (crun.id if crun else None))) or 0),
         ]
         n_papers = count(Paper)
         n_fulltext = s.scalar(select(func.count()).select_from(Paper)
@@ -95,8 +131,14 @@ def index(request: Request):
                 .join(EventView, EventView.event_id == Event.id)
                 .order_by(EventView.n_papers.desc()).limit(15)).all()
         ]
+        classifier = None
+        if crun is not None:
+            classifier = {"model": crun.model_id, "context": (crun.config or {}).get("context", "excerpts"),
+                          "n": stats[-1][1],
+                          "run_date": crun.completed_at.strftime("%Y-%m-%d") if crun.completed_at else "—",
+                          "quality": _usage_quality(crun.id)}
     return render(request, "index.html", stats=stats, top=top,
-                  n_papers=n_papers, n_fulltext=n_fulltext)
+                  n_papers=n_papers, n_fulltext=n_fulltext, classifier=classifier)
 
 
 def _num(v: Optional[str]) -> Optional[float]:
