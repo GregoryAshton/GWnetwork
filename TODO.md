@@ -5,16 +5,9 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
 
 ## Extraction
 
-- **Bare-number marginal candidates match coincidental numbers.** ~20 GWOSC
-  marginal candidates have no `GW` prefix (`170405`, `170208`, `161202`, ...).
-  Many matches are genuine (GWTC-1's trigger tables), but a bare six-digit
-  number also matches dates and identifiers: `170405` is "mentioned" by 46
-  papers, including ones from 1999 and 2004, and these account for all 23
-  paper-event pairs still dated before their event. Options: require trigger
-  context nearby (GPS/UTC time, FAR, "trigger", "candidate"), or drop matches
-  in papers whose latest version predates the candidate.
-- **Short name resolved to the wrong event.** 1903.01998 writes "GW190521" with
-  masses of GW190521_074359; the longest-match/ambiguity handling missed it.
+- **Authors who name the wrong event** (1903.01998: "GW190521" for
+  GW190521_074359) are invisible to the matcher; one is fixed in
+  `data/mention_overrides.yaml`, others will only surface by hand-reading.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
 
@@ -62,9 +55,12 @@ final question list.
 - **Slim export for Zenodo**: current runs only (events, papers, mentions with
   sentences, usages with evidence quotes). The full 571 MB multi-run database
   is optional alongside it. Full text is not deposited (arXiv licensing).
-- **Data fixes** from the sections above, as the chosen questions require:
-  bare-number candidates, the GW190521 short-name mix-up, pairs found only in
-  reference titles, and a corpus cutoff date for the ADS lag.
+- **Pairs found only in reference titles** (4,589 of 35,316, 13%) are not
+  noise to drop at extraction: 635 are classified deeper than cited-only,
+  through the in-text citation (`citations.py`). Derive the flag from
+  `Mention.section` in the analysis and report with and without them.
+- **Literature cutoff 2026-06-01** is applied in the analysis, not by
+  deleting papers.
 - **Detector participation per event** (for the Virgo attribution study):
   check whether the stored GWOSC records carry it; otherwise add it.
 - **ADS reference lists per paper** (for the open-data citation study), as a

@@ -1,0 +1,19 @@
+# Reviewed per-paper event reassignments, applied by `gwn extract`.
+#
+# For a paper that writes one event's name but means another -- an author's
+# naming slip that no matcher rule can see. Mentions keep their matched text
+# and offsets; only the event they count towards changes. Every entry needs a
+# reason with the evidence.
+#
+#   <arxiv id>:
+#     - from: <canonical name the text resolves to>
+#       to: <canonical name the paper means>
+#       reason: <evidence>
+
+1903.01998:
+  - from: GW190521
+    to: GW190521_074359
+    reason: >-
+      Writes "GW190521" throughout, but Table 2's Bayesian reference masses
+      (42.1 and 32.7 Msun) and its companion GW190630 are those of the GWTC-2
+      event GW190521_074359; GW190521 itself is ~85 + 66 Msun.

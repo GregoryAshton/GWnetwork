@@ -53,6 +53,20 @@ def normalise(text: str) -> str:
 _LEFT = r"(?<![0-9A-Za-z_])"
 _RIGHT = r"(?![0-9A-Za-z_])"
 
+# GWOSC marginal candidates named by date alone (`170405`, `161202`, ...). A
+# bare six-digit number is also a Phys. Rev. Lett. article number ("111,
+# 170405 (2013)"), part of a source name (3XMM J181923.7-170616), or a table
+# entry: before this, 170405 "appeared" in 46 papers back to 1999. Genuine
+# uses sit in trigger lists and tables, so such a match must have trigger
+# vocabulary or a different candidate within _BARE_WINDOW characters.
+_BARE = re.compile(r"\d{6}")
+_BARE_WINDOW = 200
+_TRIGGER_WORDS = re.compile(
+    r"(?i)\btrigger|\bmarginal|gstlal|pycbc|\bcwb\b|\bFAR\b|false.alarm|\bSNR\b|\bGW\d{6}")
+# Glued to a coordinate or decimal: "J181923.7-170616", "170423.688", "151116.k1".
+_GLUED_LEFT = re.compile(r"\d[-\u2212+]{1,2}$|[./]$")
+_GLUED_RIGHT = re.compile(r"^\.[0-9A-Za-z]")
+
 
 @dataclass(frozen=True)
 class Match:
@@ -81,6 +95,10 @@ class DesignationMatcher:
         self._re = (
             re.compile(_LEFT + "(?:" + "|".join(pats) + ")" + _RIGHT) if keys else None
         )
+        bare = sorted(k for k in self._map if _BARE.fullmatch(k))
+        self._bare = set(bare)
+        self._bare_re = (re.compile(r"(?<![0-9A-Za-z.])(" + "|".join(bare) + r")(?![0-9A-Za-z])")
+                         if bare else None)
 
     @classmethod
     def from_db(cls, s) -> DesignationMatcher:
@@ -101,13 +119,27 @@ class DesignationMatcher:
     def __len__(self) -> int:
         return len(self._map)
 
+    def _bare_in_context(self, text: str, start: int, end: int, key: str) -> bool:
+        left = text[max(0, start - _BARE_WINDOW):start]
+        right = text[end:end + _BARE_WINDOW]
+        if _GLUED_LEFT.search(left) or _GLUED_RIGHT.search(right):
+            return False
+        window = left + " " + right
+        if _TRIGGER_WORDS.search(window):
+            return True
+        # Another candidate, not the same number again (a DOI repeats it).
+        return any(o != key for o in self._bare_re.findall(window))
+
     def find(self, text: str) -> Iterator[Match]:
         """Known designations, then unknown GW-shaped strings in the gaps."""
         covered = []
         if self._re is not None:
             for m in self._re.finditer(text):
-                covered.append((m.start(), m.end()))
                 key = normalise(m.group(0))
+                if key in self._bare and not self._bare_in_context(
+                        text, m.start(), m.end(), key):
+                    continue
+                covered.append((m.start(), m.end()))
                 yield Match(m.group(0), m.start(), m.end(),
                             self._map.get(key), key in self._ambiguous)
 

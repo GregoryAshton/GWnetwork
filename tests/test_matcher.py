@@ -143,3 +143,46 @@ def test_arxiv_table_of_contents_is_not_read_as_sections():
     assert ix.label_at(text.index("We study")) == "abstract"
     assert ix.label_at(text.index("is heavy")) == "introduction"
     assert ix.label_at(text.index("[1] GW170729")) == "references"
+
+
+BARE = {"170405": "m-170405", "161202": "m-161202", "161217": "m-161217",
+        "170616": "m-170616", "200214_224526": "m-200214"}
+
+
+def _bare_ids(text):
+    return [h.event_id for h in _find(text, BARE) if h.event_id]
+
+
+def test_bare_candidate_in_a_trigger_list_matches():
+    text = ("GBM data were not collected around triggers 161202, 161217, "
+            "170405, and GW170823 due to passage through the SAA.")
+    assert _bare_ids(text) == ["m-161202", "m-161217", "m-170405"]
+
+
+def test_bare_candidate_in_a_pipeline_table_matches():
+    assert _bare_ids("No artifacts 170616 19:47:20.8 PyCBC 1.94 9.1") == ["m-170616"]
+
+
+def test_bare_number_without_trigger_context_does_not_match():
+    """Before this, 170405 'appeared' in 46 papers back to 1999."""
+    assert _bare_ids("C. Simon, V. Buzek and N. Gisin, Phys. Rev. Lett. 87, "
+                     "170405 (2001).") == []
+    # The DOI repeats the same number; that is not a second candidate.
+    assert _bare_ids("Phys. Rev. Lett. 111, 170405 (2013). "
+                     "doi:10.1103/PhysRevLett.111.170405") == []
+
+
+def test_bare_number_glued_to_a_coordinate_does_not_match():
+    # Trigger vocabulary nearby does not rescue a source name or a decimal.
+    assert _bare_ids("the X-ray trigger source 3XMM J181923.7-170616 is a pulsar") == []
+    assert _bare_ids("the X-ray trigger source 3XMM J181923.7−-170616") == []
+    assert _bare_ids("trigger mass 170405.688 MeV") == []
+
+
+def test_a_table_dash_is_not_a_coordinate():
+    text = "161202 2016-12-02 03:53:44.9 0.034 -  161217 2016-12-17 07:16:24.4"
+    assert _bare_ids(text) == ["m-161202", "m-161217"]
+
+
+def test_long_form_marginal_candidates_need_no_context():
+    assert _bare_ids("We also analyse 200214_224526.") == ["m-200214"]

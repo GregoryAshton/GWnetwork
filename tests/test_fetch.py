@@ -7,6 +7,8 @@ from types import SimpleNamespace
 
 from sqlalchemy import select
 
+from gwnetwork.models import Paper
+
 
 def test_strip_version_keeps_old_style_ids():
     from gwnetwork.corpus.arxiv import strip_version
@@ -219,3 +221,26 @@ def test_unpinned_also_selects_outdated_converters_but_not_withdrawn(temp_db, mo
                   fulltext_source="abstract_only", withdrawn=True)])
     discover.fetch_fulltext(unpinned=True, rate_delay=0)
     assert seen == ["old-pdf"]
+
+
+def test_mention_override_reassigns_the_event(temp_db, tmp_path):
+    from gwnetwork.extract.runner import extract_all
+    from gwnetwork.models import Event, EventDesignation, Mention
+    (tmp_path / "mention_overrides.yaml").write_text(
+        "1903.01998:\n  - from: GW190521\n    to: GW190521_074359\n    reason: masses\n")
+    with temp_db.session() as s:
+        for name in ("GW190521", "GW190521_074359"):
+            e = Event(canonical_name=name)
+            s.add(e)
+            s.flush()
+            s.add(EventDesignation(event_id=e.id, designation=name))
+        from gwnetwork.models import Paper
+        s.add_all([Paper(arxiv_id="1903.01998", title="t", abstract="We study GW190521."),
+                   Paper(arxiv_id="other", title="t", abstract="We study GW190521.")])
+    stats = extract_all()
+    assert stats.reassigned == 1
+    with temp_db.session() as s:
+        got = dict(s.execute(select(Paper.arxiv_id, Event.canonical_name)
+                             .join(Mention, Mention.paper_id == Paper.id)
+                             .join(Event, Event.id == Mention.event_id)).all())
+    assert got == {"1903.01998": "GW190521_074359", "other": "GW190521"}

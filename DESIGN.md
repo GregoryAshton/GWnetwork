@@ -544,6 +544,28 @@ Three responses, none of them automatic version-shopping:
   `pypdf/6.19.0;fonttools=none;xform-limit=100000` (fontTools, if installed,
   changes font decoding). `pypdf` is pinned exactly in `pyproject.toml`.
 
+### Bare-number candidates need trigger context
+
+About 20 GWOSC marginal candidates are named by date alone (`170405`,
+`161202`). A bare six-digit number is also a Phys. Rev. Lett. article number
+("87, 170405 (2001)"), part of a source name (`3XMM J181923.7-170616`) or a
+table entry: `170405` was "mentioned" by 46 papers back to 1999, and such
+matches were every paper-event pair dated before its event. Genuine uses sit
+in trigger lists and tables, so a bare six-digit match now needs, within 200
+characters, trigger vocabulary (trigger, marginal, GstLAL, PyCBC, cWB, FAR,
+SNR, a GW name) or a *different* candidate (a DOI repeats the same number),
+and must not be glued to a coordinate or decimal (`.7-170616`, `170423.688`).
+A table's spaced dash (`0.034 -  161217`) is not a coordinate. Long forms
+(`200214_224526`) are specific enough to need no context.
+
+### An author can name the wrong event
+
+1903.01998 writes "GW190521" throughout, but its masses (42.1 and 32.7 Msun)
+are GW190521_074359's. No matcher rule can see that, so
+`data/mention_overrides.yaml` holds reviewed per-paper reassignments with the
+evidence; mentions keep their text and offsets, and the run's config records
+the overrides applied.
+
 ### Withdrawn papers are excluded
 
 arXiv has no withdrawn flag. A withdrawal is a new version with no HTML and no

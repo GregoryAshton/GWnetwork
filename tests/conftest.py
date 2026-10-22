@@ -10,6 +10,8 @@ def temp_db(tmp_path, monkeypatch):
     from gwnetwork.config import CONFIG
 
     monkeypatch.setattr(CONFIG, "db_url", f"sqlite:///{tmp_path/'t.db'}")
+    # Reviewed override files in the repo's data/ name real events and papers.
+    monkeypatch.setattr(CONFIG, "data_dir", tmp_path)
     db._engine = None
     db._Session = None
     db.init_db()

@@ -72,7 +72,10 @@ Layers communicate only through the database; no layer imports another's logic.
   short name with multiple long-form candidates is ambiguous, one separator char
   is tolerated (PDF text turns `_` into a space) — handled in the matcher, never
   by rewriting stored text, so offsets stay valid. ~23 GWOSC marginal
-  candidates have no `GW` prefix; canonicalisation must not assume one.
+  candidates have no `GW` prefix; canonicalisation must not assume one, and a
+  bare six-digit match needs trigger context nearby (DESIGN.md §13).
+  Author naming slips are fixed in `data/mention_overrides.yaml`, never by
+  matcher rules.
 - Physical parameters can be NULL (only ~68% of events have masses); never
   treat NULL as zero in filters or charts.
 - Cross-provider event merges are proposals only (`EventMergeProposal`); never
