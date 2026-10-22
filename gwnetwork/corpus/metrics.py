@@ -24,7 +24,7 @@ from sqlalchemy import select
 
 from ..config import CONFIG
 from ..db import session
-from ..models import Event, EventDesignation, Paper
+from ..models import Event, EventDesignation, Paper, PaperReference
 
 BIGQUERY_CHUNK = 2000
 
@@ -116,4 +116,70 @@ def backfill(citations: bool = True, ceilings: bool = True) -> MetricStats:
         backfill_citations(stats)
     if ceilings:
         backfill_ceilings(stats)
+    return stats
+
+
+def backfill_references(only_missing: bool = True) -> dict:
+    """Store each paper's ADS reference list (bigquery, 2,000 bibcodes a request).
+
+    Replaces a paper's rows on refresh. A paper ADS returns with no `reference`
+    field is marked fetched with no rows; one ADS does not return at all is
+    left unfetched and counted.
+    """
+    from datetime import datetime, timezone
+    with session() as s:
+        q = select(Paper.bibcode).where(Paper.bibcode.is_not(None), ~Paper.withdrawn)
+        if only_missing:
+            q = q.where(Paper.references_fetched_at.is_(None))
+        bibs = [b for (b,) in s.execute(q).all()]
+
+    refs: dict = {}
+    stats = {"papers": len(bibs), "queries": 0, "with_references": 0,
+             "no_references": 0, "not_returned": 0, "references": 0}
+    with httpx.Client(timeout=180.0) as c:
+        for i in range(0, len(bibs), BIGQUERY_CHUNK):
+            chunk = bibs[i:i + BIGQUERY_CHUNK]
+            r = c.post(
+                CONFIG.ads_base + "/search/bigquery",
+                params={"q": "*:*", "fl": "bibcode,reference",
+                        "rows": len(chunk), "fq": "{!bitset}"},
+                content="bibcode\n" + "\n".join(chunk),
+                headers={**_headers(), "Content-Type": "big-query/csv"})
+            stats["queries"] += 1
+            r.raise_for_status()
+            for d in r.json().get("response", {}).get("docs", []):
+                refs[d["bibcode"]] = sorted(set(d.get("reference") or []))
+            time.sleep(0.5)
+
+        # bigquery does not follow bibcode aliases: an arXiv bibcode ADS has
+        # since replaced (2022arXiv220903790D -> 2022PhDT.......133D) comes
+        # back missing. The search API's identifier field does follow them.
+        missing = [b for b in bibs if b not in refs]
+        for i in range(0, len(missing), 40):
+            chunk = missing[i:i + 40]
+            r = c.get(CONFIG.ads_base + "/search/query", headers=_headers(), params={
+                "q": "identifier:(" + " OR ".join(f'"{b}"' for b in chunk) + ")",
+                "fl": "bibcode,identifier,reference", "rows": 200})
+            stats["queries"] += 1
+            r.raise_for_status()
+            for d in r.json().get("response", {}).get("docs", []):
+                for b in set(chunk) & set(d.get("identifier") or []):
+                    refs[b] = sorted(set(d.get("reference") or []))
+            time.sleep(0.5)
+
+    now = datetime.now(timezone.utc).replace(tzinfo=None)
+    wanted = set(bibs)
+    # Iterate rather than an IN clause: SQLite caps bound variables.
+    with session() as s:
+        for paper in s.scalars(select(Paper).where(Paper.bibcode.is_not(None))):
+            if paper.bibcode not in wanted:
+                continue
+            if paper.bibcode not in refs:
+                stats["not_returned"] += 1
+                continue
+            s.query(PaperReference).filter(PaperReference.paper_id == paper.id).delete()
+            s.add_all(PaperReference(paper_id=paper.id, bibcode=b) for b in refs[paper.bibcode])
+            paper.references_fetched_at = now
+            stats["references"] += len(refs[paper.bibcode])
+            stats["with_references" if refs[paper.bibcode] else "no_references"] += 1
     return stats

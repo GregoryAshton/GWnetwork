@@ -82,6 +82,33 @@ def classify_masses(m1: Optional[float], m2: Optional[float]) -> Optional[str]:
     return "NSBH"
 
 
+def _code(detectors) -> Optional[str]:
+    """["L1", "H1", "V1"] -> "HLV". GEO (G1) is not a detecting instrument
+    in the catalogue tables, so it is left out."""
+    got = {d[0] for d in detectors or () if d and d[0] in "HLVK"}
+    return "".join(c for c in "HLVK" if c in got) or None
+
+
+def event_instruments(records: list) -> tuple:
+    """(instruments, basis) for one event, records sorted by _rank.
+
+    The catalogue paper's table wins; then the union of GWOSC strain-file
+    detectors over all versions (a later version may carry no files of its
+    own); then GWOSC's summary field, which is unreliable in O3 (it lists H1
+    for GW190425) and so only fills gaps, e.g. events added in GWTC-4.1.
+    """
+    for rec in records:
+        if rec.instruments:
+            return rec.instruments, "table"
+    strain = _code([d for rec in records for d in rec.strain_detectors or []])
+    if strain:
+        return strain, "strain"
+    for rec in records:
+        if _code(rec.detectors):
+            return _code(rec.detectors), "summary"
+    return None, None
+
+
 def _rank(record: EventRecord) -> tuple:
     """Sort key: catalogue authority, then newest version."""
     return (_RANK.get(record.catalog or "", UNRANKED), -(record.version or 0))
@@ -148,6 +175,7 @@ def rebuild() -> ViewStats:
             gps = next((r.gps for r in records if r.gps is not None), None)
             m1, m2 = values.get("mass_1_source"), values.get("mass_2_source")
             catalogs = {r.catalog for r in records if r.catalog}
+            instruments, instruments_basis = event_instruments(records)
 
             view = EventView(
                 event_id=event.id,
@@ -161,6 +189,8 @@ def rebuild() -> ViewStats:
                 observing_run=observing_run(gps),
                 mass_ratio=(min(m1, m2) / max(m1, m2)) if (m1 and m2) else None,
                 mass_class=classify_masses(m1, m2),
+                instruments=instruments,
+                instruments_basis=instruments_basis,
                 n_papers=paper_counts.get(event.id, 0),
                 n_papers_fulltext=ft_counts.get(event.id, 0),
                 n_aliases=alias_counts.get(event.id, 0),

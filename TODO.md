@@ -61,9 +61,4 @@ final question list.
   `Mention.section` in the analysis and report with and without them.
 - **Literature cutoff 2026-06-01** is applied in the analysis, not by
   deleting papers.
-- **Detector participation per event** (for the Virgo attribution study):
-  check whether the stored GWOSC records carry it; otherwise add it.
-- **ADS reference lists per paper** (for the open-data citation study), as a
-  pipeline step writing to the database so the numbers are reproducible from
-  the deposit.
 - **Tag the frozen state** (e.g. `v1.0-paper`) and deposit on Zenodo.

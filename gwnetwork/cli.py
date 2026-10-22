@@ -80,6 +80,31 @@ def cmd_events_list(limit: int = 30, search: Optional[str] = None):
         typer.echo(f"\n{len(events)} shown of {total} events")
 
 
+@events_app.command("detectors")
+def cmd_detectors():
+    """Record each GWOSC event version's detectors, strain detectors and data DOI."""
+    from .events.gwosc import fetch_detectors
+    from .events.ingest import store_detectors
+    init_db()
+    stats = store_detectors(fetch_detectors())
+    for line in stats.pop("summary_differs"):
+        typer.echo(f"  {line}")
+    typer.echo(str(stats))
+
+
+@events_app.command("instruments")
+def cmd_instruments():
+    """Record detecting instruments from the GWTC results papers' tables."""
+    from .events.instruments import store_instruments
+    init_db()
+    stats = store_instruments()
+    for row in stats.pop("rows_unresolved"):
+        typer.echo(f"  unresolved: {row}")
+    for row in stats.pop("disagreements"):
+        typer.echo(f"  papers disagree: {row}")
+    typer.echo(str(stats))
+
+
 @events_app.command("rebuild-view")
 def cmd_rebuild_view():
     """Rebuild the materialised event view used for filtering."""
@@ -138,6 +163,16 @@ def cmd_discover(
     typer.echo(str(stats))
     for e in stats.errors[:10]:
         typer.echo(f"  ! {e}")
+
+
+@corpus_app.command("references")
+def cmd_references(
+    all_papers: bool = typer.Option(False, "--all", help="Refresh every paper, not just unfetched ones"),
+):
+    """Store each paper's ADS reference list (needs ADS_DEV_KEY)."""
+    from .corpus.metrics import backfill_references
+    init_db()
+    typer.echo(str(backfill_references(only_missing=not all_papers)))
 
 
 @corpus_app.command("metrics")

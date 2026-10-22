@@ -566,6 +566,37 @@ are GW190521_074359's. No matcher rule can see that, so
 evidence; mentions keep their text and offsets, and the run's config records
 the overrides applied.
 
+### Raw facts for the attribution and citation studies
+
+Stored as facts, with definitions left to the analysis:
+
+- **Detectors per event version** (`gwn events detectors`, GWOSC v2 API):
+  `EventRecord.detectors` (GWOSC's summary field), `strain_detectors`
+  (detectors with released strain files) and `data_doi`. The two detector
+  fields disagree on 27 of 671 versions, and the summary is not "detected
+  by": it lists H1 for GW190425 (Hanford was off; strain is L1+V1) and V1 for
+  GW170823 (strain H1+L1). Strain files exist only for O1-O3 versions; the
+  O4 catalogues (GWTC-4.0/4.1/5.0) have none, and there the summary is the
+  only per-event source (O4a correctly shows no Virgo). A later catalogue
+  version can carry no files of its own (GW150914's GWTC-2.1 version), so an
+  event's strain detectors are the union over its versions.
+- **Detecting instruments** (`gwn events instruments`): the authoritative
+  source is the instruments column of each GWTC results paper's candidate
+  table (GWTC-2, 2.1, 3, 4.0, 5.0), parsed from our pinned full text into
+  `EventRecord.instruments` with the paper and version it came from. 502
+  rows, 377 events, no paper disagrees with another. GWTC-1 has no such
+  column, and the GWTC-4.1 additions appear in no results paper.
+  `event_view.instruments` resolves one value per event: table, then strain
+  files (O1/O2, matching the known facts), then the GWOSC summary (12
+  events, mostly GWTC-4.1 additions in O4a, when Virgo was off);
+  `instruments_basis` says which. IAS and other non-LVK events get the
+  summary, which is GWOSC data availability, not their detection network.
+- **Reference lists** (`gwn corpus references`, ADS): `paper_reference`, one
+  row per cited bibcode, 1.19M rows for 13,876 papers (452 with no references
+  in ADS, 2 not found). ADS's bulk endpoint does not follow bibcode aliases
+  (an arXiv bibcode superseded by a journal or thesis one), so misses are
+  retried through the search API's `identifier` field.
+
 ### Withdrawn papers are excluded
 
 arXiv has no withdrawn flag. A withdrawal is a new version with no HTML and no

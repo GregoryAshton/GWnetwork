@@ -119,6 +119,20 @@ class EventRecord(Base):
     parameters: Mapped[dict] = mapped_column(JSON, default=dict)
     reference: Mapped[Optional[str]] = mapped_column(String(512))
     retrieved_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
+    # GWOSC v2 API, per event version (`gwn events detectors`). Raw facts; the
+    # meaning of "in the network" is decided in analysis. `detectors` is
+    # GWOSC's summary field, which is not "detected by": it lists H1 for
+    # GW190425, when Hanford was off. `strain_detectors` are the detectors
+    # with released strain files for this version (empty when a later
+    # catalogue version re-uses an earlier version's data). `data_doi` is the
+    # version's data-release DOI.
+    detectors: Mapped[Optional[list]] = mapped_column(JSON)
+    strain_detectors: Mapped[Optional[list]] = mapped_column(JSON)
+    data_doi: Mapped[Optional[str]] = mapped_column(String(128))
+    # Authoritative: the instruments column of the catalogue's results paper
+    # ("HLV"), parsed by events/instruments.py; source is "arXiv:<id>v<N>".
+    instruments: Mapped[Optional[str]] = mapped_column(String(8))
+    instruments_source: Mapped[Optional[str]] = mapped_column(String(32))
 
     event: Mapped[Event] = relationship(back_populates="records")
 
@@ -177,6 +191,7 @@ class Paper(Base):
 
     discovered_via: Mapped[Optional[str]] = mapped_column(String(64))
     citation_count: Mapped[Optional[int]] = mapped_column(Integer, index=True)
+    references_fetched_at: Mapped[Optional[datetime]] = mapped_column(DateTime)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
 
     mentions: Mapped[list[Mention]] = relationship(
@@ -228,6 +243,11 @@ class EventView(Base):
 
     # Derived. See events/view.py for the NS mass threshold and its caveats.
     mass_class: Mapped[Optional[str]] = mapped_column(String(16), index=True)
+    # Detecting instruments ("HLV") and where they came from: "table" (the
+    # GWTC results paper), "strain" (GWOSC strain files; O1/O2) or "summary"
+    # (GWOSC's summary field, only where neither exists). events/view.py.
+    instruments: Mapped[Optional[str]] = mapped_column(String(8), index=True)
+    instruments_basis: Mapped[Optional[str]] = mapped_column(String(8))
 
     n_papers: Mapped[int] = mapped_column(Integer, default=0, index=True)
     n_papers_fulltext: Mapped[int] = mapped_column(Integer, default=0)
@@ -249,6 +269,22 @@ def paper_date():
     from sqlalchemy import func
     return func.coalesce(Paper.fulltext_version_date, Paper.updated_at_src,
                          Paper.submitted_at)
+
+
+class PaperReference(Base):
+    """One entry of a paper's reference list, as ADS records it.
+
+    For the citation-practice questions (do papers that analyse strain cite
+    the GWOSC data papers?). From ADS rather than parsed from our text: the
+    bibcodes are exact. `Paper.references_fetched_at` separates "ADS has no
+    references" from "never asked".
+    """
+    __tablename__ = "paper_reference"
+    __table_args__ = (UniqueConstraint("paper_id", "bibcode", name="uq_paper_ref"),)
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    paper_id: Mapped[str] = mapped_column(ForeignKey("paper.id"), index=True)
+    bibcode: Mapped[str] = mapped_column(String(32), index=True)
 
 
 class PaperDiscovery(Base):

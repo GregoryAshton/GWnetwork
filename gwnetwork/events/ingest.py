@@ -129,3 +129,29 @@ def _propose_merges(s) -> int:
                                      reason=reason, gps_delta=delta))
             created += 1
     return created
+
+
+def store_detectors(info: dict) -> dict:
+    """Write GWOSC detector facts (gwosc.fetch_detectors) onto event records.
+
+    Keyed on external_id, which is GWOSC's `GW150914-v3` short name. Records
+    are updated in place: these are attributes of a catalogue version GWOSC
+    already published, not a new version.
+    """
+    stats = {"updated": 0, "unmatched_gwosc": 0, "summary_differs": []}
+    seen = set()
+    with session() as s:
+        for rec in s.scalars(select(EventRecord).where(EventRecord.source == "gwosc")):
+            got = info.get(rec.external_id)
+            if got is None:
+                continue
+            seen.add(rec.external_id)
+            rec.detectors = got["detectors"]
+            rec.strain_detectors = got["strain_detectors"]
+            rec.data_doi = got["data_doi"]
+            stats["updated"] += 1
+            if got["strain_detectors"] and got["strain_detectors"] != got["detectors"]:
+                stats["summary_differs"].append(
+                    f"{rec.external_id}: summary {got['detectors']}, strain {got['strain_detectors']}")
+    stats["unmatched_gwosc"] = len(set(info) - seen)
+    return stats
