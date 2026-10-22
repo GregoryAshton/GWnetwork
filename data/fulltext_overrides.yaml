@@ -1,0 +1,39 @@
+# Reviewed fetch overrides: papers whose latest arXiv version renders badly.
+#
+# By default `gwn corpus fetch` takes the latest version, HTML first, PDF as
+# fallback. An entry here pins a version and format instead; `fetch` applies
+# new or changed entries on its next run. Every entry needs a reason.
+# `gwn corpus check-text` flags candidates; event counts below are from the
+# matcher on each rendering (2026-10-22).
+#
+#   <arxiv id>:
+#     version: <int>
+#     source: arxiv_html | pdf    (default arxiv_html)
+#     reason: <why>
+
+2010.14527:  # GWTC-2
+  version: 3
+  source: pdf
+  reason: >-
+    Every HTML version (v1-v3) leaves the \IfEqCase event-table macros
+    unexpanded, gluing designations together (~7,400 instances); HTML yields
+    5-6 events, the v3 PDF 47.
+
+2509.04348:  # GWTC-4.0 cosmology
+  version: 2
+  source: arxiv_html
+  reason: >-
+    v3 has no HTML and its PDF text omits the event tables (39 events even
+    with the raised form-XObject limit); v2 HTML yields 143.
+
+2310.03555:
+  version: 2
+  source: pdf
+  reason: >-
+    HTML leaves \IfEqCase macros unexpanded and glues designations (~2,000
+    instances), yielding 1 event; the v2 PDF yields 13.
+
+# Flagged by check-text but reviewed and left on the default rendering: the
+# leaked \IfEqCase/\ifthenelse sits in math annotations, and the PDF finds at
+# most one more event (2605.11703: 12 vs 11; 2509.08054, 2010.14550,
+# 2110.15643: equal).

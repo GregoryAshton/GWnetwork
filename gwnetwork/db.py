@@ -33,6 +33,12 @@ def engine() -> Engine:
 # existing table, so each is added here if missing. Idempotent.
 _ADDED_COLUMNS = [
     ("event_usage", "uses", "JSON NOT NULL DEFAULT '[]'"),
+    ("paper", "fulltext_version", "INTEGER"),
+    ("paper", "fulltext_version_date", "DATETIME"),
+    ("paper", "fulltext_fetched_at", "DATETIME"),
+    ("paper", "fulltext_converter", "VARCHAR(64)"),
+    ("paper", "fulltext_issues", "JSON NOT NULL DEFAULT '[]'"),
+    ("paper", "withdrawn", "BOOLEAN NOT NULL DEFAULT 0"),
 ]
 
 

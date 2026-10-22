@@ -21,10 +21,12 @@ class ExtractStats:
     mentions: int = 0
     unknown: int = 0
     no_text: int = 0
+    withdrawn: int = 0
 
     def __str__(self) -> str:
         return (f"{self.papers} papers  {self.mentions} mentions  "
-                f"{self.unknown} unknown designations  {self.no_text} without text")
+                f"{self.unknown} unknown designations  {self.no_text} without text  "
+                f"{self.withdrawn} withdrawn")
 
 
 def _paper_text(paper: Paper) -> Optional[str]:
@@ -63,6 +65,9 @@ def extract_all(limit: Optional[int] = None, paper_ids: Optional[list] = None) -
             q = q.limit(limit)
 
         for paper in s.scalars(q):
+            if paper.withdrawn:
+                stats.withdrawn += 1
+                continue
             text = _paper_text(paper)
             if not text:
                 stats.no_text += 1

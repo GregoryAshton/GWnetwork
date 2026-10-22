@@ -23,7 +23,9 @@ Pipeline, in order: `gwn events ingest` → `gwn corpus discover` (ADS, needs
 `ADS_DEV_KEY`) or `gwn corpus add-arxiv <ids>` → `gwn corpus fetch` →
 `gwn extract` → `gwn classify` (costs money; use `--dry-run` first) →
 `gwn export --out docs`. Other useful commands: `gwn events rebuild-view`,
-`gwn unknown`, `gwn events propose-aliases`, `gwn eval template|score`.
+`gwn unknown`, `gwn events propose-aliases`, `gwn eval template|score`,
+`gwn corpus check-text` (flags bad renderings; fix them in
+`data/fulltext_overrides.yaml`).
 
 Credentials come from `.env` in the repo root (see `.env.example`); real env
 vars override it. `GWN_DB_URL` defaults to the local `gwnetwork.db` (~180 MB,
@@ -40,7 +42,7 @@ Layers communicate only through the database; no layer imports another's logic.
   rebuildable flat table for filtering; `CATALOG_RANK` there decides which
   record is authoritative, with per-field fallback to lower-ranked records.
 - `corpus/` — ADS discovery (one full-text query per designation), arXiv fetch
-  (HTML → ar5iv → PDF fallback), citation metrics.
+  (pinned to an arXiv version; HTML → PDF fallback), citation metrics.
 - `extract/` — deterministic matcher compiled **from the database** at run time
   (so a new YAML event makes the whole corpus searchable, no code change) →
   `Mention` rows with exact char offsets, plus `UnknownDesignation` queue.

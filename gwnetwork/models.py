@@ -157,10 +157,23 @@ class Paper(Base):
     categories: Mapped[list] = mapped_column(JSON, default=list)
     submitted_at: Mapped[Optional[datetime]] = mapped_column(DateTime, index=True)
     updated_at_src: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    # Latest arXiv version is a withdrawal notice (no HTML or PDF; see
+    # corpus.arxiv.VersionGone). Kept, but not extracted, so it counts nowhere.
+    withdrawn: Mapped[bool] = mapped_column(Boolean, default=False)
 
     fulltext_path: Mapped[Optional[str]] = mapped_column(String(512))
     fulltext_sha256: Mapped[Optional[str]] = mapped_column(String(64))
     fulltext_source: Mapped[Optional[str]] = mapped_column(String(32))  # arxiv_html|pdf|abstract_only
+    # Provenance of the stored text, so it can be re-fetched byte for byte:
+    # the arXiv version it is (NULL = unknown), that version's date, when it
+    # was fetched, and the converter that produced it. Usually the latest
+    # version; data/fulltext_overrides.yaml pins another where that renders badly.
+    fulltext_version: Mapped[Optional[int]] = mapped_column(Integer)
+    fulltext_version_date: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    fulltext_fetched_at: Mapped[Optional[datetime]] = mapped_column(DateTime)
+    fulltext_converter: Mapped[Optional[str]] = mapped_column(String(64))
+    # Rendering problems found at fetch (corpus.arxiv.text_issues), for review.
+    fulltext_issues: Mapped[list] = mapped_column(JSON, default=list)
 
     discovered_via: Mapped[Optional[str]] = mapped_column(String(64))
     citation_count: Mapped[Optional[int]] = mapped_column(Integer, index=True)
@@ -225,14 +238,17 @@ class EventView(Base):
 def paper_date():
     """SQL expression for the date a paper is shown at.
 
-    The latest arXiv version, falling back to the first submission. Mentions
-    come from the text we fetched, which is the latest version, so this is the
-    date of the words we actually matched: astro-ph/0211481 (first submitted
-    2002, revised through v8) names GW150914, which a 2002 date put a decade
-    before the event.
+    The date of the arXiv version whose text we fetched, falling back to the
+    latest version and then the first submission. Mentions come from that
+    text, so this is the date of the words we actually matched:
+    astro-ph/0211481 (first submitted 2002, revised through v8) names
+    GW150914, which a 2002 date put a decade before the event. A version
+    posted after our fetch must not move the date, hence the fetched version
+    first.
     """
     from sqlalchemy import func
-    return func.coalesce(Paper.updated_at_src, Paper.submitted_at)
+    return func.coalesce(Paper.fulltext_version_date, Paper.updated_at_src,
+                         Paper.submitted_at)
 
 
 class PaperDiscovery(Base):

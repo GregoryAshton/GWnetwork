@@ -166,26 +166,64 @@ def cmd_update_versions(
 ):
     """Record first-submission and latest-version dates from the arXiv API.
 
-    The site dates papers by their latest version -- the text we searched.
+    `fetch` does this itself for the papers it fetches; run it with --all
+    before `pin-versions`.
     """
     from .corpus.discover import update_versions
     init_db()
     typer.echo(str(update_versions(rate_delay=rate_delay, only_missing=not all_papers)))
 
 
+@corpus_app.command("pin-versions")
+def cmd_pin_versions():
+    """Record which arXiv version each pre-pinning text is, where provable.
+
+    Run `gwn corpus update-versions --all` immediately before. Texts that
+    cannot be pinned are replaced by `gwn corpus fetch --unpinned`.
+    """
+    from .corpus.discover import pin_existing
+    init_db()
+    typer.echo(str(pin_existing()))
+
+
+@corpus_app.command("check-text")
+def cmd_check_text():
+    """Record rendering problems (glued designations, raw TeX) in stored texts.
+
+    Fix a flagged paper with a reviewed entry in data/fulltext_overrides.yaml.
+    """
+    from .corpus.discover import check_stored_texts
+    init_db()
+    flagged = check_stored_texts()
+    for arxiv_id, issues in sorted(flagged.items()):
+        typer.echo(f"{arxiv_id}  {', '.join(issues)}")
+    typer.echo(f"{len(flagged)} texts flagged")
+
+
 @corpus_app.command("fetch")
 def cmd_fetch(
     limit: Optional[int] = None,
     force: bool = False,
+    unpinned: bool = typer.Option(
+        False, help="Also re-fetch texts whose arXiv version is unknown "
+                    "(after `pin-versions`) or whose converter is outdated."),
+    only_source: Optional[str] = typer.Option(
+        None, help="Restrict to texts from this source, e.g. `--force "
+                   "--only-source pdf` after a PDF converter change."),
     min_designations: int = typer.Option(
         0, help="Only papers matching at least this many event designations. "
                 "5 covers 432/434 events from ~978 papers; 0 fetches everything."),
     rate_delay: float = typer.Option(
         3.0, help="Seconds between arXiv requests. Be polite; 3 s is the default."),
 ):
-    """Fetch full text from arXiv. Densest papers first, so interrupting is safe."""
+    """Fetch full text from arXiv, pinned to the latest version.
+
+    Densest papers first, so interrupting is safe.
+    """
     from .corpus.discover import fetch_fulltext
-    typer.echo(str(fetch_fulltext(limit=limit, force=force,
+    init_db()
+    typer.echo(str(fetch_fulltext(limit=limit, force=force, unpinned=unpinned,
+                                  only_source=only_source,
                                   min_designations=min_designations,
                                   rate_delay=rate_delay)))
 

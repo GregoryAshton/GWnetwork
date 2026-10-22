@@ -17,7 +17,7 @@ python3 -m venv .venv
 gwn init
 gwn events ingest                      # 433 events, 671 catalogue records from GWOSC
 gwn corpus add-arxiv 2111.03606 1710.05832 2006.12611
-gwn corpus fetch                       # arXiv HTML -> ar5iv -> PDF fallback
+gwn corpus fetch                       # pinned version: arXiv HTML -> PDF fallback
 gwn extract                            # deterministic mention extraction, free
 gwn serve                              # http://127.0.0.1:8000
 ```

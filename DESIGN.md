@@ -498,6 +498,63 @@ papers it never converted, and the page is long enough to pass a length check.
 They included the GW170817 discovery paper. The fetcher now rejects them
 (`is_abstract_page`) and falls through to the PDF.
 
+### Fetches are pinned to an arXiv version
+
+Mention offsets index into the stored text, so a re-fetch must return the same
+bytes. The fetcher used to request the unversioned URL, which serves whatever
+is latest: a paper revised since would silently come back as different text.
+It now refreshes the version from the arXiv API and requests `/html/{id}vN`,
+then `/pdf/{id}vN`. Each paper records the version fetched, that version's
+date, the fetch time and the converter (`html_to_text/1`, `pypdf/<version>`),
+and `paper_date` uses the fetched version's date, so a later revision does not
+move a paper's date away from the words we matched.
+
+ar5iv is dropped from the chain: it cannot serve a given version and its pages
+do not say which version they rendered. arXiv's own HTML exists for versioned
+URLs of old papers too.
+
+Texts fetched before pinning are pinned retroactively (`gwn corpus
+pin-versions`): an unversioned fetch served the latest version at the time, so
+if the latest version's date predates the file's modification time, the text
+is that version. The rest (revised since, ar5iv, "cached") are re-fetched with
+`gwn corpus fetch --unpinned`.
+
+### The latest version is not always the best rendering
+
+Pinning exposed renderings that lose events silently. arXiv's HTML for every
+version of GWTC-2 leaves its `\IfEqCase` event-table macros unexpanded, so
+designations run together (`...AGW190413AGW190413_052954GW190719...`) and the
+matcher finds 6 of 47 events; the PDF finds all 47. The GWTC-4.0 cosmology
+paper's v3 has no HTML, and pypdf stopped at its default limit of 5,000 form
+XObjects per page, silently dropping content (39 events against 143 from the
+v2 HTML).
+
+Three responses, none of them automatic version-shopping:
+
+- `arxiv.text_issues` records signs of a bad rendering on the paper
+  (`fulltext_issues`): designations glued together (>=100; a PDF's figure
+  labels give a few), raw TeX control macros (>=20), and pypdf's truncation
+  warning. `gwn corpus check-text` runs the content checks over stored texts.
+- A flagged paper is fixed by a reviewed entry in
+  `data/fulltext_overrides.yaml` pinning a version and format, with a reason;
+  `fetch` applies new entries. Its version date comes from OAI-PMH, since the
+  query API only gives the first and latest.
+- The PDF converter raises pypdf's limit to 100,000, and its recorded name
+  carries everything that determines the text:
+  `pypdf/6.19.0;fonttools=none;xform-limit=100000` (fontTools, if installed,
+  changes font decoding). `pypdf` is pinned exactly in `pyproject.toml`.
+
+### Withdrawn papers are excluded
+
+arXiv has no withdrawn flag. A withdrawal is a new version with no HTML and no
+PDF, and its comment is free text that cannot be relied on: of 18 withdrawals
+in the corpus, 10 never use the word ("To be modified", "merged with
+2004.01632"), while a live paper's comment says it was "forced to withdraw,
+now re-submitted". So `Paper.withdrawn` is set when both formats of the latest
+version return 404 (a server error is not evidence). The 18 are kept in the
+database but skipped by extraction, so they count nowhere; a withdrawn paper's
+earlier text is not evidence of how the field used an event.
+
 ### Bibliography mentions hide how an event is used
 
 A designation found in the reference list is usually the title of a cited

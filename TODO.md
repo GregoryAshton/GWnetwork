@@ -17,8 +17,6 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
   masses of GW190521_074359; the longest-match/ambiguity handling missed it.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
-- **New papers need version dates.** `gwn corpus update-versions` has to be run
-  after `gwn corpus fetch`; fold it into the fetch step.
 
 ## Classification (Haiku 5.5, excerpts)
 
@@ -47,3 +45,29 @@ Overall engagement agreement 81% (kappa 0.75); 76% on person-labelled pairs.
   papers within the first N years (young events hollow, out of the fit) would
   compare like with like. The corpus also lags the newest literature (ADS
   full-text ingestion), undercounting recent events.
+
+## Paper prerequisites
+
+For the meta-study paper (plan in `../GWnetwork_paper/PLAN.md`). The Zenodo
+snapshot must be exactly the data the paper is computed from, so everything
+here happens before the freeze. Which data fixes are needed depends on the
+final question list.
+
+- **`refetch --verify`**: rebuild `data/fulltext/` from arXiv at the recorded
+  `fulltext_version` and report per-paper hash matches (hash raw bytes: some
+  PDF texts contain `\r`), so upstream and converter changes are visible.
+- **Lock the environment at the freeze.** `pypdf` is pinned and the PDF
+  converter string records fontTools and the XObject limit; still commit a
+  full `pip freeze` and the Python version (3.9) with the tag.
+- **Slim export for Zenodo**: current runs only (events, papers, mentions with
+  sentences, usages with evidence quotes). The full 571 MB multi-run database
+  is optional alongside it. Full text is not deposited (arXiv licensing).
+- **Data fixes** from the sections above, as the chosen questions require:
+  bare-number candidates, the GW190521 short-name mix-up, pairs found only in
+  reference titles, and a corpus cutoff date for the ADS lag.
+- **Detector participation per event** (for the Virgo attribution study):
+  check whether the stored GWOSC records carry it; otherwise add it.
+- **ADS reference lists per paper** (for the open-data citation study), as a
+  pipeline step writing to the database so the numbers are reproducible from
+  the deposit.
+- **Tag the frozen state** (e.g. `v1.0-paper`) and deposit on Zenodo.

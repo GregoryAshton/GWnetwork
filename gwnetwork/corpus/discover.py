@@ -1,8 +1,10 @@
 """Discovery + full-text fetch orchestration."""
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Optional
 
 from sqlalchemy import func, select
@@ -11,7 +13,8 @@ from ..config import CONFIG
 from ..db import session
 from ..models import EventDesignation, Paper, PaperDiscovery
 from .ads import AdsClient, AdsPaper
-from .arxiv import ArxivFetcher
+from .arxiv import (HTML_CONVERTER, ArxivFetcher, VersionGone, pdf_converter,
+                    text_issues, version_dates)
 
 
 @dataclass
@@ -111,15 +114,56 @@ class FetchStats:
     attempted: int = 0
     fetched: int = 0
     failed: int = 0
+    no_version: int = 0
+    withdrawn: int = 0
+    flagged: list = field(default_factory=list)
 
     def __str__(self) -> str:
-        return f"{self.fetched}/{self.attempted} full texts fetched ({self.failed} unavailable)"
+        out = f"{self.fetched}/{self.attempted} full texts fetched ({self.failed} unavailable)"
+        if self.withdrawn:
+            out += f"; {self.withdrawn} withdrawn (latest version has no HTML or PDF)"
+        if self.no_version:
+            out += f"; {self.no_version} skipped, arXiv API returned no version"
+        for arxiv_id, issues in self.flagged:
+            out += f"\n  review {arxiv_id}: {', '.join(issues)}"
+        return out
+
+
+def load_overrides(path: Optional[Path] = None) -> dict:
+    """Reviewed per-paper fetch overrides: {arxiv_id: {version, source, reason}}.
+
+    For papers whose latest version renders badly (see arxiv.text_issues).
+    Each entry must say why, since it departs from "latest version".
+    """
+    import yaml
+    path = path or CONFIG.data_dir / "fulltext_overrides.yaml"
+    if not path.exists():
+        return {}
+    raw = yaml.safe_load(path.read_text()) or {}
+    out = {}
+    for arxiv_id, entry in raw.items():
+        if not entry.get("version") or not entry.get("reason"):
+            raise ValueError(f"{path}: {arxiv_id} needs a version and a reason")
+        if entry.get("source", "arxiv_html") not in ("arxiv_html", "pdf"):
+            raise ValueError(f"{path}: {arxiv_id} source must be arxiv_html or pdf")
+        out[str(arxiv_id)] = entry
+    return out
 
 
 def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
+                   unpinned: bool = False, only_source: Optional[str] = None,
                    min_designations: int = 0,
                    rate_delay: float = 3.0) -> FetchStats:
-    """Fetch full text, optionally only for event-dense papers.
+    """Fetch full text, pinned to each paper's latest arXiv version.
+
+    Selects papers without text, plus overrides not yet applied; `unpinned`
+    adds papers whose stored text has no known version (see pin_existing) or
+    came from an outdated converter,
+    `force` re-fetches everything (or every `only_source` text, e.g. all PDFs
+    after a converter change). Overrides in data/fulltext_overrides.yaml pin
+    another version and format.
+    Version metadata is refreshed from the arXiv API first, so the version we
+    pin is the current latest and new papers get their dates in the same step.
 
     Event coverage saturates fast: papers matching >=5 ADS designations number
     978 and cover 432 of 434 events -- the same breadth as fetching all 13,893
@@ -127,10 +171,28 @@ def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
     breadth, so it is not worth hammering arXiv for.
     """
     stats = FetchStats()
+    overrides = load_overrides()
     with session() as s:
         q = select(Paper).where(Paper.arxiv_id.is_not(None))
+        if only_source:
+            q = q.where(Paper.fulltext_source == only_source)
         if not force:
-            q = q.where(Paper.fulltext_path.is_(None))
+            missing = Paper.fulltext_path.is_(None) & ~Paper.withdrawn
+            if unpinned:
+                # Unknown version, or made by a converter we no longer use.
+                outdated = (((Paper.fulltext_source == "pdf")
+                             & (Paper.fulltext_converter != pdf_converter()))
+                            | ((Paper.fulltext_source == "arxiv_html")
+                               & (Paper.fulltext_converter != HTML_CONVERTER)))
+                missing = missing | (~Paper.withdrawn & (
+                    Paper.fulltext_version.is_(None) | outdated))
+            # An override not yet applied (new entry, or version changed).
+            stale = [a for (a, v, src) in s.execute(
+                select(Paper.arxiv_id, Paper.fulltext_version, Paper.fulltext_source)
+                .where(Paper.arxiv_id.in_(list(overrides))))
+                     if (v, src) != (overrides[a]["version"],
+                                     overrides[a].get("source", "arxiv_html"))]
+            q = q.where(missing | Paper.arxiv_id.in_(stale))
         if min_designations > 0:
             dense = (select(PaperDiscovery.paper_id)
                      .group_by(PaperDiscovery.paper_id)
@@ -146,26 +208,125 @@ def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
             papers.sort(key=lambda p: -counts.get(p.id, 0))
         if limit:
             papers = papers[:limit]
+        ids = [p.arxiv_id for p in papers]
 
-        with ArxivFetcher(rate_delay=rate_delay) as fetcher:
-            for paper in papers:
-                # A full run takes hours; commit as we go so an interruption
-                # keeps what was fetched rather than rolling it all back.
-                if stats.attempted and stats.attempted % 25 == 0:
-                    s.commit()
-                stats.attempted += 1
-                got = fetcher.fetch(paper.arxiv_id, force=force)
-                if got is None:
-                    stats.failed += 1
-                    # Abstract-only is a degraded but valid mode.
+    if not ids:
+        return stats
+    update_versions(rate_delay=rate_delay, arxiv_ids=ids)
+
+    with session() as s, ArxivFetcher(rate_delay=rate_delay) as fetcher:
+        for arxiv_id in ids:
+            paper = s.scalar(select(Paper).where(Paper.arxiv_id == arxiv_id))
+            # A full run takes hours; commit as we go so an interruption
+            # keeps what was fetched rather than rolling it all back.
+            if stats.attempted and stats.attempted % 25 == 0:
+                s.commit()
+            stats.attempted += 1
+            if not paper.version:
+                stats.no_version += 1
+                continue
+            ov = overrides.get(paper.arxiv_id)
+            version = ov["version"] if ov else paper.version
+            sources = (ov.get("source", "arxiv_html"),) if ov else ("arxiv_html", "pdf")
+            try:
+                got = fetcher.fetch(paper.arxiv_id, version, sources)
+            except VersionGone:
+                # Keep any text we had for the record; extraction skips it.
+                paper.withdrawn = True
+                stats.withdrawn += 1
+                continue
+            if got is None:
+                stats.failed += 1
+                # Abstract-only is a degraded but valid mode. A failed re-fetch
+                # keeps the text we already had.
+                if not paper.fulltext_path:
                     paper.fulltext_source = "abstract_only"
-                    continue
-                path, sha, source = got
-                paper.fulltext_path = str(path)
-                paper.fulltext_sha256 = sha
-                paper.fulltext_source = source
-                stats.fetched += 1
+                continue
+            paper.fulltext_path = str(got.path)
+            paper.fulltext_sha256 = got.sha256
+            paper.fulltext_source = got.source
+            paper.fulltext_converter = got.converter
+            paper.fulltext_version = version
+            paper.fulltext_version_date = (paper.updated_at_src if version == paper.version
+                                           else version_dates(paper.arxiv_id).get(version))
+            paper.fulltext_fetched_at = _utcnow()
+            paper.fulltext_issues = got.issues
+            if got.issues:
+                stats.flagged.append((paper.arxiv_id, got.issues))
+            stats.fetched += 1
     return stats
+
+
+def pin_existing() -> dict:
+    """Record the arXiv version of texts fetched before fetches were pinned.
+
+    Those fetches requested the unversioned URL, which serves the latest
+    version at that moment. So if the latest version's date (from a fresh
+    `update-versions --all`) predates the file's modification time, the text
+    is that version. Texts with a newer version since, from ar5iv (which
+    serves a snapshot of unknown version), or recorded only as "cached" stay
+    unpinned for `fetch --unpinned` to replace. A file whose hash no longer
+    matches the database is left alone too.
+
+    Run `update-versions --all` immediately before this: the inference is
+    only sound if the version metadata is newer than every fetch.
+    """
+    stats = {"pinned": 0, "revised_since_fetch": 0, "unpinnable_source": 0,
+             "hash_mismatch": 0, "file_missing": 0, "no_version": 0}
+    converters = {"arxiv_html": HTML_CONVERTER, "pdf": pdf_converter()}
+    with session() as s:
+        papers = s.scalars(select(Paper).where(
+            Paper.fulltext_path.is_not(None), Paper.fulltext_version.is_(None))).all()
+        for paper in papers:
+            path = Path(paper.fulltext_path)
+            if paper.fulltext_source not in converters:
+                stats["unpinnable_source"] += 1
+                continue
+            if not path.exists():
+                stats["file_missing"] += 1
+                continue
+            if not paper.version or not paper.updated_at_src:
+                stats["no_version"] += 1
+                continue
+            fetched = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc).replace(tzinfo=None)
+            if paper.updated_at_src >= fetched:
+                stats["revised_since_fetch"] += 1
+                continue
+            # Raw bytes: read_text() would turn the \r some PDF texts contain
+            # into \n and report a mismatch for an untouched file.
+            if hashlib.sha256(path.read_bytes()).hexdigest() != paper.fulltext_sha256:
+                stats["hash_mismatch"] += 1
+                continue
+            paper.fulltext_version = paper.version
+            paper.fulltext_version_date = paper.updated_at_src
+            paper.fulltext_fetched_at = fetched
+            paper.fulltext_converter = converters[paper.fulltext_source]
+            stats["pinned"] += 1
+    return stats
+
+
+def check_stored_texts() -> dict:
+    """Run the content checks over every stored text and record the issues.
+
+    Covers texts fetched before the checks existed. PDF truncation can only be
+    seen at conversion time, so it is not re-detected here.
+    """
+    flagged = {}
+    with session() as s:
+        for paper in s.scalars(select(Paper).where(Paper.fulltext_path.is_not(None))):
+            path = Path(paper.fulltext_path)
+            if not path.exists():
+                continue
+            found = text_issues(path.read_text(errors="replace"))
+            kept = [i for i in paper.fulltext_issues or [] if i == "pdf-truncated"]
+            paper.fulltext_issues = kept + found
+            if paper.fulltext_issues:
+                flagged[paper.arxiv_id] = paper.fulltext_issues
+    return flagged
+
+
+def _utcnow() -> datetime:
+    return datetime.now(timezone.utc).replace(tzinfo=None)
 
 
 def add_arxiv(arxiv_ids: list) -> int:
@@ -195,12 +356,13 @@ def add_arxiv(arxiv_ids: list) -> int:
 
 
 def update_versions(batch_size: int = 100, rate_delay: float = 3.0,
-                    only_missing: bool = True) -> dict:
+                    only_missing: bool = True,
+                    arxiv_ids: Optional[list] = None) -> dict:
     """Fill first-submission and latest-version dates from the arXiv API.
 
-    The text we fetch is the latest arXiv version, so that version's date is
-    the one the site shows (models.paper_date). ADS gave only a month-level
-    publication date, and nothing recorded later revisions.
+    `fetch_fulltext` pins the latest version found here. ADS gave only a
+    month-level publication date, and nothing recorded later revisions.
+    `arxiv_ids` restricts the refresh to those papers, ignoring only_missing.
 
     Commits after every batch, so an interrupted run keeps its progress and a
     re-run with only_missing picks up where it stopped.
@@ -209,11 +371,14 @@ def update_versions(batch_size: int = 100, rate_delay: float = 3.0,
 
     from .arxiv import fetch_metadata
 
-    with session() as s:
-        q = select(Paper.arxiv_id).where(Paper.arxiv_id.is_not(None))
-        if only_missing:
-            q = q.where(Paper.updated_at_src.is_(None))
-        ids = [a for (a,) in s.execute(q).all()]
+    if arxiv_ids is not None:
+        ids = list(arxiv_ids)
+    else:
+        with session() as s:
+            q = select(Paper.arxiv_id).where(Paper.arxiv_id.is_not(None))
+            if only_missing:
+                q = q.where(Paper.updated_at_src.is_(None))
+            ids = [a for (a,) in s.execute(q).all()]
 
     stats = {"papers": len(ids), "updated": 0, "revised_after_first_year": 0, "missing": 0}
     for i in range(0, len(ids), batch_size):
