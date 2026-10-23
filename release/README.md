@@ -106,4 +106,11 @@ with a shift of -95 characters.
 
 ## Citation and licence
 
-[To be completed with the Zenodo DOI.]
+Cite this release as:
+
+> Ashton, G. (2026). *GWnetwork v1: gravitational-wave events and the papers
+> that use them* (Version 1.0) [Data set]. Zenodo.
+> https://doi.org/10.5281/zenodo.23603658
+
+The data are released under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0).
