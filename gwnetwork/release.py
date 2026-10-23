@@ -92,6 +92,8 @@ def export_slim(out: Path, release: str, allow_dirty: bool = False) -> dict:
     dst.execute("pragma journal_mode=delete")
     dst.execute("vacuum")
     dst.close()
+    for side in ("-wal", "-shm"):
+        Path(str(out) + side).unlink(missing_ok=True)
     stats["bytes"] = out.stat().st_size
     return stats
 
