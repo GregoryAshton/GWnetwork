@@ -597,6 +597,18 @@ Stored as facts, with definitions left to the analysis:
   (an arXiv bibcode superseded by a journal or thesis one), so misses are
   retried through the search API's `identifier` field.
 
+### Data releases
+
+`gwn release export` writes the deposited database: one current extract and
+classify run only, full-text paths relative, a `release_info` table with the
+code commit and run ids, and no WAL side files; it refuses uncommitted code.
+`gwn release verify-fulltext` re-fetches texts at their recorded version and
+format. arXiv's HTML page chrome changes over time (a banner appeared in
+2026) while the paper body does not, so a text either matches byte for byte
+or matches from its arXiv stamp line on, with one constant offset shift;
+`paper.fulltext_body_start` records our stamp offset. In a 30-paper sample:
+16 exact, 14 body matches (shift -95), none different.
+
 ### Withdrawn papers are excluded
 
 arXiv has no withdrawn flag. A withdrawal is a new version with no HTML and no

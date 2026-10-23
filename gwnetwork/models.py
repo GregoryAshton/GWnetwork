@@ -186,6 +186,11 @@ class Paper(Base):
     fulltext_version_date: Mapped[Optional[datetime]] = mapped_column(DateTime)
     fulltext_fetched_at: Mapped[Optional[datetime]] = mapped_column(DateTime)
     fulltext_converter: Mapped[Optional[str]] = mapped_column(String(64))
+    # Offset of the "arXiv:NNNN.NNNNNvN [cat]" stamp where an HTML text's
+    # paper body begins. arXiv's page chrome before it changes over time (a
+    # banner appeared in 2026), shifting every offset in a re-fetch; the body
+    # itself does not. Re-fetched offsets = ours + (their stamp - this).
+    fulltext_body_start: Mapped[Optional[int]] = mapped_column(Integer)
     # Rendering problems found at fetch (corpus.arxiv.text_issues), for review.
     fulltext_issues: Mapped[list] = mapped_column(JSON, default=list)
 

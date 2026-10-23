@@ -40,6 +40,7 @@ _ADDED_COLUMNS = [
     ("paper", "fulltext_issues", "JSON NOT NULL DEFAULT '[]'"),
     ("paper", "withdrawn", "BOOLEAN NOT NULL DEFAULT 0"),
     ("paper", "references_fetched_at", "DATETIME"),
+    ("paper", "fulltext_body_start", "INTEGER"),
     ("event_record", "detectors", "JSON"),
     ("event_record", "strain_detectors", "JSON"),
     ("event_record", "data_doi", "VARCHAR(128)"),

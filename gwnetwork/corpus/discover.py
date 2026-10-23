@@ -13,8 +13,8 @@ from ..config import CONFIG
 from ..db import session
 from ..models import EventDesignation, Paper, PaperDiscovery
 from .ads import AdsClient, AdsPaper
-from .arxiv import (HTML_CONVERTER, ArxivFetcher, VersionGone, pdf_converter,
-                    text_issues, version_dates)
+from .arxiv import (HTML_CONVERTER, ArxivFetcher, VersionGone, body_start,
+                    pdf_converter, text_issues, version_dates)
 
 
 @dataclass
@@ -251,6 +251,7 @@ def fetch_fulltext(limit: Optional[int] = None, force: bool = False,
                                            else version_dates(paper.arxiv_id).get(version))
             paper.fulltext_fetched_at = _utcnow()
             paper.fulltext_issues = got.issues
+            paper.fulltext_body_start = got.body_start
             if got.issues:
                 stats.flagged.append((paper.arxiv_id, got.issues))
             stats.fetched += 1
@@ -306,7 +307,8 @@ def pin_existing() -> dict:
 
 
 def check_stored_texts() -> dict:
-    """Run the content checks over every stored text and record the issues.
+    """Run the content checks over every stored text and record the issues
+    (and each HTML text's body start).
 
     Covers texts fetched before the checks existed. PDF truncation can only be
     seen at conversion time, so it is not re-detected here.
@@ -317,7 +319,9 @@ def check_stored_texts() -> dict:
             path = Path(paper.fulltext_path)
             if not path.exists():
                 continue
-            found = text_issues(path.read_text(errors="replace"))
+            text = path.read_text(errors="replace")
+            paper.fulltext_body_start = body_start(text, paper.fulltext_source)
+            found = text_issues(text)
             kept = [i for i in paper.fulltext_issues or [] if i == "pdf-truncated"]
             paper.fulltext_issues = kept + found
             if paper.fulltext_issues:

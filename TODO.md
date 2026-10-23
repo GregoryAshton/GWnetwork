@@ -14,7 +14,14 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
 ## Classification (Haiku 5.5, excerpts)
 
 Overall engagement agreement 81% (kappa 0.75); 76% on person-labelled pairs.
+The v1 run (2026-10-22, same configuration): 82.1% (kappa 0.76); 80.3% on
+person-labelled pairs.
 
+- **Run-to-run label instability is ~13%.** Two classify-0.4 runs with the same
+  configuration (2026-10-21 and the v1 run of 2026-10-22, inputs differing
+  only for ~120 re-fetched papers) agree on 30,634 of 35,207 shared pairs
+  (87%), while each agrees with gold at ~81-82%. Report it as an uncertainty
+  alongside the confusion-matrix correction; two runs can bound it.
 - **Released-sample and strain uses undercounted** (recall 0.46 and ~0.85, both
   precision 1.00): collective statements ("we use the released samples for all
   events") name no event, so they are never in the excerpts. Full-text mode
@@ -41,24 +48,15 @@ Overall engagement agreement 81% (kappa 0.75); 76% on person-labelled pairs.
 
 ## Paper prerequisites
 
-For the meta-study paper (plan in `../GWnetwork_paper/PLAN.md`). The Zenodo
-snapshot must be exactly the data the paper is computed from, so everything
-here happens before the freeze. Which data fixes are needed depends on the
-final question list.
+For the meta-study paper (plan in `../GWnetwork_paper/PLAN.md`). Data is
+frozen in versioned Zenodo releases (`gwn release export`, `release/README.md`);
+each is exactly the data some analysis was computed from. Questions emerge
+from the analysis; a label upgrade a question needs is a new release.
 
-- **`refetch --verify`**: rebuild `data/fulltext/` from arXiv at the recorded
-  `fulltext_version` and report per-paper hash matches (hash raw bytes: some
-  PDF texts contain `\r`), so upstream and converter changes are visible.
-- **Lock the environment at the freeze.** `pypdf` is pinned and the PDF
-  converter string records fontTools and the XObject limit; still commit a
-  full `pip freeze` and the Python version (3.9) with the tag.
-- **Slim export for Zenodo**: current runs only (events, papers, mentions with
-  sentences, usages with evidence quotes). The full 571 MB multi-run database
-  is optional alongside it. Full text is not deposited (arXiv licensing).
 - **Pairs found only in reference titles** (4,589 of 35,316, 13%) are not
   noise to drop at extraction: 635 are classified deeper than cited-only,
   through the in-text citation (`citations.py`). Derive the flag from
   `Mention.section` in the analysis and report with and without them.
 - **Literature cutoff 2026-06-01** is applied in the analysis, not by
   deleting papers.
-- **Tag the frozen state** (e.g. `v1.0-paper`) and deposit on Zenodo.
+- **Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.

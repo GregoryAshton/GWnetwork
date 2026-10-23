@@ -25,7 +25,8 @@ Pipeline, in order: `gwn events ingest` → `gwn corpus discover` (ADS, needs
 `gwn export --out docs`. Other useful commands: `gwn events rebuild-view`,
 `gwn unknown`, `gwn events propose-aliases`, `gwn eval template|score`,
 `gwn corpus check-text` (flags bad renderings; fix them in
-`data/fulltext_overrides.yaml`).
+`data/fulltext_overrides.yaml`), `gwn release export|verify-fulltext` (frozen
+Zenodo data release; see `release/README.md`).
 
 Credentials come from `.env` in the repo root (see `.env.example`); real env
 vars override it. `GWN_DB_URL` defaults to the local `gwnetwork.db` (~180 MB,

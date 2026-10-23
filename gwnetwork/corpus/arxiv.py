@@ -83,6 +83,21 @@ _GLUED = re.compile(r"GW\d{6}(?:_\d{6})?[A-Za-z]{0,2}GW\d{6}")
 _TEX_CONTROL = re.compile(r"\\(?:IfEqCase|ifx|ifthenelse|csname|expandafter|newcommand|def)\b")
 
 
+_STAMP = re.compile(r"arXiv:[\w./-]+v\d+ \[")
+
+
+def body_start(text: str, source: str) -> Optional[int]:
+    """Where the paper begins in an arXiv HTML text (its arXiv stamp line).
+
+    Everything before is site chrome that arXiv changes over time. PDF text
+    has no chrome, so None.
+    """
+    if source != "arxiv_html":
+        return None
+    m = _STAMP.search(text)
+    return m.start() if m else None
+
+
 def text_issues(text: str) -> list:
     """Signs that a rendering lost or garbled content, for review.
 
@@ -126,6 +141,7 @@ class FetchResult:
     source: str
     converter: str
     issues: list
+    body_start: Optional[int] = None
 
 
 class ArxivFetcher:
@@ -233,7 +249,7 @@ class ArxivFetcher:
                issues: list) -> FetchResult:
         path.write_text(text)
         return FetchResult(path, sha256_text(text), source, converter,
-                           issues + text_issues(text))
+                           issues + text_issues(text), body_start(text, source))
 
 
 # --- metadata ---------------------------------------------------------------

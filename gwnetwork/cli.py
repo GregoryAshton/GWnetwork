@@ -18,9 +18,11 @@ app = typer.Typer(add_completion=False, help="GWnetwork: GW events <-> literatur
 events_app = typer.Typer(help="Event database")
 corpus_app = typer.Typer(help="Paper corpus")
 eval_app = typer.Typer(help="Hand-labelled gold set")
+release_app = typer.Typer(help="Frozen data releases (Zenodo)")
 app.add_typer(events_app, name="events")
 app.add_typer(corpus_app, name="corpus")
 app.add_typer(eval_app, name="eval")
+app.add_typer(release_app, name="release")
 
 
 @app.command("init")
@@ -475,3 +477,32 @@ def main():  # pragma: no cover
 
 if __name__ == "__main__":  # pragma: no cover
     main()
+
+
+@release_app.command("export")
+def cmd_release_export(
+    out: Path = typer.Option(..., help="Path for the slim SQLite database"),
+    release: str = typer.Option(..., help="Release name recorded in the file, e.g. v1"),
+    allow_dirty: bool = typer.Option(False, help="Export from uncommitted code (testing only)"),
+):
+    """Copy the database keeping only the current extract and classify runs."""
+    from .release import export_slim
+    for table, n in export_slim(out, release, allow_dirty=allow_dirty).items():
+        typer.echo(f"  {table:24} {n}")
+
+
+@release_app.command("verify-fulltext")
+def cmd_release_verify(
+    sample: Optional[int] = typer.Option(None, help="Check a random sample (a full run takes ~12 h)"),
+    seed: int = 0,
+    rate_delay: float = 3.0,
+    keep: Optional[Path] = typer.Option(None, help="Keep re-fetched texts here"),
+):
+    """Re-fetch texts at their recorded arXiv version and compare hashes."""
+    from .release import verify_fulltext
+    stats = verify_fulltext(sample=sample, seed=seed, rate_delay=rate_delay, keep=keep)
+    for k in ("differs", "unavailable"):
+        for row in stats[k]:
+            typer.echo(f"  {k}: {row}")
+        stats[k] = len(stats[k])
+    typer.echo(str(stats))
