@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>17</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>8</b></button><button type="button" data-level="posterior_samples">posterior samples <b>4</b></button><button type="button" data-level="published_results">published results <b>2</b></button><button type="button" data-level="qualitative">qualitative <b>2</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>10</b></button><button type="button" data-level="published_results">published results <b>5</b></button><button type="button" data-level="qualitative">qualitative <b>2</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="population">population (11)</option><option value="single_event">single event (8)</option><option value="test_of_gr">test of gr (3)</option><option value="cosmology">cosmology (2)</option><option value="formation_channels">formation channels (1)</option><option value="lensing">lensing (1)</option>
+    <option value="single_event">single event (11)</option><option value="population">population (11)</option><option value="test_of_gr">test of gr (3)</option><option value="formation_channels">formation channels (1)</option><option value="cosmology">cosmology (1)</option><option value="lensing">lensing (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -187,7 +187,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the First Part of the Fourt</a>
-<details><summary>evidence</summary><blockquote>GW230928_215827 83 18 22 + 33.6 7.5 9.9</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230928_215827 HL 0.0035 10.5 &gt;0.99 1.5 × 10−5 9.5 &gt;0.99</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">500</td>
   <td class="num small">5</td>
@@ -195,14 +195,24 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
-<tr data-level="strain_analysis" data-roles=" test_of_gr single_event ">
+<tr data-level="strain_analysis" data-roles=" single_event population test_of_gr ">
   <td><a href="https://arxiv.org/abs/2603.19019">GWTC-4.0: Tests of General Relativity. I. Overview and General Tests</a>
 <details><summary>evidence</summary><blockquote>GW230928 215827 7.22 6.19 0.77 0.63</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">52</td>
   <td class="num small">2</td>
   <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">test of gr</span><span class="chip">single event</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">test of gr</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event test_of_gr population ">
+  <td><a href="https://arxiv.org/abs/2603.19020">GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</a>
+<details><summary>evidence</summary><blockquote>GW230928 215827 8.9+0.4 −0.6 61+10 −14 0.40+0.20 −0.28 0.56+0.35 −0.27 ✓PI</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">48</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="3"><span class="chip on">strain analysis</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">test of gr</span><span class="chip">population</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
@@ -211,17 +221,17 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">47</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event population test_of_gr ">
   <td><a href="https://arxiv.org/abs/2603.19021">GWTC-4.0: Tests of General Relativity. III. Tests of the Remnants</a>
-<details><summary>evidence</summary><blockquote>GW230928 2158272.05 141 +20 −23 150+260 −130 134+16 −20</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230928 2158271.0000 +0 −0.0002 &lt;0.1</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">40</td>
   <td class="num small">5</td>
-  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="5"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">test of gr</span></td>
 </tr>
 
@@ -231,78 +241,58 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">8</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="5"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="6"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">formation channels</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event population ">
   <td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a>
-<details><summary>evidence</summary><blockquote>Specifically, we use source-parameter estimation on 153 binary black holes in GWTC-4 catalog provided by the rapid iterative fitting framework using the SEOBNRv5EHM waveform model.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230928_215827 50.21−9.44+11.16 29.47−6.84+7.89 0.387−0.156+0.126 0.814−0.253+0.291 0.0829−0.0575+0.0881 −1.154</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">6</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="6"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="7"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2605.12818">Assessing the imprint of eccentricity in GW signatures using two independent waveform models</a>
+<details><summary>evidence</summary><blockquote>we present a comprehensive analysis of 162 confident sources identified in the O3 and O4a observing runs of the International Gravitational Wave Network (LIGO-Virgo-KAGRA)</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">5</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="8"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2605.21640">Gravitational Wave Hyperbolic Catalog: Reanalyzing High-Mass Gravitational Wave Signals Using Hyperbolic Wavef</a>
-<details><summary>evidence</summary><blockquote>A subset of events instead favor higher energies; these include: GW190706, GW190929, GW191127_050227, GW200216_220804, GW200220_061928, GW230814_061920, GW230928_215827, GW231004_232346, and GW231230_170116.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>we reanalyze \totalevents high-mass events from the LIGO-Virgo-KAGRA catalogs</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">4</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="7"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="9"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" population ">
   <td><a href="https://arxiv.org/abs/2608.16563">Population-Level Verification of the Black-Hole Area Law with First- and Second-Generation Black Holes</a>
-<details><summary>evidence</summary><blockquote>GW190521 GW230928_215827 GW240622_004008</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>Using parameter estimation restricted to the inspiral of 241 events, so that no merger-ringdown information enters the inference, we find that both peaks of the horizon-area distribution of second-generation black holes …</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="8"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="10"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">population</span></td>
 </tr>
 
-<tr data-level="posterior_samples" data-roles=" population cosmology ">
+<tr data-level="published_results" data-roles=" cosmology population ">
   <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW230928_215827 9.5 1.5×10−51.5\times 10^{-5} 97−19+1997^{+19}_{-19} 53−19+1653^{+16}_{-19} 4359−2032+35584359^{+3558}_{-2032}</blockquote></details></td>
-  <td class="num small">2026</td>
+<details><summary>evidence</summary><blockquote>GW230928_215827 9.5</blockquote></details></td>
+  <td class="num small">2025</td>
   <td class="num small">87</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="9"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
-</tr>
-
-<tr data-level="posterior_samples" data-roles=" test_of_gr population ">
-  <td><a href="https://arxiv.org/abs/2603.19020">GWTC-4.0: Tests of General Relativity. II. Parameterized Tests</a>
-<details><summary>evidence</summary><blockquote>GW230928 215827 8.9+0.4 −0.6 61+10 −14 0.40+0.20 −0.28 0.56+0.35 −0.27 ✓PI</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">48</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="10"><span class="chip on">posterior samples</span></td>
-  <td class="small"><span class="chip">test of gr</span><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="posterior_samples" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2412.03461">Revising the Spin and Kick Connection in Isolated Binary Black Holes</a>
-<details><summary>evidence</summary><blockquote>Ten events yield ln⁡(BF)Iso/Natal&lt;−1\ln{\rm BF}_{\rm Iso/Natal}&lt;-1: GW240515_005301, GW241113_163507, GW230928_215827, GW190412, GW190517, GW230704, GW170729, GW190805, GW231113_122623, and GW231118_005626.</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">35</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="11"><span class="chip on">posterior samples</span></td>
-  <td class="small"><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="posterior_samples" data-roles=" single_event population ">
-  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>GW230928_215827 53.52 29.68 0.736 0.491 0.381 0.723 0.891 +0.820±0.023 +0.317±0.021 +0.728±0.022 0.5752 acc weak</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="12"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+  <td class="small" data-sort="11"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">cosmology</span><span class="chip">population</span></td>
 </tr>
 
 <tr data-level="published_results" data-roles=" population ">
@@ -311,18 +301,38 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">19</td>
   <td class="num small">1</td>
+  <td class="small" data-sort="12"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW230928_215827 4624−2291+39584624^{+3958}_{-2291} 0.73−0.32+0.480.73^{+0.48}_{-0.32} 3.5×1033.5\times 10^{3} 19 0 0 ∼\sim1–∼\sim1 ∼\sim1–∼\sim1 100–100 100–100</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
   <td class="small" data-sort="13"><span class="chip on">published results</span></td>
   <td class="small"><span class="chip">population</span></td>
 </tr>
 
-<tr data-level="published_results" data-roles=" population cosmology ">
-  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW230928_215827 4624−2291+39584624^{+3958}_{-2291} 0.73−0.32+0.480.73^{+0.48}_{-0.32}</blockquote></details></td>
+<tr data-level="published_results" data-roles=" population single_event ">
+  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>GW230928_215827 53.5253.52 29.6829.68 0.7360.736</blockquote></details></td>
   <td class="num small">2026</td>
-  <td class="num small">12</td>
+  <td class="num small">0</td>
   <td class="num small">1</td>
   <td class="small" data-sort="14"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">single event</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2607.06067">A Possible Triple Formation Scenario of Binary Black Hole Merge With One In Pair-instability Supernova Mass Ga</a>
+<details><summary>evidence</summary><blockquote>The initial sample satisfying these parameter constraints includes GW230107, GW230928, GW230820, GW190706, GW190620, and GW170729.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">2</td>
+  <td class="small" data-sort="15"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" lensing ">
@@ -331,28 +341,18 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">36</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="15"><span class="chip on">qualitative</span></td>
+  <td class="small" data-sort="16"><span class="chip on">qualitative</span></td>
   <td class="small"><span class="chip">lensing</span></td>
 </tr>
 
-<tr data-level="qualitative" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2607.06067">A Possible Triple Formation Scenario of Binary Black Hole Merge With One In Pair-instability Supernova Mass Ga</a>
-<details><summary>evidence</summary><blockquote>The initial sample satisfying these parameter constraints includes GW230107, GW230928, GW230820, GW190706, GW190620, and GW170729.</blockquote></details></td>
+<tr data-level="qualitative" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2412.03461">Revising the Spin and Kick Connection in Isolated Binary Black Holes</a>
+<details><summary>evidence</summary><blockquote>Ten events yield ln⁡(BF)Iso/Natal&lt;−1, GW240515_005301, GW241113_163507, GW230928_215827, GW190412, GW190517, GW230704, GW170729, GW190805, GW231113_122623, and GW231118_005626.</blockquote></details></td>
   <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">2</td>
-  <td class="small" data-sort="16"><span class="chip on">qualitative</span></td>
-  <td class="small"><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="cited_only" data-roles="  ">
-  <td><a href="https://arxiv.org/abs/2605.12818">Assessing the imprint of eccentricity in GW signatures using two independent waveform models</a>
-<details><summary>evidence</summary><blockquote>we present a comprehensive analysis of 162 confident sources identified in the O3 and O4a observing runs of the International Gravitational Wave Network (LIGO-Virgo-KAGRA)</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">5</td>
-  <td class="num small">2</td>
-  <td class="small" data-sort="17"><span class="chip">cited only</span></td>
-  <td class="small"></td>
+  <td class="num small">35</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="17"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 </tbody>
@@ -398,12 +398,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

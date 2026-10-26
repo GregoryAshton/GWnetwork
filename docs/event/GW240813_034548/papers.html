@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>4</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>3</b></button><button type="button" data-level="posterior_samples">posterior samples <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>2</b></button><button type="button" data-level="posterior_samples">posterior samples <b>1</b></button><button type="button" data-level="qualitative">qualitative <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="single_event">single event (2)</option><option value="counterpart_followup">counterpart followup (1)</option><option value="population">population (1)</option><option value="cosmology">cosmology (1)</option>
+    <option value="multimessenger">multimessenger (1)</option><option value="population">population (1)</option><option value="cosmology">cosmology (1)</option><option value="single_event">single event (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -195,34 +195,34 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"></td>
 </tr>
 
-<tr data-level="strain_analysis" data-roles=" single_event ">
-  <td><a href="https://arxiv.org/abs/2607.07272">Combining gravitational wave search pipelines to find subthreshold signals in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>[data] GW240813_034548 O4b PyCBC 10.3 0.638 0.400 0.340 0.430</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">single event</span></td>
-</tr>
-
-<tr data-level="strain_analysis" data-roles=" counterpart_followup ">
+<tr data-level="strain_analysis" data-roles=" multimessenger ">
   <td><a href="https://arxiv.org/abs/2607.03674">A population of LIGO-Virgo-KAGRA mergers happening inside active galactic nuclei</a>
 <details><summary>evidence</summary><blockquote>Bommireddy et al. [17] flagged counterparts for GW240716_034900, GW240807_214559, and GW240813_034548 via automated cross-matching.</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">counterpart followup</span></td>
+  <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
+  <td class="small"><span class="chip">multimessenger</span></td>
 </tr>
 
-<tr data-level="posterior_samples" data-roles=" single_event population cosmology ">
+<tr data-level="posterior_samples" data-roles=" population cosmology ">
   <td><a href="https://arxiv.org/abs/2607.03672">Hubble constant measurement with 13 bright standard sirens from binary black hole mergers inside active galact</a>
 <details><summary>evidence</summary><blockquote>GW240813_034548 71.46</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="4"><span class="chip on">posterior samples</span></td>
-  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">cosmology</span></td>
+  <td class="small" data-sort="3"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2607.07272">Combining gravitational wave search pipelines to find subthreshold signals in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>GW240813_034548 O4b PyCBC 10.3 0.638 0.400 0.340 0.430</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="4"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 </tbody>
@@ -268,12 +268,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

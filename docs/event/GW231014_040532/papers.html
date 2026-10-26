@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>9</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>6</b></button><button type="button" data-level="posterior_samples">posterior samples <b>2</b></button><button type="button" data-level="published_results">published results <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>5</b></button><button type="button" data-level="published_results">published results <b>3</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="single_event">single event (6)</option><option value="population">population (5)</option><option value="cosmology">cosmology (2)</option><option value="formation_channels">formation channels (1)</option>
+    <option value="single_event">single event (5)</option><option value="population">population (5)</option><option value="formation_channels">formation channels (1)</option><option value="cosmology">cosmology (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -187,7 +187,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the First Part of the Fourt</a>
-<details><summary>evidence</summary><blockquote>GW231014_040532 35.5 4.6 7.0 + 15.0 1.9 2.7</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW231014_040532 HL 29 8.6 0.23 0.21 9.0 0.94</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">500</td>
   <td class="num small">4</td>
@@ -227,7 +227,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event population ">
   <td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a>
-<details><summary>evidence</summary><blockquote>Specifically, we use source-parameter estimation on 153 binary black holes in GWTC-4 catalog provided by the rapid iterative fitting framework using the SEOBNRv5EHM waveform model.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW231014_040532 20.23−2.56+3.39 14.99−2.30+2.28 0.180−0.139+0.130 0.428−0.133+0.131 0.0893−0.0625+0.0887 −1.064</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">6</td>
   <td class="num small">1</td>
@@ -235,44 +235,44 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
 </tr>
 
-<tr data-level="strain_analysis" data-roles=" single_event ">
+<tr data-level="published_results" data-roles=" cosmology population ">
+  <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW231014_040532 9.0</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">87</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="6"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">cosmology</span><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW231014_040532 2289−1169+13922289^{+1392}_{-1169} 0.41−0.19+0.200.41^{+0.20}_{-0.19} 1.7×1031.7\times 10^{3} 1.9 0 582 ∼\sim1–∼\sim1 ∼\sim1–1.01 100–100 100–100</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">12</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="7"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="published_results" data-roles=" population ">
+  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>GW231014_040532 20.6520.65 14.7314.73 0.5340.534</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="8"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
   <td><a href="https://arxiv.org/abs/2607.04909">A stepping stone toward detecting gravitational wave memory: a cumulative analysis with the full $(\ell=2, m=0</a>
 <details><summary>evidence</summary><blockquote>We perform our analysis for the binary black hole signals identified in the GWTC-4.0 catalog, and for selected GWTC-5.0 events.</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="6"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">single event</span></td>
-</tr>
-
-<tr data-level="posterior_samples" data-roles=" population cosmology ">
-  <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW231014_040532 9.0 0.21 29−5+1129^{+11}_{-5} 21−7+421^{+4}_{-7} 2231−1150+13882231^{+1388}_{-1150}</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">87</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="7"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
-</tr>
-
-<tr data-level="posterior_samples" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>GW231014_040532 20.65 14.73 0.534 0.502 0.175 0.878 0.883 −0.466±0.090 −0.454±0.090 −0.482±0.090 0.2822 no pref</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="8"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="published_results" data-roles=" population cosmology ">
-  <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW231014_040532 2289−1169+13922289^{+1392}_{-1169} 0.41−0.19+0.200.41^{+0.20}_{-0.19}</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">12</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="9"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
+  <td class="small" data-sort="9"><span class="chip">cited only</span></td>
+  <td class="small"></td>
 </tr>
 
 </tbody>
@@ -318,12 +318,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

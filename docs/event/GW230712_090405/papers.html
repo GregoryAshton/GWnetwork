@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>12</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>5</b></button><button type="button" data-level="published_results">published results <b>3</b></button><button type="button" data-level="qualitative">qualitative <b>3</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>5</b></button><button type="button" data-level="posterior_samples">posterior samples <b>1</b></button><button type="button" data-level="published_results">published results <b>2</b></button><button type="button" data-level="qualitative">qualitative <b>3</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="single_event">single event (5)</option><option value="population">population (4)</option><option value="cosmology">cosmology (2)</option><option value="waveform_systematics">waveform systematics (1)</option>
+    <option value="single_event">single event (5)</option><option value="population">population (4)</option><option value="cosmology">cosmology (2)</option><option value="waveform_systematics">waveform systematics (1)</option><option value="formation_channels">formation channels (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -187,7 +187,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2508.18082">GWTC-4.0: Updating the Gravitational-Wave Transient Catalog with Observations from the First Part of the Fourt</a>
-<details><summary>evidence</summary><blockquote>GW230712_090405 HL</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230712_090405 46 11 21 + 16.5 3.2 11.1 +</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">500</td>
   <td class="num small">7</td>
@@ -197,7 +197,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gr</a>
-<details><summary>evidence</summary><blockquote>GW230712_090405 HL 0.018 9.5 &gt;0.99</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230712_090405 HL 0.018 9.5 &gt;0.99 98 8.2 0.14 – – – 67 8.2 0.17</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">47</td>
   <td class="num small">1</td>
@@ -211,13 +211,13 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2025</td>
   <td class="num small">13</td>
   <td class="num small">13</td>
-  <td class="small" data-sort="3"><span class="chip on">strain analysis</span><span class="chip on">published results</span></td>
+  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span><span class="chip">waveform systematics</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event population ">
   <td><a href="https://arxiv.org/abs/2602.11030">Population properties of binary black holes with eccentricity</a>
-<details><summary>evidence</summary><blockquote>Specifically, we use source-parameter estimation on 153 binary black holes in GWTC-4 catalog provided by the rapid iterative fitting framework using the SEOBNRv5EHM waveform model.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>we use source-parameter estimation on 153 binary black holes in GWTC-4 catalog provided by the rapid iterative fitting framework using the SEOBNRv5EHM waveform model</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">6</td>
   <td class="num small">1</td>
@@ -235,39 +235,39 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
+<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
+<details><summary>evidence</summary><blockquote>GW230712_090405 32.2232.22 12.5112.51 0.6540.654</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="6"><span class="chip on">posterior samples</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+</tr>
+
 <tr data-level="published_results" data-roles=" population cosmology ">
   <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW230712_090405 9.5</blockquote></details></td>
-  <td class="num small">2026</td>
+<details><summary>evidence</summary><blockquote>[appendix] GW230712_090405 9.5</blockquote></details></td>
+  <td class="num small">2025</td>
   <td class="num small">87</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="6"><span class="chip on">published results</span></td>
+  <td class="small" data-sort="7"><span class="chip on">published results</span></td>
   <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
 </tr>
 
-<tr data-level="published_results" data-roles=" cosmology population ">
+<tr data-level="published_results" data-roles=" population cosmology ">
   <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
 <details><summary>evidence</summary><blockquote>GW230712_090405 2105−1075+25522105^{+2552}_{-1075} 0.38−0.18+0.360.38^{+0.36}_{-0.18}</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">12</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="7"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">cosmology</span><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="published_results" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>We test this prediction directly against the component spins of the catalogue.</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">1</td>
   <td class="small" data-sort="8"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles="  ">
   <td><a href="https://arxiv.org/abs/2605.28716">Eccentric and unbound compact binaries in the LIGO-Virgo-KAGRA catalog: parameter estimation and waveform syst</a>
-<details><summary>evidence</summary><blockquote>Ref. [100] additionally found support for GW230712_090405 and GW231123_135430 when comparing EAS against QCAS, although not against QCP</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>Ref. [100] additionally found support for GW230712_090405 and GW231123_135430 when comparing EAS against QCAS, although not against QCP; neither event shows support even against QCAS with SEOBNRv5EHM [87].</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">8</td>
   <td class="num small">7</td>
@@ -277,7 +277,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="qualitative" data-roles="  ">
   <td><a href="https://arxiv.org/abs/2605.28715">Accurate waveforms for generic planar-orbit binary black holes: The multipolar effective-one-body model SEOBNR</a>
-<details><summary>evidence</summary><blockquote>GW230712_090405 [102], whose support for the eccentric aligned-spin BBH hypothesis reduces significantly when compared to the QC precessing-spin hypothesis</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>2) GW230712_090405 [102], whose support for the eccentric aligned-spin BBH hypothesis reduces significantly when compared to the QC precessing-spin hypothesis, thus pointing toward the known degeneracy between eccentrici…</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">6</td>
   <td class="num small">1</td>
@@ -348,12 +348,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

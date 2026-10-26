@@ -173,9 +173,9 @@ button.ghost{background:none;color:var(--accent)}
   
   <div class="stat"><b class="tnum">13,904</b><span>Papers</span></div>
   
-  <div class="stat"><b class="tnum">35,314</b><span>Event–paper links</span></div>
+  <div class="stat"><b class="tnum">35,243</b><span>Event–paper links</span></div>
   
-  <div class="stat"><b class="tnum">35,308</b><span>Classified usages</span></div>
+  <div class="stat"><b class="tnum">35,243</b><span>Classified usages</span></div>
   
 </div>
 
@@ -206,26 +206,32 @@ button.ghost{background:none;color:var(--accent)}
   <h2>Status</h2>
   <table class="status">
     <tr><th>Version</th><td>
-      <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>,
-      built 2026-10-21 13:01 UTC</td></tr>
+      <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>,
+      built 2026-10-26 14:50 UTC</td></tr>
     <tr><th>Corpus</th><td>
       434 events; 13,904 papers,
       13,892 with full text (the other 12 searched by abstract only);
-      mentions extracted 2026-10-20</td></tr>
+      mentions extracted 2026-10-22</td></tr>
     
     <tr><th>Classification</th><td>
       Claude Haiku 5.5, reading
       the sentences around each mention;
-      35,308 pairs, run 2026-10-21</td></tr>
+      35,243 pairs, run 2026-10-22</td></tr>
     
     <tr><th>Accuracy</th><td>
-      81% agreement with a reference set of 234 pairs
-      (κ 0.75; 76% on the 127 labelled by a person,
+      82% agreement with a reference set of 234 pairs
+      (κ 0.76; 80% on the 127 labelled by a person,
       the rest agreed by two independent AI labellers), read in full against a
       <a href="https://github.com/GregoryAshton/GWnetwork/blob/main/eval/GUIDELINES.md">written guide</a>.
       A first pass: strain-analysis and released-sample calls are reliable but
-      undercounted (~46% of released-sample uses found).</td></tr>
+      undercounted (~43% of released-sample uses found).</td></tr>
     
+    
+    
+    <tr><th>Data release</th><td>
+      This site shows data release v1, archived on Zenodo:
+      <a href="https://doi.org/10.5281/zenodo.23603658">doi:10.5281/zenodo.23603658</a>.
+      Cite the release, not this site, when you use the data.</td></tr>
     
   </table>
 
@@ -242,12 +248,12 @@ button.ghost{background:none;color:var(--accent)}
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

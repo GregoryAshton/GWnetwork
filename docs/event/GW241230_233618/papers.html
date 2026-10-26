@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>5</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>2</b></button><button type="button" data-level="published_results">published results <b>1</b></button><button type="button" data-level="qualitative">qualitative <b>1</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>1</b></button><button type="button" data-level="published_results">published results <b>1</b></button><button type="button" data-level="qualitative">qualitative <b>2</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="population">population (3)</option><option value="single_event">single event (2)</option>
+    <option value="population">population (2)</option><option value="single_event">single event (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -187,7 +187,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gr</a>
-<details><summary>evidence</summary><blockquote>In addition to GW241230_233618, three addi- tional signals</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>In addition to GW241230_233618, three addi- tional signals, GW240519_012815, GW240618_071627 and GW241125_010116, have sources with remnant massM f≥ 100M⊙ with a probability of more than 50%, and may thus be considered i…</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">47</td>
   <td class="num small">9</td>
@@ -195,24 +195,14 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
-<tr data-level="strain_analysis" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2608.16563">Population-Level Verification of the Black-Hole Area Law with First- and Second-Generation Black Holes</a>
-<details><summary>evidence</summary><blockquote>Using parameter estimation restricted to the inspiral of 241 events</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">0</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="published_results" data-roles=" single_event population ">
+<tr data-level="published_results" data-roles=" population ">
   <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
 <details><summary>evidence</summary><blockquote>GW241230_233618 67.9667.96 47.6447.64 0.4990.499</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="3"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
+  <td class="small" data-sort="2"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" population ">
@@ -221,16 +211,26 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">3</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="4"><span class="chip on">qualitative</span></td>
+  <td class="small" data-sort="3"><span class="chip on">qualitative</span></td>
   <td class="small"><span class="chip">population</span></td>
 </tr>
 
-<tr data-level="cited_only" data-roles="  ">
+<tr data-level="qualitative" data-roles="  ">
   <td><a href="https://arxiv.org/abs/2607.07272">Combining gravitational wave search pipelines to find subthreshold signals in GWTC-5.0</a>
 <details><summary>evidence</summary><blockquote>GW240703_191355 and GW241230_233618 are two-pipeline events.</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">3</td>
+  <td class="small" data-sort="4"><span class="chip on">qualitative</span></td>
+  <td class="small"></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2608.16563">Population-Level Verification of the Black-Hole Area Law with First- and Second-Generation Black Holes</a>
+<details><summary>evidence</summary><blockquote>[discussion] GW230723_101834 GW240515_005301 GW241230_233618</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">0</td>
+  <td class="num small">1</td>
   <td class="small" data-sort="5"><span class="chip">cited only</span></td>
   <td class="small"></td>
 </tr>
@@ -278,12 +278,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

@@ -173,6 +173,11 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
     <button type="button" data-level="strain_analysis">strain analysis <b>1</b></button>
   </div>
   
+  <label class="small">used for
+    <select id="role"><option value="">any</option>
+    <option value="single_event">single event (1)</option>
+    </select></label>
+  
   <span class="small mut" id="shown"></span>
 </div>
 
@@ -180,14 +185,14 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <thead><tr><th>Title</th><th class="num">Year</th><th class="num">Citations</th><th class="num">Mentions</th><th>Use</th><th>Used for</th></tr></thead>
 <tbody>
 
-<tr data-level="strain_analysis" data-roles="  ">
+<tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gr</a>
-<details><summary>evidence</summary><blockquote>GW240907_092521 HLV – – – 4.0 8.3 0.72</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW240907_092521 HLV – – – 4.0 8.3 0.72 120 7.9 0.05 15 7.6 0.55</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">47</td>
   <td class="num small">1</td>
   <td class="small" data-sort="1"><span class="chip on">strain analysis</span></td>
-  <td class="small"></td>
+  <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 </tbody>
@@ -233,12 +238,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

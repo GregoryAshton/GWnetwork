@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>3</b></button>
-    <button type="button" data-level="posterior_samples">posterior samples <b>1</b></button><button type="button" data-level="qualitative">qualitative <b>1</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="published_results">published results <b>1</b></button><button type="button" data-level="qualitative">qualitative <b>1</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="population">population (2)</option><option value="formation_channels">formation channels (1)</option>
+    <option value="population">population (2)</option><option value="single_event">single event (1)</option><option value="formation_channels">formation channels (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -185,14 +185,14 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <thead><tr><th>Title</th><th class="num">Year</th><th class="num">Citations</th><th class="num">Mentions</th><th>Use</th><th>Used for</th></tr></thead>
 <tbody>
 
-<tr data-level="posterior_samples" data-roles=" population formation_channels ">
+<tr data-level="published_results" data-roles=" single_event population formation_channels ">
   <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>GW250109_074552 38.7038.70 30.1830.18 0.3900.390 0.4100.410 0.0580.058 0.8560.856 0.8730.873 +0.048±0.017+0.048\pm 0.017 +0.043±0.017+0.043\pm 0.017 +0.077±0.017+0.077\pm 0.017 0.39230.3923 no pref</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>We test this prediction directly against the component spins of the catalogue.</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="1"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span><span class="chip">formation channels</span></td>
+  <td class="small" data-sort="1"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span><span class="chip">formation channels</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" population ">
@@ -207,7 +207,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="cited_only" data-roles="  ">
   <td><a href="https://arxiv.org/abs/2605.27225">GWTC-5.0: Observations from the Second Part of the Fourth LIGO-Virgo-KAGRA Observing Run and Updates to the Gr</a>
-<details><summary>evidence</summary><blockquote>GW250109_074552</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>We find 161 compact binary coalescence candidates that are identified by at least one of our search algorithms with a probability of astrophysical origin $p_\mathrm{astro} \geq 0.5$ and that are not vetoed during event v…</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">47</td>
   <td class="num small">2</td>
@@ -258,12 +258,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

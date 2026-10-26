@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>8</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>5</b></button><button type="button" data-level="qualitative">qualitative <b>2</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>4</b></button><button type="button" data-level="qualitative">qualitative <b>3</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="single_event">single event (5)</option><option value="methods_demo">methods demo (2)</option><option value="waveform_systematics">waveform systematics (1)</option><option value="counterpart_followup">counterpart followup (1)</option>
+    <option value="single_event">single event (5)</option><option value="waveform_systematics">waveform systematics (1)</option><option value="methods_demo">methods demo (1)</option><option value="counterpart_followup">counterpart followup (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -197,22 +197,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 <tr data-level="strain_analysis" data-roles=" single_event waveform_systematics methods_demo ">
   <td><a href="https://arxiv.org/abs/2111.09214">The use of hypermodels to understand binary neutron star collisions</a>
-<details><summary>evidence</summary><blockquote>We apply our new method to study the first two confidently detected binary neutron star signals observed by the Advanced LIGO and Advanced Virgo detectors, GW170817[1] and GW190425[13], and the sub-threshold candidate GW…</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>and the sub-threshold candidate GW200311_103121 recently reported in the GWTC3 catalogue[14].</blockquote></details></td>
   <td class="num small">2022</td>
   <td class="num small">23</td>
   <td class="num small">18</td>
   <td class="small" data-sort="2"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span><span class="chip">waveform systematics</span><span class="chip">methods demo</span></td>
-</tr>
-
-<tr data-level="strain_analysis" data-roles=" single_event methods_demo ">
-  <td><a href="https://arxiv.org/abs/2504.17587">Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Approach with Robust Uncertain</a>
-<details><summary>evidence</summary><blockquote>Using simulations, we demonstrate improved detection efficiency and apply our model to GWTC-3, enhancing confidence in multi-pipeline detections, such as the sub-threshold binary neutron star candidate GW200311_103121.</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">4</td>
-  <td class="num small">5</td>
-  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">single event</span><span class="chip">methods demo</span></td>
 </tr>
 
 <tr data-level="strain_analysis" data-roles=" single_event ">
@@ -221,7 +211,7 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2023</td>
   <td class="num small">—</td>
   <td class="num small">4</td>
-  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="3"><span class="chip on">strain analysis</span></td>
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
@@ -231,18 +221,28 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="5"><span class="chip on">strain analysis</span></td>
+  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
   <td class="small"></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" counterpart_followup ">
   <td><a href="https://arxiv.org/abs/2308.13666">A Joint Fermi-GBM and Swift-BAT Analysis of Gravitational-wave Candidates from the Third Gravitational-wave Ob</a>
-<details><summary>evidence</summary><blockquote>The 5 marginal GWs with possible NSBH origins were visible to Fermi-GBM while the remaining one, GW200311_103121, occurred when Fermi-GBM was in the SAA.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>This is because GW200311_103121 may have a possible BNS origin and the remaining 5 candidates have possible NSBH origins</blockquote></details></td>
   <td class="num small">2023</td>
   <td class="num small">14</td>
   <td class="num small">4</td>
-  <td class="small" data-sort="6"><span class="chip on">qualitative</span></td>
+  <td class="small" data-sort="5"><span class="chip on">qualitative</span></td>
   <td class="small"><span class="chip">counterpart followup</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" single_event ">
+  <td><a href="https://arxiv.org/abs/2504.17587">Enhancing Gravitational-Wave Detection: A Machine Learning Pipeline Combination Approach with Robust Uncertain</a>
+<details><summary>evidence</summary><blockquote>If confirmed, GW200311_103121 would be only the third BNS signal detected, underscoring the importance of using all available information to assess significance.</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">4</td>
+  <td class="num small">5</td>
+  <td class="small" data-sort="6"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" single_event ">
@@ -308,12 +308,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>

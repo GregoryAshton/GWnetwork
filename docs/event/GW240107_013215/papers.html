@@ -170,12 +170,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 <div class="pfilters">
   <div class="lvls">
     <button type="button" data-level="" class="on">all <b>12</b></button>
-    <button type="button" data-level="strain_analysis">strain analysis <b>5</b></button><button type="button" data-level="posterior_samples">posterior samples <b>1</b></button><button type="button" data-level="published_results">published results <b>4</b></button><button type="button" data-level="qualitative">qualitative <b>1</b></button><button type="button" data-level="cited_only">cited only <b>1</b></button>
+    <button type="button" data-level="strain_analysis">strain analysis <b>4</b></button><button type="button" data-level="posterior_samples">posterior samples <b>1</b></button><button type="button" data-level="published_results">published results <b>3</b></button><button type="button" data-level="qualitative">qualitative <b>2</b></button><button type="button" data-level="cited_only">cited only <b>2</b></button>
   </div>
   
   <label class="small">used for
     <select id="role"><option value="">any</option>
-    <option value="single_event">single event (6)</option><option value="population">population (5)</option><option value="cosmology">cosmology (1)</option><option value="lensing">lensing (1)</option>
+    <option value="single_event">single event (6)</option><option value="population">population (4)</option><option value="cosmology">cosmology (2)</option><option value="lensing">lensing (1)</option>
     </select></label>
   
   <span class="small mut" id="shown"></span>
@@ -215,74 +215,64 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
-<tr data-level="strain_analysis" data-roles=" single_event population ">
-  <td><a href="https://arxiv.org/abs/2603.29019">Eccentricity constraints disfavor single-single capture in nuclear star clusters as the origin of all LIGO-Vir</a>
-<details><summary>evidence</summary><blockquote>GW240107_013215</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">8</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="4"><span class="chip on">strain analysis</span></td>
-  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
-</tr>
-
 <tr data-level="strain_analysis" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2601.20512">Enhancing online estimation of CBC parameters with the low-latency MBTA analysis</a>
-<details><summary>evidence</summary><blockquote>Overall, we find high overlaps with the LVK results, with only three outliers — GW231001_140220 (𝒪=62%), GW240107_013215 (𝒪=72%) and GW231123_135430 (𝒪=5%) — which are a subset of the mass-estimate outliers discussed abo…</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW230709_122727 (𝒪=68%\mathcal{O}=68\%), GW231001_140220 (𝒪=29%\mathcal{O}=29\%) and GW240107_013215 (𝒪=49%\mathcal{O}=49\%) are events for which the MBTA PE procedure inferred consistent source-frame total masses, but m…</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">3</td>
-  <td class="small" data-sort="5"><span class="chip on">strain analysis</span><span class="chip on">published results</span></td>
+  <td class="small" data-sort="4"><span class="chip on">strain analysis</span><span class="chip on">published results</span></td>
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
-<tr data-level="posterior_samples" data-roles=" population ">
+<tr data-level="posterior_samples" data-roles=" single_event population ">
   <td><a href="https://arxiv.org/abs/2608.29072">Evidence for an accretion-driven subpopulation of black holes in GWTC-5.0</a>
-<details><summary>evidence</summary><blockquote>We test this prediction directly against the component spins of the catalogue.</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>We single out 10 events with positive support and many others with weaker support across the whole component-mass range of the catalogue.</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">0</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="6"><span class="chip on">posterior samples</span></td>
-  <td class="small"><span class="chip">population</span></td>
+  <td class="small" data-sort="5"><span class="chip on">posterior samples</span><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">single event</span><span class="chip">population</span></td>
 </tr>
 
-<tr data-level="published_results" data-roles=" population ">
-  <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
-<details><summary>evidence</summary><blockquote>GW240107_013215 9.1 0.03 112−29+37112^{+37}_{-29} 56−32+3656^{+36}_{-32}</blockquote></details></td>
-  <td class="num small">2026</td>
-  <td class="num small">87</td>
-  <td class="num small">1</td>
-  <td class="small" data-sort="7"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">population</span></td>
-</tr>
-
-<tr data-level="published_results" data-roles=" cosmology population ">
+<tr data-level="published_results" data-roles=" population cosmology ">
   <td><a href="https://arxiv.org/abs/2605.27227">GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
 <details><summary>evidence</summary><blockquote>GW240107_013215 5876−3391+49545876^{+4954}_{-3391} 0.89−0.45+0.570.89^{+0.57}_{-0.45}</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">12</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="8"><span class="chip on">published results</span></td>
-  <td class="small"><span class="chip">cosmology</span><span class="chip">population</span></td>
+  <td class="small" data-sort="6"><span class="chip on">published results</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
 </tr>
 
 <tr data-level="published_results" data-roles=" single_event ">
   <td><a href="https://arxiv.org/abs/2508.07499">Comparing a compact-binary mass-shell model with select observed gravitational waves</a>
-<details><summary>evidence</summary><blockquote>GW240107_013215 59−18+2759^{+27}_{-18} 32−16+2032^{+20}_{-16} 5.005.00 3.813.81 0.7620.762</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>[results] GW240107_013215 59−18+27</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">3</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="9"><span class="chip on">published results</span></td>
+  <td class="small" data-sort="7"><span class="chip on">published results</span></td>
   <td class="small"><span class="chip">single event</span></td>
 </tr>
 
 <tr data-level="published_results" data-roles=" population ">
   <td><a href="https://arxiv.org/abs/2606.18081">The Chirp-Mass Ladder: A New Rung Emerges</a>
-<details><summary>evidence</summary><blockquote>GW240107_013215 61.3–29.7 GW241011_233834 18.9–6.2 GW241110_124123 16.8–8.3</blockquote></details></td>
+<details><summary>evidence</summary><blockquote>GW240107_013215 61.3–29.7</blockquote></details></td>
   <td class="num small">2026</td>
   <td class="num small">2</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="10"><span class="chip on">published results</span></td>
+  <td class="small" data-sort="8"><span class="chip on">published results</span></td>
   <td class="small"><span class="chip">population</span></td>
+</tr>
+
+<tr data-level="qualitative" data-roles=" population cosmology ">
+  <td><a href="https://arxiv.org/abs/2509.04348">GWTC-4.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation</a>
+<details><summary>evidence</summary><blockquote>GW240107_013215 9.1</blockquote></details></td>
+  <td class="num small">2025</td>
+  <td class="num small">87</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="9"><span class="chip on">qualitative</span></td>
+  <td class="small"><span class="chip">population</span><span class="chip">cosmology</span></td>
 </tr>
 
 <tr data-level="qualitative" data-roles=" lensing ">
@@ -291,8 +281,18 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
   <td class="num small">2026</td>
   <td class="num small">36</td>
   <td class="num small">1</td>
-  <td class="small" data-sort="11"><span class="chip on">qualitative</span></td>
+  <td class="small" data-sort="10"><span class="chip on">qualitative</span></td>
   <td class="small"><span class="chip">lensing</span></td>
+</tr>
+
+<tr data-level="cited_only" data-roles="  ">
+  <td><a href="https://arxiv.org/abs/2603.29019">Eccentricity constraints disfavor single-single capture in nuclear star clusters as the origin of all LIGO-Vir</a>
+<details><summary>evidence</summary><blockquote>GW240107_013215</blockquote></details></td>
+  <td class="num small">2026</td>
+  <td class="num small">8</td>
+  <td class="num small">1</td>
+  <td class="small" data-sort="11"><span class="chip">cited only</span></td>
+  <td class="small"></td>
 </tr>
 
 <tr data-level="cited_only" data-roles="  ">
@@ -348,12 +348,12 @@ Each classification links to the quoted evidence. Dates are the paper's latest a
 
 
 <footer class="sitefoot">
-  <span>Data extracted 2026-10-20 ·
+  <span>Data extracted 2026-10-22 ·
     434 events ·
     13,904 papers,
     13,892 with full text (99.9%)</span>
-  <span>Built 2026-10-21 13:01 UTC ·
-    <a href="https://github.com/GregoryAshton/GWnetwork/commit/52cec58"><code>52cec58</code></a>
+  <span>Built 2026-10-26 14:50 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/3a3a85c"><code>3a3a85c</code></a>
      ·
     <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
 </footer>
