@@ -21,7 +21,7 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy import func, select
 
 from ..db import session
-from ..version import build_info, data_info
+from ..version import build_info, data_info, release_info
 from ..models import (
     AnalysisRun, Event, EventDesignation, EventRecord, EventUsage, EventView,
     Mention, Paper,
@@ -138,8 +138,10 @@ def index(request: Request):
                           "n": stats[-1][1],
                           "run_date": crun.completed_at.strftime("%Y-%m-%d") if crun.completed_at else "—",
                           "quality": _usage_quality(crun.id)}
+        release = release_info(run.id if run else None, crun.id if crun else None)
     return render(request, "index.html", stats=stats, top=top,
-                  n_papers=n_papers, n_fulltext=n_fulltext, classifier=classifier)
+                  n_papers=n_papers, n_fulltext=n_fulltext, classifier=classifier,
+                  release=release)
 
 
 def _num(v: Optional[str]) -> Optional[float]:

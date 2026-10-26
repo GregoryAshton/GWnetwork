@@ -57,3 +57,23 @@ def data_info(s) -> dict:
         "n_fulltext": n_fulltext,
         "pct_fulltext": round(100 * n_fulltext / n_papers, 1) if n_papers else 0,
     }
+
+
+# Frozen data releases on Zenodo, newest last. A release is identified by its
+# extract and classify runs (the `release_info` table in the released file),
+# so the site can say whether the data it renders is exactly that release.
+RELEASES = [
+    {"name": "v1", "doi": "10.5281/zenodo.23603658",
+     "extract_run_id": "32097309-1656-421d-829c-73b4be8c49e5",
+     "classify_run_id": "39a8684e-6fba-440f-9060-004b8c729fb0"},
+]
+
+
+def release_info(extract_run_id: Optional[str], classify_run_id: Optional[str]) -> Optional[dict]:
+    """The latest release, and whether the current runs are exactly it."""
+    if not RELEASES:
+        return None
+    latest = RELEASES[-1]
+    return {**latest, "url": f"https://doi.org/{latest['doi']}",
+            "matches": (latest["extract_run_id"], latest["classify_run_id"])
+            == (extract_run_id, classify_run_id)}

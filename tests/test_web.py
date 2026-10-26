@@ -186,3 +186,25 @@ def test_explore_offers_both_measures_once_classified(temp_db):
     assert 'class="metric-variant" data-metric="mentions"' in body
     assert 'class="metric-variant" data-metric="using" hidden' in body
     assert "attention" not in body.lower()
+
+
+def test_front_page_says_whether_it_shows_the_latest_release(temp_db, monkeypatch):
+    from sqlalchemy import select
+
+    from gwnetwork import version
+    _seed(temp_db, n_runs=1)
+    with temp_db.session() as s:
+        s.add(AnalysisRun(stage="classify", pipeline_version="c0", is_current=True))
+    with temp_db.session() as s:
+        runs = dict(s.execute(select(AnalysisRun.stage, AnalysisRun.id)
+                              .where(AnalysisRun.is_current == True)).all())  # noqa: E712
+    from gwnetwork.web.app import app
+    c = TestClient(app)
+    release = {"name": "v9", "doi": "10.5281/zenodo.1",
+               "extract_run_id": runs["extract"], "classify_run_id": runs["classify"]}
+    monkeypatch.setattr(version, "RELEASES", [release])
+    body = c.get("/").text
+    assert "shows data release v9" in body and "https://doi.org/10.5281/zenodo.1" in body
+
+    monkeypatch.setattr(version, "RELEASES", [{**release, "classify_run_id": "other"}])
+    assert "newer data than the latest data release, v9" in c.get("/").text

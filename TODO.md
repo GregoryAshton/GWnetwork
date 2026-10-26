@@ -60,5 +60,5 @@ from the analysis; a label upgrade a question needs is a new release.
 - **Literature cutoff 2026-06-01** is applied in the analysis, not by
   deleting papers.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
-  2026-10-23: Zenodo draft 23603658, DOI 10.5281/zenodo.23603658 (reserved;
-  publish the draft when the paper needs it).
+  2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
+  from the site's front page.

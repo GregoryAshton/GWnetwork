@@ -60,6 +60,13 @@
     {% else %}
     <tr><th>Classification</th><td>not yet run</td></tr>
     {% endif %}
+    {% if release %}
+    <tr><th>Data release</th><td>
+      {% if release.matches %}This site shows data release {{ release.name }}, archived on Zenodo:
+      {% else %}This site shows newer data than the latest data release, {{ release.name }}:
+      {% endif %}<a href="{{ release.url }}">doi:{{ release.doi }}</a>.
+      Cite the release, not this site, when you use the data.</td></tr>
+    {% endif %}
   </table>
 
   <h2>Where to go</h2>
