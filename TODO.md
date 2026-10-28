@@ -58,7 +58,16 @@ from the analysis; a label upgrade a question needs is a new release.
   through the in-text citation (`citations.py`). Derive the flag from
   `Mention.section` in the analysis and report with and without them.
 - **Literature cutoff 2026-06-01** is applied in the analysis, not by
-  deleting papers.
+  deleting papers. Since 2026-10-28 it applies to first appearance (first
+  submission, or the revision that first names the event), not to the
+  fetched version's date.
+- **Release v2: extend the cutoff, probably to 2027-01-01** (noted
+  2026-10-28). GWTC-5.0 (O4b, 147 events) went out 2026-05-26, five days
+  before the v1 cutoff, so v1 has none of its follow-up; the O4c data
+  release is due December 2026. Harvest and fetch well past the new cutoff
+  before exporting, so papers submitted near it are indexed in ADS and
+  fetched (full-text ingestion lags). See "Open decisions" in
+  `../GWnetwork_paper/PLAN.md`.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
   2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
   from the site's front page.
