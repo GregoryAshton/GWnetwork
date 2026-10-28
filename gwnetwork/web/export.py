@@ -56,7 +56,7 @@ def _rewrite(html: str, base: str, depth: int) -> str:
     for path, target in (("/explore", "explore.html"), ("/events", "events.html"),
                          ("/papers", "papers.html")):
         out = re.sub(rf'href="{path}(\?[^"]*)?"', f'href="{up}{target}"', out)
-    out = out.replace('href="/"', f'href="{up}index.html"')
+    out = re.sub(r'href="/(#[^"]*)?"', lambda m: f'href="{up}index.html{m.group(1) or ""}"', out)
     # /event/NAME -> event/NAME.html; /event/NAME/papers#f -> event/NAME/papers.html#f.
     # The fragment carries the papers-page filters, so it must survive.
     out = re.sub(r'href="/event/([^"?#/]+)(/papers)?(\?[^"#]*)?(#[^"]*)?"',

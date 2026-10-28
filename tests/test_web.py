@@ -170,6 +170,13 @@ def test_export_keeps_papers_page_filters_in_links():
     assert 'href="../event/151012.2/papers.html"' in out
 
 
+def test_export_rewrites_home_links_with_fragments():
+    from gwnetwork.web.export import _rewrite
+    out = _rewrite('<a href="/">a</a><a href="/#acknowledgements">b</a>', "", depth=2)
+    assert 'href="../../index.html"' in out
+    assert 'href="../../index.html#acknowledgements"' in out
+
+
 def test_explore_offers_both_measures_once_classified(temp_db):
     from gwnetwork.models import EventUsage
     ev_id, paper_id = _seed(temp_db, n_runs=1)
