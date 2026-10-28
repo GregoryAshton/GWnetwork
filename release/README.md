@@ -114,3 +114,38 @@ Cite this release as:
 
 The data are released under the Creative Commons Attribution 4.0
 International licence (CC BY 4.0).
+
+## Acknowledgements
+
+Event names and parameters come from the Gravitational Wave Open Science
+Center; if you use them, also cite the GWOSC data papers listed at
+https://gwosc.org/acknowledgement/ (SoftwareX 13, 100658 (2021); ApJS 267, 29
+(2023); ApJ 1004, 2329 (2026); arXiv:2605.27090).
+
+This research has made use of data or software obtained from the
+Gravitational Wave Open Science Center (gwosc.org), a service of the LIGO
+Scientific Collaboration, the Virgo Collaboration, and KAGRA. This material is
+based upon work supported by NSF's LIGO Laboratory which is a major facility
+fully funded by the National Science Foundation, as well as the Science and
+Technology Facilities Council (STFC) of the United Kingdom, the
+Max-Planck-Society (MPS), and the State of Niedersachsen/Germany for support of
+the construction of Advanced LIGO and construction and operation of the GEO600
+detector. Additional support for Advanced LIGO was provided by the Australian
+Research Council. Virgo is funded, through the European Gravitational
+Observatory (EGO), by the French Centre National de Recherche Scientifique
+(CNRS), the Italian Istituto Nazionale di Fisica Nucleare (INFN) and the Dutch
+Nikhef, with contributions by institutions from Belgium, Germany, Greece,
+Hungary, Ireland, Japan, Monaco, Poland, Portugal, Spain. KAGRA is supported by
+Ministry of Education, Culture, Sports, Science and Technology (MEXT), Japan
+Society for the Promotion of Science (JSPS) in Japan; National Research
+Foundation (NRF) and Ministry of Science and ICT (MSIT) in Korea; Academia
+Sinica (AS) and National Science and Technology Council (NSTC) in Taiwan.
+
+The LIGO Laboratory is supported by the National Science Foundation and
+operated jointly by Caltech and MIT. Any opinions, findings and conclusions or
+recommendations expressed in this material do not necessarily reflect the views
+of the National Science Foundation.
+
+This research has made use of NASA's Astrophysics Data System Bibliographic
+Services (paper discovery, citation counts and reference lists). Full texts
+come from arXiv; we thank arXiv for use of its open access interoperability.

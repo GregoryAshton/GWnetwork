@@ -168,6 +168,10 @@ button.ghost{background:none;color:var(--accent)}
     {{ "{:,}".format(data.n_events) }} events ·
     {{ "{:,}".format(data.n_papers) }} papers,
     {{ "{:,}".format(data.n_fulltext) }} with full text ({{ data.pct_fulltext }}%)</span>
+  <span>Data: <a href="https://gwosc.org">GWOSC</a> ·
+    <a href="https://ui.adsabs.harvard.edu">NASA ADS</a> ·
+    <a href="https://arxiv.org">arXiv</a> ·
+    <a href="/#acknowledgements">acknowledgements</a></span>
   <span>Built {{ build.built_at }} ·
     {% if build.sha %}<a href="{{ build.repo_url }}/commit/{{ build.sha }}"><code>{{ build.sha }}</code></a>{% if build.dirty %}<span title="uncommitted changes present at build time">+local</span>{% endif %}
     {% else %}version unknown{% endif %} ·
