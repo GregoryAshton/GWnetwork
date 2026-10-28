@@ -8,6 +8,15 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
 - **Authors who name the wrong event** (1903.01998: "GW190521" for
   GW190521_074359) are invisible to the matcher; one is fixed in
   `data/mention_overrides.yaml`, others will only surface by hand-reading.
+  Another (found 2026-10-28): 1710.05909, on GRB170817A and submitted
+  2017-10-13, calls the NS-NS merger it ties to GRB170817A "GW170818" in
+  five sentences ("the event has been named GW170818"): it means GW170817
+  (GW170818 was not public until GWTC-1). It is GW170818's earliest
+  mention, so the paper analysis dates GW170818's announcement 13 months
+  early. Add an override for v2.
+- **`LVT151012` is not a designation** for GW151012, so its 2016-2018
+  literature (including the LVK O1 papers) is not linked and its first
+  mention falls on an outside paper (1609.01668). Add the alias for v2.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
 
@@ -31,6 +40,13 @@ person-labelled pairs.
   stronger model is the untested lever (Sonnet 5.5 full text ~$700-800 per run;
   or Sonnet only on Haiku's Q3/Q4 calls).
 - **Roles under-assigned** (recall ~0.55).
+- **Strain precision is not 1.00 in the wild.** Two `strain_analysis`
+  labels found by the paper's uptake check (2026-10-28), for the gold-set
+  error review: 2507.08778 / GW250114_082203 (a catalogue built from public
+  low-latency alerts; quotes the alert's chirp mass and SNR, and O4c strain
+  was not public) and 2507.17551 / GW231123_135430 (formation scenarios
+  from population-informed spin priors; reads as posterior samples or
+  published results). Both are excerpt-mode calls.
 
 ## Site
 
