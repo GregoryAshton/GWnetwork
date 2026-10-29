@@ -310,7 +310,7 @@ def attention_over_time(s, run, top_n: int = 10, crun=None, using: bool = False,
         bands.append({"name": name, "path": path, "total": totals.get(name, sum(other.values())),
                       "light": STACK_OTHER if is_other else STACK_LIGHT[i],
                       "dark": STACK_OTHER if is_other else STACK_DARK[i],
-                      "label": label})
+                      "label": label, "other": is_other})
 
     per_year = [{"year": y, "x": round(xa.px(y, w), 2),
                  "total": sum(series[n][y] for n in names)} for y in years]

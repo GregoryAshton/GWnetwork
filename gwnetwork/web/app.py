@@ -331,6 +331,8 @@ def explore(request: Request):
         ages = public_ages(s, run)
         variants = [{"key": "mentions", "label": "Papers mentioning",
                      "noun": "papers mentioning the event", "axis": "Papers mentioning",
+                     # The stacked chart sums over events, so its unit is pairs.
+                     "stack_axis": "Paper–event pairs (mentions), per year",
                      "mass": mass_plane(s), "time": time_mentions,
                      "snr": attention_vs_snr(s, ages=ages)}]
         if crun is not None:
@@ -338,6 +340,7 @@ def explore(request: Request):
             variants.append({"key": "using", "label": "Papers using its data or results",
                              "noun": "papers using the event's data or results",
                              "axis": "Papers using data or results",
+                             "stack_axis": "Paper–event pairs (data or results), per year",
                              "mass": mass_plane(s, counts),
                              "time": attention_over_time(s, run, crun=crun, using=True,
                                                          named=time_mentions.get("named")),

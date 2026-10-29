@@ -101,7 +101,7 @@ arXiv version.</p>
       {% endfor %}
       {% for b in time.bands %}
       <path class="band" d="{{ b.path }}" style="--c:{{ b.light }};--cd:{{ b.dark }}">
-        <title>{{ b.name }} — {{ "{:,}".format(b.total) }} papers total</title>
+        <title>{{ b.name }} — {{ "{:,}".format(b.total) }} {{ "paper–event pairs" if b.other else "papers" }} total</title>
       </path>
       {% endfor %}
       {% for b in time.bands if b.label %}
@@ -113,7 +113,7 @@ arXiv version.</p>
       <text class="axis-label" x="{{ time.w / 2 }}" y="{{ time.h + 40 }}" text-anchor="middle">
         Year (latest arXiv version)</text>
       <text class="axis-label" transform="translate(-46,{{ time.h / 2 }}) rotate(-90)"
-            text-anchor="middle">{{ v.axis }}</text>
+            text-anchor="middle">{{ v.stack_axis }}</text>
     </g>
   </svg>
   </div>
@@ -124,7 +124,8 @@ arXiv version.</p>
     {% endfor %}
   </figcaption>
 </figure>
-<p class="small mut">A paper counts once per event per year. Totals reflect what
+<p class="small mut">A paper counts once per event per year, so one paper using many
+events adds to many bands; the stack height is not a count of distinct papers. Totals reflect what
 we have extracted, not the full literature — see the ADS ceiling on each event page.</p>
 {% endif %}
 
