@@ -84,6 +84,42 @@ from the analysis; a label upgrade a question needs is a new release.
   before exporting, so papers submitted near it are indexed in ADS and
   fetched (full-text ingestion lags). See "Open decisions" in
   `../GWnetwork_paper/PLAN.md`.
+- **Release v2: non-LVK catalogues, IAS and OGC** (for paper question A6,
+  decided 2026-10-29; see "Decided" in `../GWnetwork_paper/PLAN.md`). v1
+  has only GWOSC's IAS-O3a and GW151216 (`data/events/ias-o1.yaml`).
+  - Ingest every event each catalogue lists as a detection by its own
+    criterion, through the manual provider (or the planned 4-OGC/IAS-HM
+    providers, DESIGN.md). Keep events also in LVK catalogues too, merged
+    by GPS time through `event_merge` (human decision, never automatic);
+    the paper selects those with no LVK record.
+  - Record per catalogue its detection criterion as the paper states it
+    (quote and section), and per event its reported p_astro, FAR (or
+    IFAR) and table tier (main or marginal), so the paper can filter
+    uniformly later. Criteria below are from memory and **must be
+    checked against each paper**:
+
+    | Catalogue | Paper | Criterion (to verify) |
+    |---|---|---|
+    | IAS O1 | 1902.10341, 1902.10331 | p_astro > 0.5 (GW151216) |
+    | IAS O2 | 1904.07214; also 1910.09528 (GW170817A) | p_astro > 0.5 |
+    | IAS O3a | 2201.02252 (GWOSC IAS-O3a) | p_astro > 0.5 |
+    | IAS O3b | 2311.06061 | p_astro > 0.5 |
+    | IAS O3 higher harmonics | 2312.06631 | p_astro > 0.5 |
+    | 1-OGC | 1811.01921 | FAR threshold; check whether any new event |
+    | 2-OGC | 1910.05331 | p_astro > 0.5 (e.g. GW151205, GW170121, GW170304, GW170727) |
+    | 3-OGC | 2105.09151 | p_astro > 0.5 |
+    | 4-OGC | 2112.06878 | p_astro > 0.5 |
+
+  - Designations: add every name a catalogue used, including forms
+    without the GW prefix and both short and `_hhmmss` forms, as aliases.
+    Do not match bare dates (false positives); accept lower recall for
+    events never given a GW name and record which those are.
+  - Mention override: GW151216's first mention is 1611.08052 (DES
+    kilonova search), which writes "GW151216" for another trigger and
+    dates its announcement 2017-03-10 instead of 2019-02-27 (1902.10331).
+    Same kind of fix as GW170818's.
+  - Then re-run extraction and classification for the new names over the
+    whole corpus.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
   2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
   from the site's front page.
