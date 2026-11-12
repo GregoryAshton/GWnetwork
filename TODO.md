@@ -140,16 +140,24 @@ from the analysis; a label upgrade a question needs is a new release.
     in `ias-o3a-aliases.yaml`); short forms only on unique dates;
     p_astro taken as the paper tabulates it. Event view: v2 catalogues
     rank below every LVK listing and `is_marginal` ignores them (done).
-  - **Pending**: confirmation of the merge table
-    (`data/catalogues/REVIEW-merges.md`) before the event YAML is
-    committed and ingested.
-  - **"GW170817A" is mostly an author slip.** About 89 corpus papers write
-    "GW170817A", most of them for GW170817 (mixing it with GRB 170817A:
-    "its gamma-ray (GW170817A) and optical (AT2017gfo) counterparts");
-    59 have no IAS/Zackay context at all. Adding IAS's GW170817A as a
-    designation would credit those to the IAS candidate. Needs a
-    per-paper review and `mention_overrides.yaml` entries
-    (GW170817A -> GW170817) before the next extraction.
+  - ~~Pending: confirmation of the merge table~~ Confirmed 2026-11-12;
+    event YAML committed and ingested (35 new events, 289 catalogue
+    records; `gwn events rebuild-view` done). No extraction yet.
+  - ~~**"GW170817A" is mostly an author slip.**~~ Reviewed 2026-11-12: of
+    88 corpus papers writing it, 61 mean GW170817 (BNS, GRB 170817A,
+    kilonova, afterglow; two are a rendered sigma^A_GW170817 symbol) and
+    now have `mention_overrides.yaml` entries; 27 mean the IAS candidate
+    and keep it (2111.03606 GWTC-3, 2010.14527 GWTC-2, 1910.09528 itself,
+    1911.11142, the hierarchical/AGN-merger papers, ...). Recheck new
+    papers after the cutoff extension.
+  - **Next: extraction then classification** (step 5, waiting on a human).
+    Extraction: free, ~10 min, applies the 64 overrides; 394 full-text
+    papers gain a mention of a new name (254 via LVT151012), fewer once
+    the 61 GW170817A papers move back to GW170817. Classification: a full
+    run (a run replaces the current one, so a subset run would drop the
+    rest), ~$5 Haiku 5.5 batch on excerpts, ~25 min; it also re-rolls the
+    ~13% run-to-run label noise on unchanged papers. Alternative: code to
+    classify only papers whose event set changed and carry the rest over.
   - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
     GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
     marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
