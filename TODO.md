@@ -131,17 +131,30 @@ from the analysis; a label upgrade a question needs is a new release.
     (reassigned, not dropped); applies on the next extraction run.
   - Then re-run extraction and classification for the new names over the
     whole corpus.
-  - **A6 decisions pending** (2026-11-12, waiting on a human):
-    - Merges: the 262 catalogue rows within 1 s of an LVK event, and the
-      cross-catalogue groups among the 46 non-LVK events, are proposals.
-    - GWC170402 (IAS O2): deliberately not given a GW name ("if
-      genuine"); count it as a detection? It would be the only event with
-      no GW name.
-    - IAS-HM: count the GWTC-3 events it re-detects with p_astro > 0.5 as
-      IAS-HM detections (the paper calls them "recovered")?
-    - p_astro printed as 0.50 with IFAR < 100 yr (4-OGC GW190404_142514,
-      also GW190425 and GW200105) counted by the paper; keep as tabulated.
-    - Short forms (GWYYMMDD) only where no other event shares the date.
+  - **A6 decisions** (2026-11-12, Gregory Ashton): merges are applied by
+    giving each catalogue record the existing event's `common_name`, with
+    the decision under `parameters.merge` (no merge-application code);
+    canonical name of a non-LVK event is the first catalogue's; GWC170402
+    included; IAS-HM's recovered GWTC-3 events count as IAS-HM
+    detections; IAS-O3a is not duplicated (GWOSC serves it, aliases only
+    in `ias-o3a-aliases.yaml`); short forms only on unique dates;
+    p_astro taken as the paper tabulates it. Event view: v2 catalogues
+    rank below every LVK listing and `is_marginal` ignores them (done).
+  - **Pending**: confirmation of the merge table
+    (`data/catalogues/REVIEW-merges.md`) before the event YAML is
+    committed and ingested.
+  - **"GW170817A" is mostly an author slip.** About 89 corpus papers write
+    "GW170817A", most of them for GW170817 (mixing it with GRB 170817A:
+    "its gamma-ray (GW170817A) and optical (AT2017gfo) counterparts");
+    59 have no IAS/Zackay context at all. Adding IAS's GW170817A as a
+    designation would credit those to the IAS candidate. Needs a
+    per-paper review and `mention_overrides.yaml` entries
+    (GW170817A -> GW170817) before the next extraction.
+  - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
+    GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
+    marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
+    while PLAN's A6 definition (any LVK record, confident or marginal)
+    excludes it.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
   2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
   from the site's front page.
