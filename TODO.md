@@ -150,10 +150,13 @@ from the analysis; a label upgrade a question needs is a new release.
     and keep it (2111.03606 GWTC-3, 2010.14527 GWTC-2, 1910.09528 itself,
     1911.11142, the hierarchical/AGN-merger papers, ...). Recheck new
     papers after the cutoff extension.
-  - **Next: extraction then classification** (step 5, waiting on a human).
-    Extraction: free, ~10 min, applies the 64 overrides; 394 full-text
-    papers gain a mention of a new name (254 via LVT151012), fewer once
-    the 61 GW170817A papers move back to GW170817. Classification: a full
+  - ~~Extraction~~ Done 2026-11-12 (extract-0.3, current run 13:31):
+    166,459 mentions (+1,925), 131 reassigned by the 64 overrides.
+    GW151012 215 -> 449 papers (LVT151012), GW151216 42 -> 41,
+    GW170817A 27 (the reviewed set); the 35 new events have 1-23 papers
+    each. The current classify run predates it, so new pairs have no
+    usage until the next classification.
+  - **Next: classification** (waiting on a human). Classification: a full
     run (a run replaces the current one, so a subset run would drop the
     rest), ~$5 Haiku 5.5 batch on excerpts, ~25 min; it also re-rolls the
     ~13% run-to-run label noise on unchanged papers. Alternative: code to
