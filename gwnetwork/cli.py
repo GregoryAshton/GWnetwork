@@ -336,6 +336,15 @@ def cmd_eval_score():
     typer.echo(score().report())
 
 
+@eval_app.command("runs")
+def cmd_eval_runs():
+    """Run-to-run noise: gold agreement and mutual agreement of every repeat of
+    the current classify run (same version, model, prompt, context, effort)."""
+    from .evalset import compare_runs
+    _check_gold(None)
+    typer.echo(compare_runs().report())
+
+
 @eval_app.command("compare")
 def cmd_eval_compare(
     reference: Path = typer.Argument(..., help="Reference labels, e.g. eval/gold.jsonl"),

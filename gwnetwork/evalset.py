@@ -20,7 +20,8 @@ from it and also marks a row as labelled. eval/GUIDELINES.md is the labelling
 guide; `gwn eval compare` measures agreement between two labellers.
 
 `gwn eval template` writes a pre-filled skeleton from current extraction output;
-a human edits the labels. `gwn eval score` compares the current runs against it.
+a human edits the labels. `gwn eval score` compares the current runs against it;
+`gwn eval runs` compares repeats of the current classify run (run-to-run noise).
 
 IMPORTANT CAVEAT. A template-derived gold set contains only pairs the extractor
 already found, so `mention recall` against it is 100% by construction and means
@@ -33,7 +34,7 @@ the effort.
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
@@ -313,3 +314,155 @@ def compare(ref_path: Path, other_path: Path) -> Agreement:
             ag.add(key, row, row_uses(o), set(o.get("roles") or []),
                    row.get("unsure") or o.get("unsure"))
     return ag
+
+
+# --------------------------------------------------------------------------
+# Run-to-run comparison
+# --------------------------------------------------------------------------
+
+# A run is a repeat of the current one only if everything that shapes its
+# output matches; gold-only and dry runs, other prompts or other context modes
+# are different experiments, not noise samples.
+_REPEAT_CONFIG = ("context", "effort")
+
+
+def comparable_runs(s) -> list:
+    """Completed full-corpus classify runs configured like the current one,
+    oldest first. Empty if there is no current classify run."""
+    cur = s.scalar(select(AnalysisRun).where(
+        AnalysisRun.stage == "classify", AnalysisRun.is_current == True))  # noqa: E712
+    if cur is None:
+        return []
+
+    def key(r):
+        cfg = r.config or {}
+        return (r.pipeline_version, r.model_id, r.prompt_sha256,
+                cfg.get("scope"), *(cfg.get(k) for k in _REPEAT_CONFIG))
+
+    runs = s.scalars(select(AnalysisRun).where(
+        AnalysisRun.stage == "classify", AnalysisRun.completed_at.is_not(None))
+        .order_by(AnalysisRun.started_at)).all()
+    return [r for r in runs if key(r) == key(cur)
+            and (r.config or {}).get("scope") == "all"
+            and not (r.config or {}).get("dry_run")]
+
+
+def _mean_sd(xs: list) -> tuple:
+    m = sum(xs) / len(xs)
+    sd = (sum((x - m) ** 2 for x in xs) / (len(xs) - 1)) ** 0.5 if len(xs) > 1 else 0.0
+    return m, sd
+
+
+@dataclass
+class RunComparison:
+    labels: list = field(default_factory=list)       # one per run, oldest first
+    gold: list = field(default_factory=list)         # [(Agreement all, Agreement human)]
+    pairwise: list = field(default_factory=list)     # [(i, j, same, shared)]
+    spread: dict = field(default_factory=dict)       # modal-vote count -> n pairs
+    n_common: int = 0
+    gold_votes: dict = field(default_factory=lambda: defaultdict(int))
+    confidence_auroc: Optional[float] = None
+
+    def report(self) -> str:
+        if not self.labels:
+            return "no comparable classify runs"
+        n = len(self.labels)
+        lines = [f"{n} comparable classify runs (same version, model, prompt, "
+                 "context, effort; full corpus)", "", "gold agreement (engagement):"]
+        for lab, (a, h) in zip(self.labels, self.gold):
+            lines.append(f"  {lab:18s} all {a.engagement_same}/{a.n} = {a.engagement_same / a.n:.1%}"
+                         f" (kappa {a.kappa():.2f})   human {h.engagement_same}/{h.n} = "
+                         f"{h.engagement_same / h.n:.1%}" if a.n and h.n else f"  {lab}: no gold overlap")
+        for name, i in (("all", 0), ("human", 1)):
+            xs = [g[i].engagement_same / g[i].n for g in self.gold if g[i].n]
+            if xs:
+                m, sd = _mean_sd(xs)
+                lines.append(f"  mean {name:5s} {m:.1%} +/- {sd:.1%} (sample sd over runs)")
+        if self.pairwise:
+            lines += ["", "pairwise agreement on shared pairs:"]
+            for i, j, same, shared in self.pairwise:
+                lines.append(f"  {self.labels[i]} vs {self.labels[j]}: {same / shared:.1%} of {shared}")
+        if self.n_common:
+            lines += ["", f"modal label share over {n} runs ({self.n_common} pairs in all):"]
+            for top in sorted(self.spread, reverse=True):
+                k = self.spread[top]
+                lines.append(f"  in {top}/{n} runs: {k} ({k / self.n_common:.1%})")
+            lines += ["", "gold correctness by run agreement:"]
+            for grp in ("unanimous", "split", "majority"):
+                ok, bad = self.gold_votes[(grp, True)], self.gold_votes[(grp, False)]
+                if ok + bad:
+                    lines.append(f"  {grp:9s} {ok}/{ok + bad} = {ok / (ok + bad):.1%}")
+        if self.confidence_auroc is not None:
+            lines.append(f"  current run's self-reported confidence: AUROC "
+                         f"{self.confidence_auroc:.2f} (0.5 = uninformative)")
+        return "\n".join(lines)
+
+
+def compare_runs(path: Optional[Path] = None) -> RunComparison:
+    """Measure run-to-run noise across repeats of the current classify run.
+
+    Single runs' gold scores scatter by ~3 points (TODO.md: four runs, 75.6
+    to 82.1%), so quote the mean and spread, never the best run. Agreement
+    across runs doubles as a per-pair uncertainty score.
+    """
+    gold = load_gold(path)
+    rc = RunComparison()
+    with session() as s:
+        runs = comparable_runs(s)
+        preds = []
+        for r in runs:
+            d = {}
+            for a, e, eng, uses, conf in s.execute(
+                    select(Paper.arxiv_id, Event.canonical_name, EventUsage.engagement,
+                           EventUsage.uses, EventUsage.confidence)
+                    .join(EventUsage, EventUsage.paper_id == Paper.id)
+                    .join(Event, Event.id == EventUsage.event_id)
+                    .where(EventUsage.analysis_run_id == r.id)).all():
+                u = normalise_uses(uses if uses else [eng])
+                d[(a, e)] = (deepest_use(u), u, conf)
+            preds.append(d)
+            rc.labels.append(f"{r.started_at:%Y-%m-%d %H:%M}" + (" *" if r.is_current else ""))
+        current = next((i for i, r in enumerate(runs) if r.is_current), None)
+
+    for d in preds:
+        a, h = Agreement(), Agreement()
+        for row in gold:
+            k = (row["arxiv_id"], row["event"])
+            if k in d:
+                a.add(k, row, d[k][1], set())
+                if row.get("labelled_by", "human") == "human":
+                    h.add(k, row, d[k][1], set())
+        rc.gold.append((a, h))
+
+    for i in range(len(preds)):
+        for j in range(i + 1, len(preds)):
+            shared = preds[i].keys() & preds[j].keys()
+            if shared:
+                rc.pairwise.append((i, j, sum(preds[i][k][0] == preds[j][k][0]
+                                              for k in shared), len(shared)))
+
+    if len(preds) > 1:
+        common = set.intersection(*(set(d) for d in preds))
+        rc.n_common = len(common)
+        for k in common:
+            top = Counter(d[k][0] for d in preds).most_common(1)[0][1]
+            rc.spread[top] = rc.spread.get(top, 0) + 1
+        for row in gold:
+            k = (row["arxiv_id"], row["event"])
+            if k not in common:
+                continue
+            truth = deepest_use(row_uses(row))
+            label, top = Counter(d[k][0] for d in preds).most_common(1)[0]
+            rc.gold_votes[("unanimous" if top == len(preds) else "split", label == truth)] += 1
+            rc.gold_votes[("majority", label == truth)] += 1
+
+    if current is not None:
+        d = preds[current]
+        scored = [(d[k][2], d[k][0] == deepest_use(row_uses(row)))
+                  for row in gold for k in [(row["arxiv_id"], row["event"])] if k in d]
+        pos = [c for c, ok in scored if ok]
+        neg = [c for c, ok in scored if not ok]
+        if pos and neg:
+            rc.confidence_auroc = sum((p > n) + 0.5 * (p == n)
+                                      for p in pos for n in neg) / (len(pos) * len(neg))
+    return rc

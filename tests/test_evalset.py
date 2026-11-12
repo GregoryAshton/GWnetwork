@@ -180,3 +180,51 @@ def test_resolving_a_dispute_takes_it_off_the_list(temp_db, tmp_path, monkeypatc
                follow_redirects=False)
     assert r.headers["location"].startswith("/row/1")             # moves on, not back
     assert "1 disputed pair" in c.get("/review").text
+
+
+def test_eval_runs_compares_only_repeats_of_the_current_run(temp_db, tmp_path):
+    """Gold-only or differently configured runs are experiments, not noise
+    samples; counting them would distort the run-to-run spread."""
+    from datetime import datetime
+
+    from gwnetwork.evalset import compare_runs
+    from gwnetwork.models import EventUsage
+
+    cfg = {"scope": "all", "context": "excerpts", "effort": None}
+    with temp_db.session() as s:
+        ev = Event(canonical_name="GW150914")
+        papers = [Paper(arxiv_id=f"2401.{i:05d}", title="t", abstract="x") for i in range(2)]
+        s.add_all([ev, *papers])
+
+        def run(day, config, current=False, labels=("strain_analysis", "qualitative")):
+            r = AnalysisRun(stage="classify", pipeline_version="classify-0.4",
+                            model_id="m", prompt_sha256="p", config=config,
+                            started_at=datetime(2026, 11, day),
+                            completed_at=datetime(2026, 11, day), is_current=current)
+            s.add(r)
+            s.flush()
+            for p, eng in zip(papers, labels):
+                uses = [eng] if eng != "cited_only" else []
+                s.add(EventUsage(paper_id=p.id, event_id=ev.id, analysis_run_id=r.id,
+                                 engagement=eng, uses=uses, confidence=0.5))
+        s.flush()
+        run(1, cfg)
+        run(2, {**cfg, "scope": "gold"}, labels=("cited_only", "cited_only"))
+        run(3, {**cfg, "context": "fulltext"}, labels=("cited_only", "cited_only"))
+        run(4, cfg, current=True, labels=("strain_analysis", "cited_only"))
+
+    gold = tmp_path / "gold.jsonl"
+    gold.write_text("\n".join(json.dumps(r) for r in [
+        {"arxiv_id": "2401.00000", "event": "GW150914", "uses": ["strain_analysis"],
+         "engagement": "strain_analysis", "labelled_by": "human"},
+        {"arxiv_id": "2401.00001", "event": "GW150914", "uses": ["qualitative"],
+         "engagement": "qualitative", "labelled_by": "human"},
+    ]) + "\n")
+
+    rc = compare_runs(gold)
+    assert len(rc.labels) == 2 and rc.labels[1].endswith("*")
+    assert [a.engagement_same for a, _ in rc.gold] == [2, 1]
+    assert rc.pairwise == [(0, 1, 1, 2)]
+    assert rc.spread == {2: 1, 1: 1}
+    assert rc.gold_votes[("unanimous", True)] == 1
+    assert "mean all   75.0%" in rc.report()

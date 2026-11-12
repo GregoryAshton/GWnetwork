@@ -29,7 +29,7 @@ Gold agreement (engagement) over four full classify-0.4 runs with the same
 configuration: 80.7% (2026-10-21), 82.1% (v1, 2026-10-22), 75.6%
 (2026-11-12 13:45), 81.2% (2026-11-12 20:15, current for v2); mean
 79.9% +/- 2.9. Person-labelled pairs: 75.4 / 80.3 / 72.4 / 75.6, mean
-75.9% +/- 3.2. The 13:45 run is a low draw, not drift: all 31 of its gold
+75.9% +/- 3.3. The 13:45 run is a low draw, not drift: all 31 of its gold
 flips are in papers whose inputs did not change.
 
 - **Run-to-run label instability is ~13%.** Any two of the four runs agree
@@ -46,8 +46,8 @@ flips are in papers whose inputs did not change.
   (AUROC 0.63). Next for the paper: prediction-powered inference
   (Angelopoulos et al. 2023) for headline fractions, using the gold set
   (weighted for its per-paper sampling) and, optionally, conformal label
-  sets scored by run agreement. Comparison script: see the 2026-11-12
-  session (runs_compare); worth adding as `gwn eval runs`.
+  sets scored by run agreement. `gwn eval runs` reproduces all of the
+  above.
 - **Released-sample and strain uses undercounted** (recall 0.46 and ~0.85, both
   precision 1.00): collective statements ("we use the released samples for all
   events") name no event, so they are never in the excerpts. Full-text mode
