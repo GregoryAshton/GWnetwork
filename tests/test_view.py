@@ -70,3 +70,23 @@ def test_observing_run_from_gps():
     assert observing_run(1187008882.4) == "O2"      # GW170817
     assert observing_run(1242442967.4) == "O3a"     # GW190521
     assert observing_run(None) is None
+
+
+def test_independent_catalogues_do_not_change_lvk_marginal_status(temp_db):
+    """A 4-OGC or IAS record on an LVK-marginal event says nothing about how the
+    LVK rated it; an IAS-only event is not 'marginal' either."""
+    ingest([
+        rec("GW777777", "O3_IMBH_marginal", 1, {"far": 0.06}),
+        rec("GW777777", "IAS-HM", 2, {"catalogue_p_astro": 0.8}),
+        rec("GW666666", "4-OGC", 3, {"catalogue_p_astro": 0.7}),
+    ])
+    rebuild()
+    with temp_db.session() as s:
+        views = {v.event_id: v for v in s.scalars(select(EventView))}
+        names = dict(s.execute(select(Event.id, Event.canonical_name)).all())
+    by_name = {names[k]: v for k, v in views.items()}
+    assert by_name["GW777777"].is_marginal is True
+    # v2 catalogues never displace an LVK primary record
+    assert by_name["GW777777"].catalog == "O3_IMBH_marginal"
+    assert by_name["GW666666"].is_marginal is False
+    assert by_name["GW666666"].p_astro is None  # catalogue_* stays out

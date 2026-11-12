@@ -37,8 +37,22 @@ CATALOG_RANK = [
     "IAS-O3a",
     "GWTC-3-marginal", "GWTC-2.1-marginal", "GWTC-1-marginal", "O3_IMBH_marginal",
     "O1_O2-Preliminary", "Initial_LIGO_Virgo",
+    # Independent catalogues added for v2 (data/events/ias-*.yaml, ogc-*.yaml)
+    # rank below every LVK listing so they never displace an existing primary
+    # record or its GPS time. Among themselves, tabulated GPS times (OGC, IAS
+    # O1/O2) come before times computed from the event name (IAS O3b, IAS-HM).
+    "4-OGC", "3-OGC", "2-OGC", "1-OGC", "IAS-O2", "IAS-O1", "IAS-O3b", "IAS-HM",
 ]
 _RANK = {c: i for i, c in enumerate(CATALOG_RANK)}
+
+# Search catalogues from outside the LVK (data/events/ias-*.yaml, ogc-*.yaml;
+# IAS-O3a via GWOSC). They say nothing about how the LVK rated an event, so
+# `is_marginal` ignores them: an LVK-marginal event re-detected by 4-OGC is
+# still LVK-marginal.
+INDEPENDENT_CATALOGS = {
+    "IAS-O1", "IAS-O2", "IAS-O3a", "IAS-O3b", "IAS-HM",
+    "1-OGC", "2-OGC", "3-OGC", "4-OGC",
+}
 UNRANKED = len(CATALOG_RANK) + 1
 
 PARAM_FIELDS = [
@@ -175,6 +189,7 @@ def rebuild() -> ViewStats:
             gps = next((r.gps for r in records if r.gps is not None), None)
             m1, m2 = values.get("mass_1_source"), values.get("mass_2_source")
             catalogs = {r.catalog for r in records if r.catalog}
+            lvk_catalogs = catalogs - INDEPENDENT_CATALOGS
             instruments, instruments_basis = event_instruments(records)
 
             view = EventView(
@@ -184,7 +199,8 @@ def rebuild() -> ViewStats:
                 catalog_version=primary.version if primary else None,
                 params_from_catalog=source_of.get("mass_1_source"),
                 n_catalogs=len(catalogs),
-                is_marginal=all("marginal" in (c or "").lower() for c in catalogs) if catalogs else False,
+                is_marginal=(all("marginal" in c.lower() for c in lvk_catalogs)
+                             if lvk_catalogs else False),
                 gps=gps,
                 observing_run=observing_run(gps),
                 mass_ratio=(min(m1, m2) / max(m1, m2)) if (m1 and m2) else None,
