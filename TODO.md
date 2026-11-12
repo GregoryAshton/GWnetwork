@@ -25,15 +25,29 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
 
 ## Classification (Haiku 5.5, excerpts)
 
-Overall engagement agreement 81% (kappa 0.75); 76% on person-labelled pairs.
-The v1 run (2026-10-22, same configuration): 82.1% (kappa 0.76); 80.3% on
-person-labelled pairs.
+Gold agreement (engagement) over four full classify-0.4 runs with the same
+configuration: 80.7% (2026-10-21), 82.1% (v1, 2026-10-22), 75.6%
+(2026-11-12 13:45), 81.2% (2026-11-12 20:15, current for v2); mean
+79.9% +/- 2.9. Person-labelled pairs: 75.4 / 80.3 / 72.4 / 75.6, mean
+75.9% +/- 3.2. The 13:45 run is a low draw, not drift: all 31 of its gold
+flips are in papers whose inputs did not change.
 
-- **Run-to-run label instability is ~13%.** Two classify-0.4 runs with the same
-  configuration (2026-10-21 and the v1 run of 2026-10-22, inputs differing
-  only for ~120 re-fetched papers) agree on 30,634 of 35,207 shared pairs
-  (87%), while each agrees with gold at ~81-82%. Report it as an uncertainty
-  alongside the confusion-matrix correction; two runs can bound it.
+- **Run-to-run label instability is ~13%.** Any two of the four runs agree
+  on 86.7-88.1% of shared pairs (~35,200). The spread in gold agreement
+  (~3 points) is as large as the binomial error on 234 gold pairs, so quote
+  the mean and spread of the runs, never one run's score, and never promote
+  a run because it scored best on gold (selection on the eval set). Policy:
+  the latest full run is current.
+- **Agreement across runs is a usable uncertainty score; self-reported
+  confidence is not.** 77.8% of pairs get the same label in all four runs
+  and those are 88% correct on gold; split pairs' modal label is 52%
+  correct. Majority vote scores 80.7% (no better than one run, but less
+  variable). `EventUsage.confidence` separates right from wrong only weakly
+  (AUROC 0.63). Next for the paper: prediction-powered inference
+  (Angelopoulos et al. 2023) for headline fractions, using the gold set
+  (weighted for its per-paper sampling) and, optionally, conformal label
+  sets scored by run agreement. Comparison script: see the 2026-11-12
+  session (runs_compare); worth adding as `gwn eval runs`.
 - **Released-sample and strain uses undercounted** (recall 0.46 and ~0.85, both
   precision 1.00): collective statements ("we use the released samples for all
   events") name no event, so they are never in the excerpts. Full-text mode
@@ -156,11 +170,12 @@ from the analysis; a label upgrade a question needs is a new release.
     GW170817A 27 (the reviewed set); the 35 new events have 1-23 papers
     each. The current classify run predates it, so new pairs have no
     usage until the next classification.
-  - **Next: classification** (waiting on a human). Classification: a full
-    run (a run replaces the current one, so a subset run would drop the
-    rest), ~$5 Haiku 5.5 batch on excerpts, ~25 min; it also re-rolls the
-    ~13% run-to-run label noise on unchanged papers. Alternative: code to
-    classify only papers whose event set changed and carry the rest over.
+  - ~~Classification~~ Done 2026-11-12: two full runs (13:45 and 20:15,
+    ~$5 each, 35,757 pairs, no errors); the 20:15 run is current. 516
+    pairs are new relative to v1 (234 GW151012 via LVT151012, 27
+    GW170817A, the rest IAS/OGC events). Gold results under
+    Classification above. Site not re-exported; v2 export waits for the
+    cutoff extension.
   - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
     GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
     marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
