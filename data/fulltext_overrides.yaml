@@ -11,7 +11,7 @@
 #     source: arxiv_html | pdf    (default arxiv_html)
 #     reason: <why>
 
-2010.14527:  # GWTC-2
+"2010.14527":  # GWTC-2
   version: 3
   source: pdf
   reason: >-
@@ -19,14 +19,14 @@
     unexpanded, gluing designations together (~7,400 instances); HTML yields
     5-6 events, the v3 PDF 47.
 
-2509.04348:  # GWTC-4.0 cosmology
+"2509.04348":  # GWTC-4.0 cosmology
   version: 2
   source: arxiv_html
   reason: >-
     v3 has no HTML and its PDF text omits the event tables (39 events even
     with the raised form-XObject limit); v2 HTML yields 143.
 
-2310.03555:
+"2310.03555":
   version: 2
   source: pdf
   reason: >-

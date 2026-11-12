@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import os
+
+import pytest
 from datetime import datetime, timezone
 from types import SimpleNamespace
 
@@ -145,11 +147,11 @@ def test_overrides_need_a_version_and_a_reason(tmp_path):
     import pytest
     from gwnetwork.corpus.discover import load_overrides
     good = tmp_path / "ok.yaml"
-    good.write_text("2010.14527:\n  version: 3\n  source: pdf\n  reason: macros\n")
+    good.write_text("\"2010.14527\":\n  version: 3\n  source: pdf\n  reason: macros\n")
     assert load_overrides(good) == {"2010.14527": {"version": 3, "source": "pdf",
                                                   "reason": "macros"}}
     bad = tmp_path / "bad.yaml"
-    bad.write_text("2010.14527:\n  version: 3\n")
+    bad.write_text("\"2010.14527\":\n  version: 3\n")
     with pytest.raises(ValueError, match="reason"):
         load_overrides(bad)
     assert load_overrides(tmp_path / "missing.yaml") == {}
@@ -227,7 +229,7 @@ def test_mention_override_reassigns_the_event(temp_db, tmp_path):
     from gwnetwork.extract.runner import extract_all
     from gwnetwork.models import Event, EventDesignation, Mention
     (tmp_path / "mention_overrides.yaml").write_text(
-        "1903.01998:\n  - from: GW190521\n    to: GW190521_074359\n    reason: masses\n")
+        "\"1903.01998\":\n  - from: GW190521\n    to: GW190521_074359\n    reason: masses\n")
     with temp_db.session() as s:
         for name in ("GW190521", "GW190521_074359"):
             e = Event(canonical_name=name)
@@ -244,3 +246,25 @@ def test_mention_override_reassigns_the_event(temp_db, tmp_path):
                              .join(Mention, Mention.paper_id == Paper.id)
                              .join(Event, Event.id == Mention.event_id)).all())
     assert got == {"1903.01998": "GW190521_074359", "other": "GW190521"}
+
+
+def test_unquoted_arxiv_ids_are_rejected(tmp_path):
+    """YAML reads 2203.07360 as the float 2203.0736: the override would
+    silently never match its paper."""
+    from gwnetwork.corpus.discover import load_overrides
+    from gwnetwork.extract.runner import load_mention_overrides
+    m = tmp_path / "m.yaml"
+    m.write_text("2203.07360:\n  - {from: A, to: B, reason: r}\n")
+    with pytest.raises(ValueError, match="quote"):
+        load_mention_overrides(m)
+    f = tmp_path / "f.yaml"
+    f.write_text("2203.07360: {version: 2, reason: r}\n")
+    with pytest.raises(ValueError, match="quote"):
+        load_overrides(f)
+
+
+def test_repo_mention_overrides_file_is_valid():
+    from gwnetwork.config import ROOT
+    from gwnetwork.extract.runner import load_mention_overrides
+    o = load_mention_overrides(ROOT / "data" / "mention_overrides.yaml")
+    assert "2203.07360" in o and "1611.08052" in o

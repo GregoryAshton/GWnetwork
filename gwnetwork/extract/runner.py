@@ -48,6 +48,9 @@ def load_mention_overrides(path: Optional[Path] = None) -> dict:
         return {}
     out = {}
     for arxiv_id, entries in (yaml.safe_load(path.read_text()) or {}).items():
+        if not isinstance(arxiv_id, str):
+            # Unquoted, YAML reads 2203.07360 as the float 2203.0736.
+            raise ValueError(f"{path}: quote the arXiv id {arxiv_id!r}")
         for e in entries:
             if not (e.get("from") and e.get("to") and e.get("reason")):
                 raise ValueError(f"{path}: {arxiv_id} entries need from, to and reason")

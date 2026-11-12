@@ -5,12 +5,12 @@
 # and offsets; only the event they count towards changes. Every entry needs a
 # reason with the evidence.
 #
-#   <arxiv id>:
+#   "<arxiv id>":    # quoted: unquoted, YAML reads 2203.07360 as 2203.0736
 #     - from: <canonical name the text resolves to>
 #       to: <canonical name the paper means>
 #       reason: <evidence>
 
-1903.01998:
+"1903.01998":
   - from: GW190521
     to: GW190521_074359
     reason: >-
@@ -18,7 +18,7 @@
       (42.1 and 32.7 Msun) and its companion GW190630 are those of the GWTC-2
       event GW190521_074359; GW190521 itself is ~85 + 66 Msun.
 
-1611.08052:
+"1611.08052":
   - from: GW151216
     to: GW151226
     reason: >-
@@ -28,7 +28,7 @@
       is the DECam follow-up of GW151226. A typo, not the IAS candidate,
       which was not public until 2019 (arXiv:1902.10331).
 
-1710.05909:
+"1710.05909":
   - from: GW170818
     to: GW170817
     reason: >-
@@ -42,7 +42,7 @@
 # 2026-11-12 from each paper's sentences: 27 papers mean the IAS candidate and
 # keep it; these 61 mean the BNS merger GW170817.
 
-1710.05433:
+"1710.05433":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -52,7 +52,7 @@
       three locations, the South African As'. Submitted before the IAS
       candidate was named.
 
-1710.05805:
+"1710.05805":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -62,7 +62,7 @@
       indeed the main sites of the very heavy elements '. Submitted before the
       IAS candidate was named.
 
-1710.06168:
+"1710.06168":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -71,7 +71,7 @@
       and this GW event has been dubbed as GW170817A.'. Submitted before the
       IAS candidate was named.
 
-1801.05167:
+"1801.05167":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -79,7 +79,7 @@
       afterglow of GW170817A and GRB 170817A). Submitted before the IAS
       candidate was named.
 
-1801.06516:
+"1801.06516":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -89,7 +89,7 @@
       constant (Abbott et al., 2017).'. Submitted before the IAS candidate was
       named.
 
-1803.02620:
+"1803.02620":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -98,7 +98,7 @@
       neutron star merger, was confirmed in [21, 22, 23].'. Submitted before
       the IAS candidate was named.
 
-1805.06319:
+"1805.06319":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -107,7 +107,7 @@
       detected in gravitational waves (GWs), has shown beyond doubt that NSMs
       produce beamed SHBs.'. Submitted before the IAS candidate was named.
 
-1806.02165:
+"1806.02165":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -115,7 +115,7 @@
       hyper-massive c© 2002 RAS'. Submitted before the IAS candidate was
       named.
 
-1809.03087:
+"1809.03087":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -123,7 +123,7 @@
       distribution of the ejecta, motivated by recent studies on the kilonova
       emission of GW170817A.'. Submitted before the IAS candidate was named.
 
-1810.10966:
+"1810.10966":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -132,7 +132,7 @@
       fluence of neutrinos from GW170817A.'. Submitted before the IAS
       candidate was named.
 
-1901.08266:
+"1901.08266":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -141,7 +141,7 @@
       appearance of the counter-jet at ∼800\sim 800—1000 days.'. Submitted
       before the IAS candidate was named.
 
-1903.03909:
+"1903.03909":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -149,7 +149,7 @@
       / sigma^A_GW170817 (superscript A for a detector) for GW170817-like
       events. Submitted before the IAS candidate was named.
 
-1903.12486:
+"1903.12486":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -159,7 +159,7 @@
       observation of gravitational wave (GW) signal [31, 32, 3'. Submitted
       before the IAS candidate was named.
 
-1904.10488:
+"1904.10488":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -167,7 +167,7 @@
       views on the SGRB radiation from a BNS.'. Submitted before the IAS
       candidate was named.
 
-1906.00502:
+"1906.00502":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -175,7 +175,7 @@
       Fermi-LAT ∼\sim 1000 s after the merger trigger.'. Submitted before the
       IAS candidate was named.
 
-1907.07558:
+"1907.07558":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -185,7 +185,7 @@
       [5]; a gamma-ray burst from the neutron star me'. Submitted before the
       IAS candidate was named.
 
-1908.04154:
+"1908.04154":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -195,7 +195,7 @@
       a gamma-ray flare are prime examples of '. Submitted before the IAS
       candidate was named.
 
-1908.05427:
+"1908.05427":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -203,7 +203,7 @@
       cascade mode to search for neutrino signal associated with GW170817A.'.
       Submitted before the IAS candidate was named.
 
-1909.11691:
+"1909.11691":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -212,7 +212,7 @@
       which typically assume emission from an on-axis top hat jet.'. Submitted
       before the IAS candidate was named.
 
-1912.08698:
+"1912.08698":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -221,14 +221,14 @@
       candidate kilonovae (Troja et al., 2018a; Lamb et al., 2019; Troja, et
       al., 2019).'.
 
-2001.00863:
+"2001.00863":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'We see, then, that STVG is still
       standing after the observations of GW170817 and GW170817A.'.
 
-2006.13956:
+"2006.13956":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -237,14 +237,14 @@
       extraordinary event (Goldstein et al. 2017) and it was detected at
       4.82σ\sigma, although its very low distance (40 Mpc).'.
 
-2009.04275:
+"2009.04275":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'GW170817A NS-NS
       1.47−0.07+0.091.47^{+0.09}_{-0.07}'.
 
-2009.12255:
+"2009.12255":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -253,7 +253,7 @@
       the ’60s and was rejuvenated by the report of MeV neutrinos from SN1987A
       in the Large Magellanic Cloud, the de'.
 
-2010.04745:
+"2010.04745":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -261,7 +261,7 @@
       sigma^A_GW170817 (superscript A for a detector) for a GW170817-like
       event.
 
-2104.02445:
+"2104.02445":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -270,7 +270,7 @@
       relativistic jet: the superluminal motion of the radio image indicates a
       relativistic collimated source [11, 12] and the closur'.
 
-2105.01076:
+"2105.01076":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -278,7 +278,7 @@
       model that fits GW170817A’s afterglow observations, as found by Mooley
       et al. [54].'.
 
-2105.12582:
+"2105.12582":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -287,7 +287,7 @@
       its companion GW170817A [717], since the speed of the gravitational
       waves is constrained to the value of the speed'.
 
-2106.15781:
+"2106.15781":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -296,14 +296,14 @@
       GW170817A;], a fast-evolving ultraviolet-optical-infrared transient [3,
       14, 28, 33, 36, 57, 89, 97, 63, AT2017gfo; e.g.'.
 
-2107.12418:
+"2107.12418":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'At ≈40\approx 40 Mpc, GW170817A was an
       exceptionally nearby binary neutron star merger.'.
 
-2107.14239:
+"2107.14239":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -312,14 +312,14 @@
       and Chornock (2020, see their figure 3) estimate the rate of
       GW170817A-like SGRBs as ≳300\gtrsim 300 Gpc−3​yr−1\,\rm{'.
 
-2108.01184:
+"2108.01184":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: GRB-targeted searches of O1/O2 'detected the
       already discussed GW170817A', i.e. the BNS with GRB 170817A.
 
-2110.09604:
+"2110.09604":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -328,7 +328,7 @@
       transient [3, AT2017gfo;], and of an off-axis jet [55, 76, e.g.,]
       associated with GW170817 [2] has opened the long-awaite'.
 
-2112.08982:
+"2112.08982":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -337,7 +337,7 @@
       gravitational wave source with a de- tection of an electromagnetic
       counterpart.'.
 
-2203.07360:
+"2203.07360":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -345,7 +345,7 @@
       germanium oxide (BGO) detectors of Fermi-GBM [6] detected the first
       photons from the gravitational wave event GW170817A [365].'.
 
-2205.02459:
+"2205.02459":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -354,7 +354,7 @@
       [30, 97] suggested the presence of a local population of low-luminosity
       bursts following the merger of two NSs '.
 
-2205.08513:
+"2205.08513":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -363,7 +363,7 @@
       incorporate information obtained from the GRB afterglow of GW170817A,
       where we employ the data set collected in Tr'.
 
-2207.12205:
+"2207.12205":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -371,7 +371,7 @@
       Gen2 [170] the sensitivity to neutrino transients at the location of
       GW170817A is shown.'.
 
-2209.00795:
+"2209.00795":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -380,7 +380,7 @@
       associating gamma ray burst GW170817A [22] is the most stringent[23, 24,
       25, 26, 27, 28].'.
 
-2211.09449:
+"2211.09449":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -388,7 +388,7 @@
       of these mergers is around 300 Gpc-3 yr-1 Mandel & Broekgaarden
       ((2021)).'.
 
-2211.12403:
+"2211.12403":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -396,13 +396,13 @@
       LEAP, highly constraining measurements in combination with GW data
       remain only possible in case of outlier events such as GW170817A.'.
 
-2212.00747:
+"2212.00747":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes '(2016) and GW170817A; Abbott et al.'.
 
-2302.11394:
+"2302.11394":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -411,7 +411,7 @@
       constraining the burst properties through analysis of the afterglow
       light curves.'.
 
-2305.12155:
+"2305.12155":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -419,7 +419,7 @@
       GW170817A, detected by the Fermi GRB monitor [8], marked the
       establishment of multi-messenger GW astronomy [9].'.
 
-2306.15833:
+"2306.15833":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -428,7 +428,7 @@
       of GW170817, the result of the inspiral and merger of two neutrons stars
       (BNS), and its gamma-ray (GW170817A) an'.
 
-2308.07348:
+"2308.07348":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -436,14 +436,14 @@
       from the HMNS produced in GW170817A over its relatively short lifetime
       of ≲1\lesssim 1 s [110].'.
 
-2309.12644:
+"2309.12644":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'GW170817A NS-NS
       1.47−0.07+0.091.47^{+0.09}_{-0.07}'.
 
-2401.03474:
+"2401.03474":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -451,7 +451,7 @@
       GW170817A have placed a very strong bound on the tensor GW speed [48,
       49, 50].'.
 
-2403.14016:
+"2403.14016":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -459,7 +459,7 @@
       GW170817A, this requires an extension of the common GRB afterglow models
       which typically assume emission from an on-axis top hat jet.'.
 
-2408.16534:
+"2408.16534":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -468,14 +468,14 @@
       the concurrent detection of a short gamma-ray burst (GRB), GW170817A
       [2], revolutionized multimessenger astrono'.
 
-2410.12185:
+"2410.12185":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'Could the recent rebrightening of the
       GW170817A afterglow be caused by a counter jet?'.
 
-2411.00943:
+"2411.00943":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -484,7 +484,7 @@
       been proposed for these X-ray features observed in other sGRBs (e.g.
       [211, 212, 213, 214]) which are compatib'.
 
-2411.16136:
+"2411.16136":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -493,14 +493,14 @@
       and, for short GRBs based on GW170817A, KN rates have been calculated to
       be R=352−281+810R=352^{+810}_{-281} Gp'.
 
-2504.08973:
+"2504.08973":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes '(2017), the upper-limit sensitivity to
       neutrino transients at the location of GW170817A is shown.'.
 
-2507.09623:
+"2507.09623":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -508,7 +508,7 @@
       Physics: the First Constraint on Light Millicharged Dark Matter via
       Time-Delay Analysis of GRB GW170817A'.
 
-2509.02769:
+"2509.02769":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -517,7 +517,7 @@
       structured jet framework, with their contrasting light curve evolution
       being dominated by differences in jet and'.
 
-2510.05297:
+"2510.05297":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -526,7 +526,7 @@
       emission and is by far the best-sampled kilonova both in terms of its
       lightcurve (e.g.'.
 
-2511.00253:
+"2511.00253":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -534,14 +534,14 @@
       pivotal moment in modern astrophysics, highlighting the importance of NS
       mergers in understanding the origin of heavy elements.'.
 
-2605.11437:
+"2605.11437":
   - from: GW170817A
     to: GW170817
     reason: >-
       BNS/GRB 170817A context: writes 'Could the Recent Rebrightening of the
       GW170817A Afterglow Be Caused by a Counterjet?.'.
 
-2606.18468:
+"2606.18468":
   - from: GW170817A
     to: GW170817
     reason: >-
@@ -550,7 +550,7 @@
       gamma-ray burst (sGRB) GRB170817A from a binary neutron star (BNS)
       coalescence marked the dawn of multi-messeng'.
 
-2607.12967:
+"2607.12967":
   - from: GW170817A
     to: GW170817
     reason: >-

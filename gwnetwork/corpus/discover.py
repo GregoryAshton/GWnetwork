@@ -142,6 +142,9 @@ def load_overrides(path: Optional[Path] = None) -> dict:
     raw = yaml.safe_load(path.read_text()) or {}
     out = {}
     for arxiv_id, entry in raw.items():
+        if not isinstance(arxiv_id, str):
+            # Unquoted, YAML reads 2203.07360 as the float 2203.0736.
+            raise ValueError(f"{path}: quote the arXiv id {arxiv_id!r}")
         if not entry.get("version") or not entry.get("reason"):
             raise ValueError(f"{path}: {arxiv_id} needs a version and a reason")
         if entry.get("source", "arxiv_html") not in ("arxiv_html", "pdf"):
