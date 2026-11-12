@@ -1,0 +1,122 @@
+{
+ "catalogue": "IAS-O1",
+ "papers": [
+  "1902.10341",
+  "1902.10331"
+ ],
+ "criterion": {
+  "summary": "No numerical detection threshold is stated in the pipeline paper (1902.10341); its table splits 'events' from 'subthreshold candidates' (FAR ~1/O1, p_astro ~0.15). The companion paper (1902.10331) justifies naming GW151216 by p_astro being above the GWTC-1 bar of 0.5 for listing events. So the effective criterion is p_astro > 0.5 (borrowed from GWTC-1), stated only in 1902.10331 and only for GW151216.",
+  "quote": "Our best estimate for the probability that this event is of astrophysical origin yields $P_{\\rm astro} \\approx 0.7$, which is above the bar of $0.5$ for listing events in the catalog of confident gravitational-wave detections defined in \\cite{LIGOScientific:2018mvr}. [...] We therefore adopt the name \\CANDIDATE for this event.",
+  "section": "Sec. II 'The new event'",
+  "paper": "1902.10331"
+ },
+ "tiers": [
+  {
+   "name": "events (above double rule in Table III)",
+   "quote": "We further found an additional event, GW151216, with a FAR of $1/(\\num{52}\\,\\text{O1})$, reported in greater detail in a companion paper~\\cite{GW151216}. These and two additional sub-threshold candidates with FAR of approximately 1/O1 are reported in Table \\ref{tab:signalsFound}.",
+   "section": "Sec. IV 'Results of the BBH search', 1902.10341"
+  },
+  {
+   "name": "sub-threshold candidates (below double rule in Table III)",
+   "quote": "Here we report all the signals and sub-threshold candidates found in the search.",
+   "section": "Sec. IV 'Results of the BBH search', 1902.10341 (Table III caption: 'Events and subthreshold candidates in all of the binary black hole banks.')"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW151226"
+   ],
+   "gps": 1135136350.585,
+   "gps_source": "GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free' times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": "> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; 'O1' ~ 46 days)",
+   "snr": null,
+   "tier": "main",
+   "table": "Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of the binary black hole banks'), 1902.10341",
+   "paper_says_new": false,
+   "notes": "Bank BBH 1; rho_H^2=120.0, rho_L^2=52.1 (per-detector squared SNR, tabulated; no network SNR column). p_astro tabulated as 1 with footnote: 'We found no credible way of computing the probability density of the background distribution at these high SNRs'. Text: 'effective p_astro=1'. Paper does not explicitly call these LVC events; it calls only GW151216 new ('Our pipeline enabled us to identify a new binary black-hole merger GW151216'), so paper_says_new=false is inferred from that framing."
+  },
+  {
+   "designations": [
+    "GW151012"
+   ],
+   "gps": 1128678900.428,
+   "gps_source": "GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free' times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.9998,
+   "far": null,
+   "ifar": "> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; 'O1' ~ 46 days)",
+   "snr": null,
+   "tier": "main",
+   "table": "Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of the binary black hole banks'), 1902.10341",
+   "paper_says_new": false,
+   "notes": "Bank BBH 2; rho_H^2=55.66, rho_L^2=46.75 (per-detector squared SNR, tabulated; no network SNR column). p_astro 0.9998 footnote: 'Estimating p_astro for GW151012 required some extrapolation of the background trigger distribution.' Paper does not explicitly call these LVC events; it calls only GW151216 new ('Our pipeline enabled us to identify a new binary black-hole merger GW151216'), so paper_says_new=false is inferred from that framing."
+  },
+  {
+   "designations": [
+    "GW150914"
+   ],
+   "gps": 1126259462.411,
+   "gps_source": "GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free' times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": "> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; 'O1' ~ 46 days)",
+   "snr": null,
+   "tier": "main",
+   "table": "Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of the binary black hole banks'), 1902.10341",
+   "paper_says_new": false,
+   "notes": "Bank BBH 3; rho_H^2=396.1, rho_L^2=184.3 (per-detector squared SNR, tabulated; no network SNR column). p_astro tabulated as 1 with footnote: no credible way of computing background density at these high SNRs. Paper does not explicitly call these LVC events; it calls only GW151216 new ('Our pipeline enabled us to identify a new binary black-hole merger GW151216'), so paper_says_new=false is inferred from that framing."
+  },
+  {
+   "designations": [
+    "GW151216"
+   ],
+   "gps": 1134293073.164,
+   "gps_source": "GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free' times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.71,
+   "far": "1/(52 O1) in bank BBH 3 (1902.10341 Sec. IV; 1902.10331 Sec. II)",
+   "ifar": "52 O1 (1902.10341 Table III); 1902.10331 Sec. II: 'FAR^{-1}_{[20,40]} = 6.6 yr' (46.6 days coincident on-time); 1902.10331 abstract: 'one per six years'",
+   "snr": 8.5,
+   "tier": "main",
+   "table": "Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of the binary black hole banks'), 1902.10341; also 1902.10331 Sec. II 'The new event' (text) and Table I (parameters)",
+   "paper_says_new": true,
+   "notes": "Bank BBH 3; rho_H^2=39.4, rho_L^2=34.8 (per-detector squared SNR, tabulated; no network SNR column). Table footnote: 'A new event we are reporting in a companion paper'. 1902.10331 (Sec. II 'The new event') gives maximal network matched-filter SNR = 8.5 with IMRPhenomD over [20,512] Hz (this is the snr value recorded); P_astro ~ 0.71 (abstract) / ≈ 0.7 (Sec. II). 1902.10331 gives no GPS or UTC time. 1902.10331 notes the trigger 'was previously reported as a subthreshold candidate in the 1-OGC catalogue'. Only designation string used in either paper is 'GW151216' (macro \\CANDIDATE in 1902.10331)."
+  }
+ ],
+ "below_criterion": {
+  "count": 2,
+  "named": [],
+  "unnamed_labels": [
+   {
+    "label": "151231",
+    "gps": 1135557647.145,
+    "bank": "BBH 3",
+    "ifar": "0.98 O1",
+    "p_astro": 0.15,
+    "table": "Table III, 1902.10341 (sub-threshold section)"
+   },
+   {
+    "label": "151011",
+    "gps": 1128626886.595,
+    "bank": "BBH 4",
+    "ifar": "1.1 O1",
+    "p_astro": 0.14,
+    "table": "Table III, 1902.10341 (sub-threshold section)"
+   }
+  ],
+  "notes": "Labelled with bare date strings '151231' and '151011' (no GW prefix) in the Name column."
+ },
+ "open_questions": [
+  "1902.10341 never states a numerical detection threshold; the p_astro > 0.5 bar appears only in 1902.10331 as justification for naming GW151216. Decide whether to record the IAS-O1 criterion as 'p_astro > 0.5 (GWTC-1 bar)' or as 'paper's own events/sub-threshold split'.",
+  "Should the bare labels '151231' and '151011' (sub-threshold, p_astro 0.15/0.14) be stored as designations/aliases? They are not detections.",
+  "GW151216 IFAR is per-bank (BBH 3); 1902.10331 notes the FAR would be larger after a trials factor over the 5 BBH banks. Abstract says 'one per six years', text says 6.6 yr.",
+  "GPS times are 'linear-free' template times, not merger times; offsets from LVC times are expected.",
+  "GW150914/GW151012/GW151226 p_astro of 1 are 'effective' values (no credible background density) rather than computed values."
+ ],
+ "source_versions": {
+  "1902.10341": "v2",
+  "1902.10331": "v2"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

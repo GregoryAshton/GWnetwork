@@ -1,0 +1,197 @@
+{
+ "catalogue": "1-OGC",
+ "papers": [
+  "1811.01921"
+ ],
+ "criterion": {
+  "summary": "No single numerical threshold. GW150914 and GW151226 qualify via FAR < 1 per 50,000 yr; LVT151012 via p_astro = 0.976 / TDR 99.92% in a selected BBH region. The paper calls exactly these three 'statistically significant' and the BBH table caption draws the line at a TDR threshold of 99.92%.",
+  "quote": "There are three candidates which are statistically significant. These are the binary black hole mergers GW150914, LVT151012, and GW151226, which were previously reported in~\\cite{TheLIGOScientific:2016pea,Abbott:2016blz,Abbott:2016nmj}. [...] There are no other individually convincing candidates.",
+  "section": "Sec. 4 Results (sec:results)",
+  "paper": "1811.01921",
+  "supporting_quotes": [
+   {
+    "section": "Sec. 3 Evaluating Candidates based on the Astrophysical Population",
+    "quote": "We find two candidate events with FAR $< 1$ per $50\\,000$ years, corresponding to GW150914 and GW151226."
+   },
+   {
+    "section": "Table 2 caption (table:bbh)",
+    "quote": "There are three binary black hole mergers above a threshold corresponding to a true discovery rate of $99.92\\%$. The third most significant event, LVT151012, has a 97.6\\% probability of being astrophysical in origin."
+   },
+   {
+    "section": "Sec. 4.2 Revisiting LVT151012",
+    "quote": "Given a \\pastro{} value of 97.6$\\%$ we conclude that LVT151012 is astrophysical in origin."
+   },
+   {
+    "section": "Sec. 6 Discussion",
+    "quote": "We independently verify the discovery of GW150914 and GW151226 and report an improved significance of the candidate event LVT151012, which we claim should be viewed as a confident detection.  Apart from these three signals, none of the other candidate events are individually significant in our analysis."
+   }
+  ]
+ },
+ "tiers": [
+  {
+   "name": "FAR < 1 per 50,000 yr (GW150914, GW151226)",
+   "quote": "We find two candidate events with FAR $< 1$ per $50\\,000$ years, corresponding to GW150914 and GW151226.",
+   "section": "Sec. 3"
+  },
+  {
+   "name": "LVT151012 via p_astro/TDR in selected BBH region",
+   "quote": "We combine this FAR  with our conservative estimate of the rate of detections to estimate that 99.92\\% of binary black hole merger candidates at least as significant as LVT151012 are astrophysical in origin. We also estimate the probability that specifically LVT151012 is astrophysical in origin to be 97.59$\\%$.",
+   "section": "Sec. 4.2 Revisiting LVT151012"
+  },
+  {
+   "name": "sub-threshold (no other tier named)",
+   "quote": "The fourth event has only a 6$\\%$ chance of being astrophysical.",
+   "section": "Sec. 4.1 Binary Black Hole Candidates"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW150914",
+    "150914+09:50:45UTC"
+   ],
+   "gps": 1126259462.46,
+   "gps_source": "computed from Julian Date column (2457279.910665, Tables 1-2). The JD is on the TAI scale, not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC), so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation +17 s. JD has 6 decimals, so precision is ~0.09 s",
+   "julian_date": "2457279.910665",
+   "p_astro": null,
+   "tdr": null,
+   "far": null,
+   "ifar": {
+    "full_search_yr": ">66000",
+    "bbh_region_yr": ">66000",
+    "units": "yr (table column FAR^-1 (yr))"
+   },
+   "snr": {
+    "rho_H": 19.67,
+    "rho_L": 13.38
+   },
+   "ranking_stat": {
+    "name": "rho_c tilde",
+    "value": 18.45
+   },
+   "tier": "statistically significant (three BBH mergers)",
+   "table": "Table 1 (table:complete) and Table 2 (table:bbh)",
+   "paper_says_new": false,
+   "notes": "GW150914 and GW151226 established by FAR < 1 per 50,000 yr (Sec. 3); assumed signals in TDR/p_astro construction so no p_astro reported (\"-\")."
+  },
+  {
+   "designations": [
+    "GW151226",
+    "151226+03:38:53UTC"
+   ],
+   "gps": 1135136350.61,
+   "gps_source": "computed from Julian Date column (2457382.652426, Tables 1-2). The JD is on the TAI scale, not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC), so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation +17 s. JD has 6 decimals, so precision is ~0.09 s",
+   "julian_date": "2457382.652426",
+   "p_astro": null,
+   "tdr": null,
+   "far": null,
+   "ifar": {
+    "full_search_yr": ">59000",
+    "bbh_region_yr": ">59000",
+    "units": "yr (table column FAR^-1 (yr))"
+   },
+   "snr": {
+    "rho_H": 10.73,
+    "rho_L": 7.43
+   },
+   "ranking_stat": {
+    "name": "rho_c tilde",
+    "value": 11.62
+   },
+   "tier": "statistically significant (three BBH mergers)",
+   "table": "Table 1 (table:complete) and Table 2 (table:bbh)",
+   "paper_says_new": false,
+   "notes": "As GW150914: FAR < 1 per 50,000 yr; no p_astro reported."
+  },
+  {
+   "designations": [
+    "LVT151012",
+    "151012+09:54:43UTC"
+   ],
+   "gps": 1128678900.49,
+   "gps_source": "computed from Julian Date column (2457307.913420, Tables 1-2). The JD is on the TAI scale, not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC), so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation +17 s. JD has 6 decimals, so precision is ~0.09 s",
+   "julian_date": "2457307.913420",
+   "p_astro": 0.976,
+   "tdr": 0.999,
+   "far": null,
+   "ifar": {
+    "full_search_yr": "24",
+    "bbh_region_yr": "446",
+    "units": "yr (table column FAR^-1 (yr))"
+   },
+   "snr": {
+    "rho_H": 6.96,
+    "rho_L": 6.71
+   },
+   "ranking_stat": {
+    "name": "rho_c tilde",
+    "value": 9.06
+   },
+   "tier": "statistically significant (three BBH mergers)",
+   "table": "Table 1 (table:complete) and Table 2 (table:bbh)",
+   "paper_says_new": false,
+   "notes": "p_astro 0.976 (text: 97.59%), TDR 0.999 (Table 2). Two FARs: 1 per 24 yr over full bank (Table 1) and 1 per 446 yr in selected BBH region (Table 2). Paper claims it \"should be viewed as a confident detection\" but it was previously reported by LVC (as LVT151012, a candidate not labelled an unambiguous detection)."
+  }
+ ],
+ "below_criterion": {
+  "count": 35,
+  "count_note": "Distinct date designations across Table 1 (20 rows, 17 below) and Table 2 (20 rows, 17 below); 2 appear in both: ['151213+00:12:20UTC', '160103+05:48:36UTC']. No below-criterion candidate gets a GW-style name.",
+  "designations": [
+   "150912+15:39:02UTC",
+   "150914+09:50:45UTC",
+   "150922+05:41:08UTC",
+   "150923+07:10:59UTC",
+   "150928+10:49:00UTC",
+   "151006+06:06:50UTC",
+   "151008+14:09:17UTC",
+   "151009+05:06:12UTC",
+   "151012+06:30:45UTC",
+   "151012+09:54:43UTC",
+   "151015+01:40:52UTC",
+   "151019+00:23:16UTC",
+   "151029+13:34:39UTC",
+   "151104+04:12:55UTC",
+   "151116+22:41:48UTC",
+   "151120+16:20:06UTC",
+   "151121+03:34:09UTC",
+   "151124+11:25:19UTC",
+   "151127+02:00:30UTC",
+   "151128+14:37:02UTC",
+   "151202+01:18:13UTC",
+   "151202+15:32:09UTC",
+   "151206+14:19:29UTC",
+   "151213+00:12:20UTC",
+   "151216+09:24:16UTC",
+   "151216+18:49:30UTC",
+   "151217+03:47:49UTC",
+   "151218+18:30:58UTC",
+   "151220+07:45:36UTC",
+   "151222+05:28:26UTC",
+   "151226+03:38:53UTC",
+   "160103+05:48:36UTC",
+   "160104+03:51:51UTC",
+   "160109+08:08:42UTC",
+   "160111+22:49:34UTC"
+  ],
+  "named": []
+ },
+ "new_detection_claim": {
+  "claims_new": false,
+  "quote": "Since no new astrophysical events have been observed, we do not consider measurement of the signals' parameters",
+  "section": "Sec. 1 Introduction",
+  "other_quotes": [
+   "No other astrophysically significant signals are observed. (Sec. 1)",
+   "No other significant binary black hole candidates are found, nor did we observe any significant binary neutron star or neutron star--black hole candidates. (Abstract)"
+  ],
+  "note": "Its only upgrade is LVT151012 (LVC: candidate, not an unambiguous detection) to 'should be considered a true astrophysical event' (Sec. 1). No GW-named event outside LVC O1 results."
+ },
+ "open_questions": [
+  "No uniform numerical detection threshold: GW150914/GW151226 qualify by FAR, LVT151012 by p_astro/TDR in a restricted BBH region; p_astro is not reported for the top two.",
+  "GPS times are not tabulated; computed from the 6-decimal Julian Date (~0.09 s resolution). The JD column is evidently TAI-scale (36 s ahead of the designation UTC), so GPS = (JD-2444244.5)*86400 - 19; under a UTC reading the result would be 36 s off.",
+  "Paper never writes 'GW151012'; LVT151012 is the only GW-style name for that event."
+ ],
+ "source_versions": {
+  "1811.01921": "v3"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

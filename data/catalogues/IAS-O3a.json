@@ -1,0 +1,891 @@
+{
+ "catalogue": "IAS-O3a",
+ "papers": [
+  "2201.02252"
+ ],
+ "criterion": {
+  "summary": "p_astro > 0.5 (worded 'greater than 0.5', '> 0.5' and 'at least one half' in different places), following GWTC-2.1 and 3-OGC. Hanford-Livingston coincident BBH search only. p_astro is the declaration statistic; IFAR is per bank and not used for declaration.",
+  "quote": "In this work we report ten new BBH merger events, declarable under the criteria that the signal's probability of astrophysical origin, $\\pastro$, is at least one half (following \\citet{lvc_o3a_deep_gwtc2_1_update_2021} and \\citet{nitz_o3a_3ogc_catalog_2021}).",
+  "section": "Sec. I Introduction. Also: Abstract ('compile a catalog of signals that pass a significance threshold of astrophysical probability greater than 0.5 (following the GWTC-2.1 and 3-OGC catalogs)'); Sec. IV ('The astrophysical probability is the statistic used to determine whether a signal is declared as a detection, whereas the false alarm rate tells us how often the detector noise produces a trigger of a given SNR peaking in the same frequency band as that template'); Sec. V.B Concluding remarks ('declared based on the criteria that $\\pastro > 0.5$'); Table I caption 'New events with $p_{\\rm astro} > 0.5$'.",
+  "paper": "2201.02252"
+ },
+ "tiers": [
+  {
+   "name": "new events (10)",
+   "quote": "We report the detection of ten new binary black hole (BBH) mergers in the publicly released data from the the first half of the third observing run (O3a)",
+   "section": "Abstract; Table I (tab:signalsFound); Sec. III 'Newly Reported BBH mergers'"
+  },
+  {
+   "name": "previously reported GWTC-2.1 HL events re-detected (31)",
+   "quote": "We confirm the significance of all but six of the 37 Hanford--Livingston coincident BBH mergers reported by \\citet{lvc_o3a_deep_gwtc2_1_update_2021}, with three LVC candidates vetoed by our pipeline (failing signal consistency or excess power tests), and three LVC candidates falling below the detection threshold (see Table~\\ref{tab:lvc events}).",
+   "section": "Sec. I; Table II; Sec. IV 'Comparison to previously reported catalogues'"
+  },
+  {
+   "name": "revoked GWTC-2 event recovered (1: GW190909_114149)",
+   "quote": "We also detect GW190909\\_114149, which was reduced to sub-threshold between GWTC-2 \\cite{lvc_o3a_gwtc2_catalog_2021} and GWTC-2.1 \\cite{lvc_o3a_deep_gwtc2_1_update_2021}, and this puts the total at 42 BBH mergers detected in our pipeline's Hanford--Livingston coincident search of the O3a data",
+   "section": "Sec. I; Table II footnote"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW190707_083226"
+   ],
+   "gps": 1246523564,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.94,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "23.2 yr (within bank)",
+   "snr": {
+    "rho_H^2": 37.0,
+    "rho_L^2": 31.5
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_4; rho_H^2=37.0, rho_L^2=31.5 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days'). Distinct from GWTC-2.1 event GW190707_093326 (also in Table II)."
+  },
+  {
+   "designations": [
+    "GW190711_030756"
+   ],
+   "gps": 1246849694,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.93,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "11.2 yr (within bank)",
+   "snr": {
+    "rho_H^2": 19.8,
+    "rho_L^2": 60.7
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_3; rho_H^2=19.8, rho_L^2=60.7 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190818_232544"
+   ],
+   "gps": 1250205962,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.81,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "3.4 yr (within bank)",
+   "snr": {
+    "rho_H^2": 33.0,
+    "rho_L^2": 32.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_4; rho_H^2=33.0, rho_L^2=32.0 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190704_104834"
+   ],
+   "gps": 1246272532,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.81,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "2.8 yr (within bank)",
+   "snr": {
+    "rho_H^2": 47.0,
+    "rho_L^2": 32.1
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_0; rho_H^2=47.0, rho_L^2=32.1 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190906_054335"
+   ],
+   "gps": 1251783833,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.61,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.73 yr (within bank)",
+   "snr": {
+    "rho_H^2": 23.6,
+    "rho_L^2": 38.1
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_3; rho_H^2=23.6, rho_L^2=38.1 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190821_124821"
+   ],
+   "gps": 1250426919,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.6,
+   "p_astro_other": {
+    "Appendix A caption / Sec. III text": 0.61
+   },
+   "far": null,
+   "ifar": "0.71 yr (within bank)",
+   "snr": {
+    "rho_H^2": 28.1,
+    "rho_L^2": 49.4
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_1; rho_H^2=28.1, rho_L^2=49.4 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days'). DISCREPANCY: Table I gives p_astro=0.6 but the Appendix A corner-plot caption and Sec. III text give 0.61."
+  },
+  {
+   "designations": [
+    "GW190814_192009"
+   ],
+   "gps": 1249845627,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.64,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.65 yr (within bank)",
+   "snr": {
+    "rho_H^2": 29.9,
+    "rho_L^2": 33.4
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_5; rho_H^2=29.9, rho_L^2=33.4 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days'). Distinct from the LVK event the paper calls 'GW190814' (an LV event excluded from this search); do not merge on the short form."
+  },
+  {
+   "designations": [
+    "GW190910_012619"
+   ],
+   "gps": 1252113997,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.58,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.65 yr (within bank)",
+   "snr": {
+    "rho_H^2": 35.7,
+    "rho_L^2": 32.1
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_1; rho_H^2=35.7, rho_L^2=32.1 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190920_113516"
+   ],
+   "gps": 1253014534,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.57,
+   "p_astro_other": {
+    "Appendix A caption / Sec. III text": 0.58
+   },
+   "far": null,
+   "ifar": "0.56 yr (within bank)",
+   "snr": {
+    "rho_H^2": 26.4,
+    "rho_L^2": 48.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_0; rho_H^2=26.4, rho_L^2=48.0 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days'). DISCREPANCY: Table I gives p_astro=0.57 but the Appendix A corner-plot caption and Sec. III text give 0.58."
+  },
+  {
+   "designations": [
+    "GW190718_160159"
+   ],
+   "gps": 1247500937,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.53,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.48 yr (within bank)",
+   "snr": {
+    "rho_H^2": 23.5,
+    "rho_L^2": 47.6
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFound)",
+   "paper_says_new": true,
+   "notes": "Table I: bank BBH_1; rho_H^2=23.5, rho_L^2=47.6 (squared single-detector search SNRs; no network SNR tabulated); IFAR computed within bank ('based on a total analysis time of 106 days')."
+  },
+  {
+   "designations": [
+    "GW190408_181802"
+   ],
+   "gps": 1238782700,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 95.4,
+    "rho_L^2": 109.2
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=95.4, rho_L^2=109.2; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190412_053044"
+   ],
+   "gps": 1239082262,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 76.2,
+    "rho_L^2": 245.5
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_2; rho_H^2=76.2, rho_L^2=245.5; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190413_052954"
+   ],
+   "gps": 1239168612,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.83,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "4.2 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 26.7,
+    "rho_L^2": 50.5
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=26.7, rho_L^2=50.5; GWTC-2.1 IFAR=1.2 yr; 3-OGC IFAR=1.4 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190413_134308"
+   ],
+   "gps": 1239198206,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 30.1,
+    "rho_L^2": 62.3
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=30.1, rho_L^2=62.3; GWTC-2.1 IFAR=2.9 yr; 3-OGC IFAR=6.4 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190421_213856"
+   ],
+   "gps": 1239917954,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 68.0,
+    "rho_L^2": 42.0
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=68.0, rho_L^2=42.0; GWTC-2.1 IFAR=71.4 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190503_185404"
+   ],
+   "gps": 1240944862,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 83.2,
+    "rho_L^2": 57.7
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=83.2, rho_L^2=57.7; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190512_180714"
+   ],
+   "gps": 1241719652,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 39.4,
+    "rho_L^2": 119.4
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_2; rho_H^2=39.4, rho_L^2=119.4; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190513_205428"
+   ],
+   "gps": 1241816086,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 78.0,
+    "rho_L^2": 66.0
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=78.0, rho_L^2=66.0; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190514_065416"
+   ],
+   "gps": 1241852074,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.98,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "290 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 38.9,
+    "rho_L^2": 31.7
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=38.9, rho_L^2=31.7; GWTC-2.1 IFAR=0.36 yr; 3-OGC IFAR=0.19 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190517_055101"
+   ],
+   "gps": 1242107479,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 48.7,
+    "rho_L^2": 58.5
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=48.7, rho_L^2=58.5; GWTC-2.1 IFAR=9.1 yr; 3-OGC IFAR=66.1 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190519_153544"
+   ],
+   "gps": 1242315362,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 81.6,
+    "rho_L^2": 128.7
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=81.6, rho_L^2=128.7; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190521_074359"
+   ],
+   "gps": 1242459857,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 142.3,
+    "rho_L^2": 431.3
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=142.3, rho_L^2=431.3; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190527_092055"
+   ],
+   "gps": 1242984073,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.92,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "10.8 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 27.4,
+    "rho_L^2": 46.9
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=27.4, rho_L^2=46.9; GWTC-2.1 IFAR=4.3 yr; 3-OGC IFAR=0.37 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190602_175927"
+   ],
+   "gps": 1243533585,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 41.9,
+    "rho_L^2": 111.6
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=41.9, rho_L^2=111.6; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=391 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190706_222641"
+   ],
+   "gps": 1246487219,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 91.3,
+    "rho_L^2": 79.2
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=91.3, rho_L^2=79.2; GWTC-2.1 IFAR=2.9 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190707_093326"
+   ],
+   "gps": 1246527224,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 63.7,
+    "rho_L^2": 97.5
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H^2=63.7, rho_L^2=97.5; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper). Distinct from the new IAS event GW190707_083226."
+  },
+  {
+   "designations": [
+    "GW190719_215514"
+   ],
+   "gps": 1247608532,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.9,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "8.5 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 37.0,
+    "rho_L^2": 33.2
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=37.0, rho_L^2=33.2; GWTC-2.1 IFAR=1.6 yr; 3-OGC IFAR=0.25 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190720_000836"
+   ],
+   "gps": 1247616534,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 44.7,
+    "rho_L^2": 62.3
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H^2=44.7, rho_L^2=62.3; GWTC-2.1 IFAR=10.6 yr; 3-OGC IFAR=559 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190725_174728"
+   ],
+   "gps": 1248112066,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.96,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "34.2 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 31.3,
+    "rho_L^2": 59.1
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H^2=31.3, rho_L^2=59.1; GWTC-2.1 IFAR=2.2 yr; 3-OGC IFAR=0.41 yr (other catalogues' values, quoted by the paper). A corner-plot file for this event is in the source tarball but is not referenced in the paper; the paper treats it as previously reported."
+  },
+  {
+   "designations": [
+    "GW190727_060333"
+   ],
+   "gps": 1248242631,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 76.0,
+    "rho_L^2": 61.3
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=76.0, rho_L^2=61.3; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190728_064510"
+   ],
+   "gps": 1248331528,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 58.4,
+    "rho_L^2": 110.1
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H^2=58.4, rho_L^2=110.1; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190731_140936"
+   ],
+   "gps": 1248617394,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.76,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "2.1 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 28.9,
+    "rho_L^2": 39.6
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=28.9, rho_L^2=39.6; GWTC-2.1 IFAR=0.53 yr; 3-OGC IFAR=0.43 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190803_022701"
+   ],
+   "gps": 1248834439,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.94,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "15.7 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 30.6,
+    "rho_L^2": 43.7
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=30.6, rho_L^2=43.7; GWTC-2.1 IFAR=2.6 yr; 3-OGC IFAR=2.4 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190805_211137"
+   ],
+   "gps": 1249074715,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.81,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "3.3 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 18.8,
+    "rho_L^2": 54.8
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=18.8, rho_L^2=54.8; GWTC-2.1 IFAR=1.6 yr; 3-OGC IFAR=--- yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190828_063405"
+   ],
+   "gps": 1251009263,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 112.6,
+    "rho_L^2": 142.3
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=112.6, rho_L^2=142.3; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190828_065509"
+   ],
+   "gps": 1251010527,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 54.5,
+    "rho_L^2": 53.6
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_2; rho_H^2=54.5, rho_L^2=53.6; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190909_114149"
+   ],
+   "gps": 1252064527,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.52,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.45 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 31.3,
+    "rho_L^2": 32.4
+   },
+   "tier": "previously declared in GWTC-2, revoked to marginal in GWTC-2.1; recovered (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=31.3, rho_L^2=32.4; GWTC-2.1 IFAR=0.010 yr; 3-OGC IFAR=--- yr (other catalogues' values, quoted by the paper). Table II footnote: 'The LVC reduced GW190909\\_114149 to the marginal candidate list between GWTC-2 and GWTC-2.1, so we include it here since our recovery with $\\pastro = 0.52$ is not the first detection.' Abstract: 'We also return to significance the event GW190909\\_114149'."
+  },
+  {
+   "designations": [
+    "GW190915_235702"
+   ],
+   "gps": 1252627040,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 92.4,
+    "rho_L^2": 71.1
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=92.4, rho_L^2=71.1; GWTC-2.1 IFAR=> 1000 yr; 3-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190916_200658"
+   ],
+   "gps": 1252699636,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.93,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "20.7 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 27.1,
+    "rho_L^2": 36.5
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H^2=27.1, rho_L^2=36.5; GWTC-2.1 IFAR=< 0.001 yr; 3-OGC IFAR=0.22 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190926_050336"
+   ],
+   "gps": 1253509434,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.96,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "25.3 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 45.3,
+    "rho_L^2": 31.4
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H^2=45.3, rho_L^2=31.4; GWTC-2.1 IFAR=0.91 yr; 3-OGC IFAR=0.27 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190929_012149"
+   ],
+   "gps": 1253755327,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 40.2,
+    "rho_L^2": 51.2
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_5; rho_H^2=40.2, rho_L^2=51.2; GWTC-2.1 IFAR=6.2 yr; 3-OGC IFAR=3.1 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW190930_133541"
+   ],
+   "gps": 1253885759,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS, within bank, no trials factor)",
+   "snr": {
+    "rho_H^2": 41.1,
+    "rho_L^2": 55.6
+   },
+   "tier": "previously reported (GWTC-2.1/3-OGC), re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H^2=41.1, rho_L^2=55.6; GWTC-2.1 IFAR=55.6 yr; 3-OGC IFAR=295 yr (other catalogues' values, quoted by the paper)."
+  }
+ ],
+ "below_criterion": {
+  "count": 6,
+  "detail": [
+   {
+    "designation": "GW190403_051519",
+    "p_astro": "---",
+    "ias_ifar": "Veto"
+   },
+   {
+    "designation": "GW190426_190642",
+    "p_astro": 0.33,
+    "ias_ifar": "0.19"
+   },
+   {
+    "designation": "GW190521_030229",
+    "p_astro": "---",
+    "ias_ifar": "Veto"
+   },
+   {
+    "designation": "GW190701_203306",
+    "p_astro": 0.23,
+    "ias_ifar": "0.084"
+   },
+   {
+    "designation": "GW190917_114629",
+    "p_astro": 0.35,
+    "ias_ifar": "0.17"
+   },
+   {
+    "designation": "GW190924_021846",
+    "p_astro": "---",
+    "ias_ifar": "Veto"
+   }
+  ],
+  "named": [
+   "GW190403_051519",
+   "GW190426_190642",
+   "GW190521_030229",
+   "GW190701_203306",
+   "GW190917_114629",
+   "GW190924_021846"
+  ],
+  "notes": "All are GWTC-2.1 events in Table II: 3 vetoed by IAS (p_astro '---', IFAR 'Veto') and 3 with p_astro < 0.5. The paper coins no GW-style names for sub-threshold IAS candidates. The text also names (untabulated) LVC marginal candidates GW190531_023648 and GW190426_152155 as sub-threshold in IAS too. The vetoed GW190521_030229 is called 'GW190521' in the text."
+ },
+ "open_questions": [
+  "Designation inconsistency: Table II row 'GW190917_114629' (p_astro 0.35, below threshold) is written 'GW190917_114630' in the Sec. IV and Sec. V text.",
+  "p_astro discrepancies between Table I and captions/text: GW190821_124821 (table 0.60, caption/text 0.61) and GW190920_113516 (table 0.57, caption/text 0.58). The table value is used as p_astro.",
+  "Criterion wording varies ('greater than 0.5', '> 0.5', 'at least one half'); no event sits at exactly 0.5, so it makes no difference here.",
+  "Short form 'GW190814' in this paper means the LVK LV-coincident event (excluded from the search), not the new IAS event GW190814_192009; 'GW190521' means the vetoed GW190521_030229. A matcher must not resolve GW190814 to GW190814_192009.",
+  "Sec. IV 'Marginally recovered candidates' lists GW190426_190642 as below threshold, then says 'GW190426_152155 was unfortunately not covered by our banks'; probably a typo for GW190426_190642 (cf. Sec. II). Not a detection either way.",
+  "extra_tables.tex is NOT included by main.tex: it is an alternative Table II with IAS/GWTC-2.1/3-OGC p_astro columns (same IAS values) plus referee-response notes. Not used.",
+  "IAS IFARs are 'computed within each bank' with no trials factor; the paper gives no FAR.",
+  "Paper total 42 = 10 new + 31 GWTC-2.1 + GW190909_114149; parsed counts match (Table I 10 rows; Table II 38 rows, 32 with p_astro > 0.5)."
+ ],
+ "source_versions": {
+  "2201.02252": "v3"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

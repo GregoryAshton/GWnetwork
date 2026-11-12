@@ -1,0 +1,3239 @@
+{
+ "catalogue": "4-OGC",
+ "papers": [
+  "2112.06878"
+ ],
+ "criterion": {
+  "summary": "P_astro > 0.5 OR IFAR > 100 yr (either suffices); all 94 rows of Table 3 (label table:search) are the detections. Quotes are verbatim from the arXiv LaTeX source (math kept as LaTeX). Table numbers inferred from float order in the source.",
+  "quote": "All events identified by our search with a probability of astrophysical origin $\\mathcal{P}_{\\textrm{astro}} > 0.5$ or inverse false alarm rate (IFAR) $>$ 100 years are listed in \\autoref{table:search}. We report $94$ events, $90$ of which are BBHs, $2$ originate from BNS mergers, and $2$ are the result of coalescing NSBHs.",
+  "section": "Sec. 3 Observational Results (opening paragraph); same threshold in Table 3 caption. Sec. 3 also: \"We note that our candidate threshold is marginally more conservative; GWTC-3 includes candidates with $\\mathcal{P}_{\\textrm{astro}} > 0.5$ in any of several analyses\"",
+  "paper": "2112.06878"
+ },
+ "tiers": [
+  {
+   "name": "detections (main table)",
+   "quote": "Shown are the gravitational-wave observations from the full search on data from O1-O3 with $\\mathcal{P}_{\\textrm{astro}} > 0.5$ or IFAR $>$ 100 years sorted by observation time.",
+   "section": "Table 3 caption"
+  },
+  {
+   "name": "new O3b detections",
+   "quote": "Our search finds 7 new BBH signals during O3b which pass our significance criteria and were not reported as marginal or confident observations by previous studies~\\citep{LIGOScientific:2021djp}. These events are GW191224\\_043228,  GW200106\\_134123, GW200129\\_114245, GW200210\\_005122, GW200214\\_223307, GW200305\\_084739, and GW200318\\_191337. In addition, 3 previously marginal BBH candidates from the previous 3-OGC catalog~\\citep{Nitz:2021uxj} now pass our criteria; this is due to the updated prescription for calculating $\\mathcal{P}_{\\textrm{astro}}$ (see sec~\\ref{sec:searchsig}).",
+   "section": "Sec. 3 Observational Results"
+  },
+  {
+   "name": "single-detector detections",
+   "quote": "There have now been 8 mergers detected in a single detector: 6 BBHs, 1 BNS, 1 NSBH. The previously reported NSBH merger GW200105\\_162426~\\citep{LIGOScientific:2021qlt} is found as a near threshold detection in our analysis.",
+   "section": "Sec. 3 Observational Results"
+  },
+  {
+   "name": "marginal sub-threshold (NOT detections)",
+   "quote": "We present 30 marginal sub-threshold events following the criterion $\\mathcal{P}_{\\textrm{astro}} > 0.2$ or IFAR $> 0.5$ years in Table \\ref{table:sub}.",
+   "section": "Sec. 3 Observational Results; Table 4 (label table:sub)"
+  }
+ ],
+ "counts": {
+  "detections": 94,
+  "new": 7,
+  "previously_reported": 87,
+  "paper_stated_total": 94
+ },
+ "events": [
+  {
+   "designations": [
+    "GW150914_095045"
+   ],
+   "gps": 1126259462.43,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 19.9,
+    "rho_L": 13.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 24.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 1,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW151012_095443"
+   ],
+   "gps": 1128678900.45,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.9,
+    "rho_L": 6.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.2
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 2,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW151226_033853"
+   ],
+   "gps": 1135136350.65,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 10.5,
+    "rho_L": 7.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.5
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 3,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170104_101158"
+   ],
+   "gps": 1167559936.6,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.9,
+    "rho_L": 9.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.8
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 4,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170121_212536"
+   ],
+   "gps": 1169069154.58,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 16.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 8.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 5,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170202_135657"
+   ],
+   "gps": 1170079035.73,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.86,
+   "far": null,
+   "ifar": 0.5,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 6.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.1
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 6,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170304_163753"
+   ],
+   "gps": 1172680691.37,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.74,
+   "far": null,
+   "ifar": 0.25,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.6,
+    "rho_L": 7.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 7,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170403_230611"
+   ],
+   "gps": 1175295989.23,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.72,
+   "far": null,
+   "ifar": 0.25,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 5.5,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 8,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170608_020116",
+    "GW170608"
+   ],
+   "gps": 1180922494.49,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 12.4,
+    "rho_L": 9.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 15.4
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 9,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170727_010430"
+   ],
+   "gps": 1185152688.03,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 71.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.7,
+    "rho_L": 7.5,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 10,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170729_185629"
+   ],
+   "gps": 1185389807.32,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 28.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.5,
+    "rho_L": 6.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 11,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW170809_082821"
+   ],
+   "gps": 1186302519.75,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.7,
+    "rho_L": 10.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 12,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW170814_103043"
+   ],
+   "gps": 1186741861.53,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.2,
+    "rho_L": 13.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 17.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 13,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW170817_124104",
+    "GW170817"
+   ],
+   "gps": 1187008882.45,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": null,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 18.3,
+    "rho_L": 25.5,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 32.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 14,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); no P_astro assigned (outside focused-BBH region); BNS"
+  },
+  {
+   "designations": [
+    "GW170818_022509"
+   ],
+   "gps": 1187058327.08,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 5.26,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.5,
+    "rho_L": 9.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 15,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW170823_131358"
+   ],
+   "gps": 1187529256.52,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.6,
+    "rho_L": 9.1,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.7
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 16,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190404_142514"
+   ],
+   "gps": 1238423132.99,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.5,
+   "far": null,
+   "ifar": 0.02,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.1,
+    "rho_L": 5.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.1
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 17,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "Tabulated values do not strictly meet either stated threshold (P_astro shown as 0.5, IFAR 0.02); presumably rounding of a value just above 0.5 -- the paper nonetheless lists it as a detection.; multi-detector candidate (triggered: HL; observing: HL); Not bold. Inferred (not stated by name) to be one of the \"3 previously marginal BBH candidates from the previous 3-OGC catalog [that] now pass our criteria\": it appears as 190404_142514 in the 3-OGC sub-threshold table."
+  },
+  {
+   "designations": [
+    "GW190408_181802"
+   ],
+   "gps": 1238782700.28,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.2,
+    "rho_L": 10.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 14.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 18,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190412_053044"
+   ],
+   "gps": 1239082262.17,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.2,
+    "rho_L": 14.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 19.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 19,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190413_052954"
+   ],
+   "gps": 1239168612.5,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 1.45,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 6.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.9
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 20,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190413_134308"
+   ],
+   "gps": 1239198206.74,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 6.39,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 7.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 21,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190421_213856"
+   ],
+   "gps": 1239917954.25,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.9,
+    "rho_L": 6.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.1
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 22,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190424_180648"
+   ],
+   "gps": 1240164426.14,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.53,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 9.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.5
+   },
+   "detectors_observing": "L",
+   "detectors_triggered": "L",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 23,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: L; observing: L); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW190425_081805",
+    "GW190425"
+   ],
+   "gps": 1240215503.02,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.5,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 11.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.4
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 24,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "Tabulated values do not strictly meet either stated threshold (P_astro shown as 0.5, IFAR -); presumably rounding of a value just above 0.5 -- the paper nonetheless lists it as a detection.; single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate); BNS; \"we consider this a firm detection\""
+  },
+  {
+   "designations": [
+    "GW190427_180650"
+   ],
+   "gps": 1240423628.68,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.53,
+   "far": null,
+   "ifar": 0.02,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.8,
+    "rho_L": 6.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 25,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); Not bold. Inferred to be one of the \"3 previously marginal BBH candidates from the previous 3-OGC catalog\": 190427_180650 is in the 3-OGC sub-threshold table."
+  },
+  {
+   "designations": [
+    "GW190503_185404"
+   ],
+   "gps": 1240944862.29,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.1,
+    "rho_L": 7.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 26,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190512_180714"
+   ],
+   "gps": 1241719652.42,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.9,
+    "rho_L": 10.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 27,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190513_205428"
+   ],
+   "gps": 1241816086.74,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.8,
+    "rho_L": 7.7,
+    "rho_V": 4.0,
+    "pe_max_likelihood_snr": 12.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HLV",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 28,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HLV; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190514_065416"
+   ],
+   "gps": 1241852074.85,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.82,
+   "far": null,
+   "ifar": 0.19,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.1,
+    "rho_L": 5.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.4
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 29,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190517_055101"
+   ],
+   "gps": 1242107479.83,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 66.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.8,
+    "rho_L": 7.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.6
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 30,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190519_153544"
+   ],
+   "gps": 1242315362.38,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.8,
+    "rho_L": 9.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.9
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 31,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190521_030229",
+    "GW190521"
+   ],
+   "gps": 1242442967.44,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.4,
+    "rho_L": 12.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 15.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 32,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190521_074359"
+   ],
+   "gps": 1242459857.47,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 12.1,
+    "rho_L": 21.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 24.5
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 33,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190527_092055"
+   ],
+   "gps": 1242984073.79,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.94,
+   "far": null,
+   "ifar": 0.37,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.0,
+    "rho_L": 7.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.9
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 34,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190602_175927"
+   ],
+   "gps": 1243533585.1,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.2,
+    "rho_L": 10.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 35,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190620_030421"
+   ],
+   "gps": 1245035079.31,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.73,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 11.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.3
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 36,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW190630_185205"
+   ],
+   "gps": 1245955943.18,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 0.18,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 14.7,
+    "rho_V": 4.0,
+    "pe_max_likelihood_snr": 15.6
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "LV",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 37,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: LV; observing: LV)"
+  },
+  {
+   "designations": [
+    "GW190701_203306"
+   ],
+   "gps": 1246048404.58,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 0.13,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.0,
+    "rho_L": 8.9,
+    "rho_V": 5.7,
+    "pe_max_likelihood_snr": 12.1
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HLV",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 38,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HLV; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190706_222641"
+   ],
+   "gps": 1246487219.33,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.4,
+    "rho_L": 8.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 39,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190707_093326"
+   ],
+   "gps": 1246527224.17,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.9,
+    "rho_L": 9.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.1
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 40,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190708_232457"
+   ],
+   "gps": 1246663515.38,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.73,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 12.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.0
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 41,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW190719_215514"
+   ],
+   "gps": 1247608532.92,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.92,
+   "far": null,
+   "ifar": 0.25,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.6,
+    "rho_L": 5.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.2
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 42,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190720_000836"
+   ],
+   "gps": 1247616534.71,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.8,
+    "rho_L": 7.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.8
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 43,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190725_174728"
+   ],
+   "gps": 1248112066.46,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.96,
+   "far": null,
+   "ifar": 0.41,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 7.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 44,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190727_060333"
+   ],
+   "gps": 1248242631.98,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.9,
+    "rho_L": 8.1,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 45,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190728_064510"
+   ],
+   "gps": 1248331528.53,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.5,
+    "rho_L": 10.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.8
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 46,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190731_140936"
+   ],
+   "gps": 1248617394.64,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.92,
+   "far": null,
+   "ifar": 0.43,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 6.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.5
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 47,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW190803_022701"
+   ],
+   "gps": 1248834439.88,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 2.4,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.6,
+    "rho_L": 6.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.8
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 48,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190805_105432"
+   ],
+   "gps": 1249037690.78,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.51,
+   "far": null,
+   "ifar": 0.02,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.8,
+    "rho_L": 6.5,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.9
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 49,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL); Not bold. Inferred to be one of the \"3 previously marginal BBH candidates from the previous 3-OGC catalog\": 190805_105432 is in the 3-OGC sub-threshold table."
+  },
+  {
+   "designations": [
+    "GW190814_211039",
+    "GW190814"
+   ],
+   "gps": 1249852257.01,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": null,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 11.0,
+    "rho_L": 21.1,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 25.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 50,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); no P_astro assigned (outside focused-BBH region)"
+  },
+  {
+   "designations": [
+    "GW190828_063405"
+   ],
+   "gps": 1251009263.76,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 10.3,
+    "rho_L": 11.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 16.1
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 51,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190828_065509"
+   ],
+   "gps": 1251010527.89,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.3,
+    "rho_L": 7.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 52,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190910_112807"
+   ],
+   "gps": 1252150105.32,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.77,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 13.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.7
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 53,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW190915_235702"
+   ],
+   "gps": 1252627040.7,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.0,
+    "rho_L": 8.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 54,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190916_200658"
+   ],
+   "gps": 1252699636.9,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.9,
+   "far": null,
+   "ifar": 0.22,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.9,
+    "rho_L": 5.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 7.9
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 55,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190924_021846"
+   ],
+   "gps": 1253326744.84,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.7,
+    "rho_L": 10.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.6
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 56,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190925_232845"
+   ],
+   "gps": 1253489343.12,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.2,
+    "rho_L": null,
+    "rho_V": 5.4,
+    "pe_max_likelihood_snr": 9.9
+   },
+   "detectors_observing": "HV",
+   "detectors_triggered": "HV",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 57,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HV; observing: HV)"
+  },
+  {
+   "designations": [
+    "GW190926_050336"
+   ],
+   "gps": 1253509434.07,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.92,
+   "far": null,
+   "ifar": 0.27,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 5.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.8
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 58,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190929_012149"
+   ],
+   "gps": 1253755327.5,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.99,
+   "far": null,
+   "ifar": 3.08,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.8,
+    "rho_L": 7.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 59,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW190930_133541"
+   ],
+   "gps": 1253885759.24,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.7,
+    "rho_L": 7.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.2
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 60,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191105_143521"
+   ],
+   "gps": 1256999739.93,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.0,
+    "rho_L": 7.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.2
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 61,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW191109_010717"
+   ],
+   "gps": 1257296855.21,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.5,
+    "rho_L": 13.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 16.5
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 62,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191126_115259"
+   ],
+   "gps": 1258804397.63,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 4.86,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.8,
+    "rho_L": 6.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.7
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 63,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191127_050227"
+   ],
+   "gps": 1258866165.55,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.99,
+   "far": null,
+   "ifar": 0.15,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 6.4,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 64,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW191129_134029"
+   ],
+   "gps": 1259070047.18,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.9,
+    "rho_L": 8.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.2
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 65,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191204_110529"
+   ],
+   "gps": 1259492747.54,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.99,
+   "far": null,
+   "ifar": 1.59,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.0,
+    "rho_L": 7.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.6
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 66,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191204_171526"
+   ],
+   "gps": 1259514944.09,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.2,
+    "rho_L": 13.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 17.6
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 67,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191215_223052"
+   ],
+   "gps": 1260484270.33,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.4,
+    "rho_L": 7.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 68,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW191216_213338"
+   ],
+   "gps": 1260567236.48,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 55.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 17.5,
+    "rho_L": null,
+    "rho_V": 5.5,
+    "pe_max_likelihood_snr": 18.6
+   },
+   "detectors_observing": "HV",
+   "detectors_triggered": "HV",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 69,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HV; observing: HV)"
+  },
+  {
+   "designations": [
+    "GW191222_033537"
+   ],
+   "gps": 1261020955.12,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 8.6,
+    "rho_L": 8.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.0
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 70,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW191224_043228"
+   ],
+   "gps": 1261197166.15,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.87,
+   "far": null,
+   "ifar": 0.13,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.0,
+    "rho_L": 6.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 71,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW191230_180458"
+   ],
+   "gps": 1261764316.4,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.5,
+    "rho_L": 6.7,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 72,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200105_162426",
+    "GW200105"
+   ],
+   "gps": 1262276684.06,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.5,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 13.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 13.4
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 73,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "Tabulated values do not strictly meet either stated threshold (P_astro shown as 0.5, IFAR -); presumably rounding of a value just above 0.5 -- the paper nonetheless lists it as a detection.; single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate); NSBH; \"found as a near threshold detection in our analysis. It was observed only in LIGO Livingston with a SNR of $13.3$... It has $\\mathcal{P}_\\textrm{astro} \\sim 0.5$\""
+  },
+  {
+   "designations": [
+    "GW200106_134123"
+   ],
+   "gps": 1262353301.93,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.69,
+   "far": null,
+   "ifar": 0.06,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 5.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.6
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 74,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200112_155838"
+   ],
+   "gps": 1262879936.09,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.78,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": null,
+    "rho_L": 18.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 18.6
+   },
+   "detectors_observing": "LV",
+   "detectors_triggered": "L",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 75,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: L; observing: LV); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW200115_042309",
+    "GW200115"
+   ],
+   "gps": 1263097407.74,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": null,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.5,
+    "rho_L": 8.5,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.9
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 76,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); no P_astro assigned (outside focused-BBH region); NSBH; \"observed in both Livingston and Hanford data with IFAR $>$ 100~yr\""
+  },
+  {
+   "designations": [
+    "GW200128_022011"
+   ],
+   "gps": 1264213229.9,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.0,
+    "rho_L": 7.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.2
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 77,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW200129_065458"
+   ],
+   "gps": 1264316116.42,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 14.6,
+    "rho_L": null,
+    "rho_V": 7.0,
+    "pe_max_likelihood_snr": 27.1
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HV",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 78,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HV; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200129_114245"
+   ],
+   "gps": 1264333383.11,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.53,
+   "far": null,
+   "ifar": 0.04,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.1,
+    "rho_L": 6.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.3
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 79,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); \"occurs less than $5$ hours after the previous event GW200129\\_065458\""
+  },
+  {
+   "designations": [
+    "GW200202_154313"
+   ],
+   "gps": 1264693411.56,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 6.05,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.1,
+    "rho_L": 9.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.2
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 80,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200208_130117"
+   ],
+   "gps": 1265202095.95,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.8,
+    "rho_L": 6.9,
+    "rho_V": 4.5,
+    "pe_max_likelihood_snr": 11.0
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HLV",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 81,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HLV; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200209_085452"
+   ],
+   "gps": 1265273710.17,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.99,
+   "far": null,
+   "ifar": 1.1,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 7.1,
+    "rho_L": 5.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 9.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 82,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200210_005122"
+   ],
+   "gps": 1265331100.74,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.74,
+   "far": null,
+   "ifar": 0.04,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 6.3,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 83,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200214_223307"
+   ],
+   "gps": 1265754805.0,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.72,
+   "far": null,
+   "ifar": 0.08,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 5.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 7.9
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 84,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200216_220804"
+   ],
+   "gps": 1265926102.89,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.78,
+   "far": null,
+   "ifar": 0.09,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 6.6,
+    "rho_L": 5.6,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 85,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200219_094415"
+   ],
+   "gps": 1266140673.2,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 22.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.7,
+    "rho_L": 8.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.5
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 86,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200224_222234"
+   ],
+   "gps": 1266618172.4,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 12.6,
+    "rho_L": 13.0,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 19.1
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 87,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200225_060421"
+   ],
+   "gps": 1266645879.4,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 9.6,
+    "rho_L": 7.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 12.9
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 88,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW200302_015811"
+   ],
+   "gps": 1267149509.52,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.66,
+   "far": null,
+   "ifar": null,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 10.5,
+    "rho_L": null,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 11.2
+   },
+   "detectors_observing": "HV",
+   "detectors_triggered": "H",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "single-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 89,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "single-detector candidate (triggered: H; observing: HV); no IFAR (single-detector candidate)"
+  },
+  {
+   "designations": [
+    "GW200305_084739"
+   ],
+   "gps": 1267433277.08,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.59,
+   "far": null,
+   "ifar": 0.02,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.5,
+    "rho_L": 6.1,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.1
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 90,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200306_093714"
+   ],
+   "gps": 1267522652.12,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.51,
+   "far": null,
+   "ifar": 0.02,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.5,
+    "rho_L": 5.9,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.1
+   },
+   "detectors_observing": "HL",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 91,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HL)"
+  },
+  {
+   "designations": [
+    "GW200311_115853"
+   ],
+   "gps": 1267963151.39,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": ">100",
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 12.0,
+    "rho_L": 9.9,
+    "rho_V": 6.7,
+    "pe_max_likelihood_snr": 17.7
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HLV",
+   "criterion_met": [
+    "P_astro > 0.5",
+    "IFAR > 100 yr"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 92,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HLV; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200316_215756"
+   ],
+   "gps": 1268431094.16,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 1.0,
+   "far": null,
+   "ifar": 22.0,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 5.4,
+    "rho_L": 7.8,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 10.6
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 93,
+   "paper_says_new": false,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV)"
+  },
+  {
+   "designations": [
+    "GW200318_191337"
+   ],
+   "gps": 1268594035.14,
+   "gps_source": "Table 3 (label table:search) \"GPS Time\" column (consistent with UTC in name to <1 s)",
+   "p_astro": 0.97,
+   "far": null,
+   "ifar": 0.5,
+   "ifar_unit": "yr",
+   "snr": {
+    "rho_H": 4.8,
+    "rho_L": 6.2,
+    "rho_V": null,
+    "pe_max_likelihood_snr": 8.4
+   },
+   "detectors_observing": "HLV",
+   "detectors_triggered": "HL",
+   "criterion_met": [
+    "P_astro > 0.5"
+   ],
+   "tier": "main (detection table)",
+   "search": "multi-detector",
+   "table": "Table 3 (label table:search)",
+   "table_row": 94,
+   "paper_says_new": true,
+   "paper_says_new_basis": "bold in Table 3 (label table:search) and PE table (\"Events reported here for the first time are marked by bold font.\")",
+   "notes": "multi-detector candidate (triggered: HL; observing: HLV); \"The most confident new detection is GW200318\\_191337 with a $\\mathcal{P}_{\\textrm{astro}} = 0.97$\""
+  }
+ ],
+ "below_criterion": {
+  "count": 30,
+  "count_basis": "Rows of Table 4 (label table:sub), stated as 30 in Sec. 3; parsed 30. None meets P_astro>0.5 or IFAR>100. Full sub-threshold set is only in the data release.",
+  "named": [
+   {
+    "name": "GW191219_163120",
+    "gw_prefix": true,
+    "tabulated": true,
+    "note": "Tabulated in Table 4 as \"191219_163120\" (no prefix); text uses GW prefix as a GWTC-3 event that \"do[es] not pass our candidate threshold\"; consistent with an NSBH"
+   },
+   {
+    "name": "GW200220_124850",
+    "gw_prefix": true,
+    "tabulated": true,
+    "note": "Tabulated in Table 4 as \"200220_124850\"; GWTC-3 event not passing 4-OGC threshold"
+   },
+   {
+    "name": "GW191103_012549",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "GWTC-3 event named in Sec. 3 as not passing 4-OGC threshold; not in any 4-OGC table"
+   },
+   {
+    "name": "GW191113_071753",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "as above"
+   },
+   {
+    "name": "GW200208_222617",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "as above"
+   },
+   {
+    "name": "GW200210_092254",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "as above; GWTC-3 potential NSBH"
+   },
+   {
+    "name": "GW200220_061928",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "as above"
+   },
+   {
+    "name": "GW200322_091133",
+    "gw_prefix": true,
+    "tabulated": false,
+    "note": "as above"
+   }
+  ],
+  "tabulated": [
+   {
+    "idx": 1,
+    "name": "151011_192749",
+    "gps": 1128626886.6,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.24,
+    "ifar": 0.02,
+    "rho_H": 4.7,
+    "rho_L": 6.8,
+    "rho_V": null
+   },
+   {
+    "idx": 2,
+    "name": "170425_055334",
+    "gps": 1177134832.19,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.37,
+    "ifar": 0.07,
+    "rho_H": 5.3,
+    "rho_L": 5.8,
+    "rho_V": null
+   },
+   {
+    "idx": 3,
+    "name": "170623_234223",
+    "gps": 1182296561.37,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.23,
+    "ifar": 0.02,
+    "rho_H": 5.5,
+    "rho_L": 5.8,
+    "rho_V": null
+   },
+   {
+    "idx": 4,
+    "name": "170704_202003",
+    "gps": 1183234821.62,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.43,
+    "ifar": 0.05,
+    "rho_H": 5.1,
+    "rho_L": 6.5,
+    "rho_V": null
+   },
+   {
+    "idx": 5,
+    "name": "170722_065503",
+    "gps": 1184741721.32,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": null,
+    "ifar": 0.89,
+    "rho_H": 5.0,
+    "rho_L": 7.3,
+    "rho_V": null
+   },
+   {
+    "idx": 6,
+    "name": "190424_081138",
+    "gps": 1240128716.76,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.25,
+    "ifar": 0.01,
+    "rho_H": 5.1,
+    "rho_L": 5.5,
+    "rho_V": null
+   },
+   {
+    "idx": 7,
+    "name": "190426_053949",
+    "gps": 1240292407.21,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.4,
+    "ifar": 0.01,
+    "rho_H": 5.2,
+    "rho_L": 6.1,
+    "rho_V": null
+   },
+   {
+    "idx": 8,
+    "name": "190509_004120",
+    "gps": 1241397698.79,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.37,
+    "ifar": 0.01,
+    "rho_H": 4.7,
+    "rho_L": 6.2,
+    "rho_V": null
+   },
+   {
+    "idx": 9,
+    "name": "190519_231324",
+    "gps": 1242342822.07,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.26,
+    "ifar": 0.01,
+    "rho_H": 5.6,
+    "rho_L": 5.9,
+    "rho_V": null
+   },
+   {
+    "idx": 10,
+    "name": "190530_030659",
+    "gps": 1243220837.97,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.44,
+    "ifar": 0.01,
+    "rho_H": 5.2,
+    "rho_L": 5.8,
+    "rho_V": null
+   },
+   {
+    "idx": 11,
+    "name": "190630_135302",
+    "gps": 1245938000.49,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.26,
+    "ifar": 0.01,
+    "rho_H": 5.1,
+    "rho_L": 5.8,
+    "rho_V": null
+   },
+   {
+    "idx": 12,
+    "name": "190704_104834",
+    "gps": 1246272532.92,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.27,
+    "ifar": 0.01,
+    "rho_H": 7.0,
+    "rho_L": 5.5,
+    "rho_V": null
+   },
+   {
+    "idx": 13,
+    "name": "190707_071722",
+    "gps": 1246519060.1,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.32,
+    "ifar": 0.01,
+    "rho_H": 6.0,
+    "rho_L": 5.7,
+    "rho_V": null
+   },
+   {
+    "idx": 14,
+    "name": "190731_105943",
+    "gps": 1248606001.71,
+    "observing": "HLV",
+    "triggered": "HV",
+    "p_astro": 0.29,
+    "ifar": 0.01,
+    "rho_H": 6.4,
+    "rho_L": null,
+    "rho_V": 5.2
+   },
+   {
+    "idx": 15,
+    "name": "190808_230535",
+    "gps": 1249340753.59,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.41,
+    "ifar": 0.01,
+    "rho_H": 5.0,
+    "rho_L": 6.5,
+    "rho_V": null
+   },
+   {
+    "idx": 16,
+    "name": "190821_050019",
+    "gps": 1250398837.88,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.31,
+    "ifar": 0.01,
+    "rho_H": 5.2,
+    "rho_L": 5.6,
+    "rho_V": null
+   },
+   {
+    "idx": 17,
+    "name": "191102_232120",
+    "gps": 1256772098.02,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.22,
+    "ifar": 0.01,
+    "rho_H": 4.9,
+    "rho_L": 5.9,
+    "rho_V": null
+   },
+   {
+    "idx": 18,
+    "name": "191116_022801",
+    "gps": 1257906499.42,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.22,
+    "ifar": 0.0,
+    "rho_H": 5.2,
+    "rho_L": 6.4,
+    "rho_V": null
+   },
+   {
+    "idx": 19,
+    "name": "191122_214924",
+    "gps": 1258494582.97,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.24,
+    "ifar": 0.01,
+    "rho_H": 4.2,
+    "rho_L": 7.3,
+    "rho_V": null
+   },
+   {
+    "idx": 20,
+    "name": "191201_054144",
+    "gps": 1259214122.47,
+    "observing": "HV",
+    "triggered": "HV",
+    "p_astro": null,
+    "ifar": 0.66,
+    "rho_H": 7.1,
+    "rho_L": null,
+    "rho_V": 5.8
+   },
+   {
+    "idx": 21,
+    "name": "191208_080334",
+    "gps": 1259827432.84,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.23,
+    "ifar": 0.01,
+    "rho_H": 6.0,
+    "rho_L": 4.8,
+    "rho_V": null
+   },
+   {
+    "idx": 22,
+    "name": "191219_163120",
+    "gps": 1260808298.45,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": null,
+    "ifar": 0.31,
+    "rho_H": 5.0,
+    "rho_L": 7.4,
+    "rho_V": null
+   },
+   {
+    "idx": 23,
+    "name": "200102_095606",
+    "gps": 1261994184.05,
+    "observing": "HLV",
+    "triggered": "HV",
+    "p_astro": null,
+    "ifar": 0.47,
+    "rho_H": 8.9,
+    "rho_L": null,
+    "rho_V": 4.1
+   },
+   {
+    "idx": 24,
+    "name": "200116_082400",
+    "gps": 1263198258.97,
+    "observing": "HLV",
+    "triggered": "HL",
+    "p_astro": 0.21,
+    "ifar": 0.01,
+    "rho_H": 4.9,
+    "rho_L": 5.8,
+    "rho_V": null
+   },
+   {
+    "idx": 25,
+    "name": "200122_161511",
+    "gps": 1263744929.34,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.27,
+    "ifar": 0.01,
+    "rho_H": 5.7,
+    "rho_L": 5.7,
+    "rho_V": null
+   },
+   {
+    "idx": 26,
+    "name": "200205_141704",
+    "gps": 1264947442.84,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.23,
+    "ifar": 0.01,
+    "rho_H": 5.5,
+    "rho_L": 5.9,
+    "rho_V": null
+   },
+   {
+    "idx": 27,
+    "name": "200220_124850",
+    "gps": 1266238148.15,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.43,
+    "ifar": 0.03,
+    "rho_H": 6.0,
+    "rho_L": 5.3,
+    "rho_V": null
+   },
+   {
+    "idx": 28,
+    "name": "200301_211019",
+    "gps": 1267132237.66,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.43,
+    "ifar": 0.02,
+    "rho_H": 5.5,
+    "rho_L": 5.9,
+    "rho_V": null
+   },
+   {
+    "idx": 29,
+    "name": "200304_182240",
+    "gps": 1267381378.62,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.28,
+    "ifar": 0.01,
+    "rho_H": 4.6,
+    "rho_L": 5.7,
+    "rho_V": null
+   },
+   {
+    "idx": 30,
+    "name": "200310_090144",
+    "gps": 1267866122.76,
+    "observing": "HL",
+    "triggered": "HL",
+    "p_astro": 0.43,
+    "ifar": 0.02,
+    "rho_H": 5.2,
+    "rho_L": 6.1,
+    "rho_V": null
+   }
+  ]
+ },
+ "open_questions": [
+  "Rows with tabulated P_astro = 0.50 and no IFAR > 100: GW190404_142514 (IFAR 0.02 yr), GW190425_081805 and GW200105_162426 (single-detector, no IFAR). Strictly they do not satisfy \"> 0.5\" as printed (presumably rounding); the paper counts them in its 94.",
+  "Paper says \"3 previously marginal BBH candidates from the previous 3-OGC catalog now pass our criteria\" but does not name them; by comparison with the 3-OGC sub-threshold table they are GW190404_142514, GW190427_180650, GW190805_105432 (our inference). They are not bold, so paper_says_new=false although they were never previously listed as detections.",
+  "Paper says \"In total 12 marginal candidates were previously reported in our most recent 3-OGC catalog\" but lists only 11 names.",
+  "The 7 bold \"new\" events are new relative to GWTC-3 and earlier; some (e.g. via IAS O3 catalogues) may have been reported elsewhere around the same time -- the paper's own claim is recorded only.",
+  "GW200302_015811 triggered only in H (V observing) and is single-detector with P_astro 0.66.",
+  "Table IFAR column is in years; FAR not tabulated separately (far left null)."
+ ],
+ "source_versions": {
+  "2112.06878": "v2"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

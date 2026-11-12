@@ -1,0 +1,536 @@
+{
+ "catalogue": "2-OGC",
+ "papers": [
+  "1910.05331"
+ ],
+ "criterion": {
+  "summary": "BBH: p_astro > 0.5 (50%) from the targeted BBH analysis, stated as the GWTC-1 standard detection criterion; plus GW170817 (BNS) detected in the full search at FAR < 1 per 100 yr (no p_astro for BNS). The note 'p_astro > 0.5' is correct for the BBHs.",
+  "quote": "Our analysis identifies 14 BBH candidates with $\\pastro > 50\\%$, meeting the standard detection criteria introduced in~\\cite{LIGOScientific:2018mvr} and similarly followed in~\\cite{Venumadhav:2019lyq}.",
+  "section": "Sec. 5.1 Binary Black Holes (sec:bbh)",
+  "paper": "1910.05331",
+  "supporting_quotes": [
+   {
+    "section": "Abstract",
+    "quote": "We identify a population of 14 binary black hole merger events with probability of astrophysical origin $> 0.5$ as well as the binary neutron star merger GW170817."
+   },
+   {
+    "section": "Sec. 5 Observational Results",
+    "quote": "There are 8 BBH and 1 BNS candidates at a FAR less than 1 per 100 years. These sources are confidently detected in the full analysis without optimizing the search for any specific population of sources."
+   },
+   {
+    "section": "Sec. 5.1",
+    "quote": "Several marginal events reported in~\\cite{Venumadhav:2019lyq,Venumadhav:2019tad} are found as top candidates, but do not meet our detection threshold based on estimated probability of astrophysical origin."
+   },
+   {
+    "section": "Sec. 5.2 Neutron Star Binaries",
+    "quote": "Our analysis identified GW170817 as a highly significant merger, however, no further individually significant BNS nor NSBH mergers were identified."
+   }
+  ]
+ },
+ "tiers": [
+  {
+   "name": "confident in full search: FAR < 1 per 100 yr (8 BBH + GW170817)",
+   "quote": "There are 8 BBH and 1 BNS candidates at a FAR less than 1 per 100 years. These sources are confidently detected in the full analysis without optimizing the search for any specific population of sources.",
+   "section": "Sec. 5 Observational Results"
+  },
+  {
+   "name": "targeted BBH, p_astro > 0.5 (further 6)",
+   "quote": "When we apply a ranking to search candidates that optimizes search sensitivity for a population of BBH mergers similar to that already detected, we identify a further 6 such mergers with a probability of astrophysical origin above $50\\%$. These include GW170818 and GW170729 which were reported in~\\cite{LIGOScientific:2018mvr} along with GW170121, GW170727, and GW170304 which were reported in~\\cite{Venumadhav:2019lyq}. We report one new marginal BBH candidate, GW151205.",
+   "section": "Sec. 1 Introduction"
+  },
+  {
+   "name": "marginal detection (GW151205)",
+   "quote": "We confirm the observation of GW170121, GW170304, and GW170727 reported in~\\cite{Venumadhav:2019tad} as significant. We also report the marginal detection of GW151205.",
+   "section": "Sec. 5.1"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW170817",
+    "170817+12:41:04UTC"
+   ],
+   "gps": 1187008882.45,
+   "gps_source": "GPS time column, Table 2 (also Table 4)",
+   "p_astro": null,
+   "far": null,
+   "ifar": {
+    "full_search_yr": ">10000",
+    "bns_region_yr": ">10000",
+    "units": "yr"
+   },
+   "snr": {
+    "rho_H": "18.6",
+    "rho_L": "24.3",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_full": 180.46
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr); BNS, no p_astro computed",
+   "table": "Table 2 (table:complete) and Table 4 (table:bns)",
+   "paper_says_new": false,
+   "notes": "Footnote marker x: also identified in GWTC-1. Not in the p_astro (BBH) table; counted alongside the 14 BBH ('as well as the binary neutron star merger GW170817')."
+  },
+  {
+   "designations": [
+    "150914+09:50:45UTC"
+   ],
+   "gps": 1126259462.43,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": ">10000",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "19.7",
+    "rho_L": "13.4",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 111.71,
+    "Lambda_full": 93.82
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, 1-OGC, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "170814+10:30:43UTC"
+   ],
+   "gps": 1186741861.53,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": ">10000",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "9.3",
+    "rho_L": "13.8",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 61.58,
+    "Lambda_full": 52.85
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, IAS (Venumadhav et al.). GPS differs by 0.01 s between Table 3 (1186741861.53, used) and Table 2 (1186741861.54)."
+  },
+  {
+   "designations": [
+    "170823+13:13:58UTC"
+   ],
+   "gps": 1187529256.52,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": ">10000",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "6.3",
+    "rho_L": "9.2",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 59.43,
+    "Lambda_full": 55.04
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "170104+10:11:58UTC"
+   ],
+   "gps": 1167559936.6,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": ">10000",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "9.1",
+    "rho_L": "9.9",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 47.32,
+    "Lambda_full": 35.54
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "151226+03:38:53UTC"
+   ],
+   "gps": 1135136350.65,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": ">10000",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "10.7",
+    "rho_L": "7.4",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 40.58,
+    "Lambda_full": 42.9
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, 1-OGC, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "151012+09:54:43UTC"
+   ],
+   "gps": 1128678900.45,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">10000",
+    "full_search_yr": "220",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "7.0",
+    "rho_L": "6.7",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 20.25,
+    "Lambda_full": 20.18
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, 1-OGC, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "170809+08:28:21UTC"
+   ],
+   "gps": 1186302519.76,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "8300",
+    "full_search_yr": "9400",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "6.6",
+    "rho_L": "10.7",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 43.34,
+    "Lambda_full": 40.59
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, IAS (Venumadhav et al.). Table 3 IFAR carries footnote: FAR limited by false coincidences from the candidate's own time-shifted L1 trigger; if removed from its own background FAR < 1 per 10,000 yr."
+  },
+  {
+   "designations": [
+    "GW170729",
+    "170729+18:56:29UTC"
+   ],
+   "gps": 1185389807.33,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "4000",
+    "full_search_yr": "6.4",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "7.5",
+    "rho_L": "7.1",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 19.16,
+    "Lambda_full": 15.33
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1, IAS (Venumadhav et al.)."
+  },
+  {
+   "designations": [
+    "GW170608",
+    "170608",
+    "170608+02:01:16UTC"
+   ],
+   "gps": 1180922494.49,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ">910",
+    "full_search_yr": ">910",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "12.5",
+    "rho_L": "8.7",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 55.12,
+    "Lambda_full": 51.01
+   },
+   "detectors": "HL",
+   "tier": "confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1. IFAR >910 yr limited by available background (separate short data release)."
+  },
+  {
+   "designations": [
+    "GW170121",
+    "170121+21:25:36UTC"
+   ],
+   "gps": 1169069154.58,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "210",
+    "full_search_yr": "1.3",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "5.1",
+    "rho_L": "8.9",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 23.86,
+    "Lambda_full": 15.76
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in IAS (Venumadhav et al.). Text: 'We confirm the observation of GW170121, GW170304, and GW170727 reported in [Venumadhav et al.]'. Table 3 IFAR carries footnote: FAR limited by false coincidences from the candidate's own time-shifted L1 trigger; if removed from its own background FAR < 1 per 10,000 yr."
+  },
+  {
+   "designations": [
+    "GW170818",
+    "170818+02:25:09UTC"
+   ],
+   "gps": 1187058327.09,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": ">0.999",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "5.1",
+    "full_search_yr": ".22",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "4.4",
+    "rho_L": "9.4",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 21.42,
+    "Lambda_full": 13.29
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in GWTC-1. Table 3 IFAR carries footnote: FAR limited by false coincidences from the candidate's own time-shifted L1 trigger; if removed from its own background FAR < 1 per 10,000 yr. Distinct from sub-threshold candidate 170818+09:34:45UTC (HV, last row of Table 3)."
+  },
+  {
+   "designations": [
+    "GW170727",
+    "170727+01:04:30UTC"
+   ],
+   "gps": 1185152688.03,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": "0.994",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "180",
+    "full_search_yr": ".53",
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "4.5",
+    "rho_L": "6.9",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 15.84,
+    "Lambda_full": 13.75
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only",
+   "table": "Table 3 (table:bbh) and Table 2 (table:complete)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in IAS (Venumadhav et al.). Text: 'We confirm the observation of GW170121, GW170304, and GW170727 reported in [Venumadhav et al.]'."
+  },
+  {
+   "designations": [
+    "GW170304",
+    "170304+16:37:53UTC"
+   ],
+   "gps": 1172680691.37,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": "0.70",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": "2.5",
+    "full_search_yr": null,
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "4.6",
+    "rho_L": "7.1",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 11.61,
+    "Lambda_full": null
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only",
+   "table": "Table 3 (table:bbh)",
+   "paper_says_new": false,
+   "notes": "Table footnote markers: also identified in IAS (Venumadhav et al.). Text: 'We confirm the observation of GW170121, GW170304, and GW170727 reported in [Venumadhav et al.]'."
+  },
+  {
+   "designations": [
+    "GW151205",
+    "151205+19:55:25UTC"
+   ],
+   "gps": 1133380542.42,
+   "gps_source": "GPS time column, Table 3 (table:bbh)",
+   "p_astro": "0.53",
+   "far": null,
+   "ifar": {
+    "bbh_targeted_yr": ".61",
+    "full_search_yr": null,
+    "units": "yr (FAR^-1 (y))"
+   },
+   "snr": {
+    "rho_H": "5.8",
+    "rho_L": "4.8",
+    "rho_V": "-"
+   },
+   "ranking_stat": {
+    "Lambda_BBH": 10.97,
+    "Lambda_full": null
+   },
+   "detectors": "HL",
+   "tier": "p_astro > 0.5 in targeted BBH search only; paper calls it a 'marginal detection'",
+   "table": "Table 3 (table:bbh)",
+   "paper_says_new": true,
+   "notes": "Table footnote markers: also identified in none. Abstract: 'also report GW151205, a new marginal binary black hole merger'; Sec. 5.1: 'We also report the marginal detection of GW151205.'"
+  }
+ ],
+ "below_criterion": {
+  "count": 41,
+  "count_note": "Distinct date designations across Table 2 (30 rows, 17 below), Table 3 (30 rows, 16 below: 14 with p_astro<0.5 plus 2 with p_astro '-'), Table 4 (10 rows, 9 below), deduplicated by exact designation string. None receives a GW-style name; several are discussed by date designation (151216+09:24:16UTC p_astro~0.2 'first identified in 1-OGC'; 151217+03:47:49UTC, 170201+11:03:12UTC, 170629+04:13:55UTC as a possible high-chi_eff population; 170403+23:06:11UTC; 170818+09:34:45UTC judged 'not astrophysical in origin').",
+  "designations": [
+   "150928+10:49:00UTC",
+   "150930+12:45:03UTC",
+   "151011+19:27:49UTC",
+   "151105+20:34:28UTC",
+   "151112+05:48:49UTC",
+   "151202+01:18:13UTC",
+   "151214+21:03:35UTC",
+   "151216+09:24:16UTC",
+   "151216+18:49:30UTC",
+   "151217+03:47:49UTC",
+   "151227+16:52:22UTC",
+   "160103+02:29:54UTC",
+   "161217+02:44:33UTC",
+   "170104+21:58:40UTC",
+   "170123+20:16:42UTC",
+   "170126+23:56:22UTC",
+   "170201+11:03:12UTC",
+   "170202+13:56:57UTC",
+   "170204+00:34:28UTC",
+   "170208+20:23:00UTC",
+   "170213+21:45:15UTC",
+   "170220+11:36:24UTC",
+   "170306+04:45:50UTC",
+   "170310+09:30:52UTC",
+   "170321+03:13:21UTC",
+   "170327+17:07:35UTC",
+   "170331+07:08:18UTC",
+   "170403+23:06:11UTC",
+   "170416+18:38:48UTC",
+   "170425+05:53:34UTC",
+   "170618+20:00:39UTC",
+   "170620+01:14:02UTC",
+   "170629+04:13:55UTC",
+   "170721+05:55:13UTC",
+   "170722+08:45:14UTC",
+   "170801+23:28:19UTC",
+   "170809+03:55:52UTC",
+   "170818+09:34:45UTC",
+   "170819+07:30:53UTC",
+   "170819+11:06:26UTC",
+   "170823+13:40:55UTC"
+  ],
+  "named": []
+ },
+ "open_questions": [
+  "GW170817 has no p_astro; its inclusion rests on the full-search FAR (<1/10000 yr) and the abstract's 'as well as' wording, not on the p_astro>0.5 rule.",
+  "Tier split: Intro says 8 BBH at FAR<1/100 yr in full search + 'a further 6' via p_astro; by Table 2 the 8 are 150914, 170104, 170823, 170814, 151226, 170809, 170608, 151012; the further 6 are 170729, 170121, 170727, 170818, 170304, 151205. GW170304 does not appear in Table 2 (top 30 full search).",
+  "GWTC-1 events are referred to only by date designations (e.g. 150914+09:50:45UTC); the paper never writes GW150914, GW151226, GW151012/LVT151012, GW170104, GW170809, GW170814, GW170823.",
+  "170814+10:30:43UTC GPS differs by 0.01 s between Tables 2 and 3.",
+  "GW151205 (p_astro 0.53) is called both a 'marginal detection' and counted among the 14 BBH with p_astro > 0.5."
+ ],
+ "source_versions": {
+  "1910.05331": "v3"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

@@ -1,0 +1,347 @@
+{
+ "catalogue": "IAS-O2",
+ "papers": [
+  "1904.07214",
+  "1910.09528"
+ ],
+ "criterion": {
+  "summary": "Two-part: p_astro > 0.5 (the table criterion) and FAR below the GWTC-1 threshold of 1 per 30 days even after a trials factor of 5 banks. Both explicitly borrowed from GWTC-1. Sub-threshold = 0.1 < p_astro < 0.5.",
+  "quote": "Also consistent with this is the fact that we find six new events with (a) false alarm rates below the threshold of 1 in 30 days defined in GWTC-1 (even after applying appropriate trials factors), and (b) probabilities of astrophysical origin $p_{\\rm astro} > 0.5$, as effectively quantified by their consistency with the rates of occurrence of louder events. || The criterion in Table~\\ref{tab:signalsFound} is based on the value of $p_{\\rm astro}$, but all the events have significantly higher values of the `per-bank' IFAR than the threshold of 1 in 30 days, or $\\sim 0.25$ O2, adopted in GWTC-1 \\cite{LIGOScientific:2018mvr} (i.e., their IFARs exceed 0.25 O2 even if divided by a trials factor of five).",
+  "section": "Sec. II 'Preview of results' (first sentence) and Sec. V 'Overview of the newly discovered BBH mergers' (second); Table II caption: 'New events with astrophysical probability $> 50\\%$'",
+  "paper": "1904.07214",
+  "second_paper": {
+   "paper": "1910.09528",
+   "section": "Sec. I Introduction; Sec. II.C 'Determining the False-Alarm Rate'",
+   "quote": "The search described in this paper revealed two additional interesting BBH triggers that are above the thresholds of significance for being called events~\\cite{LIGOScientific:2018mvr}. || If this trigger also has a high probability of being astrophysical in nature (see more details in Sec.~\\ref{sec:PASTRO}), we can add it to the catalog of events [...]",
+   "summary": "No explicit p_astro threshold restated; relies on GWTC-1 thresholds of significance; FAR via L1-rank × FAP, p_astro computed (0.86, 0.68)."
+  },
+  "source_note": "1904.07214 uses \\newcommand{\\change}[2]{{#1}}, so the FIRST argument of \\change{...}{...} is what renders; both quotes above are inside the first argument and therefore appear in this source's rendering."
+ },
+ "tiers": [
+  {
+   "name": "new events, p_astro > 0.5 (Table II)",
+   "quote": "Three of the mergers (GW170121, GW170304, GW170727) have inferred probabilities of being of astrophysical origin $p_{\\rm astro} > 0.98$. The remaining three (GW170425, GW170202, GW170403) are less certain, with $p_{\\rm astro}$ ranging from $0.5$ to $0.8$.",
+   "section": "Abstract, 1904.07214"
+  },
+  {
+   "name": "previously reported LVC events recovered (Table I)",
+   "quote": "We detect all previously reported BBH events except for GW170608, for which the LVC did not provide the Hanford data in their bulk data release [...] All of these events are certainly astrophysical sources with lower limit on $p_{\\rm astro} \\geqslant 0.99$.",
+   "section": "Sec. IV 'Results on the previously reported events', 1904.07214"
+  },
+  {
+   "name": "sub-threshold candidates (Table III)",
+   "quote": "we list in Table~\\ref{tab:subthreshold candidates} the sub-threshold triggers of our search, defined as those with $0.1 < p_{\\rm astro} < 0.5$.",
+   "section": "Sec. V, 1904.07214"
+  },
+  {
+   "name": "single-detector-search new events (GW vs GWC prefix)",
+   "quote": "We name the two new events GWC170402 and GW170817A according to the date of occurrence.",
+   "section": "Sec. III 'Summary of Results', 1910.09528"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW170121"
+   ],
+   "gps": 1169069154.565,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "2.8×10^3 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (3,0); rho_H^2=29.4, rho_L^2=89.7; Mc_det=29 ^+4_-3, chi_eff=-0.3 ^+0.3_-0.3, z=0.24 ^+0.14_-0.13. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 3, GPS 1169069154.564, rho_L^2=90.8 (ranking only; not re-assessed there). Abstract groups GW170121/GW170304/GW170727 as p_astro > 0.98."
+  },
+  {
+   "designations": [
+    "GW170304"
+   ],
+   "gps": 1172680691.356,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.985,
+   "far": null,
+   "ifar": "377 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (4,0); rho_H^2=24.9, rho_L^2=55.9; Mc_det=47 ^+8_-7, chi_eff=0.2 ^+0.3_-0.3, z=0.5 ^+0.2_-0.2. Text: FAR^-1 ~ 370 O2, p_astro ≈ 0.98."
+  },
+  {
+   "designations": [
+    "GW170727"
+   ],
+   "gps": 1185152688.019,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.98,
+   "far": null,
+   "ifar": "370 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (4,0); rho_H^2=25.4, rho_L^2=53.5; Mc_det=42^+6_-6, chi_eff=-0.1 ^+0.3_-0.3, z=0.43 ^+0.18_-0.17. Text: FAR^-1 ~ 370 O2, p_astro ≈ 0.98."
+  },
+  {
+   "designations": [
+    "GW170425"
+   ],
+   "gps": 1177134832.178,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.77,
+   "far": null,
+   "ifar": "15 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (4,0); rho_H^2=28.6, rho_L^2=37.5; Mc_det=47^+26_-10, chi_eff=0.0 ^+0.4_-0.5, z=0.5 ^+0.4_-0.3. DISCREPANCY: table gives FAR^-1 = 15 O2 but Sec. V text says 'FAR^{-1} ≈ 29 O2' (p_astro ≈ 0.77 in both)."
+  },
+  {
+   "designations": [
+    "GW170202"
+   ],
+   "gps": 1170079035.715,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.68,
+   "far": null,
+   "ifar": "6.3 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (3,0); rho_H^2=26.5, rho_L^2=41.7; Mc_det=21.6_ -1.4 ^ +4.2, chi_eff=-0.2 ^+0.4_-0.3, z=0.27 ^+0.13_-0.12. Text: p_astro ≈ 0.7, FAR^-1 ≈ 6 O2."
+  },
+  {
+   "designations": [
+    "GW170403"
+   ],
+   "gps": 1175295989.221,
+   "gps_source": "GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": 0.56,
+   "far": null,
+   "ifar": "4.7 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)",
+   "snr": null,
+   "tier": "main (new events, p_astro > 0.5)",
+   "table": "Table II (label tab:signalsFound, 'New events with astrophysical probability > 50% in all of the BBH banks'), 1904.07214",
+   "paper_says_new": true,
+   "notes": "Bank BBH (4,1); rho_H^2=31.3, rho_L^2=31.0; Mc_det=48 ^+9_-7, chi_eff=-0.7 ^+0.5_-0.3, z=0.45 ^+0.22_-0.19. Text: p_astro ≈ 0.55, FAR^-1 ≈ 5 O2, 'close to the threshold p_astro = 0.5 to make it into a list of detections'; abstract: 'least secure event'."
+  },
+  {
+   "designations": [
+    "GW170104"
+   ],
+   "gps": 1167559936.582,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "> 2×10^4 O2 (upper limit; per-bank)",
+   "snr": null,
+   "tier": "previously reported by LVC, recovered",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,0); rho_H^2=85.1, rho_L^2=104.3. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 6, GPS 1167559936.584, rho_L^2=107.3 (ranking only; not re-assessed there)."
+  },
+  {
+   "designations": [
+    "GW170809"
+   ],
+   "gps": 1186302519.74,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "> 2×10^4 O2 (upper limit; per-bank)",
+   "snr": null,
+   "tier": "previously reported by LVC, recovered",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,0); rho_H^2=40.5, rho_L^2=113. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 7, GPS 1186302519.731, rho_L^2=118.6 (ranking only; not re-assessed there)."
+  },
+  {
+   "designations": [
+    "GW170814"
+   ],
+   "gps": 1186741861.519,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "> 2×10^4 O2 (upper limit; per-bank)",
+   "snr": null,
+   "tier": "previously reported by LVC, recovered",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,0); rho_H^2=90.2, rho_L^2=170. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 5, GPS 1186741861.51, rho_L^2=174.6 (ranking only; not re-assessed there)."
+  },
+  {
+   "designations": [
+    "GW170818"
+   ],
+   "gps": 1187058327.075,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": null,
+   "far": null,
+   "ifar": "1.7 O2 per-bank (1904.07214 Table I); '> 1000 O2' from H1-L1 coherence (1910.09528 Sec. II.E 'Validation using GW170818')",
+   "snr": null,
+   "tier": "previously reported by LVC; NOT meeting criterion in 1904.07214 (FAR^-1 1.7 O2, no p_astro); confirmed via single-detector method in 1910.09528",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,0); rho_H^2=19.4, rho_L^2=95.1. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 1, GPS 1187058327.068, rho_L^2=93.1 (ranking only; not re-assessed there). 1904.07214: 'we need a more careful analysis to reliably assess the FAR and probability of astrophysical origin of such events'; Fig. 1 caption says all LVC events recovered with p_astro≈1 'except for GW170608 and GW170818'. 1910.09528 Table I row 1: GPS 1187058327.068, rho_L^2=93.1, C(S|H0) < 1e-3, P(S|H1)/P(S|H0)=37; text: 'we are able to assign an inverse FAR better than 1000 O2 for GW170818 [...] Hence, we are able to confirm its astrophysical origin even without confirmation from the Virgo detector.' No p_astro given in either paper."
+  },
+  {
+   "designations": [
+    "GW170729"
+   ],
+   "gps": 1185389807.311,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "> 2×10^4 O2 (upper limit; per-bank)",
+   "snr": null,
+   "tier": "previously reported by LVC, recovered",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,1); rho_H^2=62.1, rho_L^2=53.6."
+  },
+  {
+   "designations": [
+    "GW170823"
+   ],
+   "gps": 1187529256.5,
+   "gps_source": "GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are 'linear-free' times of the best-fit template (rendered footnote: 'in the Hanford detector') (1904.07214 adds that for the heavier BBH banks the linear-free time is 'practically close to the merger time')",
+   "p_astro": "> 0.99",
+   "far": null,
+   "ifar": "> 2×10^4 O2 (upper limit; per-bank)",
+   "snr": null,
+   "tier": "previously reported by LVC, recovered",
+   "table": "Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration as detected with our pipeline'), 1904.07214",
+   "paper_says_new": false,
+   "notes": "Bank BBH (3,1); rho_H^2=46.0, rho_L^2=90.7. Also listed in 1910.09528 Table I (tab:SimilarityRanking) at L1 rank 2, GPS 1187529256.504, rho_L^2=92.1 (ranking only; not re-assessed there)."
+  },
+  {
+   "designations": [
+    "GW170817A"
+   ],
+   "gps": 1186974184.716,
+   "gps_source": "GPS time column of Table I (tab:SimilarityRanking), 1910.09528 (L1-trigger ranking table). DISCREPANCY: Fig. 2 (fig:fishing_cand) caption gives 'GPS time 1186974148.716' (digits transposed); table value and figure filename O2_1186974184_L1H1V1_fishing.pdf use 1186974184.",
+   "p_astro": 0.86,
+   "far": "1/(36 O2) ≈ 1/(11.5 yr)",
+   "ifar": "36 O2 ≈ 11.5 yr (Sec. II.C eq.); abstract: 'one in 11 years (36 O2)'",
+   "snr": null,
+   "tier": "main (new event; second-ranked new single-detector trigger)",
+   "table": "Table I (label tab:SimilarityRanking), 1910.09528 (bold row, L1 rank 8); FAR in Sec. II.C 'Determining the False-Alarm Rate'; p_astro in Sec. II.D",
+   "paper_says_new": true,
+   "notes": "rho_L^2=98.5, #similar triggers=5, C(S|H0)=0.028 (FAP), C(S|H1)=0.055, P(S|H1)/P(S|H0)=0.98. Q ≈ 6.37. Text: 'not to be confused with the binary neutron star merger event GW170817'. H1 data notched at 68–73 Hz and 92–96 Hz. Coherent score used H1 and V1 data."
+  },
+  {
+   "designations": [
+    "GWC170402"
+   ],
+   "gps": 1175205128.565,
+   "gps_source": "GPS time column of Table I (tab:SimilarityRanking), 1910.09528; same value repeated in Fig. 2 caption ('GWC170402 at GPS time 1175205128.565')",
+   "p_astro": 0.68,
+   "far": "1/(60 O2) ≈ 1/(19 yr)",
+   "ifar": "60 O2 ≈ 19 yr (Sec. II.C eq.); abstract: 'one in 19 years (60 O2)'",
+   "snr": null,
+   "tier": "candidate ('GWC' = 'GW candidate'; top-ranked new single-detector trigger)",
+   "table": "Table I (label tab:SimilarityRanking), 1910.09528 (bold row, L1 rank 4); FAR Sec. II.C; p_astro Sec. II.D",
+   "paper_says_new": true,
+   "notes": "rho_L^2=72.9, #similar triggers=0, C(S|H0)=0.015 (FAP), C(S|H1)=0.022, P(S|H1)/P(S|H0)=0.547. Q ≈ 2.15. Paper: 'At the time of writing, we do not have a waveform model that completely models the observed signal, and hence we do not attach a \"GW\" prefix but a temporary GWC for \"GW candidate\".' Conclusions: 'The other event, GWC170402, if genuine, ...'. The string 'GW170402' appears only in a figure filename and a commented-out line, never in rendered text."
+  }
+ ],
+ "below_criterion": {
+  "count": 12,
+  "named": [],
+  "breakdown": {
+   "1904.07214 Table III (tab:subthreshold candidates), 0.1 < p_astro < 0.5, unnamed (Bank + GPS only)": [
+    {
+     "gps": 1172487817.477,
+     "bank": "BBH (4,1)",
+     "ifar": "0.82 O2",
+     "p_astro": 0.45
+    },
+    {
+     "gps": 1170914187.455,
+     "bank": "BBH (3,0)",
+     "ifar": "0.43 O2",
+     "p_astro": 0.28
+    },
+    {
+     "gps": 1172449151.468,
+     "bank": "BBH (3,1)",
+     "ifar": "0.31 O2",
+     "p_astro": 0.18
+    },
+    {
+     "gps": 1174138338.385,
+     "bank": "BBH (4,0)",
+     "ifar": "0.62 O2",
+     "p_astro": 0.17
+    },
+    {
+     "gps": 1171863216.108,
+     "bank": "BBH (3,0)",
+     "ifar": "0.27 O2",
+     "p_astro": 0.125
+    },
+    {
+     "gps": 1187176593.222,
+     "bank": "BBH (3,1)",
+     "ifar": "0.2 O2",
+     "p_astro": 0.12
+    },
+    {
+     "gps": 1182674889.044,
+     "bank": "BBH (3,0)",
+     "ifar": "0.23 O2",
+     "p_astro": 0.12
+    },
+    {
+     "gps": 1171410777.2,
+     "bank": "BBH (3,1)",
+     "ifar": "0.18 O2",
+     "p_astro": 0.11
+    }
+   ],
+   "1910.09528 Table I rows labelled 'Background' (3) and 'Removed'/'Artifacts present' (1), unnamed": [
+    {
+     "gps": 1174043898.842,
+     "rho_L2": 75.7,
+     "label": "Background"
+    },
+    {
+     "gps": 1170885005.109,
+     "rho_L2": 66.4,
+     "label": "Background"
+    },
+    {
+     "gps": 1178083239.592,
+     "rho_L2": 74.4,
+     "label": "Background"
+    },
+    {
+     "gps": 1173477193.704,
+     "rho_L2": 69.2,
+     "label": "Artifacts present"
+    }
+   ]
+  },
+  "notes": "GW170818 (LVC event) is not counted here; in 1904.07214 it lacks a p_astro and has per-bank FAR^-1 1.7 O2, see its event entry."
+ },
+ "open_questions": [
+  "GW170818: include as an IAS-O2 detection? 1904.07214 tabulates it among 'events already reported... as detected with our pipeline' but gives FAR^-1 1.7 O2 and no p_astro; 1910.09528 assigns IFAR > 1000 O2 and 'confirm[s] its astrophysical origin' but gives no p_astro.",
+  "GWC170402: paper counts it among 'two new events' and it has p_astro 0.68 > 0.5, but deliberately withholds the 'GW' prefix ('temporary GWC for GW candidate'; 'if genuine'). Decide whether it counts as a detection.",
+  "GW170425 inverse FAR: table says 15 O2, text says ≈ 29 O2.",
+  "GW170817A GPS: Table I 1186974184.716 vs Fig. 2 caption 1186974148.716 (transposition).",
+  "The 1910.09528 events have no IAS p_astro computed by the 1904.07214 rate-marginalised method; its p_astro uses a cruder volume-ratio argument (Q with order-unity uncertainty per the paper).",
+  "1904.07214 FARs are per-bank without trials factor; per-event GPS times are 'linear-free' template times in Hanford (for 1904.07214) and L1-trigger times (presumably) in 1910.09528 — the latter is not stated.",
+  "GW170121 appears in both papers with slightly different GPS (1169069154.565 in 1904.07214 vs 1169069154.564 in 1910.09528) and rho_L^2 (89.7 vs 90.8)."
+ ],
+ "source_versions": {
+  "1904.07214": "v2",
+  "1910.09528": "v1"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

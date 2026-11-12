@@ -98,20 +98,28 @@ from the analysis; a label upgrade a question needs is a new release.
   - Record per catalogue its detection criterion as the paper states it
     (quote and section), and per event its reported p_astro, FAR (or
     IFAR) and table tier (main or marginal), so the paper can filter
-    uniformly later. Criteria below are from memory and **must be
-    checked against each paper**:
+    uniformly later. Criteria **verified against the papers 2026-11-12**
+    (LaTeX source, latest arXiv version); full transcriptions with quotes,
+    per-event p_astro/IFAR/tier and designations in `data/catalogues/`.
+    "LVK" = within 1 s of an event with any LVK record (GWTC confident or
+    marginal, discovery papers, O3 IMBH marginal); all other events are
+    >= 740 s from any LVK event.
 
-    | Catalogue | Paper | Criterion (to verify) |
-    |---|---|---|
-    | IAS O1 | 1902.10341, 1902.10331 | p_astro > 0.5 (GW151216) |
-    | IAS O2 | 1904.07214; also 1910.09528 (GW170817A) | p_astro > 0.5 |
-    | IAS O3a | 2201.02252 (GWOSC IAS-O3a) | p_astro > 0.5 |
-    | IAS O3b | 2311.06061 | p_astro > 0.5 |
-    | IAS O3 higher harmonics | 2312.06631 | p_astro > 0.5 |
-    | 1-OGC | 1811.01921 | FAR threshold; check whether any new event |
-    | 2-OGC | 1910.05331 | p_astro > 0.5 (e.g. GW151205, GW170121, GW170304, GW170727) |
-    | 3-OGC | 2105.09151 | p_astro > 0.5 |
-    | 4-OGC | 2112.06878 | p_astro > 0.5 |
+    | Catalogue | Paper (version) | Criterion as stated | Events | with LVK record | without |
+    |---|---|---|---|---|---|
+    | IAS O1 | 1902.10341v2, 1902.10331v2 | No threshold in the pipeline paper; 1902.10331 §II: P_astro ≈ 0.7 "above the bar of 0.5 for listing events in the catalog of confident GW detections defined in [GWTC-1]" | 4 | 3 | 1 |
+    | IAS O2 | 1904.07214v2, 1910.09528v1 | 1904.07214 §II: FAR below 1 in 30 days (with trials factor) **and** p_astro > 0.5; 1910.09528 only says "above the thresholds of significance for being called events" | 14 | 6 | 8 |
+    | IAS O3a | 2201.02252v3 | §I: p_astro "at least one half" (abstract, Table I: > 0.5) | 42 | 32 | 10 |
+    | IAS O3b | 2311.06061v3 | §I: p_astro "at least one half" (§V.B: "greater than") | 23 | 17 | 6 |
+    | IAS O3 HM | 2312.06631v2 | Abstract/§III A: p_astro over 0.5 | 79 | 59 | 20 |
+    | 1-OGC | 1811.01921v3 | §4: "three candidates which are statistically significant" (FAR < 1/50 000 yr for two; LVT151012 by P_astro 0.976). No new events (§1) | 3 | 3 | 0 |
+    | 2-OGC | 1910.05331v3 | §5.1: "14 BBH candidates with p_astro > 50%, meeting the standard detection criteria" of GWTC-1, plus GW170817 | 15 | 11 | 4 |
+    | 3-OGC | 2105.09151v3 | §5, Table 2: "P_astro > 0.5 **or** IFAR > 100 years" | 57 | 52 | 5 |
+    | 4-OGC | 2112.06878v2 | §3, Table 3: "P_astro > 0.5 **or** IFAR > 100 years" | 94 | 79 | 15 |
+
+    Together: 46 distinct events without an LVK record (GPS-clustered
+    within 2 s). Open questions are listed under "A6 decisions pending"
+    below.
 
   - Designations: add every name a catalogue used, including forms
     without the GW prefix and both short and `_hhmmss` forms, as aliases.
@@ -123,6 +131,17 @@ from the analysis; a label upgrade a question needs is a new release.
     (reassigned, not dropped); applies on the next extraction run.
   - Then re-run extraction and classification for the new names over the
     whole corpus.
+  - **A6 decisions pending** (2026-11-12, waiting on a human):
+    - Merges: the 262 catalogue rows within 1 s of an LVK event, and the
+      cross-catalogue groups among the 46 non-LVK events, are proposals.
+    - GWC170402 (IAS O2): deliberately not given a GW name ("if
+      genuine"); count it as a detection? It would be the only event with
+      no GW name.
+    - IAS-HM: count the GWTC-3 events it re-detects with p_astro > 0.5 as
+      IAS-HM detections (the paper calls them "recovered")?
+    - p_astro printed as 0.50 with IFAR < 100 yr (4-OGC GW190404_142514,
+      also GW190425 and GW200105) counted by the paper; keep as tabulated.
+    - Short forms (GWYYMMDD) only where no other event shares the date.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
   2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
   from the site's front page.

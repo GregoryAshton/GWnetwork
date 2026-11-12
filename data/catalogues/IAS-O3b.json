@@ -1,0 +1,643 @@
+{
+ "catalogue": "IAS-O3b",
+ "papers": [
+  "2311.06061"
+ ],
+ "criterion": {
+  "summary": "p_astro > 0.5 (worded 'at least one half' and 'greater than one half'), following GWTC-3 and 4-OGC. Hanford-Livingston coincident BBH search only.",
+  "quote": "We detect \\neviasnew{} new BBH candidate events under the criterion that the astrophysical probability $\\pastro$ is at least one half (which is also the threshold used in the GWTC-3 and 4-OGC catalogs).",
+  "section": "Sec. I Introduction (macro \\neviasnew = 6). Also: Abstract ('we continue to use an astrophysical probability of one half as our detection threshold, following the approach of the LVK catalogs'); Sec. V.B Concluding remarks ('based on the criteria that the astrophysical probability is greater than one half (following the LVK collaboration)'); Table I caption 'New events with $p_{\\rm astro} > 0.5$'.",
+  "paper": "2311.06061"
+ },
+ "tiers": [
+  {
+   "name": "new events (6)",
+   "quote": "We report the detection of \\neviasnewtot{} new candidate binary black hole (BBH) merger signals in the publicly released data from the second half of the third observing run (O3b)",
+   "section": "Abstract (\\neviasnewtot = 6); Table I; Sec. III"
+  },
+  {
+   "name": "GWTC-3 HL BBH events re-detected (17)",
+   "quote": "We confirm \\neviasconf{} of these for a total of \\neviastot{} detections in our analysis of the Hanford--Livingston coincident O3b data.",
+   "section": "Abstract (\\neviasconf = 17, \\neviastot = 23); Table II; Sec. IV"
+  },
+  {
+   "name": "LVK events below threshold ('marginal'), vetoed or missed (not detections)",
+   "quote": "we found that 6 of them were marginal in our catalog, i.e., recovered with a $\\pastro$ lower than one half, while 6 were vetoed for failing one or more of our signal consistency and excess power tests, and one event was missed.",
+   "section": "Sec. I; Sec. IV"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW200109_195634"
+   ],
+   "gps": 1262635012,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.81,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "4.4 yr (within bank); 0.93 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 5.5,
+    "rho_L": 5.8
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (5, 4); rho_H=5.5, rho_L=5.8 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 4.4 yr, overall (combined across chirp-mass banks) 0.93 yr. Paper (Sec. V.B): 'The new events reported here, except GW200225_075134 and GW191117_023843, are also present in the list of GWTC-3 sub-threshold events'; the paper still calls it new. Footnote: significance could improve if Virgo were included in the coincident search."
+  },
+  {
+   "designations": [
+    "GW191228_085854"
+   ],
+   "gps": 1261558752,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.67,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "1.8 yr (within bank); 0.25 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 5.2,
+    "rho_L": 7.3
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (1, 0); rho_H=5.2, rho_L=7.3 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 1.8 yr, overall (combined across chirp-mass banks) 0.25 yr. Paper (Sec. V.B): 'The new events reported here, except GW200225_075134 and GW191117_023843, are also present in the list of GWTC-3 sub-threshold events'; the paper still calls it new. Bimodal posterior; Appendix C compares it with LVK event GW200210_092254."
+  },
+  {
+   "designations": [
+    "GW200225_075134"
+   ],
+   "gps": 1266652312,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.6,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.95 yr (within bank); 0.15 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 4.5,
+    "rho_L": 7.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (3, 1); rho_H=4.5, rho_L=7.0 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 0.95 yr, overall (combined across chirp-mass banks) 0.15 yr. Distinct from LVK event GW200225_060421 (also re-detected)."
+  },
+  {
+   "designations": [
+    "GW191117_023843"
+   ],
+   "gps": 1257993541,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.56,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.52 yr (within bank); 0.12 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 6.5,
+    "rho_L": 4.7
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (5, 4); rho_H=6.5, rho_L=4.7 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 0.52 yr, overall (combined across chirp-mass banks) 0.12 yr."
+  },
+  {
+   "designations": [
+    "GW200210_100022"
+   ],
+   "gps": 1265364040,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.52,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.45 yr (within bank); 0.097 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 4.9,
+    "rho_L": 6.2
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (5, 2); rho_H=4.9, rho_L=6.2 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 0.45 yr, overall (combined across chirp-mass banks) 0.097 yr. Paper (Sec. V.B): 'The new events reported here, except GW200225_075134 and GW191117_023843, are also present in the list of GWTC-3 sub-threshold events'; the paper still calls it new. Distinct from LVK GW200210_092254 and 4-OGC GW200210_005122 (both vetoed here); three GW200210 events appear in this paper."
+  },
+  {
+   "designations": [
+    "GW200316_235947"
+   ],
+   "gps": 1268438405,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.52,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "0.59 yr (within bank); 0.092 yr (overall, combined across chirp-mass banks)",
+   "snr": {
+    "rho_H": 6.1,
+    "rho_L": 5.7
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:signalsFoundParsPESourceFrame)",
+   "paper_says_new": true,
+   "notes": "Table I: bank (0, 0); rho_H=6.1, rho_L=5.7 (single-detector search SNRs, not squared; no network SNR); IFAR within bank 0.59 yr, overall (combined across chirp-mass banks) 0.092 yr. Paper (Sec. V.B): 'The new events reported here, except GW200225_075134 and GW191117_023843, are also present in the list of GWTC-3 sub-threshold events'; the paper still calls it new. Distinct from LVK event GW200316_215756 (also re-detected). Possible NSBH."
+  },
+  {
+   "designations": [
+    "GW191105_143521"
+   ],
+   "gps": 1256999739,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.99,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 5.6,
+    "rho_L": 7.6
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H=5.6, rho_L=7.6 (IAS search SNRs); GWTC-3 PE network SNR=9.7; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=83.3 yr; 4-OGC IFAR=316 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW191129_134029"
+   ],
+   "gps": 1259070047,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.69,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "2.2 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 5.3,
+    "rho_L": 7.1
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H=5.3, rho_L=7.1 (IAS search SNRs); GWTC-3 PE network SNR=13.1; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper). Footnote: primary trigger vetoed; recovered with a secondary trigger of much lower SNR."
+  },
+  {
+   "designations": [
+    "GW191204_110529"
+   ],
+   "gps": 1259492747,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.68,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "1.1 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 4.6,
+    "rho_L": 7.0
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_5; rho_H=4.6, rho_L=7.0 (IAS search SNRs); GWTC-3 PE network SNR=8.9; GWTC-3 p_astro=0.74; 4-OGC p_astro=0.99; GWTC-3 IFAR=0.30 yr; 4-OGC IFAR=1.6 yr (other catalogues' values, quoted by the paper). Two GW191204 events in this table."
+  },
+  {
+   "designations": [
+    "GW191204_171526"
+   ],
+   "gps": 1259514944,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 9.4,
+    "rho_L": 13.5
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_1; rho_H=9.4, rho_L=13.5 (IAS search SNRs); GWTC-3 PE network SNR=17.4; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper). Two GW191204 events in this table."
+  },
+  {
+   "designations": [
+    "GW191215_223052"
+   ],
+   "gps": 1260484270,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 7.2,
+    "rho_L": 8.1
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H=7.2, rho_L=8.1 (IAS search SNRs); GWTC-3 PE network SNR=11.2; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=869 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW191222_033537"
+   ],
+   "gps": 1261020955,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 8.6,
+    "rho_L": 8.2
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=8.6, rho_L=8.2 (IAS search SNRs); GWTC-3 PE network SNR=12.5; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW191230_180458"
+   ],
+   "gps": 1261764316,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 7.3,
+    "rho_L": 6.7
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=7.3, rho_L=6.7 (IAS search SNRs); GWTC-3 PE network SNR=10.4; GWTC-3 p_astro=0.96; 4-OGC p_astro=1.0; GWTC-3 IFAR=20.0 yr; 4-OGC IFAR=497 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200128_022011"
+   ],
+   "gps": 1264213229,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 7.3,
+    "rho_L": 6.8
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=7.3, rho_L=6.8 (IAS search SNRs); GWTC-3 PE network SNR=10.6; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=233 yr; 4-OGC IFAR=307 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200208_130117"
+   ],
+   "gps": 1265202095,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 6.7,
+    "rho_L": 7.2
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H=6.7, rho_L=7.2 (IAS search SNRs); GWTC-3 PE network SNR=10.8; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=917 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200209_085452"
+   ],
+   "gps": 1265273710,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.95,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "44.0 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 7.3,
+    "rho_L": 5.9
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H=7.3, rho_L=5.9 (IAS search SNRs); GWTC-3 PE network SNR=9.6; GWTC-3 p_astro=0.97; 4-OGC p_astro=0.99; GWTC-3 IFAR=21.7 yr; 4-OGC IFAR=1.1 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200216_220804"
+   ],
+   "gps": 1265926102,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.62,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "1.2 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 6.6,
+    "rho_L": 5.4
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=6.6, rho_L=5.4 (IAS search SNRs); GWTC-3 PE network SNR=8.1; GWTC-3 p_astro=0.77; 4-OGC p_astro=0.78; GWTC-3 IFAR=2.9 yr; 4-OGC IFAR=0.093 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200219_094415"
+   ],
+   "gps": 1266140673,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 6.1,
+    "rho_L": 8.2
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H=6.1, rho_L=8.2 (IAS search SNRs); GWTC-3 PE network SNR=10.7; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=22.9 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200220_124850"
+   ],
+   "gps": 1266238148,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.98,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "264 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 6.2,
+    "rho_L": 5.3
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=6.2, rho_L=5.3 (IAS search SNRs); GWTC-3 PE network SNR=8.5; GWTC-3 p_astro=0.83; 4-OGC p_astro=--; GWTC-3 IFAR=0.033 yr; 4-OGC IFAR=-- yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200224_222234"
+   ],
+   "gps": 1266618172,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 12.5,
+    "rho_L": 13.0
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_4; rho_H=12.5, rho_L=13.0 (IAS search SNRs); GWTC-3 PE network SNR=20.0; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200225_060421"
+   ],
+   "gps": 1266645879,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 9.5,
+    "rho_L": 7.8
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_2; rho_H=9.5, rho_L=7.8 (IAS search SNRs); GWTC-3 PE network SNR=12.5; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=> 1000 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200311_115853"
+   ],
+   "gps": 1267963151,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 1.0,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": ">1000 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 12.5,
+    "rho_L": 10.3
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_3; rho_H=12.5, rho_L=10.3 (IAS search SNRs); GWTC-3 PE network SNR=17.8; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=817 yr (other catalogues' values, quoted by the paper)."
+  },
+  {
+   "designations": [
+    "GW200316_215756"
+   ],
+   "gps": 1268431094,
+   "gps_source": "computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds) as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is approximate to <1 s",
+   "p_astro": 0.92,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": "29.3 yr (IAS; Table II footnote: 'The combined IFAR across the chirp-mass banks')",
+   "snr": {
+    "rho_H": 5.5,
+    "rho_L": 8.1
+   },
+   "tier": "previously reported in GWTC-3, re-detected (Table II)",
+   "table": "Table II (tab:lvc events)",
+   "paper_says_new": false,
+   "notes": "Table II: bank BBH_2; rho_H=5.5, rho_L=8.1 (IAS search SNRs); GWTC-3 PE network SNR=10.3; GWTC-3 p_astro=0.99; 4-OGC p_astro=1.0; GWTC-3 IFAR=> 1000 yr; 4-OGC IFAR=22.4 yr (other catalogues' values, quoted by the paper)."
+  }
+ ],
+ "below_criterion": {
+  "count": 22,
+  "detail": [
+   {
+    "designation": "GW191103_012549",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191109_010717",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191113_071753",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191126_115259",
+    "p_astro": 0.36,
+    "ias_ifar": "0.20",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191127_050227",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191219_163120",
+    "p_astro": "--",
+    "ias_ifar": "--",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW191224_043228",
+    "p_astro": 0.45,
+    "ias_ifar": "0.36",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200106_134123",
+    "p_astro": 0.4,
+    "ias_ifar": "0.26",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200115_042309",
+    "p_astro": 0.12,
+    "ias_ifar": "0.018",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200129_065458",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200129_114245",
+    "p_astro": 0.38,
+    "ias_ifar": "0.22",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200202_154313",
+    "p_astro": 0.008,
+    "ias_ifar": "0.003",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200208_222617",
+    "p_astro": 0.14,
+    "ias_ifar": "0.029",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200210_005122",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200210_092254",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200214_223306",
+    "p_astro": 0.23,
+    "ias_ifar": "0.069",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200220_061928",
+    "p_astro": "--",
+    "ias_ifar": "--",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200305_084739",
+    "p_astro": 0.31,
+    "ias_ifar": "0.14",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200306_093714",
+    "p_astro": 0.26,
+    "ias_ifar": "0.098",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200308_173609",
+    "p_astro": 0.16,
+    "ias_ifar": "0.037",
+    "source_catalogue": "GWTC-3"
+   },
+   {
+    "designation": "GW200318_191337",
+    "p_astro": "--",
+    "ias_ifar": "Veto",
+    "source_catalogue": "4-OGC only (bold)"
+   },
+   {
+    "designation": "GW200322_091133",
+    "p_astro": 0.051,
+    "ias_ifar": "0.008",
+    "source_catalogue": "GWTC-3"
+   }
+  ],
+  "named": [
+   "GW191103_012549",
+   "GW191109_010717",
+   "GW191113_071753",
+   "GW191126_115259",
+   "GW191127_050227",
+   "GW191219_163120",
+   "GW191224_043228",
+   "GW200106_134123",
+   "GW200115_042309",
+   "GW200129_065458",
+   "GW200129_114245",
+   "GW200202_154313",
+   "GW200208_222617",
+   "GW200210_005122",
+   "GW200210_092254",
+   "GW200214_223306",
+   "GW200220_061928",
+   "GW200305_084739",
+   "GW200306_093714",
+   "GW200308_173609",
+   "GW200318_191337",
+   "GW200322_091133"
+  ],
+  "notes": "All Table II rows failing p_astro > 0.5: GWTC-3 events vetoed (6), not recovered ('--': NSBH GW191219_163120 and missed GW200220_061928), below threshold (6 BBH plus NSBH GW200115_042309 at 0.12), and the 7 4-OGC-only (bold) events (5 below threshold, 2 vetoed). All names come from GWTC-3 or 4-OGC; this paper coins no name for a sub-threshold IAS candidate."
+ },
+ "open_questions": [
+  "IFAR convention: Sec. IV text says 'We compute the inverse false-alarm rate independently for each template bank', but the Table II IAS IFAR footnote says 'The combined IFAR across the chirp-mass banks'. Table I gives both.",
+  "Four of the six 'new' events (all except GW200225_075134 and GW191117_023843) are stated to be in the GWTC-3 sub-threshold candidate list; the paper still calls them new (paper_says_new=true).",
+  "Commented-out LaTeX (not in the rendered paper) holds an earlier draft's events GW191121_101441, GW191122_214924 (p_astro 0.51), GW191225_014544 (p_astro 0.85) and GW200323_135352; corner-plot files for GW191122_214924 remain in the tarball. Excluded; do not ingest them as IAS-O3b detections.",
+  "Same-day name collisions to keep apart: GW200210_100022 (new) vs GW200210_092254 (LVK, vetoed) vs GW200210_005122 (4-OGC, vetoed); GW200225_075134 vs GW200225_060421; GW200316_235947 vs GW200316_215756.",
+  "The '6 marginal' count covers BBH only; the NSBH GW200115_042309 also has IAS p_astro 0.12 in Table II.",
+  "Table II prints 4-OGC p_astro for GW200115_042309 as '-1.0' (source typo; irrelevant to IAS detection).",
+  "Counts check: Table I 6 rows; Table II 39 rows, 17 with IAS p_astro > 0.5, matching the paper's 17 confirmed and 23 total."
+ ],
+ "source_versions": {
+  "2311.06061": "v3"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}

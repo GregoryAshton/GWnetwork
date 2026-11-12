@@ -1,0 +1,2658 @@
+{
+ "catalogue": "IAS-HM",
+ "papers": [
+  "2312.06631"
+ ],
+ "source_version_note": "LaTeX source is a post-v1 arXiv version (has section 'Changes since previous arXiv version': v1 of 11 Dec 2023 'included the list of events from an older version of our pipeline'). Event list here is from this later version; v1 lists differ.",
+ "criterion": {
+  "summary": "p_astro > 0.5 (IAS-HM pipeline's own p_astro, which depends on its astrophysical prior); no FAR threshold for detection. Search covers Hanford-Livingston coincident O3 data, BBH only.",
+  "quote": "we find 11 new candidate BBH mergers with $0.52\\leq p_\\mathrm{astro}\\leq 0.88$ (we use the detection threshold as the astrophysical probability, $p_\\mathrm{astro}$, being over 0.5, following the approach of other pipelines).",
+  "section": "Abstract (count via macro \\neviasnew=11); restated in Sec. III A 'New candidate events': 'we find 11 candidate events with $p_\\mathrm{astro}>0.5$ which have not been previously reported in the literature.'",
+  "paper": "2312.06631"
+ },
+ "tiers": [
+  {
+   "name": "new (Table I)",
+   "quote": "Properties of new candidate events found in our search with $p_{\\rm astro} > 0.5$.",
+   "section": "Table I caption (tab:NewEvents), Sec. III A"
+  },
+  {
+   "name": "previously reported by IAS (2,2)-only (Table II)",
+   "quote": "Same as Table~\\ref{tab:NewEvents} but for candidate events with $p_\\mathrm{astro}>0.5$ in our search which overlap with those first reported in the IAS $(2, 2)$-only searches",
+   "section": "Table II caption; Sec. IV B: 'Overall, we recover 5 events with $\\pastro \\geq 0.5$.'"
+  },
+  {
+   "name": "previously reported in GWTC-3, recovered (Table III)",
+   "quote": "Hanford--Livingston coincident events already reported in the GWTC-3 catalog as detected by our pipeline and the 4-OGC catalog. ... Six GWTC-3 events were detected with $p_\\mathrm{astro}<0.5$ in our pipeline (GW190403_051519, GW190917_114630, GW191113_071753, GW200202_154313, GW200208_222617, GW200322_091133).",
+   "section": "Table III caption; Sec. IV C (sec:LVC). Included here only rows with IAS-HM p_astro > 0.5 (58 of 68 GWTC-3 rows)."
+  },
+  {
+   "name": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "quote": "we include comparison with the list of 7 events in 4-OGC which are not present in GWTC-3 catalog (from which we recover 5 with $p_\\mathrm{astro}>0.5$)",
+   "section": "Sec. IV C"
+  },
+  {
+   "name": "sub-threshold (not detections)",
+   "quote": "Same as Table~\\ref{tab:NewEvents} but for candidates found with $0.2<p_\\mathrm{astro}<0.5$ and IFAR $>$ 1 within the respective bank for the respective observing run (O3a or O3b).",
+   "section": "Appendix Table VI (tab:Subthreshold)"
+  }
+ ],
+ "events": [
+  {
+   "designations": [
+    "GW200104_184028"
+   ],
+   "gps": 1262198446,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.88,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.67,
+   "ifar_other": {
+    "per_bank_yr": 5.3
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 46.5,
+    "rho_L^2": 30.1,
+    "rho^2_network_PE": 72.2
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3b",
+   "notes": "bank 8,1; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190425_133124"
+   ],
+   "gps": 1240234302,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.81,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.34,
+   "ifar_other": {
+    "per_bank_yr": 14.5
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 32.4,
+    "rho_L^2": 44.3,
+    "rho^2_network_PE": 87.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 14,0; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW200319_022728"
+   ],
+   "gps": 1268620066,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.76,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.23,
+   "ifar_other": {
+    "per_bank_yr": 2.3
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 29.0,
+    "rho_L^2": 43.3,
+    "rho^2_network_PE": 67.4
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3b",
+   "notes": "bank 7,1; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190605_025957"
+   ],
+   "gps": 1243738815,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.74,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.2,
+   "ifar_other": {
+    "per_bank_yr": 10.8
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 30.5,
+    "rho_L^2": 45.1,
+    "rho^2_network_PE": 110.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 14,0; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW200114_020818"
+   ],
+   "gps": 1263002916,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.71,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.16,
+   "ifar_other": {
+    "per_bank_yr": 1.7
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 30.3,
+    "rho_L^2": 149.0,
+    "rho^2_network_PE": 220.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3b",
+   "notes": "bank 8,1; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190524_134109"
+   ],
+   "gps": 1242740487,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.71,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.16,
+   "ifar_other": {
+    "per_bank_yr": 1.4
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 22.4,
+    "rho_L^2": 40.2,
+    "rho^2_network_PE": 67.6
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 9,0; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW191213_204950"
+   ],
+   "gps": 1260305408,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.61,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.09,
+   "ifar_other": {
+    "per_bank_yr": 2.3
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 27.2,
+    "rho_L^2": 55.2,
+    "rho^2_network_PE": 75.4
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3b",
+   "notes": "bank 1,2; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190530_030659"
+   ],
+   "gps": 1243220837,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.6,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.09,
+   "ifar_other": {
+    "per_bank_yr": 1.7
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 34.7,
+    "rho_L^2": 39.4,
+    "rho^2_network_PE": 75.8
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 3,2; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW200210_035448"
+   ],
+   "gps": 1265342106,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.57,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.08,
+   "ifar_other": {
+    "per_bank_yr": 0.72
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 23.7,
+    "rho_L^2": 44.0,
+    "rho^2_network_PE": 86.2
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3b",
+   "notes": "bank 9,0; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190908_161547"
+   ],
+   "gps": 1251994565,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.56,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.08,
+   "ifar_other": {
+    "per_bank_yr": 0.81
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 48.2,
+    "rho_L^2": 33.1,
+    "rho^2_network_PE": 67.0
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 7,1; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190710_150742"
+   ],
+   "gps": 1246806480,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.52,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.06,
+   "ifar_other": {
+    "per_bank_yr": 0.59
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 23.2,
+    "rho_L^2": 45.5,
+    "rho^2_network_PE": 78.6
+   },
+   "tier": "new (Table I)",
+   "table": "Table I (tab:NewEvents)",
+   "paper_says_new": true,
+   "run": "O3a",
+   "notes": "bank 10,0; IFAR in yr (overall, all 17 banks combined). Also listed in appendix tab:subthreshold_LVC (SNR^2 per harmonic)."
+  },
+  {
+   "designations": [
+    "GW190711_030756"
+   ],
+   "gps": 1246849694,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 10.96,
+   "ifar_other": {
+    "per_bank_yr": 581.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 30.9,
+    "rho_L^2": 68.5,
+    "rho^2_network_PE": 102.8
+   },
+   "tier": "previously reported by IAS (2,2)-only (Table II)",
+   "table": "Table II (tab:22_IAS_events_significant)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank 6,2; IFAR yr overall. Paper: overlaps with events first reported in IAS (2,2)-only O3 searches (Olsen+22 O3a / Mehta+23 O3b). Also in appendix tab:22_IAS_AllEvents ((O3a) block) with p_astro 0.99, IFAR 11.0 yr. Abstract: 'including higher harmonics in our search raises the significance of a few previously reported marginal events (e.g., GW190711_030756)'."
+  },
+  {
+   "designations": [
+    "GW200109_195634"
+   ],
+   "gps": 1262635012,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.92,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 1.14,
+   "ifar_other": {
+    "per_bank_yr": 9.3
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 40.0,
+    "rho_L^2": 37.4,
+    "rho^2_network_PE": 80.8
+   },
+   "tier": "previously reported by IAS (2,2)-only (Table II)",
+   "table": "Table II (tab:22_IAS_events_significant)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank 9,0; IFAR yr overall. Paper: overlaps with events first reported in IAS (2,2)-only O3 searches (Olsen+22 O3a / Mehta+23 O3b). Also in appendix tab:22_IAS_AllEvents ((O3b) block) with p_astro 0.92, IFAR 1.1 yr."
+  },
+  {
+   "designations": [
+    "GW190818_232544"
+   ],
+   "gps": 1250205962,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.9,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.81,
+   "ifar_other": {
+    "per_bank_yr": 6.2
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 45.9,
+    "rho_L^2": 35.5,
+    "rho^2_network_PE": 77.2
+   },
+   "tier": "previously reported by IAS (2,2)-only (Table II)",
+   "table": "Table II (tab:22_IAS_events_significant)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank 8,1; IFAR yr overall. Paper: overlaps with events first reported in IAS (2,2)-only O3 searches (Olsen+22 O3a / Mehta+23 O3b). Also in appendix tab:22_IAS_AllEvents ((O3a) block) with p_astro 0.9, IFAR 0.81 yr."
+  },
+  {
+   "designations": [
+    "GW190707_083226"
+   ],
+   "gps": 1246523564,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.87,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.55,
+   "ifar_other": {
+    "per_bank_yr": 6.5
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 52.4,
+    "rho_L^2": 32.2,
+    "rho^2_network_PE": 79.0
+   },
+   "tier": "previously reported by IAS (2,2)-only (Table II)",
+   "table": "Table II (tab:22_IAS_events_significant)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank 7,1; IFAR yr overall. Paper: overlaps with events first reported in IAS (2,2)-only O3 searches (Olsen+22 O3a / Mehta+23 O3b). Also in appendix tab:22_IAS_AllEvents ((O3a) block) with p_astro 0.87, IFAR 0.55 yr. Distinct from GWTC-3 GW190707_093326 (Table III); names differ by one digit."
+  },
+  {
+   "designations": [
+    "GW191117_023843"
+   ],
+   "gps": 1257993541,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.52,
+   "p_astro_other": {},
+   "far": null,
+   "ifar": 0.06,
+   "ifar_other": {
+    "per_bank_yr": 0.52
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 42.6,
+    "rho_L^2": 29.1,
+    "rho^2_network_PE": 78.8
+   },
+   "tier": "previously reported by IAS (2,2)-only (Table II)",
+   "table": "Table II (tab:22_IAS_events_significant)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank 10,0; IFAR yr overall. Paper: overlaps with events first reported in IAS (2,2)-only O3 searches (Olsen+22 O3a / Mehta+23 O3b). Also in appendix tab:22_IAS_AllEvents ((O3b) block) with p_astro 0.52, IFAR 0.058 yr."
+  },
+  {
+   "designations": [
+    "GW190408_181802"
+   ],
+   "gps": 1238782700,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 106.6,
+    "rho_L^2": 108.4,
+    "rho^2_Network_GWTC-3_PE": 213.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_2; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190412_053044"
+   ],
+   "gps": 1239082262,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 80.8,
+    "rho_L^2": 267.8,
+    "rho^2_Network_GWTC-3_PE": 392.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_1; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190413_052954"
+   ],
+   "gps": 1239168612,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.93,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 12.6,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 1.2,
+    "4-OGC_yr (as quoted)": 1.4
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 29.8,
+    "rho_L^2": 53.9,
+    "rho^2_Network_GWTC-3_PE": 81.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190413_134308"
+   ],
+   "gps": 1239198206,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 64.5,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 5.6,
+    "4-OGC_yr (as quoted)": 6.4
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 24.1,
+    "rho_L^2": 67.3,
+    "rho^2_Network_GWTC-3_PE": 112.4
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190421_213856"
+   ],
+   "gps": 1239917954,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 357.0,
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 72.4,
+    "rho_L^2": 44.6,
+    "rho^2_Network_GWTC-3_PE": 114.5
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190503_185404"
+   ],
+   "gps": 1240944862,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 87.8,
+    "rho_L^2": 52.2,
+    "rho^2_Network_GWTC-3_PE": 148.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190512_180714"
+   ],
+   "gps": 1241719652,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 42.4,
+    "rho_L^2": 120.0,
+    "rho^2_Network_GWTC-3_PE": 161.3
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_1; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190513_205428"
+   ],
+   "gps": 1241816086,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 91.0,
+    "rho_L^2": 63.2,
+    "rho^2_Network_GWTC-3_PE": 156.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190514_065416"
+   ],
+   "gps": 1241852074,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.95,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.76,
+    "4-OGC (as quoted)": 0.82
+   },
+   "far": null,
+   "ifar": 2.1,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.36,
+    "4-OGC_yr (as quoted)": 0.19
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 41.8,
+    "rho_L^2": 31.7,
+    "rho^2_Network_GWTC-3_PE": 64.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190517_055101"
+   ],
+   "gps": 1242107479,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 66.1
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 54.4,
+    "rho_L^2": 60.3,
+    "rho^2_Network_GWTC-3_PE": 116.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190519_153544"
+   ],
+   "gps": 1242315362,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 91.0,
+    "rho_L^2": 130.1,
+    "rho^2_Network_GWTC-3_PE": 252.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190521_030229"
+   ],
+   "gps": 1242442967,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 769.0,
+    "4-OGC_yr (as quoted)": 805.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 64.2,
+    "rho_L^2": 115.1,
+    "rho^2_Network_GWTC-3_PE": 204.5
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_11; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190521_074359"
+   ],
+   "gps": 1242459857,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 152.8,
+    "rho_L^2": 443.6,
+    "rho^2_Network_GWTC-3_PE": 670.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190527_092055"
+   ],
+   "gps": 1242984073,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.95,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.85,
+    "4-OGC (as quoted)": 0.94
+   },
+   "far": null,
+   "ifar": 1.9,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 4.3,
+    "4-OGC_yr (as quoted)": 0.37
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 26.9,
+    "rho_L^2": 51.1,
+    "rho^2_Network_GWTC-3_PE": 64.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190602_175927"
+   ],
+   "gps": 1243533585,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 391.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 46.5,
+    "rho_L^2": 112.8,
+    "rho^2_Network_GWTC-3_PE": 174.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_8; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190706_222641"
+   ],
+   "gps": 1246487219,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 91.5,
+    "rho_L^2": 72.4,
+    "rho^2_Network_GWTC-3_PE": 179.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_8; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190707_093326"
+   ],
+   "gps": 1246527224,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 66.1,
+    "rho_L^2": 111.9,
+    "rho^2_Network_GWTC-3_PE": 171.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed. Distinct from IAS GW190707_083226 (Table II)."
+  },
+  {
+   "designations": [
+    "GW190719_215514"
+   ],
+   "gps": 1247608532,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.9,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.92,
+    "4-OGC (as quoted)": 0.92
+   },
+   "far": null,
+   "ifar": 0.77,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 1.6,
+    "4-OGC_yr (as quoted)": 0.25
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 33.4,
+    "rho_L^2": 39.1,
+    "rho^2_Network_GWTC-3_PE": 62.4
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190720_000836"
+   ],
+   "gps": 1247616534,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 559.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 48.1,
+    "rho_L^2": 62.2,
+    "rho^2_Network_GWTC-3_PE": 118.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190725_174728"
+   ],
+   "gps": 1248112066,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.87,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.96,
+    "4-OGC (as quoted)": 0.96
+   },
+   "far": null,
+   "ifar": 0.56,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 2.2,
+    "4-OGC_yr (as quoted)": 0.41
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 28.6,
+    "rho_L^2": 62.2,
+    "rho^2_Network_GWTC-3_PE": 82.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190727_060333"
+   ],
+   "gps": 1248242631,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 74.8,
+    "rho_L^2": 64.9,
+    "rho^2_Network_GWTC-3_PE": 136.9
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190728_064510"
+   ],
+   "gps": 1248331528,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 58.4,
+    "rho_L^2": 117.5,
+    "rho^2_Network_GWTC-3_PE": 171.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190731_140936"
+   ],
+   "gps": 1248617394,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.92,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.83,
+    "4-OGC (as quoted)": 0.92
+   },
+   "far": null,
+   "ifar": 1.1,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 3.0,
+    "4-OGC_yr (as quoted)": 0.43
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 29.5,
+    "rho_L^2": 43.9,
+    "rho^2_Network_GWTC-3_PE": 77.4
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190803_022701"
+   ],
+   "gps": 1248834439,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.97,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 12.9,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 13.7,
+    "4-OGC_yr (as quoted)": 2.4
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 33.2,
+    "rho_L^2": 46.7,
+    "rho^2_Network_GWTC-3_PE": 86.5
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190805_211137"
+   ],
+   "gps": 1249074715,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.92,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.95
+   },
+   "far": null,
+   "ifar": 1.1,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 1.6
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 23.6,
+    "rho_L^2": 47.6,
+    "rho^2_Network_GWTC-3_PE": 65.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190828_063405"
+   ],
+   "gps": 1251009263,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 119.1,
+    "rho_L^2": 142.9,
+    "rho^2_Network_GWTC-3_PE": 272.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190828_065509"
+   ],
+   "gps": 1251010527,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 60.7,
+    "rho_L^2": 58.8,
+    "rho^2_Network_GWTC-3_PE": 104.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_1; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190909_114149"
+   ],
+   "gps": 1252064527,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.72,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.52
+   },
+   "far": null,
+   "ifar": 0.17,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.45
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 35.5,
+    "rho_L^2": 35.2,
+    "rho^2_Network_GWTC-3_PE": 63.7
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed. Footnote: 'GW190909_114149 is a marginal candidate in GWTC-3 which has p_astro>0.5 from our pipeline.' Sec. IV C: included 'as it was first a significant candidate in GWTC-2, but later updated to be in their marginal list'."
+  },
+  {
+   "designations": [
+    "GW190915_235702"
+   ],
+   "gps": 1252627040,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 97.9,
+    "rho_L^2": 74.9,
+    "rho^2_Network_GWTC-3_PE": 171.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190916_200658"
+   ],
+   "gps": 1252699636,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.94,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.66,
+    "4-OGC (as quoted)": 0.9
+   },
+   "far": null,
+   "ifar": 1.8,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.21,
+    "4-OGC_yr (as quoted)": 0.22
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 35.7,
+    "rho_L^2": 38.7,
+    "rho^2_Network_GWTC-3_PE": 65.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190924_021846"
+   ],
+   "gps": 1253326744,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 290.0,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 37.6,
+    "rho_L^2": 104.7,
+    "rho^2_Network_GWTC-3_PE": 144.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190926_050336"
+   ],
+   "gps": 1253509434,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.94,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.54,
+    "4-OGC (as quoted)": 0.92
+   },
+   "far": null,
+   "ifar": 1.7,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.91,
+    "4-OGC_yr (as quoted)": 0.27
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 46.8,
+    "rho_L^2": 27.5,
+    "rho^2_Network_GWTC-3_PE": 65.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190929_012149"
+   ],
+   "gps": 1253755327,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.87,
+    "4-OGC (as quoted)": 0.99
+   },
+   "far": null,
+   "ifar": 194.0,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 6.2,
+    "4-OGC_yr (as quoted)": 3.1
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 43.6,
+    "rho_L^2": 58.1,
+    "rho^2_Network_GWTC-3_PE": 94.1
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_8; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW190930_133541"
+   ],
+   "gps": 1253885759,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.97,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 1.0,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 3.4,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 83.3,
+    "4-OGC_yr (as quoted)": 295.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 44.7,
+    "rho_L^2": 54.0,
+    "rho^2_Network_GWTC-3_PE": 94.1
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3a",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191103_012549"
+   ],
+   "gps": 1256779567,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.98,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.94
+   },
+   "far": null,
+   "ifar": 6.5,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 2.2
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 43.8,
+    "rho_L^2": 50.9,
+    "rho^2_Network_GWTC-3_PE": 79.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191105_143521"
+   ],
+   "gps": 1256999739,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 26.4,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 83.3,
+    "4-OGC_yr (as quoted)": 316.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 34.7,
+    "rho_L^2": 63.1,
+    "rho^2_Network_GWTC-3_PE": 94.1
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191109_010717"
+   ],
+   "gps": 1257296855,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 83.4,
+    "rho_L^2": 166.0,
+    "rho^2_Network_GWTC-3_PE": 299.3
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191126_115259"
+   ],
+   "gps": 1258804397,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.81,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.7,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 0.33,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.31,
+    "4-OGC_yr (as quoted)": 4.9
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 36.5,
+    "rho_L^2": 52.5,
+    "rho^2_Network_GWTC-3_PE": 68.9
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191127_050227"
+   ],
+   "gps": 1258866165,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.74,
+    "4-OGC (as quoted)": 0.99
+   },
+   "far": null,
+   "ifar": 16.5,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 4.0,
+    "4-OGC_yr (as quoted)": 0.15
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 52.2,
+    "rho_L^2": 39.3,
+    "rho^2_Network_GWTC-3_PE": 84.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191129_134029"
+   ],
+   "gps": 1259070047,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 79.7,
+    "rho_L^2": 102.0,
+    "rho^2_Network_GWTC-3_PE": 171.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191204_110529"
+   ],
+   "gps": 1259492747,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.94,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.74,
+    "4-OGC (as quoted)": 0.99
+   },
+   "far": null,
+   "ifar": 2.2,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.3,
+    "4-OGC_yr (as quoted)": 1.6
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 36.6,
+    "rho_L^2": 71.0,
+    "rho^2_Network_GWTC-3_PE": 79.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_2; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191204_171526"
+   ],
+   "gps": 1259514944,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 97.7,
+    "rho_L^2": 190.8,
+    "rho^2_Network_GWTC-3_PE": 302.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191215_223052"
+   ],
+   "gps": 1260484270,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 869.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 53.7,
+    "rho_L^2": 69.4,
+    "rho^2_Network_GWTC-3_PE": 125.4
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_2; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191222_033537"
+   ],
+   "gps": 1261020955,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 83.7,
+    "rho_L^2": 68.5,
+    "rho^2_Network_GWTC-3_PE": 156.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191230_180458"
+   ],
+   "gps": 1261764316,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.96,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 20.0,
+    "4-OGC_yr (as quoted)": 497.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 61.5,
+    "rho_L^2": 56.4,
+    "rho^2_Network_GWTC-3_PE": 108.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200128_022011"
+   ],
+   "gps": 1264213229,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 233.0,
+    "4-OGC_yr (as quoted)": 307.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 56.1,
+    "rho_L^2": 55.1,
+    "rho^2_Network_GWTC-3_PE": 112.4
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200129_065458"
+   ],
+   "gps": 1264316116,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 213.6,
+    "rho_L^2": 347.5,
+    "rho^2_Network_GWTC-3_PE": 718.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200208_130117"
+   ],
+   "gps": 1265202095,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 528.0,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 917.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 40.3,
+    "rho_L^2": 61.3,
+    "rho^2_Network_GWTC-3_PE": 116.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200209_085452"
+   ],
+   "gps": 1265273710,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.99,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.97,
+    "4-OGC (as quoted)": 0.99
+   },
+   "far": null,
+   "ifar": 16.5,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 21.7,
+    "4-OGC_yr (as quoted)": 1.1
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 59.9,
+    "rho_L^2": 36.8,
+    "rho^2_Network_GWTC-3_PE": 92.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200216_220804"
+   ],
+   "gps": 1265926102,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.95,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.77,
+    "4-OGC (as quoted)": 0.78
+   },
+   "far": null,
+   "ifar": 2.8,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 2.9,
+    "4-OGC_yr (as quoted)": 0.093
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 47.7,
+    "rho_L^2": 42.3,
+    "rho^2_Network_GWTC-3_PE": 65.6
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200219_094415"
+   ],
+   "gps": 1266140673,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 528.0,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 22.9
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 39.2,
+    "rho_L^2": 77.0,
+    "rho^2_Network_GWTC-3_PE": 114.5
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200220_061928"
+   ],
+   "gps": 1266214786,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.64,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.62
+   },
+   "far": null,
+   "ifar": 0.11,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.15
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 22.6,
+    "rho_L^2": 47.4,
+    "rho^2_Network_GWTC-3_PE": 51.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_11; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200220_124850"
+   ],
+   "gps": 1266238148,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.91,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.83
+   },
+   "far": null,
+   "ifar": 0.97,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.033
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 38.4,
+    "rho_L^2": 32.2,
+    "rho^2_Network_GWTC-3_PE": 72.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200224_222234"
+   ],
+   "gps": 1266618172,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 162.3,
+    "rho_L^2": 163.8,
+    "rho^2_Network_GWTC-3_PE": 400.0
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_5; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200225_060421"
+   ],
+   "gps": 1266645879,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": "> 1000"
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 102.9,
+    "rho_L^2": 59.1,
+    "rho^2_Network_GWTC-3_PE": 156.2
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_1; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200306_093714"
+   ],
+   "gps": 1267522652,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.74,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.81,
+    "4-OGC (as quoted)": 0.51
+   },
+   "far": null,
+   "ifar": 0.19,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": 0.042,
+    "4-OGC_yr (as quoted)": 0.018
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 39.4,
+    "rho_L^2": 37.4,
+    "rho^2_Network_GWTC-3_PE": 60.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_2; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200311_115853"
+   ],
+   "gps": 1267963151,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": "> 1000",
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 817.0
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 152.3,
+    "rho_L^2": 114.0,
+    "rho^2_Network_GWTC-3_PE": 316.8
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_3; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200316_215756"
+   ],
+   "gps": 1268431094,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 1.0,
+   "p_astro_other": {
+    "GWTC-3 (as quoted)": 0.99,
+    "4-OGC (as quoted)": 1.0
+   },
+   "far": null,
+   "ifar": 132.0,
+   "ifar_other": {
+    "GWTC-3_yr (from GWOSC, as quoted)": "> 1000",
+    "4-OGC_yr (as quoted)": 22.4
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 36.0,
+    "rho_L^2": 74.4,
+    "rho^2_Network_GWTC-3_PE": 106.1
+   },
+   "tier": "previously reported in GWTC-3, recovered (Table III)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_1; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW191224_043228"
+   ],
+   "gps": 1261197166,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.82,
+   "p_astro_other": {
+    "4-OGC (as quoted)": 0.87
+   },
+   "far": null,
+   "ifar": 0.37,
+   "ifar_other": {
+    "4-OGC_yr (as quoted)": 0.13
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 36.6,
+    "rho_L^2": 50.0,
+    "rho^2_Network_4-OGC": 73.0
+   },
+   "tier": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_0; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200106_134123"
+   ],
+   "gps": 1262353301,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.78,
+   "p_astro_other": {
+    "4-OGC (as quoted)": 0.69
+   },
+   "far": null,
+   "ifar": 0.25,
+   "ifar_other": {
+    "4-OGC_yr (as quoted)": 0.059
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 37.9,
+    "rho_L^2": 37.2,
+    "rho^2_Network_4-OGC": 55.0
+   },
+   "tier": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_6; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200129_114245"
+   ],
+   "gps": 1264333383,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.95,
+   "p_astro_other": {
+    "4-OGC (as quoted)": 0.53
+   },
+   "far": null,
+   "ifar": 2.3,
+   "ifar_other": {
+    "4-OGC_yr (as quoted)": 0.037
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 25.6,
+    "rho_L^2": 45.7,
+    "rho^2_Network_4-OGC": 63.0
+   },
+   "tier": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  },
+  {
+   "designations": [
+    "GW200214_223306"
+   ],
+   "gps": 1265754804,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.79,
+   "p_astro_other": {
+    "4-OGC (as quoted)": 0.72
+   },
+   "far": null,
+   "ifar": 0.28,
+   "ifar_other": {
+    "4-OGC_yr (as quoted)": 0.079
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 33.6,
+    "rho_L^2": 30.9,
+    "rho^2_Network_4-OGC": 55.0
+   },
+   "tier": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed. A LaTeX-commented (not rendered) caption note says the event 'was actually found by our pipeline a second earlier. We, thus, call it, GW200214_223306' (4-OGC designation GW200214_223307 per that comment); rendered paper uses only GW200214_223306."
+  },
+  {
+   "designations": [
+    "GW200318_191337"
+   ],
+   "gps": 1268594035,
+   "gps_source": "computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times",
+   "p_astro": 0.96,
+   "p_astro_other": {
+    "4-OGC (as quoted)": 0.97
+   },
+   "far": null,
+   "ifar": 3.9,
+   "ifar_other": {
+    "4-OGC_yr (as quoted)": 0.5
+   },
+   "snr": null,
+   "snr2": {
+    "rho_H^2": 28.6,
+    "rho_L^2": 43.8,
+    "rho^2_Network_4-OGC": 63.0
+   },
+   "tier": "previously reported in 4-OGC only, recovered (Table III bottom)",
+   "table": "Table III (tab:lvc_events, longtable)",
+   "paper_says_new": false,
+   "run": "O3b",
+   "notes": "bank BBH_7; p_astro and IFAR (yr, all banks combined) are this IAS-HM search's values; '> 1000' is a bound as printed."
+  }
+ ],
+ "below_criterion": {
+  "count": 63,
+  "count_breakdown": "Table III: 12 rows not meeting p_astro>0.5 (6 GWTC-3 with p_astro<0.5; 3 vetoed GW190426_190642, GW190701_203306, GW200210_092254; 1 below collection threshold GW200308_173609; 4-OGC GW200210_005122 (<0.001) and GW200305_084739 (below collection)) -- these are other catalogues' events, not IAS-HM candidates. Table V: 8 IAS (2,2)-only events with p_astro<0.5. Table VI: 45 sub-threshold IAS-HM candidates (0.2<p_astro<0.5), all given GW-style names. GW200210_100022 and GW191228_085854 appear in both V and VI; unique total = 63. Table V caption also names 3 IAS (2,2)-only events outside the search domain (no values): GW190920_113516, GW190718_160159, GW200225_075134 (not counted).",
+  "named": [
+   "GW190403_051519",
+   "GW190404_121150",
+   "GW190411_075756",
+   "GW190422_175505",
+   "GW190426_190642",
+   "GW190512_001054",
+   "GW190514_065259",
+   "GW190521_075726",
+   "GW190529_023648",
+   "GW190604_103812",
+   "GW190605_053717",
+   "GW190610_081435",
+   "GW190617_041509",
+   "GW190628_185055",
+   "GW190701_203306",
+   "GW190704_104834",
+   "GW190705_164632",
+   "GW190806_033721",
+   "GW190810_180039",
+   "GW190813_040521",
+   "GW190814_192009",
+   "GW190821_124821",
+   "GW190826_212543",
+   "GW190906_054335",
+   "GW190910_012619",
+   "GW190917_114630",
+   "GW191102_232120",
+   "GW191105_105458",
+   "GW191113_071753",
+   "GW191115_141720",
+   "GW191127_114537",
+   "GW191205_033000",
+   "GW191208_080334",
+   "GW191222_085357",
+   "GW191224_075833",
+   "GW191228_062343",
+   "GW191228_085854",
+   "GW191228_195439",
+   "GW191230_072040",
+   "GW200104_085935",
+   "GW200114_131740",
+   "GW200126_225208",
+   "GW200128_115507",
+   "GW200129_132219",
+   "GW200202_154313",
+   "GW200202_160037",
+   "GW200208_222617",
+   "GW200210_005122",
+   "GW200210_092254",
+   "GW200210_100022",
+   "GW200216_200717",
+   "GW200217_211137",
+   "GW200222_005735",
+   "GW200224_043639",
+   "GW200301_211019",
+   "GW200303_083614",
+   "GW200305_084739",
+   "GW200308_173609",
+   "GW200308_231646",
+   "GW200312_093903",
+   "GW200316_235947",
+   "GW200322_091133",
+   "GW200325_090608"
+  ],
+  "rows": [
+   {
+    "name": "GW190403_051519",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.07"
+   },
+   {
+    "name": "GW190426_190642",
+    "table": "Table III",
+    "reason": "Veto (BBH_12)"
+   },
+   {
+    "name": "GW190701_203306",
+    "table": "Table III",
+    "reason": "Veto (BBH_7)"
+   },
+   {
+    "name": "GW190917_114630",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.12"
+   },
+   {
+    "name": "GW191113_071753",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.002"
+   },
+   {
+    "name": "GW200202_154313",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.17"
+   },
+   {
+    "name": "GW200208_222617",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.059"
+   },
+   {
+    "name": "GW200210_092254",
+    "table": "Table III",
+    "reason": "Veto (BBH_1)"
+   },
+   {
+    "name": "GW200308_173609",
+    "table": "Table III",
+    "reason": "Below \\rho^2_\\mathrm{collect}"
+   },
+   {
+    "name": "GW200322_091133",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro 0.041"
+   },
+   {
+    "name": "GW200210_005122",
+    "table": "Table III",
+    "reason": "IAS-HM p_astro <0.001"
+   },
+   {
+    "name": "GW200305_084739",
+    "table": "Table III",
+    "reason": "Below \\rho^2_\\mathrm{collect}"
+   },
+   {
+    "name": "GW190814_192009",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.27"
+   },
+   {
+    "name": "GW190704_104834",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.25"
+   },
+   {
+    "name": "GW190906_054335",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.06"
+   },
+   {
+    "name": "GW190821_124821",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.029"
+   },
+   {
+    "name": "GW190910_012619",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.003"
+   },
+   {
+    "name": "GW200210_100022",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.42"
+   },
+   {
+    "name": "GW191228_085854",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.27"
+   },
+   {
+    "name": "GW200316_235947",
+    "table": "Table V (tab:22_IAS_AllEvents)",
+    "reason": "p_astro 0.1"
+   },
+   {
+    "name": "GW200104_085935",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.48"
+   },
+   {
+    "name": "GW190521_075726",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.48"
+   },
+   {
+    "name": "GW190529_023648",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.47"
+   },
+   {
+    "name": "GW190512_001054",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.45"
+   },
+   {
+    "name": "GW191205_033000",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.42"
+   },
+   {
+    "name": "GW200210_100022",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.42"
+   },
+   {
+    "name": "GW200217_211137",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.42"
+   },
+   {
+    "name": "GW191228_195439",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.41"
+   },
+   {
+    "name": "GW191127_114537",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.38"
+   },
+   {
+    "name": "GW190514_065259",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.37"
+   },
+   {
+    "name": "GW191208_080334",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.35"
+   },
+   {
+    "name": "GW191228_062343",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.35"
+   },
+   {
+    "name": "GW190404_121150",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.35"
+   },
+   {
+    "name": "GW200202_160037",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.34"
+   },
+   {
+    "name": "GW190810_180039",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.34"
+   },
+   {
+    "name": "GW190605_053717",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.33"
+   },
+   {
+    "name": "GW200129_132219",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.33"
+   },
+   {
+    "name": "GW200325_090608",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.33"
+   },
+   {
+    "name": "GW200312_093903",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.32"
+   },
+   {
+    "name": "GW200224_043639",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.31"
+   },
+   {
+    "name": "GW200216_200717",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.31"
+   },
+   {
+    "name": "GW190617_041509",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.3"
+   },
+   {
+    "name": "GW191230_072040",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.29"
+   },
+   {
+    "name": "GW200114_131740",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.29"
+   },
+   {
+    "name": "GW191105_105458",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.28"
+   },
+   {
+    "name": "GW191228_085854",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.27"
+   },
+   {
+    "name": "GW190411_075756",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.27"
+   },
+   {
+    "name": "GW191224_075833",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.27"
+   },
+   {
+    "name": "GW200126_225208",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.26"
+   },
+   {
+    "name": "GW200301_211019",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.25"
+   },
+   {
+    "name": "GW200128_115507",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.25"
+   },
+   {
+    "name": "GW190604_103812",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.24"
+   },
+   {
+    "name": "GW190628_185055",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.24"
+   },
+   {
+    "name": "GW190806_033721",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.23"
+   },
+   {
+    "name": "GW190705_164632",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.23"
+   },
+   {
+    "name": "GW191222_085357",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.23"
+   },
+   {
+    "name": "GW190610_081435",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.23"
+   },
+   {
+    "name": "GW191102_232120",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.23"
+   },
+   {
+    "name": "GW200303_083614",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.22"
+   },
+   {
+    "name": "GW200222_005735",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.22"
+   },
+   {
+    "name": "GW191115_141720",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.21"
+   },
+   {
+    "name": "GW200308_231646",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.21"
+   },
+   {
+    "name": "GW190813_040521",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.21"
+   },
+   {
+    "name": "GW190826_212543",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.2"
+   },
+   {
+    "name": "GW190422_175505",
+    "table": "Table VI (tab:Subthreshold, 0.2<p_astro<0.5)",
+    "reason": "p_astro 0.2"
+   }
+  ]
+ },
+ "open_questions": [
+  "Table numbering (I-VI) assumes LaTeX float order: I NewEvents, II 22_IAS_events_significant, III lvc_events (longtable, continued in an uncaptioned second longtable), IV subthreshold_LVC, V 22_IAS_AllEvents, VI Subthreshold. Labels are given alongside; check against the compiled PDF.",
+  "Whether GWTC-3/4-OGC recoveries with IAS-HM p_astro>0.5 count as IAS-HM 'detections' is my reading of the uniform p_astro>0.5 threshold; the paper calls them 'recovered'/'detected by our pipeline' and does not enumerate them as its catalogue. 58 GWTC-3 + 5 4-OGC included.",
+  "Paper text says 'three GWTC-3 events in Table~\\ref{tab:NewEvents} were vetoed' -- a mis-reference; the vetoed events are in Table III.",
+  "GW190814_192009 (Table V, IAS (2,2)-only candidate, p_astro 0.27) must not be confused with LVK GW190814, which the paper lists as excluded (L-V coincidence).",
+  "GW200214_223306: commented-out caption says pipeline found it one second earlier than 4-OGC's GW200214_223307; only _223306 appears in rendered text.",
+  "GW200210_100022 appears in Table V (IFAR 0.036, p 0.42) and Table VI (per-bank 0.41, overall 0.036, p 0.42); GW191117_023843 overall IFAR 0.06 in Table II vs 0.058 in Table V (rounding).",
+  "Run (O3a/O3b) inferred from dates; GPS computed from names (paper gives no GPS)."
+ ],
+ "source_versions": {
+  "2312.06631": "v2"
+ },
+ "extracted": "2026-11-12, from arXiv LaTeX source by script; criterion quotes checked against source"
+}
