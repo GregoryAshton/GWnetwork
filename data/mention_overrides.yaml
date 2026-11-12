@@ -17,3 +17,22 @@
       Writes "GW190521" throughout, but Table 2's Bayesian reference masses
       (42.1 and 32.7 Msun) and its companion GW190630 are those of the GWTC-2
       event GW190521_074359; GW190521 itself is ~85 + 66 Msun.
+
+1611.08052:
+  - from: GW151216
+    to: GW151226
+    reason: >-
+      DES kilonova search. Writes "GW151216" once, for "the follow-up
+      observations of GW151216 [1] with DEcam" by Cowperthwaite et al.; its
+      reference [1] is the LVC GW151226 paper and Cowperthwaite et al. (2016)
+      is the DECam follow-up of GW151226. A typo, not the IAS candidate,
+      which was not public until 2019 (arXiv:1902.10331).
+
+1710.05909:
+  - from: GW170818
+    to: GW170817
+    reason: >-
+      Submitted 2017-10-13, on GRB170817A. Calls the NS-NS merger it ties to
+      GRB170817A "GW170818" in five places ("the event has been named
+      GW170818", "could GRB170817A really be correlated to GW170818?"): it
+      means GW170817. GW170818 was not public until GWTC-1 (2018-11-30).

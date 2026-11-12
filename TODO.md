@@ -13,7 +13,10 @@ the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
   five sentences ("the event has been named GW170818"): it means GW170817
   (GW170818 was not public until GWTC-1). It is GW170818's earliest
   mention, so the paper analysis dates GW170818's announcement 13 months
-  early. Add an override for v2.
+  early. Override added 2026-11-12 (GW170818 → GW170817), as was
+  1611.08052's "GW151216", a typo for GW151226 (its ref. [1] and the
+  DECam follow-up it cites are GW151226's). Both take effect on the next
+  `gwn extract`.
 - **`LVT151012` is not a designation** for GW151012, so its 2016-2018
   literature (including the LVK O1 papers) is not linked and its first
   mention falls on an outside paper (1609.01668). Add the alias for v2.
@@ -114,10 +117,10 @@ from the analysis; a label upgrade a question needs is a new release.
     without the GW prefix and both short and `_hhmmss` forms, as aliases.
     Do not match bare dates (false positives); accept lower recall for
     events never given a GW name and record which those are.
-  - Mention override: GW151216's first mention is 1611.08052 (DES
-    kilonova search), which writes "GW151216" for another trigger and
-    dates its announcement 2017-03-10 instead of 2019-02-27 (1902.10331).
-    Same kind of fix as GW170818's.
+  - ~~Mention override: GW151216's first mention is 1611.08052 (DES
+    kilonova search), which dates its announcement 2017-03-10 instead of
+    2019-02-27 (1902.10331).~~ Added 2026-11-12: it is a typo for GW151226
+    (reassigned, not dropped); applies on the next extraction run.
   - Then re-run extraction and classification for the new names over the
     whole corpus.
 - ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
