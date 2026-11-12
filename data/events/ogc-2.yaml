@@ -1,0 +1,452 @@
+# 2-OGC: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/2-OGC.json; paper arXiv:1910.05331).
+#
+# Criterion (Sec. 5.1 Binary Black Holes (sec:bbh), 1910.05331):
+#   Our analysis identifies 14 BBH candidates with $\pastro > 50\%$, meeting the standard detection criteria introduced in~\cite{LIGOScientific:2018mvr} and similarly followed in~\cite{Venumadhav:2019lyq}.
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW170817
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170817
+  gps: 1187008882.45
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_ifar_reported:
+      full_search_yr: '>10000'
+      bns_region_yr: '>10000'
+      units: yr
+    catalogue_tier: confident in full search (FAR < 1/100 yr); BNS, no p_astro computed
+    catalogue_table: Table 2 (table:complete) and Table 4 (table:bns)
+    paper_says_new: false
+    catalogue_names:
+    - GW170817
+    - 170817+12:41:04UTC
+    gps_source: GPS time column, Table 2 (also Table 4)
+    merge:
+      event: GW170817
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170817
+    kind: gw_name
+    precedence: 10
+  - designation: 170817+12:41:04UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW150914
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:150914+09:50:45UTC
+  gps: 1126259462.43
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '>10000'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 150914+09:50:45UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW150914
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 150914+09:50:45UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170814
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:170814+10:30:43UTC
+  gps: 1186741861.53
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '>10000'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 170814+10:30:43UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170814
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 170814+10:30:43UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170823
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:170823+13:13:58UTC
+  gps: 1187529256.52
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '>10000'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 170823+13:13:58UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170823
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 170823+13:13:58UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170104
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:170104+10:11:58UTC
+  gps: 1167559936.6
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '>10000'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 170104+10:11:58UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170104
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 170104+10:11:58UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW151226
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:151226+03:38:53UTC
+  gps: 1135136350.65
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '>10000'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 151226+03:38:53UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW151226
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 151226+03:38:53UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW151012
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:151012+09:54:43UTC
+  gps: 1128678900.45
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>10000'
+      full_search_yr: '220'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 151012+09:54:43UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW151012
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 151012+09:54:43UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170809
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:170809+08:28:21UTC
+  gps: 1186302519.76
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '8300'
+      full_search_yr: '9400'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - 170809+08:28:21UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170809
+      basis: GPS time, -0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: 170809+08:28:21UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170729
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170729
+  gps: 1185389807.33
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '4000'
+      full_search_yr: '6.4'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - GW170729
+    - 170729+18:56:29UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170729
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170729
+    kind: gw_name
+    precedence: 10
+  - designation: 170729+18:56:29UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170608
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170608
+  gps: 1180922494.49
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '>910'
+      full_search_yr: '>910'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: confident in full search (FAR < 1/100 yr) and p_astro > 0.5 in targeted BBH search
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - GW170608
+    - '170608'
+    - 170608+02:01:16UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170608
+      basis: GPS time, -0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170608
+    kind: gw_name
+    precedence: 10
+  - designation: 170608+02:01:16UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170121
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170121
+  gps: 1169069154.58
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '210'
+      full_search_yr: '1.3'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - GW170121
+    - 170121+21:25:36UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+  designations:
+  - designation: GW170121
+    kind: gw_name
+    precedence: 10
+  - designation: 170121+21:25:36UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170818
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170818
+  gps: 1187058327.09
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.999
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '>0.999'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '5.1'
+      full_search_yr: '.22'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - GW170818
+    - 170818+02:25:09UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+    merge:
+      event: GW170818
+      basis: GPS time, -0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170818
+    kind: gw_name
+    precedence: 10
+  - designation: 170818+02:25:09UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170727
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170727
+  gps: 1185152688.03
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.994
+    catalogue_p_astro_reported: '0.994'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '180'
+      full_search_yr: '.53'
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only
+    catalogue_table: Table 3 (table:bbh) and Table 2 (table:complete)
+    paper_says_new: false
+    catalogue_names:
+    - GW170727
+    - 170727+01:04:30UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+  designations:
+  - designation: GW170727
+    kind: gw_name
+    precedence: 10
+  - designation: 170727+01:04:30UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW170304
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW170304
+  gps: 1172680691.37
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.7
+    catalogue_p_astro_reported: '0.70'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '2.5'
+      full_search_yr: null
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only
+    catalogue_table: Table 3 (table:bbh)
+    paper_says_new: false
+    catalogue_names:
+    - GW170304
+    - 170304+16:37:53UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+  designations:
+  - designation: GW170304
+    kind: gw_name
+    precedence: 10
+  - designation: 170304+16:37:53UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW151205
+  source: ogc
+  catalog: 2-OGC
+  external_id: 2-OGC:GW151205
+  gps: 1133380542.42
+  reference: arXiv:1910.05331
+  parameters:
+    catalogue_p_astro: 0.53
+    catalogue_p_astro_reported: '0.53'
+    catalogue_ifar_reported:
+      bbh_targeted_yr: '.61'
+      full_search_yr: null
+      units: yr (FAR^-1 (y))
+    catalogue_tier: p_astro > 0.5 in targeted BBH search only; paper calls it a 'marginal detection'
+    catalogue_table: Table 3 (table:bbh)
+    paper_says_new: true
+    catalogue_names:
+    - GW151205
+    - 151205+19:55:25UTC
+    gps_source: GPS time column, Table 3 (table:bbh)
+  designations:
+  - designation: GW151205
+    kind: gw_name
+    precedence: 10
+  - designation: 151205+19:55:25UTC
+    kind: catalog_alias
+    precedence: 50

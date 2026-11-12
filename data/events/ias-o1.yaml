@@ -1,22 +1,124 @@
-# A genuinely non-GWOSC event.
+# IAS-O1: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/IAS-O1.json; paper arXiv:1902.10341, arXiv:1902.10331).
 #
-# GW151216 is a candidate reported by the IAS pipeline (Zackay et al. 2019) from
-# O1 data. It is NOT in GWTC-1 and does not appear in the GWOSC event API, so it
-# can only enter the database through this path -- which is the whole point of
-# the manual provider. Adding it here makes the entire existing corpus
-# searchable for it on the next extraction run, with no code change.
-common_name: GW151216
-source: ias
-catalog: IAS-O1
-external_id: GW151216-ias-v1
-gps: 1134293073.0          # 2015-12-16 09:24:16 UTC, GPS-UTC = 17 s
-reference: "arXiv:1902.10331 (Zackay et al. 2019)"
-parameters:
-  mass_1_source: 30.4
-  mass_2_source: 12.6
-  network_matched_filter_snr: 9.9
-  note: "Candidate; not confirmed in GWTC-1. Parameters are IAS values."
-designations:
+# Criterion (Sec. II 'The new event', 1902.10331):
+#   Our best estimate for the probability that this event is of astrophysical origin yields $P_{\rm astro} \approx 0.7$, which is above the bar of $0.5$ for listing events in the catalog of confident gravitational-wave detections defined in \cite{LIGOScientific:2018mvr}. [...] We therefore adopt the name \CANDIDATE for this event.
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW151226
+  source: ias
+  catalog: IAS-O1
+  external_id: IAS-O1:GW151226
+  gps: 1135136350.585
+  reference: arXiv:1902.10341, arXiv:1902.10331
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; ''O1'' ~ 46 days)'
+    catalogue_tier: main
+    catalogue_table: Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of
+      the binary black hole banks'), 1902.10341
+    paper_says_new: false
+    catalogue_names:
+    - GW151226
+    gps_source: GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free'
+      times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time
+      is 'practically close to the merger time')
+    merge:
+      event: GW151226
+      basis: GPS time, -0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW151226
+    kind: gw_name
+    precedence: 10
+- common_name: GW151012
+  source: ias
+  catalog: IAS-O1
+  external_id: IAS-O1:GW151012
+  gps: 1128678900.428
+  reference: arXiv:1902.10341, arXiv:1902.10331
+  parameters:
+    catalogue_p_astro: 0.9998
+    catalogue_p_astro_reported: 0.9998
+    catalogue_ifar_reported: '> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; ''O1'' ~ 46 days)'
+    catalogue_tier: main
+    catalogue_table: Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of
+      the binary black hole banks'), 1902.10341
+    paper_says_new: false
+    catalogue_names:
+    - GW151012
+    gps_source: GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free'
+      times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time
+      is 'practically close to the merger time')
+    merge:
+      event: GW151012
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW151012
+    kind: gw_name
+    precedence: 10
+- common_name: GW150914
+  source: ias
+  catalog: IAS-O1
+  external_id: IAS-O1:GW150914
+  gps: 1126259462.411
+  reference: arXiv:1902.10341, arXiv:1902.10331
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 20000 O1 (upper limit on FAR of 1/(20000 O1), per-bank; ''O1'' ~ 46 days)'
+    catalogue_tier: main
+    catalogue_table: Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of
+      the binary black hole banks'), 1902.10341
+    paper_says_new: false
+    catalogue_names:
+    - GW150914
+    gps_source: GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free'
+      times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time
+      is 'practically close to the merger time')
+    merge:
+      event: GW150914
+      basis: GPS time, +0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW150914
+    kind: gw_name
+    precedence: 10
+- common_name: GW151216
+  source: ias
+  catalog: IAS-O1
+  external_id: GW151216-ias-v1
+  gps: 1134293073.164
+  reference: arXiv:1902.10341, arXiv:1902.10331
+  parameters:
+    catalogue_p_astro: 0.71
+    catalogue_p_astro_reported: 0.71
+    catalogue_far_reported: 1/(52 O1) in bank BBH 3 (1902.10341 Sec. IV; 1902.10331 Sec. II)
+    catalogue_ifar_reported: '52 O1 (1902.10341 Table III); 1902.10331 Sec. II: ''FAR^{-1}_{[20,40]} =
+      6.6 yr'' (46.6 days coincident on-time); 1902.10331 abstract: ''one per six years'''
+    catalogue_tier: main
+    catalogue_table: Table III (label tab:signalsFound, 'Events and subthreshold candidates in all of
+      the binary black hole banks'), 1902.10341; also 1902.10331 Sec. II 'The new event' (text) and Table
+      I (parameters)
+    paper_says_new: true
+    catalogue_names:
+    - GW151216
+    gps_source: GPS column of Table III (tab:signalsFound), 1902.10341; per table footnote these are 'linear-free'
+      times of the best-fit template (1904.07214 adds that for the heavier BBH banks the linear-free time
+      is 'practically close to the merger time')
+    mass_1_source: 30.4
+    mass_2_source: 12.6
+    note: Candidate; not in any LVK catalogue. Parameters are IAS values (1902.10331).
+    network_matched_filter_snr: 9.9
+  designations:
   - designation: GW151216
     kind: gw_name
     precedence: 10

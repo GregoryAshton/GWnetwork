@@ -1,0 +1,645 @@
+# IAS-O3b: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/IAS-O3b.json; paper arXiv:2311.06061).
+#
+# Criterion (Sec. I Introduction (macro \neviasnew = 6). Also: Abstract ('we continue to use an astrophysical probability of one half as our detection threshold, following the approach of the LVK catalogs'); Sec. V.B Concluding remarks ('based on the criteria that the astrophysical probability is greater than one half (following the LVK collaboration)'); Table I caption 'New events with $p_{\rm astro} > 0.5$'., 2311.06061):
+#   We detect \neviasnew{} new BBH candidate events under the criterion that the astrophysical probability $\pastro$ is at least one half (which is also the threshold used in the GWTC-3 and 4-OGC catalogs).
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW200109_195634
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200109_195634
+  gps: 1262635012
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.81
+    catalogue_p_astro_reported: 0.81
+    catalogue_ifar_reported: 4.4 yr (within bank); 0.93 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW200109_195634
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW200109_195634
+    kind: gw_name
+    precedence: 10
+  - designation: '200109_195634'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200109
+    kind: gw_name
+    precedence: 50
+- common_name: GW191228_085854
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191228_085854
+  gps: 1261558752
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.67
+    catalogue_p_astro_reported: 0.67
+    catalogue_ifar_reported: 1.8 yr (within bank); 0.25 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW191228_085854
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW191228_085854
+    kind: gw_name
+    precedence: 10
+  - designation: '191228_085854'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW191228
+    kind: gw_name
+    precedence: 50
+- common_name: GW200225_075134
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200225_075134
+  gps: 1266652312
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.6
+    catalogue_p_astro_reported: 0.6
+    catalogue_ifar_reported: 0.95 yr (within bank); 0.15 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW200225_075134
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW200225_075134
+    kind: gw_name
+    precedence: 10
+  - designation: '200225_075134'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW191117_023843
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191117_023843
+  gps: 1257993541
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.56
+    catalogue_p_astro_reported: 0.56
+    catalogue_ifar_reported: 0.52 yr (within bank); 0.12 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW191117_023843
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW191117_023843
+    kind: gw_name
+    precedence: 10
+  - designation: '191117_023843'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW191117
+    kind: gw_name
+    precedence: 50
+- common_name: GW200210_100022
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200210_100022
+  gps: 1265364040
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.52
+    catalogue_p_astro_reported: 0.52
+    catalogue_ifar_reported: 0.45 yr (within bank); 0.097 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW200210_100022
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW200210_100022
+    kind: gw_name
+    precedence: 10
+  - designation: '200210_100022'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW200316_235947
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200316_235947
+  gps: 1268438405
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.52
+    catalogue_p_astro_reported: 0.52
+    catalogue_ifar_reported: 0.59 yr (within bank); 0.092 yr (overall, combined across chirp-mass banks)
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:signalsFoundParsPESourceFrame)
+    paper_says_new: true
+    catalogue_names:
+    - GW200316_235947
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+  designations:
+  - designation: GW200316_235947
+    kind: gw_name
+    precedence: 10
+  - designation: '200316_235947'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW191105_143521
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191105_143521
+  gps: 1256999739
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191105_143521
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191105_143521
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191105_143521
+    kind: gw_name
+    precedence: 10
+- common_name: GW191129_134029
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191129_134029
+  gps: 1259070047
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.69
+    catalogue_p_astro_reported: 0.69
+    catalogue_ifar_reported: '2.2 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191129_134029
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191129_134029
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191129_134029
+    kind: gw_name
+    precedence: 10
+- common_name: GW191204_110529
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191204_110529
+  gps: 1259492747
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.68
+    catalogue_p_astro_reported: 0.68
+    catalogue_ifar_reported: '1.1 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191204_110529
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191204_110529
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191204_110529
+    kind: gw_name
+    precedence: 10
+- common_name: GW191204_171526
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191204_171526
+  gps: 1259514944
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191204_171526
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191204_171526
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191204_171526
+    kind: gw_name
+    precedence: 10
+- common_name: GW191215_223052
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191215_223052
+  gps: 1260484270
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191215_223052
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191215_223052
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191215_223052
+    kind: gw_name
+    precedence: 10
+- common_name: GW191222_033537
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191222_033537
+  gps: 1261020955
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191222_033537
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191222_033537
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191222_033537
+    kind: gw_name
+    precedence: 10
+- common_name: GW191230_180458
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW191230_180458
+  gps: 1261764316
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW191230_180458
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW191230_180458
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191230_180458
+    kind: gw_name
+    precedence: 10
+- common_name: GW200128_022011
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200128_022011
+  gps: 1264213229
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200128_022011
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200128_022011
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200128_022011
+    kind: gw_name
+    precedence: 10
+- common_name: GW200208_130117
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200208_130117
+  gps: 1265202095
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200208_130117
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200208_130117
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200208_130117
+    kind: gw_name
+    precedence: 10
+- common_name: GW200209_085452
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200209_085452
+  gps: 1265273710
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.95
+    catalogue_p_astro_reported: 0.95
+    catalogue_ifar_reported: '44.0 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200209_085452
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200209_085452
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200209_085452
+    kind: gw_name
+    precedence: 10
+- common_name: GW200216_220804
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200216_220804
+  gps: 1265926102
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.62
+    catalogue_p_astro_reported: 0.62
+    catalogue_ifar_reported: '1.2 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200216_220804
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200216_220804
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200216_220804
+    kind: gw_name
+    precedence: 10
+- common_name: GW200219_094415
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200219_094415
+  gps: 1266140673
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200219_094415
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200219_094415
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200219_094415
+    kind: gw_name
+    precedence: 10
+- common_name: GW200220_124850
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200220_124850
+  gps: 1266238148
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.98
+    catalogue_p_astro_reported: 0.98
+    catalogue_ifar_reported: '264 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200220_124850
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200220_124850
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200220_124850
+    kind: gw_name
+    precedence: 10
+- common_name: GW200224_222234
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200224_222234
+  gps: 1266618172
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200224_222234
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200224_222234
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200224_222234
+    kind: gw_name
+    precedence: 10
+- common_name: GW200225_060421
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200225_060421
+  gps: 1266645879
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200225_060421
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200225_060421
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200225_060421
+    kind: gw_name
+    precedence: 10
+- common_name: GW200311_115853
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200311_115853
+  gps: 1267963151
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>1000 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200311_115853
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200311_115853
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200311_115853
+    kind: gw_name
+    precedence: 10
+- common_name: GW200316_215756
+  source: ias
+  catalog: IAS-O3b
+  external_id: IAS-O3b:GW200316_215756
+  gps: 1268431094
+  reference: arXiv:2311.06061
+  parameters:
+    catalogue_p_astro: 0.92
+    catalogue_p_astro_reported: 0.92
+    catalogue_ifar_reported: '29.3 yr (IAS; Table II footnote: ''The combined IFAR across the chirp-mass
+      banks'')'
+    catalogue_tier: previously reported in GWTC-3, re-detected (Table II)
+    catalogue_table: Table II (tab:lvc events)
+    paper_says_new: false
+    catalogue_names:
+    - GW200316_215756
+    gps_source: computed from the UTC time in the GW name (YYMMDD_hhmmss, truncated to whole seconds)
+      as GPS = UTC + 18 s (GPS-UTC = 18 s throughout O3); the paper tabulates no GPS times, so this is
+      approximate to <1 s
+    merge:
+      event: GW200316_215756
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200316_215756
+    kind: gw_name
+    precedence: 10

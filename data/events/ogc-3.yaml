@@ -1,0 +1,1439 @@
+# 3-OGC: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/3-OGC.json; paper arXiv:2105.09151).
+#
+# Criterion (Sec. 5 Observational Results (opening paragraph); same threshold in the Table 2 caption: "Gravitational-wave observations from the full search of O1-O3a data with $\mathcal{P}_{\textrm{astro}} > 0.5$ or IFAR $>$ 100 years.", 2105.09151):
+#   From the combined analysis of the 2015-2019 public LIGO and Virgo data, we find 55 BBH mergers and 2 BNS mergers. The list of gravitational wave mergers is given in Table~\ref{table:search}. For the majority of BBHs we can assess the probability of astrophysical origin. Our catalog includes candidates where $\mathcal{P}_{\textrm{astro}} > 0.5$ or $\mathrm{IFAR} > 100$ years. These thresholds are consistent with prior community conventions
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW150914
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW150914_095045
+  gps: 1126259462.43
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW150914_095045
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW150914
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW151012
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW151012_095443
+  gps: 1128678900.45
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW151012_095443
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW151012
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW151226
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW151226_033853
+  gps: 1135136350.65
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW151226_033853
+    - GW151226
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW151226
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW151226
+    kind: gw_name
+    precedence: 10
+- common_name: GW170104
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170104_101158
+  gps: 1167559936.6
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170104_101158
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170104
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW170121
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170121_212536
+  gps: 1169069154.58
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 16.0 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170121_212536
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170121
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170121_212536
+    kind: gw_name
+    precedence: 50
+  - designation: '170121_212536'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW170121
+    kind: gw_name
+    precedence: 10
+- common_name: GW170202
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170202_135657
+  gps: 1170079035.73
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.81
+    catalogue_p_astro_reported: 0.81
+    catalogue_ifar_reported: 0.5 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170202_135657
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170202
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170202_135657
+    kind: gw_name
+    precedence: 50
+  - designation: '170202_135657'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW170202
+    kind: gw_name
+    precedence: 10
+- common_name: GW170304
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170304_163753
+  gps: 1172680691.37
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.7
+    catalogue_p_astro_reported: 0.7
+    catalogue_ifar_reported: 0.25 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170304_163753
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170304
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170304_163753
+    kind: gw_name
+    precedence: 50
+  - designation: '170304_163753'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW170304
+    kind: gw_name
+    precedence: 10
+- common_name: GW170403
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170403_230611
+  gps: 1175295989.23
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.71
+    catalogue_p_astro_reported: 0.71
+    catalogue_ifar_reported: 0.25 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170403_230611
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170403
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170403_230611
+    kind: gw_name
+    precedence: 50
+  - designation: '170403_230611'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW170403
+    kind: gw_name
+    precedence: 10
+- common_name: GW170608
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170608_020116
+  gps: 1180922494.49
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170608_020116
+    - GW170608
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170608
+      basis: GPS time, -0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170608
+    kind: gw_name
+    precedence: 10
+- common_name: GW170727
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170727_010430
+  gps: 1185152688.03
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 71.0 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170727_010430
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170727
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170727_010430
+    kind: gw_name
+    precedence: 50
+  - designation: '170727_010430'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW170727
+    kind: gw_name
+    precedence: 10
+- common_name: GW170729
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170729_185629
+  gps: 1185389807.32
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 28.0 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170729_185629
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170729
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW170809
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170809_082821
+  gps: 1186302519.75
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170809_082821
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170809
+      basis: GPS time, -0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW170814
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170814_103043
+  gps: 1186741861.53
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170814_103043
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170814
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW170817
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170817_124104
+  gps: 1187008882.45
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170817_124104
+    - GW170817
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170817
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170817
+    kind: gw_name
+    precedence: 10
+- common_name: GW170818
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170818_022509
+  gps: 1187058327.08
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 5.26 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170818_022509
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170818
+      basis: GPS time, -0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW170823
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW170823_131358
+  gps: 1187529256.52
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW170823_131358
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW170823
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW190408_181802
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190408_181802
+  gps: 1238782700.28
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190408_181802
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190408_181802
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190408_181802
+    kind: gw_name
+    precedence: 10
+- common_name: GW190412
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190412_053044
+  gps: 1239082262.17
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190412_053044
+    - GW190412
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190412
+      basis: GPS time, +0.07 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190412
+    kind: gw_name
+    precedence: 10
+- common_name: GW190413_052954
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190413_052954
+  gps: 1239168612.5
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 1.45 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190413_052954
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190413_052954
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190413_052954
+    kind: gw_name
+    precedence: 10
+- common_name: GW190413_134308
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190413_134308
+  gps: 1239198206.74
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 6.39 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190413_134308
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190413_134308
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190413_134308
+    kind: gw_name
+    precedence: 10
+- common_name: GW190421_213856
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190421_213856
+  gps: 1239917954.25
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190421_213856
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190421_213856
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190421_213856
+    kind: gw_name
+    precedence: 10
+- common_name: GW190424_180648
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190424_180648
+  gps: 1240164426.14
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.81
+    catalogue_p_astro_reported: 0.81
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190424_180648
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190424_180648
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190424_180648
+    kind: gw_name
+    precedence: 10
+- common_name: GW190425
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190425_081805
+  gps: 1240215503.02
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.5
+    catalogue_p_astro_reported: 0.5
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190425_081805
+    - GW190425
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190425
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190425
+    kind: gw_name
+    precedence: 10
+- common_name: GW190503_185404
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190503_185404
+  gps: 1240944862.29
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190503_185404
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190503_185404
+      basis: GPS time, +0.09 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190503_185404
+    kind: gw_name
+    precedence: 10
+- common_name: GW190512_180714
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190512_180714
+  gps: 1241719652.42
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190512_180714
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190512_180714
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190512_180714
+    kind: gw_name
+    precedence: 10
+- common_name: GW190513_205428
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190513_205428
+  gps: 1241816086.74
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190513_205428
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190513_205428
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190513_205428
+    kind: gw_name
+    precedence: 10
+- common_name: GW190514_065416
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190514_065416
+  gps: 1241852074.85
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.85
+    catalogue_p_astro_reported: 0.85
+    catalogue_ifar_reported: 0.19 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190514_065416
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190514_065416
+      basis: GPS time, +0.05 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190514_065416
+    kind: gw_name
+    precedence: 10
+- common_name: GW190517_055101
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190517_055101
+  gps: 1242107479.83
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 66.0 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190517_055101
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190517_055101
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190517_055101
+    kind: gw_name
+    precedence: 10
+- common_name: GW190519_153544
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190519_153544
+  gps: 1242315362.38
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190519_153544
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190519_153544
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190519_153544
+    kind: gw_name
+    precedence: 10
+- common_name: GW190521
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190521_030229
+  gps: 1242442967.44
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190521_030229
+    - GW190521
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190521
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190521
+    kind: gw_name
+    precedence: 10
+- common_name: GW190521_074359
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190521_074359
+  gps: 1242459857.47
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190521_074359
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190521_074359
+      basis: GPS time, +0.07 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190521_074359
+    kind: gw_name
+    precedence: 10
+- common_name: GW190527_092055
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190527_092055
+  gps: 1242984073.79
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.93
+    catalogue_p_astro_reported: 0.93
+    catalogue_ifar_reported: 0.37 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190527_092055
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190527_092055
+      basis: GPS time, +0.09 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190527_092055
+    kind: gw_name
+    precedence: 10
+- common_name: GW190602_175927
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190602_175927
+  gps: 1243533585.1
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190602_175927
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190602_175927
+      basis: GPS time, +0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190602_175927
+    kind: gw_name
+    precedence: 10
+- common_name: GW190620_030421
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190620_030421
+  gps: 1245035079.31
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.85
+    catalogue_p_astro_reported: 0.85
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190620_030421
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190620_030421
+      basis: GPS time, +0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190620_030421
+    kind: gw_name
+    precedence: 10
+- common_name: GW190630_185205
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190630_185205
+  gps: 1245955943.18
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 0.18 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190630_185205
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190630_185205
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190630_185205
+    kind: gw_name
+    precedence: 10
+- common_name: GW190701_203306
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190701_203306
+  gps: 1246048404.58
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 0.13 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190701_203306
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190701_203306
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190701_203306
+    kind: gw_name
+    precedence: 10
+- common_name: GW190706_222641
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190706_222641
+  gps: 1246487219.33
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190706_222641
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190706_222641
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190706_222641
+    kind: gw_name
+    precedence: 10
+- common_name: GW190707_093326
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190707_093326
+  gps: 1246527224.17
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190707_093326
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190707_093326
+      basis: GPS time, +0.07 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190707_093326
+    kind: gw_name
+    precedence: 10
+- common_name: GW190708_232457
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190708_232457
+  gps: 1246663515.38
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.85
+    catalogue_p_astro_reported: 0.85
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190708_232457
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190708_232457
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190708_232457
+    kind: gw_name
+    precedence: 10
+- common_name: GW190719_215514
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190719_215514
+  gps: 1247608532.92
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.89
+    catalogue_p_astro_reported: 0.89
+    catalogue_ifar_reported: 0.25 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190719_215514
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190719_215514
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190719_215514
+    kind: gw_name
+    precedence: 10
+- common_name: GW190720_000836
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190720_000836
+  gps: 1247616534.71
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190720_000836
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190720_000836
+      basis: GPS time, +0.11 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190720_000836
+    kind: gw_name
+    precedence: 10
+- common_name: GW190725_174728
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190725_174728
+  gps: 1248112066.46
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.91
+    catalogue_p_astro_reported: 0.91
+    catalogue_ifar_reported: 0.41 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: true
+    catalogue_names:
+    - GW190725_174728
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190725_174728
+      basis: GPS time, +0.06 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190725_174728
+    kind: gw_name
+    precedence: 10
+- common_name: GW190727_060333
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190727_060333
+  gps: 1248242631.98
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190727_060333
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190727_060333
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190727_060333
+    kind: gw_name
+    precedence: 10
+- common_name: GW190728_064510
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190728_064510
+  gps: 1248331528.53
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190728_064510
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190728_064510
+      basis: GPS time, +0.03 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190728_064510
+    kind: gw_name
+    precedence: 10
+- common_name: GW190731_140936
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190731_140936
+  gps: 1248617394.64
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.93
+    catalogue_p_astro_reported: 0.93
+    catalogue_ifar_reported: 0.43 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190731_140936
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190731_140936
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190731_140936
+    kind: gw_name
+    precedence: 10
+- common_name: GW190803_022701
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190803_022701
+  gps: 1248834439.88
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 2.4 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190803_022701
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190803_022701
+      basis: GPS time, +0.08 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190803_022701
+    kind: gw_name
+    precedence: 10
+- common_name: GW190814
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190814_211039
+  gps: 1249852257.01
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190814_211039
+    - GW190814
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190814
+      basis: GPS time, +0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190814
+    kind: gw_name
+    precedence: 10
+- common_name: GW190828_063405
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190828_063405
+  gps: 1251009263.76
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190828_063405
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190828_063405
+      basis: GPS time, +0.06 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190828_063405
+    kind: gw_name
+    precedence: 10
+- common_name: GW190828_065509
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190828_065509
+  gps: 1251010527.89
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190828_065509
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190828_065509
+      basis: GPS time, +0.09 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190828_065509
+    kind: gw_name
+    precedence: 10
+- common_name: GW190910_112807
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190910_112807
+  gps: 1252150105.32
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.87
+    catalogue_p_astro_reported: 0.87
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190910_112807
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190910_112807
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190910_112807
+    kind: gw_name
+    precedence: 10
+- common_name: GW190915_235702
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190915_235702
+  gps: 1252627040.7
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190915_235702
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190915_235702
+      basis: GPS time, +0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190915_235702
+    kind: gw_name
+    precedence: 10
+- common_name: GW190916_200658
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190916_200658
+  gps: 1252699636.9
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.88
+    catalogue_p_astro_reported: 0.88
+    catalogue_ifar_reported: 0.22 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: true
+    catalogue_names:
+    - GW190916_200658
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190916_200658
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190916_200658
+    kind: gw_name
+    precedence: 10
+- common_name: GW190924_021846
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190924_021846
+  gps: 1253326744.84
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190924_021846
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190924_021846
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190924_021846
+    kind: gw_name
+    precedence: 10
+- common_name: GW190925_232845
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190925_232845
+  gps: 1253489343.12
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: true
+    catalogue_names:
+    - GW190925_232845
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190925_232845
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190925_232845
+    kind: gw_name
+    precedence: 10
+- common_name: GW190926_050336
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190926_050336
+  gps: 1253509434.07
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.88
+    catalogue_p_astro_reported: 0.88
+    catalogue_ifar_reported: 0.27 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: true
+    catalogue_names:
+    - GW190926_050336
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190926_050336
+      basis: GPS time, +0.07 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190926_050336
+    kind: gw_name
+    precedence: 10
+- common_name: GW190929_012149
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190929_012149
+  gps: 1253755327.5
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 0.98
+    catalogue_p_astro_reported: 0.98
+    catalogue_ifar_reported: 3.08 yr
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190929_012149
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190929_012149
+      basis: GPS time, +0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190929_012149
+    kind: gw_name
+    precedence: 10
+- common_name: GW190930_133541
+  source: ogc
+  catalog: 3-OGC
+  external_id: 3-OGC:GW190930_133541
+  gps: 1253885759.24
+  reference: arXiv:2105.09151
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '>100 yr'
+    catalogue_tier: main (detection table)
+    catalogue_table: Table 2 (label table:search)
+    paper_says_new: false
+    catalogue_names:
+    - GW190930_133541
+    gps_source: Table 2 (label table:search) "GPS Time" column (consistent with UTC in name to <1 s)
+    merge:
+      event: GW190930_133541
+      basis: GPS time, +0.04 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190930_133541
+    kind: gw_name
+    precedence: 10

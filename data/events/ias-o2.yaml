@@ -1,0 +1,369 @@
+# IAS-O2: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/IAS-O2.json; paper arXiv:1904.07214, arXiv:1910.09528).
+#
+# Criterion (Sec. II 'Preview of results' (first sentence) and Sec. V 'Overview of the newly discovered BBH mergers' (second); Table II caption: 'New events with astrophysical probability $> 50\%$', 1904.07214):
+#   Also consistent with this is the fact that we find six new events with (a) false alarm rates below the threshold of 1 in 30 days defined in GWTC-1 (even after applying appropriate trials factors), and (b) probabilities of astrophysical origin $p_{\rm astro} > 0.5$, as effectively quantified by their consistency with the rates of occurrence of louder events. || The criterion in Table~\ref{tab:signalsFound} is based on the value of $p_{\rm astro}$, but all the events have significantly higher values of the `per-bank' IFAR than the threshold of 1 in 30 days, or $\sim 0.25$ O2, adopted in GWTC-1 \
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW170121
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170121
+  gps: 1169069154.565
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: 2.8×10^3 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170121
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170121
+    kind: gw_name
+    precedence: 10
+- common_name: GW170304
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170304
+  gps: 1172680691.356
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.985
+    catalogue_p_astro_reported: 0.985
+    catalogue_ifar_reported: 377 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170304
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170304
+    kind: gw_name
+    precedence: 10
+- common_name: GW170727
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170727
+  gps: 1185152688.019
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.98
+    catalogue_p_astro_reported: 0.98
+    catalogue_ifar_reported: 370 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170727
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170727
+    kind: gw_name
+    precedence: 10
+- common_name: GW170425
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170425
+  gps: 1177134832.178
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.77
+    catalogue_p_astro_reported: 0.77
+    catalogue_ifar_reported: 15 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170425
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170425
+    kind: gw_name
+    precedence: 10
+- common_name: GW170202
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170202
+  gps: 1170079035.715
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.68
+    catalogue_p_astro_reported: 0.68
+    catalogue_ifar_reported: 6.3 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170202
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170202
+    kind: gw_name
+    precedence: 10
+- common_name: GW170403
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170403
+  gps: 1175295989.221
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.56
+    catalogue_p_astro_reported: 0.56
+    catalogue_ifar_reported: 4.7 O2 (per-bank, no trials factor; 'O2' ≈ 118 days)
+    catalogue_tier: main (new events, p_astro > 0.5)
+    catalogue_table: Table II (label tab:signalsFound, 'New events with astrophysical probability > 50%
+      in all of the BBH banks'), 1904.07214
+    paper_says_new: true
+    catalogue_names:
+    - GW170403
+    gps_source: 'GPS column of Table II (tab:signalsFound), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+  designations:
+  - designation: GW170403
+    kind: gw_name
+    precedence: 10
+- common_name: GW170104
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170104
+  gps: 1167559936.582
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: '> 2×10^4 O2 (upper limit; per-bank)'
+    catalogue_tier: previously reported by LVC, recovered
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170104
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170104
+      basis: GPS time, -0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170104
+    kind: gw_name
+    precedence: 10
+- common_name: GW170809
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170809
+  gps: 1186302519.74
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: '> 2×10^4 O2 (upper limit; per-bank)'
+    catalogue_tier: previously reported by LVC, recovered
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170809
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170809
+      basis: GPS time, -0.06 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170809
+    kind: gw_name
+    precedence: 10
+- common_name: GW170814
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170814
+  gps: 1186741861.519
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: '> 2×10^4 O2 (upper limit; per-bank)'
+    catalogue_tier: previously reported by LVC, recovered
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170814
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170814
+      basis: GPS time, +0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170814
+    kind: gw_name
+    precedence: 10
+- common_name: GW170818
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170818
+  gps: 1187058327.075
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_ifar_reported: 1.7 O2 per-bank (1904.07214 Table I); '> 1000 O2' from H1-L1 coherence (1910.09528
+      Sec. II.E 'Validation using GW170818')
+    catalogue_tier: previously reported by LVC; NOT meeting criterion in 1904.07214 (FAR^-1 1.7 O2, no
+      p_astro); confirmed via single-detector method in 1910.09528
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170818
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170818
+      basis: GPS time, -0.02 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170818
+    kind: gw_name
+    precedence: 10
+- common_name: GW170729
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170729
+  gps: 1185389807.311
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: '> 2×10^4 O2 (upper limit; per-bank)'
+    catalogue_tier: previously reported by LVC, recovered
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170729
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170729
+      basis: GPS time, +0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170729
+    kind: gw_name
+    precedence: 10
+- common_name: GW170823
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170823
+  gps: 1187529256.5
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_bound: '>'
+    catalogue_p_astro_reported: '> 0.99'
+    catalogue_ifar_reported: '> 2×10^4 O2 (upper limit; per-bank)'
+    catalogue_tier: previously reported by LVC, recovered
+    catalogue_table: Table I (label tab:lvc events, 'Events already reported by the LIGO--Virgo Collaboration
+      as detected with our pipeline'), 1904.07214
+    paper_says_new: false
+    catalogue_names:
+    - GW170823
+    gps_source: 'GPS column of Table I (tab:lvc events), 1904.07214; per table footnote these are ''linear-free''
+      times of the best-fit template (rendered footnote: ''in the Hanford detector'') (1904.07214 adds
+      that for the heavier BBH banks the linear-free time is ''practically close to the merger time'')'
+    merge:
+      event: GW170823
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW170823
+    kind: gw_name
+    precedence: 10
+- common_name: GW170817A
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GW170817A
+  gps: 1186974184.716
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.86
+    catalogue_p_astro_reported: 0.86
+    catalogue_far_reported: 1/(36 O2) ≈ 1/(11.5 yr)
+    catalogue_ifar_reported: '36 O2 ≈ 11.5 yr (Sec. II.C eq.); abstract: ''one in 11 years (36 O2)'''
+    catalogue_tier: main (new event; second-ranked new single-detector trigger)
+    catalogue_table: Table I (label tab:SimilarityRanking), 1910.09528 (bold row, L1 rank 8); FAR in Sec.
+      II.C 'Determining the False-Alarm Rate'; p_astro in Sec. II.D
+    paper_says_new: true
+    catalogue_names:
+    - GW170817A
+    gps_source: 'GPS time column of Table I (tab:SimilarityRanking), 1910.09528 (L1-trigger ranking table).
+      DISCREPANCY: Fig. 2 (fig:fishing_cand) caption gives ''GPS time 1186974148.716'' (digits transposed);
+      table value and figure filename O2_1186974184_L1H1V1_fishing.pdf use 1186974184.'
+  designations:
+  - designation: GW170817A
+    kind: gw_name
+    precedence: 10
+- common_name: GWC170402
+  source: ias
+  catalog: IAS-O2
+  external_id: IAS-O2:GWC170402
+  gps: 1175205128.565
+  reference: arXiv:1904.07214, arXiv:1910.09528
+  parameters:
+    catalogue_p_astro: 0.68
+    catalogue_p_astro_reported: 0.68
+    catalogue_far_reported: 1/(60 O2) ≈ 1/(19 yr)
+    catalogue_ifar_reported: '60 O2 ≈ 19 yr (Sec. II.C eq.); abstract: ''one in 19 years (60 O2)'''
+    catalogue_tier: candidate ('GWC' = 'GW candidate'; top-ranked new single-detector trigger)
+    catalogue_table: Table I (label tab:SimilarityRanking), 1910.09528 (bold row, L1 rank 4); FAR Sec.
+      II.C; p_astro Sec. II.D
+    paper_says_new: true
+    catalogue_names:
+    - GWC170402
+    gps_source: GPS time column of Table I (tab:SimilarityRanking), 1910.09528; same value repeated in
+      Fig. 2 caption ('GWC170402 at GPS time 1175205128.565')
+  designations:
+  - designation: GWC170402
+    kind: gw_name
+    precedence: 10

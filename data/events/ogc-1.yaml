@@ -1,0 +1,111 @@
+# 1-OGC: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/1-OGC.json; paper arXiv:1811.01921).
+#
+# Criterion (Sec. 4 Results (sec:results), 1811.01921):
+#   There are three candidates which are statistically significant. These are the binary black hole mergers GW150914, LVT151012, and GW151226, which were previously reported in~\cite{TheLIGOScientific:2016pea,Abbott:2016blz,Abbott:2016nmj}. [...] There are no other individually convincing candidates.
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW150914
+  source: ogc
+  catalog: 1-OGC
+  external_id: 1-OGC:GW150914
+  gps: 1126259462.46
+  reference: arXiv:1811.01921
+  parameters:
+    catalogue_ifar_reported:
+      full_search_yr: '>66000'
+      bbh_region_yr: '>66000'
+      units: yr (table column FAR^-1 (yr))
+    catalogue_tier: statistically significant (three BBH mergers)
+    catalogue_table: Table 1 (table:complete) and Table 2 (table:bbh)
+    paper_says_new: false
+    catalogue_names:
+    - GW150914
+    - 150914+09:50:45UTC
+    gps_source: 'computed from Julian Date column (2457279.910665, Tables 1-2). The JD is on the TAI scale,
+      not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC),
+      so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation
+      +17 s. JD has 6 decimals, so precision is ~0.09 s'
+    merge:
+      event: GW150914
+      basis: GPS time, +0.06 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW150914
+    kind: gw_name
+    precedence: 10
+  - designation: 150914+09:50:45UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW151226
+  source: ogc
+  catalog: 1-OGC
+  external_id: 1-OGC:GW151226
+  gps: 1135136350.61
+  reference: arXiv:1811.01921
+  parameters:
+    catalogue_ifar_reported:
+      full_search_yr: '>59000'
+      bbh_region_yr: '>59000'
+      units: yr (table column FAR^-1 (yr))
+    catalogue_tier: statistically significant (three BBH mergers)
+    catalogue_table: Table 1 (table:complete) and Table 2 (table:bbh)
+    paper_says_new: false
+    catalogue_names:
+    - GW151226
+    - 151226+03:38:53UTC
+    gps_source: 'computed from Julian Date column (2457382.652426, Tables 1-2). The JD is on the TAI scale,
+      not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC),
+      so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation
+      +17 s. JD has 6 decimals, so precision is ~0.09 s'
+    merge:
+      event: GW151226
+      basis: GPS time, +0.01 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW151226
+    kind: gw_name
+    precedence: 10
+  - designation: 151226+03:38:53UTC
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW151012
+  source: ogc
+  catalog: 1-OGC
+  external_id: 1-OGC:LVT151012
+  gps: 1128678900.49
+  reference: arXiv:1811.01921
+  parameters:
+    catalogue_p_astro: 0.976
+    catalogue_p_astro_reported: 0.976
+    catalogue_ifar_reported:
+      full_search_yr: '24'
+      bbh_region_yr: '446'
+      units: yr (table column FAR^-1 (yr))
+    catalogue_tier: statistically significant (three BBH mergers)
+    catalogue_table: Table 1 (table:complete) and Table 2 (table:bbh)
+    paper_says_new: false
+    catalogue_names:
+    - LVT151012
+    - 151012+09:54:43UTC
+    gps_source: 'computed from Julian Date column (2457307.913420, Tables 1-2). The JD is on the TAI scale,
+      not UTC: treating it as UTC (+17 s) disagrees with the UTC time in the designation by 36 s (= TAI-UTC),
+      so GPS = (JD-2444244.5)*86400 - 19 s. Check: the result matches the UTC time in the designation
+      +17 s. JD has 6 decimals, so precision is ~0.09 s'
+    merge:
+      event: GW151012
+      basis: GPS time, +0.09 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: LVT151012
+    kind: catalog_alias
+    precedence: 50
+  - designation: 151012+09:54:43UTC
+    kind: catalog_alias
+    precedence: 50

@@ -1,0 +1,1989 @@
+# IAS-HM: every event the catalogue counts as a detection by its own criterion
+# (transcribed in data/catalogues/IAS-HM.json; paper arXiv:2312.06631).
+#
+# Criterion (Abstract (count via macro \neviasnew=11); restated in Sec. III A 'New candidate events': 'we find 11 candidate events with $p_\mathrm{astro}>0.5$ which have not been previously reported in the literature.', 2312.06631):
+#   we find 11 new candidate BBH mergers with $0.52\leq p_\mathrm{astro}\leq 0.88$ (we use the detection threshold as the astrophysical probability, $p_\mathrm{astro}$, being over 0.5, following the approach of other pipelines).
+#
+# Records on events with an LVK record were merged by GPS time, a human
+# decision recorded under parameters.merge (DESIGN.md §4). catalogue_* fields
+# are as the paper reports them, kept out of the event view's p_astro/far.
+
+- common_name: GW200104_184028
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200104_184028
+  gps: 1262198446
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.88
+    catalogue_p_astro_reported: 0.88
+    catalogue_ifar_reported: 0.67
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW200104_184028
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200104_184028
+    kind: gw_name
+    precedence: 10
+  - designation: '200104_184028'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200104
+    kind: gw_name
+    precedence: 50
+- common_name: GW190425_133124
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190425_133124
+  gps: 1240234302
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.81
+    catalogue_p_astro_reported: 0.81
+    catalogue_ifar_reported: 0.34
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190425_133124
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190425_133124
+    kind: gw_name
+    precedence: 10
+  - designation: '190425_133124'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW200319_022728
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200319_022728
+  gps: 1268620066
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.76
+    catalogue_p_astro_reported: 0.76
+    catalogue_ifar_reported: 0.23
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW200319_022728
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200319_022728
+    kind: gw_name
+    precedence: 10
+  - designation: '200319_022728'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200319
+    kind: gw_name
+    precedence: 50
+- common_name: GW190605_025957
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190605_025957
+  gps: 1243738815
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.74
+    catalogue_p_astro_reported: 0.74
+    catalogue_ifar_reported: 0.2
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190605_025957
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190605_025957
+    kind: gw_name
+    precedence: 10
+  - designation: '190605_025957'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190605
+    kind: gw_name
+    precedence: 50
+- common_name: '200114_020818'
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200114_020818
+  gps: 1263002916
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.71
+    catalogue_p_astro_reported: 0.71
+    catalogue_ifar_reported: 0.16
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW200114_020818
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: '200114_020818'
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200114_020818
+    kind: gw_name
+    precedence: 50
+- common_name: GW190524_134109
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190524_134109
+  gps: 1242740487
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.71
+    catalogue_p_astro_reported: 0.71
+    catalogue_ifar_reported: 0.16
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190524_134109
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190524_134109
+    kind: gw_name
+    precedence: 10
+  - designation: '190524_134109'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190524
+    kind: gw_name
+    precedence: 50
+- common_name: GW191213_204950
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191213_204950
+  gps: 1260305408
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.61
+    catalogue_p_astro_reported: 0.61
+    catalogue_ifar_reported: 0.09
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW191213_204950
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW191213_204950
+    kind: gw_name
+    precedence: 10
+  - designation: '191213_204950'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW191213
+    kind: gw_name
+    precedence: 50
+- common_name: GW190530_030659
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190530_030659
+  gps: 1243220837
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.6
+    catalogue_p_astro_reported: 0.6
+    catalogue_ifar_reported: 0.09
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190530_030659
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190530_030659
+    kind: gw_name
+    precedence: 10
+  - designation: '190530_030659'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190530
+    kind: gw_name
+    precedence: 50
+- common_name: GW200210_035448
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200210_035448
+  gps: 1265342106
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.57
+    catalogue_p_astro_reported: 0.57
+    catalogue_ifar_reported: 0.08
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW200210_035448
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200210_035448
+    kind: gw_name
+    precedence: 10
+  - designation: '200210_035448'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW190908_161547
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190908_161547
+  gps: 1251994565
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.56
+    catalogue_p_astro_reported: 0.56
+    catalogue_ifar_reported: 0.08
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190908_161547
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190908_161547
+    kind: gw_name
+    precedence: 10
+  - designation: '190908_161547'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190908
+    kind: gw_name
+    precedence: 50
+- common_name: GW190710_150742
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190710_150742
+  gps: 1246806480
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.52
+    catalogue_p_astro_reported: 0.52
+    catalogue_ifar_reported: 0.06
+    catalogue_tier: new (Table I)
+    catalogue_table: Table I (tab:NewEvents)
+    paper_says_new: true
+    catalogue_names:
+    - GW190710_150742
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190710_150742
+    kind: gw_name
+    precedence: 10
+  - designation: '190710_150742'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190710
+    kind: gw_name
+    precedence: 50
+- common_name: GW190711_030756
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190711_030756
+  gps: 1246849694
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 10.96
+    catalogue_tier: previously reported by IAS (2,2)-only (Table II)
+    catalogue_table: Table II (tab:22_IAS_events_significant)
+    paper_says_new: false
+    catalogue_names:
+    - GW190711_030756
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190711_030756
+    kind: gw_name
+    precedence: 10
+  - designation: '190711_030756'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190711
+    kind: gw_name
+    precedence: 50
+- common_name: GW200109_195634
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200109_195634
+  gps: 1262635012
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.92
+    catalogue_p_astro_reported: 0.92
+    catalogue_ifar_reported: 1.14
+    catalogue_tier: previously reported by IAS (2,2)-only (Table II)
+    catalogue_table: Table II (tab:22_IAS_events_significant)
+    paper_says_new: false
+    catalogue_names:
+    - GW200109_195634
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200109_195634
+    kind: gw_name
+    precedence: 10
+  - designation: '200109_195634'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200109
+    kind: gw_name
+    precedence: 50
+- common_name: GW190818_232544
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190818_232544
+  gps: 1250205962
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.9
+    catalogue_p_astro_reported: 0.9
+    catalogue_ifar_reported: 0.81
+    catalogue_tier: previously reported by IAS (2,2)-only (Table II)
+    catalogue_table: Table II (tab:22_IAS_events_significant)
+    paper_says_new: false
+    catalogue_names:
+    - GW190818_232544
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190818_232544
+    kind: gw_name
+    precedence: 10
+  - designation: '190818_232544'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190818
+    kind: gw_name
+    precedence: 50
+- common_name: GW190707_083226
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190707_083226
+  gps: 1246523564
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.87
+    catalogue_p_astro_reported: 0.87
+    catalogue_ifar_reported: 0.55
+    catalogue_tier: previously reported by IAS (2,2)-only (Table II)
+    catalogue_table: Table II (tab:22_IAS_events_significant)
+    paper_says_new: false
+    catalogue_names:
+    - GW190707_083226
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW190707_083226
+    kind: gw_name
+    precedence: 10
+  - designation: '190707_083226'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW191117_023843
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191117_023843
+  gps: 1257993541
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.52
+    catalogue_p_astro_reported: 0.52
+    catalogue_ifar_reported: 0.06
+    catalogue_tier: previously reported by IAS (2,2)-only (Table II)
+    catalogue_table: Table II (tab:22_IAS_events_significant)
+    paper_says_new: false
+    catalogue_names:
+    - GW191117_023843
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW191117_023843
+    kind: gw_name
+    precedence: 10
+  - designation: '191117_023843'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW191117
+    kind: gw_name
+    precedence: 50
+- common_name: GW190408_181802
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190408_181802
+  gps: 1238782700
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190408_181802
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190408_181802
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190408_181802
+    kind: gw_name
+    precedence: 10
+- common_name: GW190412
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190412_053044
+  gps: 1239082262
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190412_053044
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190412
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW190413_052954
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190413_052954
+  gps: 1239168612
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 12.6
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190413_052954
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190413_052954
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190413_052954
+    kind: gw_name
+    precedence: 10
+- common_name: GW190413_134308
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190413_134308
+  gps: 1239198206
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 64.5
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190413_134308
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190413_134308
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190413_134308
+    kind: gw_name
+    precedence: 10
+- common_name: GW190421_213856
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190421_213856
+  gps: 1239917954
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190421_213856
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190421_213856
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190421_213856
+    kind: gw_name
+    precedence: 10
+- common_name: GW190503_185404
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190503_185404
+  gps: 1240944862
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190503_185404
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190503_185404
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190503_185404
+    kind: gw_name
+    precedence: 10
+- common_name: GW190512_180714
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190512_180714
+  gps: 1241719652
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190512_180714
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190512_180714
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190512_180714
+    kind: gw_name
+    precedence: 10
+- common_name: GW190513_205428
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190513_205428
+  gps: 1241816086
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190513_205428
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190513_205428
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190513_205428
+    kind: gw_name
+    precedence: 10
+- common_name: GW190514_065416
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190514_065416
+  gps: 1241852074
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.95
+    catalogue_p_astro_reported: 0.95
+    catalogue_ifar_reported: 2.1
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190514_065416
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190514_065416
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190514_065416
+    kind: gw_name
+    precedence: 10
+- common_name: GW190517_055101
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190517_055101
+  gps: 1242107479
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190517_055101
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190517_055101
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190517_055101
+    kind: gw_name
+    precedence: 10
+- common_name: GW190519_153544
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190519_153544
+  gps: 1242315362
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190519_153544
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190519_153544
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190519_153544
+    kind: gw_name
+    precedence: 10
+- common_name: GW190521
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190521_030229
+  gps: 1242442967
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190521_030229
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190521
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations: []
+- common_name: GW190521_074359
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190521_074359
+  gps: 1242459857
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190521_074359
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190521_074359
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190521_074359
+    kind: gw_name
+    precedence: 10
+- common_name: GW190527_092055
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190527_092055
+  gps: 1242984073
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.95
+    catalogue_p_astro_reported: 0.95
+    catalogue_ifar_reported: 1.9
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190527_092055
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190527_092055
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190527_092055
+    kind: gw_name
+    precedence: 10
+- common_name: GW190602_175927
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190602_175927
+  gps: 1243533585
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190602_175927
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190602_175927
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190602_175927
+    kind: gw_name
+    precedence: 10
+- common_name: GW190706_222641
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190706_222641
+  gps: 1246487219
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190706_222641
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190706_222641
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190706_222641
+    kind: gw_name
+    precedence: 10
+- common_name: GW190707_093326
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190707_093326
+  gps: 1246527224
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190707_093326
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190707_093326
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190707_093326
+    kind: gw_name
+    precedence: 10
+- common_name: GW190719_215514
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190719_215514
+  gps: 1247608532
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.9
+    catalogue_p_astro_reported: 0.9
+    catalogue_ifar_reported: 0.77
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190719_215514
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190719_215514
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190719_215514
+    kind: gw_name
+    precedence: 10
+- common_name: GW190720_000836
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190720_000836
+  gps: 1247616534
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190720_000836
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190720_000836
+      basis: GPS time, -0.60 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190720_000836
+    kind: gw_name
+    precedence: 10
+- common_name: GW190725_174728
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190725_174728
+  gps: 1248112066
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.87
+    catalogue_p_astro_reported: 0.87
+    catalogue_ifar_reported: 0.56
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190725_174728
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190725_174728
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190725_174728
+    kind: gw_name
+    precedence: 10
+- common_name: GW190727_060333
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190727_060333
+  gps: 1248242631
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190727_060333
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190727_060333
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190727_060333
+    kind: gw_name
+    precedence: 10
+- common_name: GW190728_064510
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190728_064510
+  gps: 1248331528
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190728_064510
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190728_064510
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190728_064510
+    kind: gw_name
+    precedence: 10
+- common_name: GW190731_140936
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190731_140936
+  gps: 1248617394
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.92
+    catalogue_p_astro_reported: 0.92
+    catalogue_ifar_reported: 1.1
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190731_140936
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190731_140936
+      basis: GPS time, -0.60 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190731_140936
+    kind: gw_name
+    precedence: 10
+- common_name: GW190803_022701
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190803_022701
+  gps: 1248834439
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 12.9
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190803_022701
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190803_022701
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190803_022701
+    kind: gw_name
+    precedence: 10
+- common_name: GW190805_211137
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190805_211137
+  gps: 1249074715
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.92
+    catalogue_p_astro_reported: 0.92
+    catalogue_ifar_reported: 1.1
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190805_211137
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190805_211137
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190805_211137
+    kind: gw_name
+    precedence: 10
+- common_name: GW190828_063405
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190828_063405
+  gps: 1251009263
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190828_063405
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190828_063405
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190828_063405
+    kind: gw_name
+    precedence: 10
+- common_name: GW190828_065509
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190828_065509
+  gps: 1251010527
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190828_065509
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190828_065509
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190828_065509
+    kind: gw_name
+    precedence: 10
+- common_name: GW190909_114149
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190909_114149
+  gps: 1252064527
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.72
+    catalogue_p_astro_reported: 0.72
+    catalogue_ifar_reported: 0.17
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190909_114149
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190909_114149
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190909_114149
+    kind: gw_name
+    precedence: 10
+- common_name: GW190915_235702
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190915_235702
+  gps: 1252627040
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190915_235702
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190915_235702
+      basis: GPS time, -0.60 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190915_235702
+    kind: gw_name
+    precedence: 10
+- common_name: GW190916_200658
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190916_200658
+  gps: 1252699636
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.94
+    catalogue_p_astro_reported: 0.94
+    catalogue_ifar_reported: 1.8
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190916_200658
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190916_200658
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190916_200658
+    kind: gw_name
+    precedence: 10
+- common_name: GW190924_021846
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190924_021846
+  gps: 1253326744
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 290.0
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190924_021846
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190924_021846
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190924_021846
+    kind: gw_name
+    precedence: 10
+- common_name: GW190926_050336
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190926_050336
+  gps: 1253509434
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.94
+    catalogue_p_astro_reported: 0.94
+    catalogue_ifar_reported: 1.7
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190926_050336
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190926_050336
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190926_050336
+    kind: gw_name
+    precedence: 10
+- common_name: GW190929_012149
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190929_012149
+  gps: 1253755327
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 194.0
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190929_012149
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190929_012149
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190929_012149
+    kind: gw_name
+    precedence: 10
+- common_name: GW190930_133541
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW190930_133541
+  gps: 1253885759
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.97
+    catalogue_p_astro_reported: 0.97
+    catalogue_ifar_reported: 3.4
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW190930_133541
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW190930_133541
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW190930_133541
+    kind: gw_name
+    precedence: 10
+- common_name: GW191103_012549
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191103_012549
+  gps: 1256779567
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.98
+    catalogue_p_astro_reported: 0.98
+    catalogue_ifar_reported: 6.5
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191103_012549
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191103_012549
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191103_012549
+    kind: gw_name
+    precedence: 10
+- common_name: GW191105_143521
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191105_143521
+  gps: 1256999739
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 26.4
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191105_143521
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191105_143521
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191105_143521
+    kind: gw_name
+    precedence: 10
+- common_name: GW191109_010717
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191109_010717
+  gps: 1257296855
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191109_010717
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191109_010717
+      basis: GPS time, -0.20 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191109_010717
+    kind: gw_name
+    precedence: 10
+- common_name: GW191126_115259
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191126_115259
+  gps: 1258804397
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.81
+    catalogue_p_astro_reported: 0.81
+    catalogue_ifar_reported: 0.33
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191126_115259
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191126_115259
+      basis: GPS time, -0.60 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191126_115259
+    kind: gw_name
+    precedence: 10
+- common_name: GW191127_050227
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191127_050227
+  gps: 1258866165
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 16.5
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191127_050227
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191127_050227
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191127_050227
+    kind: gw_name
+    precedence: 10
+- common_name: GW191129_134029
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191129_134029
+  gps: 1259070047
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191129_134029
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191129_134029
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191129_134029
+    kind: gw_name
+    precedence: 10
+- common_name: GW191204_110529
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191204_110529
+  gps: 1259492747
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.94
+    catalogue_p_astro_reported: 0.94
+    catalogue_ifar_reported: 2.2
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191204_110529
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191204_110529
+      basis: GPS time, -0.50 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191204_110529
+    kind: gw_name
+    precedence: 10
+- common_name: GW191204_171526
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191204_171526
+  gps: 1259514944
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191204_171526
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191204_171526
+      basis: GPS time, +0.00 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191204_171526
+    kind: gw_name
+    precedence: 10
+- common_name: GW191215_223052
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191215_223052
+  gps: 1260484270
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191215_223052
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191215_223052
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191215_223052
+    kind: gw_name
+    precedence: 10
+- common_name: GW191222_033537
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191222_033537
+  gps: 1261020955
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191222_033537
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191222_033537
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191222_033537
+    kind: gw_name
+    precedence: 10
+- common_name: GW191230_180458
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191230_180458
+  gps: 1261764316
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191230_180458
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW191230_180458
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW191230_180458
+    kind: gw_name
+    precedence: 10
+- common_name: GW200128_022011
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200128_022011
+  gps: 1264213229
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200128_022011
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200128_022011
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200128_022011
+    kind: gw_name
+    precedence: 10
+- common_name: GW200129_065458
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200129_065458
+  gps: 1264316116
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200129_065458
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200129_065458
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200129_065458
+    kind: gw_name
+    precedence: 10
+- common_name: GW200208_130117
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200208_130117
+  gps: 1265202095
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 528.0
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200208_130117
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200208_130117
+      basis: GPS time, -0.90 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200208_130117
+    kind: gw_name
+    precedence: 10
+- common_name: GW200209_085452
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200209_085452
+  gps: 1265273710
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.99
+    catalogue_p_astro_reported: 0.99
+    catalogue_ifar_reported: 16.5
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200209_085452
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200209_085452
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200209_085452
+    kind: gw_name
+    precedence: 10
+- common_name: GW200216_220804
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200216_220804
+  gps: 1265926102
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.95
+    catalogue_p_astro_reported: 0.95
+    catalogue_ifar_reported: 2.8
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200216_220804
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200216_220804
+      basis: GPS time, -0.80 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200216_220804
+    kind: gw_name
+    precedence: 10
+- common_name: GW200219_094415
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200219_094415
+  gps: 1266140673
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 528.0
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200219_094415
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200219_094415
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200219_094415
+    kind: gw_name
+    precedence: 10
+- common_name: GW200220_061928
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200220_061928
+  gps: 1266214786
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.64
+    catalogue_p_astro_reported: 0.64
+    catalogue_ifar_reported: 0.11
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200220_061928
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200220_061928
+      basis: GPS time, -0.70 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200220_061928
+    kind: gw_name
+    precedence: 10
+- common_name: GW200220_124850
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200220_124850
+  gps: 1266238148
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.91
+    catalogue_p_astro_reported: 0.91
+    catalogue_ifar_reported: 0.97
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200220_124850
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200220_124850
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200220_124850
+    kind: gw_name
+    precedence: 10
+- common_name: GW200224_222234
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200224_222234
+  gps: 1266618172
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200224_222234
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200224_222234
+      basis: GPS time, -0.40 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200224_222234
+    kind: gw_name
+    precedence: 10
+- common_name: GW200225_060421
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200225_060421
+  gps: 1266645879
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200225_060421
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200225_060421
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200225_060421
+    kind: gw_name
+    precedence: 10
+- common_name: GW200306_093714
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200306_093714
+  gps: 1267522652
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.74
+    catalogue_p_astro_reported: 0.74
+    catalogue_ifar_reported: 0.19
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200306_093714
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200306_093714
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200306_093714
+    kind: gw_name
+    precedence: 10
+- common_name: GW200311_115853
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200311_115853
+  gps: 1267963151
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: '> 1000'
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200311_115853
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200311_115853
+      basis: GPS time, -0.30 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200311_115853
+    kind: gw_name
+    precedence: 10
+- common_name: GW200316_215756
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200316_215756
+  gps: 1268431094
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 1.0
+    catalogue_p_astro_reported: 1.0
+    catalogue_ifar_reported: 132.0
+    catalogue_tier: previously reported in GWTC-3, recovered (Table III)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200316_215756
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200316_215756
+      basis: GPS time, -0.10 s from the LVK record
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200316_215756
+    kind: gw_name
+    precedence: 10
+- common_name: GW191224_043228
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW191224_043228
+  gps: 1261197166
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.82
+    catalogue_p_astro_reported: 0.82
+    catalogue_ifar_reported: 0.37
+    catalogue_tier: previously reported in 4-OGC only, recovered (Table III bottom)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW191224_043228
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW191224_043228
+    kind: gw_name
+    precedence: 10
+  - designation: '191224_043228'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW191224
+    kind: gw_name
+    precedence: 50
+- common_name: GW200106_134123
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200106_134123
+  gps: 1262353301
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.78
+    catalogue_p_astro_reported: 0.78
+    catalogue_ifar_reported: 0.25
+    catalogue_tier: previously reported in 4-OGC only, recovered (Table III bottom)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200106_134123
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200106_134123
+    kind: gw_name
+    precedence: 10
+  - designation: '200106_134123'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200106
+    kind: gw_name
+    precedence: 50
+- common_name: GW200129_114245
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200129_114245
+  gps: 1264333383
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.95
+    catalogue_p_astro_reported: 0.95
+    catalogue_ifar_reported: 2.3
+    catalogue_tier: previously reported in 4-OGC only, recovered (Table III bottom)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200129_114245
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200129_114245
+    kind: gw_name
+    precedence: 10
+  - designation: '200129_114245'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW200214_223307
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200214_223306
+  gps: 1265754804
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.79
+    catalogue_p_astro_reported: 0.79
+    catalogue_ifar_reported: 0.28
+    catalogue_tier: previously reported in 4-OGC only, recovered (Table III bottom)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200214_223306
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+    merge:
+      event: GW200214_223307
+      basis: GPS time (same signal in another non-LVK catalogue)
+      decided_by: Gregory Ashton
+      decided: '2026-11-12'
+  designations:
+  - designation: GW200214_223306
+    kind: gw_name
+    precedence: 50
+  - designation: '200214_223306'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW200318_191337
+  source: ias
+  catalog: IAS-HM
+  external_id: IAS-HM:GW200318_191337
+  gps: 1268594035
+  reference: arXiv:2312.06631
+  parameters:
+    catalogue_p_astro: 0.96
+    catalogue_p_astro_reported: 0.96
+    catalogue_ifar_reported: 3.9
+    catalogue_tier: previously reported in 4-OGC only, recovered (Table III bottom)
+    catalogue_table: Table III (tab:lvc_events, longtable)
+    paper_says_new: false
+    catalogue_names:
+    - GW200318_191337
+    gps_source: computed from UTC in designation (+18 s GPS-UTC, O3); paper tabulates no GPS times
+  designations:
+  - designation: GW200318_191337
+    kind: gw_name
+    precedence: 10
+  - designation: '200318_191337'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW200318
+    kind: gw_name
+    precedence: 50

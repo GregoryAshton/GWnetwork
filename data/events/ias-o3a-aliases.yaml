@@ -1,0 +1,116 @@
+# Aliases for the IAS-O3a events with no LVK record (arXiv:2201.02252).
+# GWOSC already serves the catalogue (source gwosc, catalog IAS-O3a), so these
+# entries only attach designations: the name without the GW prefix, and the
+# short GWYYMMDD form where no other event shares the date. Never bare dates.
+
+- common_name: GW190707_083226
+  source: manual
+  catalog: null
+  external_id: GW190707_083226-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190707_083226'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW190711_030756
+  source: manual
+  catalog: null
+  external_id: GW190711_030756-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190711_030756'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190711
+    kind: gw_name
+    precedence: 50
+- common_name: GW190818_232544
+  source: manual
+  catalog: null
+  external_id: GW190818_232544-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190818_232544'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190818
+    kind: gw_name
+    precedence: 50
+- common_name: GW190704_104834
+  source: manual
+  catalog: null
+  external_id: GW190704_104834-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190704_104834'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190704
+    kind: gw_name
+    precedence: 50
+- common_name: GW190906_054335
+  source: manual
+  catalog: null
+  external_id: GW190906_054335-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190906_054335'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190906
+    kind: gw_name
+    precedence: 50
+- common_name: GW190821_124821
+  source: manual
+  catalog: null
+  external_id: GW190821_124821-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190821_124821'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190821
+    kind: gw_name
+    precedence: 50
+- common_name: GW190814_192009
+  source: manual
+  catalog: null
+  external_id: GW190814_192009-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190814_192009'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW190910_012619
+  source: manual
+  catalog: null
+  external_id: GW190910_012619-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190910_012619'
+    kind: catalog_alias
+    precedence: 50
+- common_name: GW190920_113516
+  source: manual
+  catalog: null
+  external_id: GW190920_113516-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190920_113516'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190920
+    kind: gw_name
+    precedence: 50
+- common_name: GW190718_160159
+  source: manual
+  catalog: null
+  external_id: GW190718_160159-ias-o3a-aliases
+  reference: arXiv:2201.02252
+  designations:
+  - designation: '190718_160159'
+    kind: catalog_alias
+    precedence: 50
+  - designation: GW190718
+    kind: gw_name
+    precedence: 50
