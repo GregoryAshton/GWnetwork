@@ -1,25 +1,15 @@
 # Known issues and follow-ups
 
 Open items, roughly by area. Measured numbers are from the gold-set pilots and
-the first full classify run (classify-0.4, 2026-10-21); see DESIGN.md §13.
+the full classify-0.4 runs (2026-10-21 to 2026-11-12); see DESIGN.md §13.
 
 ## Extraction
 
 - **Authors who name the wrong event** (1903.01998: "GW190521" for
-  GW190521_074359) are invisible to the matcher; one is fixed in
-  `data/mention_overrides.yaml`, others will only surface by hand-reading.
-  Another (found 2026-10-28): 1710.05909, on GRB170817A and submitted
-  2017-10-13, calls the NS-NS merger it ties to GRB170817A "GW170818" in
-  five sentences ("the event has been named GW170818"): it means GW170817
-  (GW170818 was not public until GWTC-1). It is GW170818's earliest
-  mention, so the paper analysis dates GW170818's announcement 13 months
-  early. Override added 2026-11-12 (GW170818 → GW170817), as was
-  1611.08052's "GW151216", a typo for GW151226 (its ref. [1] and the
-  DECam follow-up it cites are GW151226's). Both take effect on the next
-  `gwn extract`.
-- **`LVT151012` is not a designation** for GW151012, so its 2016-2018
-  literature (including the LVK O1 papers) is not linked and its first
-  mention falls on an outside paper (1609.01668). Add the alias for v2.
+  GW190521_074359; 1710.05909: "GW170818" for GW170817; 1611.08052:
+  "GW151216" for GW151226) are invisible to the matcher. Known cases are
+  fixed in `data/mention_overrides.yaml`; others will only surface by
+  hand-reading.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
 
@@ -101,86 +91,15 @@ from the analysis; a label upgrade a question needs is a new release.
   before exporting, so papers submitted near it are indexed in ADS and
   fetched (full-text ingestion lags). See "Open decisions" in
   `../GWnetwork_paper/PLAN.md`.
-- **Release v2: non-LVK catalogues, IAS and OGC** (for paper question A6,
-  decided 2026-10-29; see "Decided" in `../GWnetwork_paper/PLAN.md`). v1
-  has only GWOSC's IAS-O3a and GW151216 (`data/events/ias-o1.yaml`).
-  - Ingest every event each catalogue lists as a detection by its own
-    criterion, through the manual provider (or the planned 4-OGC/IAS-HM
-    providers, DESIGN.md). Keep events also in LVK catalogues too, merged
-    by GPS time through `event_merge` (human decision, never automatic);
-    the paper selects those with no LVK record.
-  - Record per catalogue its detection criterion as the paper states it
-    (quote and section), and per event its reported p_astro, FAR (or
-    IFAR) and table tier (main or marginal), so the paper can filter
-    uniformly later. Criteria **verified against the papers 2026-11-12**
-    (LaTeX source, latest arXiv version); full transcriptions with quotes,
-    per-event p_astro/IFAR/tier and designations in `data/catalogues/`.
-    "LVK" = within 1 s of an event with any LVK record (GWTC confident or
-    marginal, discovery papers, O3 IMBH marginal); all other events are
-    >= 740 s from any LVK event.
-
-    | Catalogue | Paper (version) | Criterion as stated | Events | with LVK record | without |
-    |---|---|---|---|---|---|
-    | IAS O1 | 1902.10341v2, 1902.10331v2 | No threshold in the pipeline paper; 1902.10331 §II: P_astro ≈ 0.7 "above the bar of 0.5 for listing events in the catalog of confident GW detections defined in [GWTC-1]" | 4 | 3 | 1 |
-    | IAS O2 | 1904.07214v2, 1910.09528v1 | 1904.07214 §II: FAR below 1 in 30 days (with trials factor) **and** p_astro > 0.5; 1910.09528 only says "above the thresholds of significance for being called events" | 14 | 6 | 8 |
-    | IAS O3a | 2201.02252v3 | §I: p_astro "at least one half" (abstract, Table I: > 0.5) | 42 | 32 | 10 |
-    | IAS O3b | 2311.06061v3 | §I: p_astro "at least one half" (§V.B: "greater than") | 23 | 17 | 6 |
-    | IAS O3 HM | 2312.06631v2 | Abstract/§III A: p_astro over 0.5 | 79 | 59 | 20 |
-    | 1-OGC | 1811.01921v3 | §4: "three candidates which are statistically significant" (FAR < 1/50 000 yr for two; LVT151012 by P_astro 0.976). No new events (§1) | 3 | 3 | 0 |
-    | 2-OGC | 1910.05331v3 | §5.1: "14 BBH candidates with p_astro > 50%, meeting the standard detection criteria" of GWTC-1, plus GW170817 | 15 | 11 | 4 |
-    | 3-OGC | 2105.09151v3 | §5, Table 2: "P_astro > 0.5 **or** IFAR > 100 years" | 57 | 52 | 5 |
-    | 4-OGC | 2112.06878v2 | §3, Table 3: "P_astro > 0.5 **or** IFAR > 100 years" | 94 | 79 | 15 |
-
-    Together: 46 distinct events without an LVK record (GPS-clustered
-    within 2 s). Open questions are listed under "A6 decisions pending"
-    below.
-
-  - Designations: add every name a catalogue used, including forms
-    without the GW prefix and both short and `_hhmmss` forms, as aliases.
-    Do not match bare dates (false positives); accept lower recall for
-    events never given a GW name and record which those are.
-  - ~~Mention override: GW151216's first mention is 1611.08052 (DES
-    kilonova search), which dates its announcement 2017-03-10 instead of
-    2019-02-27 (1902.10331).~~ Added 2026-11-12: it is a typo for GW151226
-    (reassigned, not dropped); applies on the next extraction run.
-  - Then re-run extraction and classification for the new names over the
-    whole corpus.
-  - **A6 decisions** (2026-11-12, Gregory Ashton): merges are applied by
-    giving each catalogue record the existing event's `common_name`, with
-    the decision under `parameters.merge` (no merge-application code);
-    canonical name of a non-LVK event is the first catalogue's; GWC170402
-    included; IAS-HM's recovered GWTC-3 events count as IAS-HM
-    detections; IAS-O3a is not duplicated (GWOSC serves it, aliases only
-    in `ias-o3a-aliases.yaml`); short forms only on unique dates;
-    p_astro taken as the paper tabulates it. Event view: v2 catalogues
-    rank below every LVK listing and `is_marginal` ignores them (done).
-  - ~~Pending: confirmation of the merge table~~ Confirmed 2026-11-12;
-    event YAML committed and ingested (35 new events, 289 catalogue
-    records; `gwn events rebuild-view` done). No extraction yet.
-  - ~~**"GW170817A" is mostly an author slip.**~~ Reviewed 2026-11-12: of
-    88 corpus papers writing it, 61 mean GW170817 (BNS, GRB 170817A,
-    kilonova, afterglow; two are a rendered sigma^A_GW170817 symbol) and
-    now have `mention_overrides.yaml` entries; 27 mean the IAS candidate
-    and keep it (2111.03606 GWTC-3, 2010.14527 GWTC-2, 1910.09528 itself,
-    1911.11142, the hierarchical/AGN-merger papers, ...). Recheck new
-    papers after the cutoff extension.
-  - ~~Extraction~~ Done 2026-11-12 (extract-0.3, current run 13:31):
-    166,459 mentions (+1,925), 131 reassigned by the 64 overrides.
-    GW151012 215 -> 449 papers (LVT151012), GW151216 42 -> 41,
-    GW170817A 27 (the reviewed set); the 35 new events have 1-23 papers
-    each. The current classify run predates it, so new pairs have no
-    usage until the next classification.
-  - ~~Classification~~ Done 2026-11-12: two full runs (13:45 and 20:15,
-    ~$5 each, 35,757 pairs, no errors); the 20:15 run is current. 516
-    pairs are new relative to v1 (234 GW151012 via LVT151012, 27
-    GW170817A, the rest IAS/OGC events). Gold results under
-    Classification above. Site not re-exported; v2 export waits for the
-    cutoff extension.
+- **Release v2: non-LVK catalogues, IAS and OGC** (paper question A6).
+  Ingested, extracted and classified 2026-11-12 (35 new events; criteria,
+  merge decisions and the per-catalogue table in `data/catalogues/README.md`).
+  Remaining:
+  - Recheck "GW170817A" mentions in papers added by the cutoff extension
+    (most mean GW170817 and need a `mention_overrides.yaml` entry).
   - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
     GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
     marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
     while PLAN's A6 definition (any LVK record, confident or marginal)
     excludes it.
-- ~~**Release v1**: tag `v1.0-paper`, export, deposit on Zenodo.~~ Done
-  2026-10-23: DOI 10.5281/zenodo.23603658, published 2026-10-26 and linked
-  from the site's front page.
+  - Re-export the site with v2 after the cutoff extension.
