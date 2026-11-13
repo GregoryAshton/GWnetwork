@@ -66,6 +66,9 @@ RELEASES = [
     {"name": "v1", "doi": "10.5281/zenodo.23603658",
      "extract_run_id": "32097309-1656-421d-829c-73b4be8c49e5",
      "classify_run_id": "39a8684e-6fba-440f-9060-004b8c729fb0"},
+    {"name": "v2", "doi": "10.5281/zenodo.24196676",
+     "extract_run_id": "d65e8c26-4bb8-41cd-add3-ec9c9b754662",
+     "classify_run_id": "468129b9-5028-49c5-8373-beebd96f0d07"},
 ]
 
 

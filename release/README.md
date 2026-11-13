@@ -123,7 +123,7 @@ Cite this release as:
 
 > Ashton, G. (2026). *GWnetwork v2: gravitational-wave events and the papers
 > that use them* (Version 2.0) [Data set]. Zenodo.
-> DOI: to be added on deposit
+> https://doi.org/10.5281/zenodo.24196676
 
 The data are released under the Creative Commons Attribution 4.0
 International licence (CC BY 4.0).
