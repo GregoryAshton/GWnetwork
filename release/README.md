@@ -1,29 +1,40 @@
-# GWnetwork data release v1
+# GWnetwork data release v2
 
 Which papers mention which gravitational-wave events, and how each paper uses
 each event. Built by GWnetwork (code: https://github.com/GregoryAshton/GWnetwork,
-release tag `v1.0-paper`).
+release tag `v2.0-paper`).
+
+**Changes since v1** (Zenodo 10.5281/zenodo.23603658): the corpus is
+re-harvested from ADS on 2026-11-13 (755 new papers, mostly submitted
+September to November 2026, so GWTC-5.0's follow-up literature is now
+included); 35 events from the independent IAS and OGC searches are added,
+with their detection criteria recorded (`release_info` code commit,
+`data/catalogues/` at the tag); `LVT151012` and nine short-form names (e.g.
+`GW241125`) are now designations of their events; 68 papers carry reviewed
+mention overrides (v1: 1), mostly `GW170817A` written for GW170817; and
+extraction and classification are re-run over the whole corpus. Papers in
+v1 keep the text version v1 read.
 
 | | |
 |---|---|
-| Events | 434 (GWOSC catalogues plus a few non-GWOSC candidates) |
-| Papers | 13,904 arXiv papers found by ADS full-text search for any event name; 13,886 not withdrawn, all with full text |
-| Paper–event pairs | 35,243, each with its mentions and one classification |
-| Papers submitted | 1994-12-08 to 2026-09-13 (coverage of 2026 is incomplete: ADS full-text indexing lags) |
+| Events | 469 (GWOSC catalogues, plus candidates from the IAS and OGC searches and a few others) |
+| Papers | 14,659 arXiv papers found by ADS full-text search for any event name; 14,640 not withdrawn, all with full text |
+| Paper–event pairs | 37,677, each with its mentions and one classification |
+| Papers submitted | 1994-12-08 to 2026-11-11, harvested 2026-11-13 (coverage of the last months is incomplete: ADS full-text indexing lags by weeks) |
 
 The corpus contains only papers that **name** a specific event. Population,
 method and theory papers that never name an event are not in it.
 
 ## Files
 
-- `gwnetwork-v1.db.gz` — SQLite database (gunzip first; ~540 MB unpacked).
+- `gwnetwork-v2.db.gz` — SQLite database (gunzip first; ~540 MB unpacked).
 - `README.md` — this file.
 - `GUIDELINES.md`, `gold.jsonl` — the labelling guide and the 234 hand-labelled
   pairs used to measure classification quality.
 - `fulltext_overrides.yaml`, `mention_overrides.yaml` — the reviewed manual
   interventions in this release, each with its reason.
 - `requirements-lock.txt` — the Python environment that produced the data.
-- `gwnetwork-v1.0-paper-src.tar.gz` — the code at the release tag.
+- `gwnetwork-v2.0-paper-src.tar.gz` — the code at the release tag.
 
 ## Tables
 
@@ -77,13 +88,15 @@ a subject of the paper.
 ## Quality and known limitations
 
 - **Classification** (Claude Haiku 5.5 on excerpts around each mention):
-  engagement agrees with the gold set on 82.1% of pairs (Cohen's kappa 0.76;
-  80.3% on the person-labelled pairs). Released posterior-sample use is
-  undercounted (recall 0.43, precision 1.00), because statements like "we
-  use the released samples for all events" name no event and are not in the
-  excerpts. A previous run with identical settings gave a different label
-  for 13% of pairs, so treat per-pair labels as noisy and aggregate rates
-  with uncertainties.
+  engagement agrees with the gold set on 77.4% of pairs (Cohen's kappa 0.70;
+  72.4% on the person-labelled pairs). Over five full runs with identical
+  settings, gold agreement is 79.4% +/- 2.7% (sample sd; v1's run scored
+  82.1%), so this run's score is within run-to-run noise. Released
+  posterior-sample use is undercounted (recall 0.46, precision 1.00),
+  because statements like "we use the released samples for all events"
+  name no event and are not in the excerpts. Any two runs with identical
+  settings give different labels for 12-13% of pairs, so treat per-pair
+  labels as noisy and aggregate rates with uncertainties.
 - **Extraction recall is unmeasured.** The gold set was drawn from pairs the
   extractor found, so events a paper names in a form the matcher misses are
   invisible to it.
@@ -108,9 +121,9 @@ with a shift of -95 characters.
 
 Cite this release as:
 
-> Ashton, G. (2026). *GWnetwork v1: gravitational-wave events and the papers
-> that use them* (Version 1.0) [Data set]. Zenodo.
-> https://doi.org/10.5281/zenodo.23603658
+> Ashton, G. (2026). *GWnetwork v2: gravitational-wave events and the papers
+> that use them* (Version 2.0) [Data set]. Zenodo.
+> DOI: to be added on deposit
 
 The data are released under the Creative Commons Attribution 4.0
 International licence (CC BY 4.0).

@@ -1,7 +1,7 @@
 # Known issues and follow-ups
 
 Open items, roughly by area. Measured numbers are from the gold-set pilots and
-the full classify-0.4 runs (2026-10-21 to 2026-11-12); see DESIGN.md §13.
+the full classify-0.4 runs (2026-10-21 to 2026-11-13); see DESIGN.md §13.
 
 ## Extraction
 
@@ -10,20 +10,26 @@ the full classify-0.4 runs (2026-10-21 to 2026-11-12); see DESIGN.md §13.
   "GW151216" for GW151226) are invisible to the matcher. Known cases are
   fixed in `data/mention_overrides.yaml`; others will only surface by
   hand-reading.
+- **`gwn events propose-aliases --write` drops existing aliases.** It
+  rebuilds `data/events/aliases-auto.yaml` from the current unknown queue,
+  and names already aliased are no longer in that queue, so a regeneration
+  keeps only the new ones (found 2026-11-13: 96 entries would have gone).
+  Until fixed, append the new entries by hand. Fix: merge with the existing
+  file.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
 
 ## Classification (Haiku 5.5, excerpts)
 
-Gold agreement (engagement) over four full classify-0.4 runs with the same
+Gold agreement (engagement) over five full classify-0.4 runs with the same
 configuration: 80.7% (2026-10-21), 82.1% (v1, 2026-10-22), 75.6%
-(2026-11-12 13:45), 81.2% (2026-11-12 20:15, current for v2); mean
-79.9% +/- 2.9. Person-labelled pairs: 75.4 / 80.3 / 72.4 / 75.6, mean
-75.9% +/- 3.3. The 13:45 run is a low draw, not drift: all 31 of its gold
-flips are in papers whose inputs did not change.
+(2026-11-12 13:45), 81.2% (2026-11-12 20:15), 77.4% (2026-11-13 12:04, v2,
+current); mean 79.4% +/- 2.7. Person-labelled pairs: 75.4 / 80.3 / 72.4 /
+75.6 / 72.4, mean 75.2% +/- 3.2. The 13:45 run is a low draw, not drift:
+all 31 of its gold flips are in papers whose inputs did not change.
 
-- **Run-to-run label instability is ~13%.** Any two of the four runs agree
-  on 86.7-88.1% of shared pairs (~35,200). The spread in gold agreement
+- **Run-to-run label instability is ~13%.** Any two of the five runs agree
+  on 86.7-88.3% of shared pairs (~35,200). The spread in gold agreement
   (~3 points) is as large as the binomial error on 234 gold pairs, so quote
   the mean and spread of the runs, never one run's score, and never promote
   a run because it scored best on gold (selection on the eval set). Policy:
@@ -84,22 +90,19 @@ from the analysis; a label upgrade a question needs is a new release.
   deleting papers. Since 2026-10-28 it applies to first appearance (first
   submission, or the revision that first names the event), not to the
   fetched version's date.
-- **Release v2: extend the cutoff, probably to 2027-01-01** (noted
-  2026-10-28). GWTC-5.0 (O4b, 147 events) went out 2026-05-26, five days
-  before the v1 cutoff, so v1 has none of its follow-up; the O4c data
-  release is due December 2026. Harvest and fetch well past the new cutoff
-  before exporting, so papers submitted near it are indexed in ADS and
-  fetched (full-text ingestion lags). See "Open decisions" in
-  `../GWnetwork_paper/PLAN.md`.
+- **Release v2: harvest done 2026-11-13** (755 new papers, submitted up
+  to 2026-11-11; extraction and classification re-run). Papers on the 161
+  GWTC-5.0-only events: 254 in v1, 404 now. Still to choose: the paper's
+  analysis cutoff. ADS full-text indexing lags by weeks, so the last
+  months before the harvest are incomplete (2026-10: 260 new papers,
+  2026-11: 83); a cutoff a few weeks before the harvest date is safer.
+  Then deposit v2 on Zenodo and re-export the site.
 - **Release v2: non-LVK catalogues, IAS and OGC** (paper question A6).
   Ingested, extracted and classified 2026-11-12 (35 new events; criteria,
   merge decisions and the per-catalogue table in `data/catalogues/README.md`).
   Remaining:
-  - Recheck "GW170817A" mentions in papers added by the cutoff extension
-    (most mean GW170817 and need a `mention_overrides.yaml` entry).
   - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
     GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
     marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
     while PLAN's A6 definition (any LVK record, confident or marginal)
     excludes it.
-  - Re-export the site with v2 after the cutoff extension.
