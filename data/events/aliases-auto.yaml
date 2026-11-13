@@ -674,3 +674,66 @@
   designations:
     - designation: GW250207_115645
     - designation: GW250207   # x280; short form; exactly one long-form candidate
+
+- common_name: GW190909_114149
+  source: alias-inference
+  external_id: GW190909_114149-aliases-auto
+  designations:
+    - designation: GW190909_114149
+    - designation: GW190909   # x19; short form; exactly one long-form candidate
+
+- common_name: GW191113_071753
+  source: alias-inference
+  external_id: GW191113_071753-aliases-auto
+  designations:
+    - designation: GW191113_071753
+    - designation: GW191113   # x10; short form; exactly one long-form candidate
+
+- common_name: GW200214_223307
+  source: alias-inference
+  external_id: GW200214_223307-aliases-auto
+  designations:
+    - designation: GW200214_223307
+    - designation: GW200214   # x7; short form; exactly one long-form candidate
+
+- common_name: GW230820_212515
+  source: alias-inference
+  external_id: GW230820_212515-aliases-auto
+  designations:
+    - designation: GW230820_212515
+    - designation: GW230820   # x5; short form; exactly one long-form candidate
+
+- common_name: GW231114_043211
+  source: alias-inference
+  external_id: GW231114_043211-aliases-auto
+  designations:
+    - designation: GW231114_043211
+    - designation: GW231114   # x5; short form; exactly one long-form candidate
+
+- common_name: GW240515_005301
+  source: alias-inference
+  external_id: GW240515_005301-aliases-auto
+  designations:
+    - designation: GW240515_005301
+    - designation: GW240515   # x7; short form; exactly one long-form candidate
+
+- common_name: GW241113_163507
+  source: alias-inference
+  external_id: GW241113_163507-aliases-auto
+  designations:
+    - designation: GW241113_163507
+    - designation: GW241113   # x18; short form; exactly one long-form candidate
+
+- common_name: GW241125_010116
+  source: alias-inference
+  external_id: GW241125_010116-aliases-auto
+  designations:
+    - designation: GW241125_010116
+    - designation: GW241125   # x75; short form; exactly one long-form candidate
+
+- common_name: GW241127_061008
+  source: alias-inference
+  external_id: GW241127_061008-aliases-auto
+  designations:
+    - designation: GW241127_061008
+    - designation: GW241127   # x9; short form; exactly one long-form candidate

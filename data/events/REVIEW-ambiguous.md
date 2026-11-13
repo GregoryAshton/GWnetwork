@@ -8,80 +8,84 @@ hand-written YAML file in this directory.
 
 | Designation | Mentions | Candidates |
 |---|---|---|
-| `GW240925` | 285 | candidates: GW240925_000956, GW240925_005809 |
-| `GW190426` | 94 | candidates: GW190426_152155, GW190426_190642 |
-| `GW230814` | 63 | candidates: GW230814_061920, GW230814_230901 |
-| `GW190707` | 54 | candidates: GW190707_083226, GW190707_093326 |
-| `GW200208` | 46 | candidates: GW200208_130117, GW200208_222617 |
-| `GW190828` | 30 | candidates: GW190828_063405, GW190828_065509 |
-| `GW200311` | 29 | candidates: GW200311_103121, GW200311_115853 |
-| `GW191204` | 27 | candidates: GW191204_110529, GW191204_171526 |
-| `GW200220` | 26 | candidates: GW200220_061928, GW200220_124850 |
-| `GW190413` | 23 | candidates: GW190413_052954, GW190413_134308 |
-| `GW190910` | 15 | candidates: GW190910_012619, GW190910_112807 |
+| `GW240925` | 305 | candidates: GW240925_000956, GW240925_005809 |
+| `GW230814` | 234 | candidates: GW230814_061920, GW230814_230901 |
+| `GW190426` | 216 | candidates: GW190426_152155, GW190426_190642 |
+| `GW200208` | 99 | candidates: GW200208_130117, GW200208_222617 |
+| `GW200220` | 74 | candidates: GW200220_061928, GW200220_124850 |
+| `GW190707` | 72 | candidates: GW190707_083226, GW190707_093326 |
+| `GW200311` | 51 | candidates: GW200311_103121, GW200311_115853 |
+| `GW190828` | 47 | candidates: GW190828_063405, GW190828_065509 |
+| `GW240615` | 43 | candidates: GW240615_113620, GW240615_160735 |
+| `GW191204` | 39 | candidates: GW191204_110529, GW191204_171526 |
+| `GW190413` | 37 | candidates: GW190413_052954, GW190413_134308 |
+| `GW190910` | 31 | candidates: GW190910_012619, GW190910_112807 |
+| `GW230922` | 15 | candidates: GW230922_020344, GW230922_040658 |
 | `GW231206` | 15 | candidates: GW231206_010629, GW231206_233134, GW231206_233901 |
-| `GW230922` | 14 | candidates: GW230922_020344, GW230922_040658 |
+| `GW240920` | 15 | candidates: GW240920_073424, GW240920_124024 |
 | `GW230927` | 13 | candidates: GW230927_043729, GW230927_153832 |
-| `GW231118` | 12 | candidates: GW231118_005626, GW231118_071402, GW231118_090602 |
+| `GW231118` | 13 | candidates: GW231118_005626, GW231118_071402, GW231118_090602 |
 | `GW231223` | 11 | candidates: GW231223_032836, GW231223_075055, GW231223_202619 |
 | `GW231113` | 10 | candidates: GW231113_062050, GW231113_112825, GW231113_122623, GW231113_150041, GW231113_200417 |
+| `GW230824` | 8 | candidates: GW230824_033047, GW230824_135331 |
 | `GW230606` | 7 | candidates: GW230606_004305, GW230606_024545, GW230606_065320 |
 | `GW231102` | 7 | candidates: GW231102_052214, GW231102_071736, GW231102_232433 |
 | `GW230624` | 6 | candidates: GW230624_113103, GW230624_214944 |
 | `GW230630` | 6 | candidates: GW230630_070659, GW230630_125806, GW230630_234532 |
 | `GW230702` | 6 | candidates: GW230702_162025, GW230702_185453 |
-| `GW230824` | 6 | candidates: GW230824_033047, GW230824_135331 |
+| `GW230704` | 6 | candidates: GW230704_021211, GW230704_212616 |
 | `GW230920` | 6 | candidates: GW230920_064709, GW230920_071124 |
+| `GW231005` | 6 | candidates: GW231005_021030, GW231005_091549, GW231005_144455 |
 | `GW230609` | 5 | candidates: GW230609_010824, GW230609_064958 |
+| `GW241102` | 5 | candidates: GW241102_124058, GW241102_144729 |
+| `GW250119` | 5 | candidates: GW250119_025138, GW250119_190238 |
 
 ## Unresolved: no matching event (possible new events)
 
 | Designation | Mentions | Note |
 |---|---|---|
-| `GW200114_020818` | 108 | no event with this date prefix |
-| `GW170121` | 75 | no long-form candidate; may be a new event |
-| `GW170727` | 65 | no long-form candidate; may be a new event |
-| `GW170304` | 45 | no long-form candidate; may be a new event |
-| `GW170425` | 45 | no long-form candidate; may be a new event |
-| `GW170403` | 36 | no long-form candidate; may be a new event |
-| `GW070605` | 35 | no long-form candidate; may be a new event |
-| `GW170202` | 21 | no long-form candidate; may be a new event |
+| `GW231109_235456` | 111 | no event with this date prefix |
+| `GW170502` | 47 | no long-form candidate; may be a new event |
+| `GW231109` | 47 | no long-form candidate; may be a new event |
+| `GW070605` | 36 | no long-form candidate; may be a new event |
+| `GW100916` | 33 | no long-form candidate; may be a new event |
+| `GW170917` | 30 | no long-form candidate; may be a new event |
 | `GW191225` | 20 | no long-form candidate; may be a new event |
-| `GW170502` | 15 | no long-form candidate; may be a new event |
+| `GW150915` | 20 | no long-form candidate; may be a new event |
+| `GW170187` | 16 | no long-form candidate; may be a new event |
+| `GW190511_125545` | 15 | no event with this date prefix |
 | `GW191223` | 14 | no long-form candidate; may be a new event |
-| `GW200106_134123` | 14 | no event with this date prefix |
-| `GW191228_085854` | 13 | no event with this date prefix |
-| `GW100916` | 13 | no long-form candidate; may be a new event |
-| `GW231109_235456` | 12 | no event with this date prefix |
 | `GW200114` | 12 | no long-form candidate; may be a new event |
-| `GW200318_191337` | 12 | no event with this date prefix |
-| `GW200210_100022` | 11 | no event with this date prefix |
-| `GW190511_125545` | 10 | no event with this date prefix |
-| `GW200109_195634` | 10 | no event with this date prefix |
-| `GW200129_114245` | 10 | no event with this date prefix |
-| `GW190605_025957` | 9 | no event with this date prefix |
-| `GW200316_235947` | 9 | no event with this date prefix |
-| `GW200210_005122` | 9 | no event with this date prefix |
+| `GW170807` | 12 | no long-form candidate; may be a new event |
+| `GW180817` | 12 | no long-form candidate; may be a new event |
+| `GW190607_083827` | 10 | no event with this date prefix |
+| `GW150194` | 10 | no long-form candidate; may be a new event |
+| `GW190705_164632` | 9 | no event with this date prefix |
+| `GW159014` | 9 | no long-form candidate; may be a new event |
+| `GW170717` | 9 | no long-form candidate; may be a new event |
 | `GW231110_171731` | 8 | no event with this date prefix |
 | `GW240430_111634` | 8 | no event with this date prefix |
-| `GW191117_023843` | 8 | no event with this date prefix |
-| `GW191224_043228` | 8 | no event with this date prefix |
-| `GW200305_084739` | 8 | no event with this date prefix |
+| `GW190426_082124` | 8 | no event with this date prefix |
+| `GW190614_134749` | 8 | no event with this date prefix |
 | `GW190929_091722` | 8 | no event with this date prefix |
-| `GW200214` | 7 | no long-form candidate; may be a new event |
-| `GW200225_075134` | 7 | no event with this date prefix |
+| `GW170718` | 8 | no long-form candidate; may be a new event |
+| `GW301116` | 8 | no long-form candidate; may be a new event |
+| `GW190523_085933` | 7 | no event with this date prefix |
+| `GW190904_104631` | 7 | no event with this date prefix |
+| `GW150921` | 7 | no long-form candidate; may be a new event |
+| `GW150917` | 7 | no long-form candidate; may be a new event |
 | `GW230627_114138` | 6 | no event with this date prefix |
-| `GW190530_030659` | 6 | no event with this date prefix |
-| `GW190425_133124` | 6 | suffix 133124 != event GPS time 081805 -- different event |
-| `GW200214_223307` | 6 | no event with this date prefix |
+| `GW200208_211609` | 6 | no event with this date prefix |
+| `GW171817` | 6 | no long-form candidate; may be a new event |
+| `GW179817` | 6 | no long-form candidate; may be a new event |
+| `GW190414` | 6 | no long-form candidate; may be a new event |
 | `GW230827_143829` | 5 | no event with this date prefix |
 | `GW230906_100145` | 5 | no event with this date prefix |
 | `GW240828_085522` | 5 | no event with this date prefix |
 | `GW241129_122622` | 5 | no event with this date prefix |
-| `GW190427_180650` | 5 | no event with this date prefix |
-| `GW190524_134109` | 5 | no event with this date prefix |
-| `GW190607_083827` | 5 | no event with this date prefix |
-| `GW151205` | 5 | no long-form candidate; may be a new event |
-| `GW200210_035448` | 5 | no event with this date prefix |
+| `GW200210_092255` | 5 | no event with this date prefix |
 | `GW191202` | 5 | no long-form candidate; may be a new event |
-| `GW170917` | 5 | no long-form candidate; may be a new event |
+| `GW178017` | 5 | no long-form candidate; may be a new event |
+| `GW201005` | 5 | no long-form candidate; may be a new event |
+| `GW170721` | 5 | no long-form candidate; may be a new event |
+| `GW190817` | 5 | no long-form candidate; may be a new event |

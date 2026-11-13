@@ -40,7 +40,9 @@
 # GW170817A: IAS's O2 candidate (1910.09528, 2019-10-21) shares its name with
 # what many authors write for GW170817 itself (GRB 170817A's 'A'). Reviewed
 # 2026-11-12 from each paper's sentences: 27 papers mean the IAS candidate and
-# keep it; these 61 mean the BNS merger GW170817.
+# keep it; these 61 mean the BNS merger GW170817. Papers added for v2
+# (2026-11-13): 4 more mean GW170817 (below); 2610.20594 means the IAS
+# candidate and keeps it.
 
 "1710.05433":
   - from: GW170817A
@@ -312,6 +314,15 @@
       and Chornock (2020, see their figure 3) estimate the rate of
       GW170817A-like SGRBs as ≳300\gtrsim 300 Gpc−3​yr−1\,\rm{'.
 
+"2107.14472":
+  - from: GW170817A
+    to: GW170817
+    reason: >-
+      Multimessenger context: writes 'Right: Local horizons of different
+      experiments in arrival time of a gravitational wave alert
+      GW170817A (blue circle).' and 'multimessenger signal of a
+      gravitational wave event GW170817A'.
+
 "2108.01184":
   - from: GW170817A
     to: GW170817
@@ -443,6 +454,14 @@
       BNS/GRB 170817A context: writes 'GW170817A NS-NS
       1.47−0.07+0.091.47^{+0.09}_{-0.07}'.
 
+"2309.15469":
+  - from: GW170817A
+    to: GW170817
+    reason: >-
+      Follow-up context: writes 'follow-up observations of gravitational
+      wave events (e.g., GW170817A) or gamma-ray bursts (e.g., VHE-
+      detected GRBs and GRB 221009A)'.
+
 "2401.03474":
   - from: GW170817A
     to: GW170817
@@ -450,6 +469,15 @@
       BNS/GRB 170817A context: writes 'The observations of GW170817 and
       GW170817A have placed a very strong bound on the tensor GW speed [48,
       49, 50].'.
+
+"2402.18894":
+  - from: GW170817A
+    to: GW170817
+    reason: >-
+      BNS/GRB 170817A context: writes 'the GBM was one of the
+      instruments that observed the electromagnetic counterpart to the
+      binary neutron star merger GW170817A in coincidence with the
+      gravitational wave signal'.
 
 "2403.14016":
   - from: GW170817A
@@ -499,6 +527,13 @@
     reason: >-
       BNS/GRB 170817A context: writes '(2017), the upper-limit sensitivity to
       neutrino transients at the location of GW170817A is shown.'.
+
+"2507.07260":
+  - from: GW170817A
+    to: GW170817
+    reason: >-
+      Neutrino follow-up context: writes 'the upper-limit sensitivity to
+      neutrino transients at the location of GW170817A is shown'.
 
 "2507.09623":
   - from: GW170817A
