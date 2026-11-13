@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GW170727 — GWnetwork</title>
+<style>
+:root{
+  --ground:#f4f7f8; --surface:#fff; --surface-2:#eef3f5;
+  --ink:#111a1f; --ink-2:#3d4f58; --muted:#63757e;
+  --line:#d8e3e7; --line-2:#c2d2d8;
+  --accent:#0b6e82; --accent-soft:#0b6e8215; --accent-ink:#064c5a;
+  --amber:#8a5200; --amber-soft:#8a520014;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0b1215; --surface:#121c20; --surface-2:#17242a;
+  --ink:#e4edf0; --ink-2:#b4c6cd; --muted:#8497a0;
+  --line:#22333a; --line-2:#2e434c;
+  --accent:#3fc4dc; --accent-soft:#3fc4dc1a; --accent-ink:#7fdcee;
+  --amber:#f0b429; --amber-soft:#f0b4291a;
+}}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;
+  font:15px/1.55 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Helvetica,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 64px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.tnum{font-variant-numeric:tabular-nums}
+nav{border-bottom:1px solid var(--line);margin-bottom:22px;padding:16px 0;font-size:.92rem}
+nav a{margin-right:16px}
+h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:1.02rem;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+  margin:20px 0 8px;font-weight:600}
+.mut{color:var(--muted)}.small{font-size:.85rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}
+th,td{text-align:left;padding:.42rem .6rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+th .sorth{all:unset;cursor:pointer}
+th .sorth:hover{color:var(--ink-2)}
+th .sorth:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+th .sorth::after{content:"\2195";opacity:.35;font-size:.9em;margin-left:4px}
+th[aria-sort] .sorth{color:var(--accent-ink)}
+th[aria-sort=ascending] .sorth::after{content:"\25B2";opacity:1;font-size:.75em}
+th[aria-sort=descending] .sorth::after{content:"\25BC";opacity:1;font-size:.75em}
+.wrapx{overflow-x:auto}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.73rem;
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);
+  margin:0 4px 4px 0}
+.chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.note{margin:14px 0;padding:11px 13px;border-left:3px solid var(--amber);
+  background:var(--amber-soft);border-radius:0 7px 7px 0;font-size:.86rem;color:var(--ink-2)}
+blockquote{margin:.35rem 0;padding:.3rem .7rem;border-left:3px solid var(--line);
+  color:var(--muted);font-size:.87rem}
+/* ---- charts ---- */
+figure{margin:0 0 6px}
+.chartbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:10px 6px 4px;overflow-x:auto}
+svg.chart{display:block;width:100%;height:auto;min-width:560px;
+  font-family:"IBM Plex Sans",system-ui,sans-serif}
+svg.chart .grid{stroke:var(--line);stroke-width:1}
+svg.chart .axis{stroke:var(--line-2);stroke-width:1}
+svg.chart .tick{fill:var(--muted);font-size:11px}
+svg.chart .axis-label{fill:var(--ink-2);font-size:12px;font-weight:500}
+svg.chart .datalabel{fill:var(--ink);font-size:11px;font-weight:500;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .bandlabel{pointer-events:none;font-size:10.5px}
+.charttip{position:fixed;z-index:20;pointer-events:none;max-width:320px;padding:5px 9px;
+  border-radius:6px;font-size:.8rem;line-height:1.35;background:var(--ink);color:var(--ground);
+  box-shadow:0 2px 8px rgba(0,0,0,.18)}
+svg.chart .band:hover{opacity:.85}
+svg.chart .annot{fill:var(--muted);font-size:11px}
+svg.chart .leader{stroke:var(--line-2);stroke-width:1}
+svg.chart.timeline .mark{fill:var(--accent);stroke:var(--surface);stroke-width:1.5;
+  fill-opacity:.7}
+svg.chart.timeline a:hover .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .zerorule{stroke:var(--line-2);stroke-width:1;stroke-dasharray:3 3}
+svg.chart .eventline{stroke:var(--amber);stroke-width:2}
+svg.chart .eventlabel{fill:var(--amber);font-size:10.5px;font-weight:600;
+  paint-order:stroke;stroke:var(--surface);stroke-width:3px;stroke-linejoin:round}
+svg.chart .equal{stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:5 4}
+svg.chart .trend{stroke:var(--muted);stroke-width:2;stroke-dasharray:6 4}
+/* A 2px surface ring keeps overlapping marks readable where they crowd. */
+svg.chart .mark{fill:var(--c);stroke:var(--surface);stroke-width:2;
+  fill-opacity:.82;cursor:pointer}
+svg.chart a:hover .mark,svg.chart a:focus .mark{fill-opacity:1;stroke:var(--ink)}
+svg.chart .band{fill:var(--c);stroke:var(--surface);stroke-width:2}
+figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 2px 0;
+  font-size:.8rem;color:var(--ink-2)}
+.key{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:50%;background:var(--c);flex:none}
+.swatch.square{border-radius:2px}
+.lede{color:var(--ink-2);font-size:1.05rem;margin:0 0 4px;max-width:62ch}
+.readme{max-width:66ch;margin:26px 0 8px}
+.readme h2{font-size:.96rem;margin:22px 0 6px;border:0;padding:0;
+  letter-spacing:-.01em}
+.readme h2:first-child{margin-top:0}
+.readme p{margin:0 0 10px;color:var(--ink-2)}
+.readme dl.levels{display:grid;grid-template-columns:max-content 1fr;gap:3px 14px;
+  margin:4px 0 12px;font-size:.92rem}
+.readme dl.levels dt{font-family:"IBM Plex Mono",monospace;font-size:.82rem;color:var(--accent-ink)}
+.readme dl.levels dd{margin:0;color:var(--ink-2)}
+.readme table.status{font-size:.9rem;margin:2px 0 8px}
+.readme table.status th{width:8.5em;font-size:.7rem;padding-left:0}
+.readme table.status td{color:var(--ink-2)}
+.readme ul.goto{padding-left:1.1em;margin:4px 0;color:var(--ink-2)}
+.readme ul.goto li{margin:0 0 6px}
+table.usage-summary td{vertical-align:middle}
+table.usage-summary .barcell{width:28%;min-width:80px}
+table.usage-summary .bar{display:block;height:10px;border-radius:3px;background:var(--accent);opacity:.75;min-width:2px}
+a.chip{text-decoration:none}a.chip b{font-weight:600;margin-left:3px}
+.pfilters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0}
+.pfilters .lvls{display:flex;flex-wrap:wrap;gap:4px}
+.pfilters button{font:inherit;font-size:.8rem;padding:3px 10px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.pfilters button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.pfilters select{font:inherit;font-size:.85rem}
+.metric-toggle{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 4px}
+.metric-toggle button{font:inherit;font-size:.85rem;padding:4px 12px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2)}
+.metric-toggle button.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+#ptab details{margin-top:2px}#ptab summary{font-size:.75rem;color:var(--muted);cursor:pointer}#ptab blockquote{margin:4px 0}
+@media(max-width:520px){.readme dl.levels{grid-template-columns:1fr}.readme dl.levels dd{margin-bottom:6px}}
+.readme code{background:var(--surface-2);padding:1px 5px;border-radius:4px;
+  font-size:.88em;color:var(--ink)}
+footer.sitefoot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:4px 20px;justify-content:space-between;
+  font-size:.76rem;color:var(--muted)}
+footer.sitefoot code{font-size:.95em;color:var(--ink-2)}
+.swatch.triangle{border-radius:0;background:none;width:0;height:0;
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:11px solid var(--c)}
+@media (prefers-color-scheme:dark){
+  svg.chart .mark,svg.chart .band{fill:var(--cd)}
+  .swatch{background:var(--cd)}
+  .swatch.triangle{background:none;border-bottom-color:var(--cd)}
+}
+form.filters{background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:14px;margin-bottom:16px;display:grid;gap:12px}
+@media(min-width:720px){form.filters{grid-template-columns:repeat(4,1fr)}}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+input,select{font:inherit;font-size:.9rem;padding:7px 9px;background:var(--ground);
+  color:var(--ink);border:1px solid var(--line-2);border-radius:7px;min-width:0;width:100%}
+.range{display:flex;gap:6px;align-items:center}
+.actions{display:flex;gap:8px;align-items:flex-end}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--accent);background:var(--accent);color:#fff}
+button.ghost{background:none;color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:16px 0}
+@media(min-width:620px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-size:1.25rem;font-weight:600}
+.stat span{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.07em;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">GWnetwork</a><a href="../events.html">Events</a><a href="../explore.html">Explore</a><a href="../papers.html">Papers</a></nav>
+
+<h1 class="mono">GW170727</h1>
+<span class="chip">GW170727</span><span class="chip">170727+01:04:30UTC</span><span class="chip">GW170727_010430</span><span class="chip">170727_010430</span>
+
+
+<h2>Measured properties</h2>
+<div class="wrapx"><table>
+<tr><th>m₁</th><th>m₂</th><th>M<sub>total</sub></th><th>χ<sub>eff</sub></th>
+    <th>D<sub>L</sub></th><th>z</th><th>SNR</th><th>FAR</th><th>Class</th><th>Run</th></tr>
+<tr class="tnum">
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>—</td>
+  <td>O2</td>
+</tr>
+</table></div>
+<p class="small mut">Masses in M☉, distance in Mpc, FAR per year.
+Values taken from <b>—</b>; primary record
+4-OGC.
+GPS 1185152688.0.</p>
+
+
+
+<h2>Papers over time</h2>
+<figure>
+  <div class="chartbox">
+  <svg class="chart timeline" viewBox="0 0 760 300"
+       role="img" aria-label="Papers mentioning this event over time, by citation count">
+    <g transform="translate(54,14)">
+      
+      <line class="grid" x1="0" y1="218.0" x2="690" y2="218.0"/>
+      <text class="tick" x="-9" y="218.0" text-anchor="end"
+            dominant-baseline="middle">1</text>
+      
+      <line class="grid" x1="0" y1="197.97119375716525" x2="690" y2="197.97119375716525"/>
+      <text class="tick" x="-9" y="197.97119375716525" text-anchor="end"
+            dominant-baseline="middle">2</text>
+      
+      <line class="grid" x1="0" y1="171.4945520777066" x2="690" y2="171.4945520777066"/>
+      <text class="tick" x="-9" y="171.4945520777066" text-anchor="end"
+            dominant-baseline="middle">5</text>
+      
+      <line class="grid" x1="0" y1="151.46574583487185" x2="690" y2="151.46574583487185"/>
+      <text class="tick" x="-9" y="151.46574583487185" text-anchor="end"
+            dominant-baseline="middle">10</text>
+      
+      <line class="grid" x1="0" y1="131.4369395920371" x2="690" y2="131.4369395920371"/>
+      <text class="tick" x="-9" y="131.4369395920371" text-anchor="end"
+            dominant-baseline="middle">20</text>
+      
+      <line class="grid" x1="0" y1="104.96029791257847" x2="690" y2="104.96029791257847"/>
+      <text class="tick" x="-9" y="104.96029791257847" text-anchor="end"
+            dominant-baseline="middle">50</text>
+      
+      <line class="grid" x1="0" y1="84.93149166974372" x2="690" y2="84.93149166974372"/>
+      <text class="tick" x="-9" y="84.93149166974372" text-anchor="end"
+            dominant-baseline="middle">100</text>
+      
+      <line class="grid" x1="0" y1="64.90268542690897" x2="690" y2="64.90268542690897"/>
+      <text class="tick" x="-9" y="64.90268542690897" text-anchor="end"
+            dominant-baseline="middle">200</text>
+      
+      <line class="grid" x1="0" y1="38.42604374745035" x2="690" y2="38.42604374745035"/>
+      <text class="tick" x="-9" y="38.42604374745035" text-anchor="end"
+            dominant-baseline="middle">500</text>
+      
+      <line class="grid" x1="0" y1="18.39723750461558" x2="690" y2="18.39723750461558"/>
+      <text class="tick" x="-9" y="18.39723750461558" text-anchor="end"
+            dominant-baseline="middle">1,000</text>
+      
+      <line class="grid" x1="0" y1="237" x2="690" y2="237"/>
+      <text class="tick" x="-9" y="237" text-anchor="end"
+            dominant-baseline="middle">0</text>
+      
+      
+      <line class="grid" x1="143.35937070245885" y1="0" x2="143.35937070245885" y2="244"/>
+      <text class="tick" x="143.35937070245885" y="262" text-anchor="middle">2019</text>
+      
+      <line class="grid" x1="229.9462291655206" y1="0" x2="229.9462291655206" y2="244"/>
+      <text class="tick" x="229.9462291655206" y="262" text-anchor="middle">2020</text>
+      
+      <line class="grid" x1="316.7703118983442" y1="0" x2="316.7703118983442" y2="244"/>
+      <text class="tick" x="316.7703118983442" y="262" text-anchor="middle">2021</text>
+      
+      <line class="grid" x1="403.35717036140596" y1="0" x2="403.35717036140596" y2="244"/>
+      <text class="tick" x="403.35717036140596" y="262" text-anchor="middle">2022</text>
+      
+      <line class="grid" x1="489.94402882446775" y1="0" x2="489.94402882446775" y2="244"/>
+      <text class="tick" x="489.94402882446775" y="262" text-anchor="middle">2023</text>
+      
+      <line class="grid" x1="663.3549700203531" y1="0" x2="663.3549700203531" y2="244"/>
+      <text class="tick" x="663.3549700203531" y="262" text-anchor="middle">2025</text>
+      
+
+      
+      <line class="zerorule" x1="0" y1="222"
+            x2="690" y2="222"/>
+
+      
+      <line class="eventline" x1="19.53" y1="0"
+            x2="19.53" y2="244"/>
+      <text class="eventlabel" x="24.53" y="11">
+        event detected 2017-07-27</text>
+      
+
+      <line class="axis" x1="0" y1="244" x2="690" y2="244"/>
+      <line class="axis" x1="0" y1="0" x2="0" y2="244"/>
+
+      
+      <a href="https://arxiv.org/abs/2111.03634" target="_blank" rel="noopener">
+        <circle class="mark" cx="670.47" cy="7.58" r="6.2">
+          <title>Population of Merging Compact Binaries Inferred Using Gravitational Waves through GWTC-3 — 2025-01, 1,454 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1706.07053" target="_blank" rel="noopener">
+        <circle class="mark" cx="245.6" cy="38.48" r="4.6">
+          <title>Evolutionary roads leading to low effective spins, high black hole masses, and O1/O2 rates — 2020-03, 499 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1904.07214" target="_blank" rel="noopener">
+        <circle class="mark" cx="257.23" cy="45.75" r="4.6">
+          <title>New binary black hole mergers in the second observing run of Advanced LIGO and Advanced Vi — 2020-04, 388 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2112.06878" target="_blank" rel="noopener">
+        <circle class="mark" cx="464.09" cy="49.74" r="4.6">
+          <title>4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers — 2022-09, 338 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1910.05331" target="_blank" rel="noopener">
+        <circle class="mark" cx="244.65" cy="56.23" r="4.6">
+          <title>2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public Advanced  — 2020-03, 270 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2105.09151" target="_blank" rel="noopener">
+        <circle class="mark" cx="371.09" cy="62.02" r="4.6">
+          <title>3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers — 2021-08, 221 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2004.11914" target="_blank" rel="noopener">
+        <circle class="mark" cx="274.31" cy="75.21" r="4.6">
+          <title>Spin Evolution of Stellar-mass Black Hole Binaries in Active Galactic Nuclei — 2020-07, 140 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2105.10580" target="_blank" rel="noopener">
+        <circle class="mark" cx="382.48" cy="78.48" r="4.6">
+          <title>Distribution of effective spins and masses of binary black holes from the LIGO and Virgo O — 2021-10, 125 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2007.12709" target="_blank" rel="noopener">
+        <circle class="mark" cx="278.81" cy="79.66" r="4.6">
+          <title>Search for Lensed Gravitational Waves Including Morse Phase Information: An Intriguing Can — 2020-07, 120 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1912.05389" target="_blank" rel="noopener">
+        <circle class="mark" cx="298.27" cy="88.3" r="4.6">
+          <title>Search for strongly lensed counterpart images of binary black hole mergers in the first tw — 2020-10, 89 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2009.07206" target="_blank" rel="noopener">
+        <circle class="mark" cx="291.39" cy="90.67" r="4.6">
+          <title>Ultralight Bosonic Field Mass Bounds from Astrophysical Black Hole Spin — 2020-09, 82 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2008.07014" target="_blank" rel="noopener">
+        <circle class="mark" cx="305.38" cy="92.48" r="4.6">
+          <title>Binary black hole mergers from LIGO/Virgo O1 and O2: Population inference combining confid — 2020-11, 77 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/1912.09708" target="_blank" rel="noopener">
+        <circle class="mark" cx="227.34" cy="106.14" r="3.2">
+          <title>Gravitational-wave inference in the catalog era: Evolving priors and marginal events — 2019-12, 48 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2003.04513" target="_blank" rel="noopener">
+        <circle class="mark" cx="246.55" cy="113.66" r="3.2">
+          <title>Source properties of the lowest signal-to-noise-ratio binary black hole detections — 2020-03, 37 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2004.03603" target="_blank" rel="noopener">
+        <circle class="mark" cx="253.19" cy="132.92" r="3.2">
+          <title>Cosmic archaeology with massive stellar black hole binaries — 2020-04, 19 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2008.00509" target="_blank" rel="noopener">
+        <circle class="mark" cx="280.95" cy="141.74" r="3.2">
+          <title>Assessing gravitational-wave binary black hole candidates with Bayesian odds — 2020-08, 14 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2010.00108" target="_blank" rel="noopener">
+        <circle class="mark" cx="294.95" cy="146.2" r="3.2">
+          <title>Application of the third RIT binary black hole simulations catalog to parameter estimation — 2020-09, 12 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2110.15463" target="_blank" rel="noopener">
+        <circle class="mark" cx="468.83" cy="161.77" r="3.2">
+          <title>Metric assisted stochastic sampling search for gravitational waves from binary black hole  — 2022-10, 7 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2107.12109" target="_blank" rel="noopener">
+        <circle class="mark" cx="504.41" cy="166.23" r="3.2">
+          <title>A follow-up on intermediate-mass black hole candidates in the second LIGO-Virgo observing  — 2023-03, 6 citations</title>
+        </circle>
+      </a>
+      
+      <a href="https://arxiv.org/abs/2312.12557" target="_blank" rel="noopener">
+        <circle class="mark" cx="573.68" cy="218.0" r="3.2">
+          <title>Two-body problem in curved spacetime: exploring gravitational wave transient cases — 2023-12, 1 citations</title>
+        </circle>
+      </a>
+      
+      
+      
+      <text class="datalabel" x="659.27" y="11.58"
+            text-anchor="end">Population of Merging Compact Bina…</text>
+      
+      
+      <text class="datalabel" x="255.2" y="42.48"
+            text-anchor="start">Evolutionary roads leading to low …</text>
+      
+      <line class="leader" x1="257.23" y1="45.75"
+        x2="266.83000000000004" y2="51.48"/>
+      <text class="datalabel" x="266.83000000000004" y="55.48"
+            text-anchor="start">New binary black hole mergers in t…</text>
+      
+
+      <text class="axis-label" transform="translate(-42,122.0) rotate(-90)"
+            text-anchor="middle">Citations</text>
+    </g>
+  </svg>
+  </div>
+  <figcaption class="mut">
+    Each point is a paper mentioning this event, placed at its submission month.
+    
+    
+  </figcaption>
+</figure>
+
+
+<h2>Catalogue history</h2>
+<div class="wrapx"><table class="sortable">
+<tr><th>Catalogue</th><th>Version</th><th>Source</th><th class="num">GPS</th></tr>
+
+<tr><td>2-OGC</td><td>—</td>
+    <td class="small">ogc</td>
+    <td class="num small">1185152688.0</td></tr>
+
+<tr><td>3-OGC</td><td>—</td>
+    <td class="small">ogc</td>
+    <td class="num small">1185152688.0</td></tr>
+
+<tr><td>4-OGC</td><td>—</td>
+    <td class="small">ogc</td>
+    <td class="num small">1185152688.0</td></tr>
+
+<tr><td>IAS-O2</td><td>—</td>
+    <td class="small">ias</td>
+    <td class="num small">1185152688.0</td></tr>
+
+</table></div>
+
+<h2>How papers use GW170727</h2>
+
+<p class="small mut">20 papers classified by their deepest use of the
+event; examples are the most cited. <a href="../event/GW170727/papers.html">Browse all
+20 papers →</a></p>
+<div class="wrapx"><table class="usage-summary">
+<tr><th>Use</th><th class="num">Papers</th><th></th><th>Most-cited examples</th></tr>
+
+<tr>
+  <td><a href="../event/GW170727/papers.html#strain_analysis">strain analysis</a></td>
+  <td class="num">10</td>
+  <td class="barcell"><span class="bar" style="width:50.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1904.07214">New binary black hole mergers in the second observing run of…</a> · <a href="https://arxiv.org/abs/2112.06878">4-OGC: Catalog of Gravitational Waves from Compact Binary Me…</a> · <a href="https://arxiv.org/abs/1910.05331">2-OGC: Open Gravitational-wave Catalog of Binary Mergers fro…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW170727/papers.html#posterior_samples">posterior samples</a></td>
+  <td class="num">3</td>
+  <td class="barcell"><span class="bar" style="width:15.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2111.03634">Population of Merging Compact Binaries Inferred Using Gravit…</a> · <a href="https://arxiv.org/abs/2105.10580">Distribution of effective spins and masses of binary black h…</a> · <a href="https://arxiv.org/abs/1912.09708">Gravitational-wave inference in the catalog era: Evolving pr…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW170727/papers.html#published_results">published results</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:10.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/2004.11914">Spin Evolution of Stellar-mass Black Hole Binaries in Active…</a> · <a href="https://arxiv.org/abs/2312.12557">Two-body problem in curved spacetime: exploring gravitationa…</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW170727/papers.html#qualitative">qualitative</a></td>
+  <td class="num">2</td>
+  <td class="barcell"><span class="bar" style="width:10.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1706.07053">Evolutionary roads leading to low effective spins, high blac…</a> · <a href="https://arxiv.org/abs/2007.12709">Search for Lensed Gravitational Waves Including Morse Phase …</a></td>
+</tr>
+
+<tr>
+  <td><a href="../event/GW170727/papers.html#cited_only">cited only</a></td>
+  <td class="num">3</td>
+  <td class="barcell"><span class="bar" style="width:15.0%"></span></td>
+  <td class="small"><a href="https://arxiv.org/abs/1912.05389">Search for strongly lensed counterpart images of binary blac…</a> · <a href="https://arxiv.org/abs/2009.07206">Ultralight Bosonic Field Mass Bounds from Astrophysical Blac…</a> · <a href="https://arxiv.org/abs/2004.03603">Cosmic archaeology with massive stellar black hole binaries</a></td>
+</tr>
+
+</table></div>
+
+<h3>Used for</h3>
+<div><a class="chip" href="../event/GW170727/papers.html#role=single_event">single event <b>10</b></a><a class="chip" href="../event/GW170727/papers.html#role=population">population <b>8</b></a><a class="chip" href="../event/GW170727/papers.html#role=lensing">lensing <b>1</b></a></div>
+
+
+
+<h2>Most-cited papers mentioning this event</h2>
+<p class="small mut">20 papers name this event;
+ADS full-text search matches <b>14</b> for its designations
+(we hold 143%). These are
+<b>mentions</b>, not citations. <a href="../event/GW170727/papers.html">All papers →</a></p>
+<div class="wrapx"><table>
+<tr><th>Title</th><th>arXiv</th><th class="num">Citations</th><th class="num">Mentions</th></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2111.03634">Population of Merging Compact Binaries Inferred Using Gravitational Waves through </a></td>
+    <td class="small mono">2111.03634</td>
+    <td class="num small">1,454</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1706.07053">Evolutionary roads leading to low effective spins, high black hole masses, and O1/</a></td>
+    <td class="small mono">1706.07053</td>
+    <td class="num small">499</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1904.07214">New binary black hole mergers in the second observing run of Advanced LIGO and Adv</a></td>
+    <td class="small mono">1904.07214</td>
+    <td class="num small">388</td>
+    <td class="num">4</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2112.06878">4-OGC: Catalog of Gravitational Waves from Compact Binary Mergers</a></td>
+    <td class="small mono">2112.06878</td>
+    <td class="num small">338</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1910.05331">2-OGC: Open Gravitational-wave Catalog of Binary Mergers from Analysis of Public A</a></td>
+    <td class="small mono">1910.05331</td>
+    <td class="num small">270</td>
+    <td class="num">5</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2105.09151">3-OGC: Catalog of Gravitational Waves from Compact-binary Mergers</a></td>
+    <td class="small mono">2105.09151</td>
+    <td class="num small">221</td>
+    <td class="num">3</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2004.11914">Spin Evolution of Stellar-mass Black Hole Binaries in Active Galactic Nuclei</a></td>
+    <td class="small mono">2004.11914</td>
+    <td class="num small">140</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2105.10580">Distribution of effective spins and masses of binary black holes from the LIGO and</a></td>
+    <td class="small mono">2105.10580</td>
+    <td class="num small">125</td>
+    <td class="num">2</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/2007.12709">Search for Lensed Gravitational Waves Including Morse Phase Information: An Intrig</a></td>
+    <td class="small mono">2007.12709</td>
+    <td class="num small">120</td>
+    <td class="num">1</td></tr>
+
+<tr><td><a href="https://arxiv.org/abs/1912.05389">Search for strongly lensed counterpart images of binary black hole mergers in the </a></td>
+    <td class="small mono">1912.05389</td>
+    <td class="num small">89</td>
+    <td class="num">4</td></tr>
+
+</table></div>
+
+
+<footer class="sitefoot">
+  <span>Data extracted 2026-11-13 ·
+    469 events ·
+    14,659 papers,
+    14,646 with full text (99.9%)</span>
+  <span>Data: <a href="https://gwosc.org">GWOSC</a> ·
+    <a href="https://ui.adsabs.harvard.edu">NASA ADS</a> ·
+    <a href="https://arxiv.org">arXiv</a> ·
+    <a href="../index.html#acknowledgements">acknowledgements</a></span>
+  <span>Built 2026-11-13 12:55 UTC ·
+    <a href="https://github.com/GregoryAshton/GWnetwork/commit/6b6cff2"><code>6b6cff2</code></a>
+     ·
+    <a href="https://github.com/GregoryAshton/GWnetwork">source</a></span>
+</footer>
+</div>
+<script>
+/* Click a column header to sort a table.sortable. Reorders the rows already on
+   the page; it cannot surface rows the server capped. Missing values ("—")
+   always sort last, in either direction: they are unmeasured, not small. */
+window.gwnSort = (function(){
+  var collate = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'}).compare;
+
+  function value(row, col){
+    var td = row.cells[col];
+    if (!td) return null;
+    var v = td.hasAttribute('data-sort') ? td.getAttribute('data-sort') : td.textContent.trim();
+    return v === '' || v === '—' ? null : v;
+  }
+
+  function apply(table){
+    var st = table._gwnSort;
+    var head = table.rows[0];
+    if (!st || !head) return;
+    var width = head.cells.length, rows = [], rest = [];
+    for (var i = 1; i < table.rows.length; i++){
+      var r = table.rows[i];
+      /* Empty-state rows ("No papers found yet") span the table; leave them be. */
+      (r.cells.length === width ? rows : rest).push(r);
+    }
+    var keyed = rows.map(function(r, i){ return {r: r, v: value(r, st.col), i: i}; });
+    var numeric = keyed.every(function(k){
+      return k.v === null || !isNaN(Number(k.v.replace(/,/g, '')));
+    });
+    if (numeric) keyed.forEach(function(k){
+      if (k.v !== null) k.v = Number(k.v.replace(/,/g, ''));
+    });
+    var sign = st.dir === 'ascending' ? 1 : -1;
+    keyed.sort(function(a, b){
+      if (a.v === null || b.v === null){
+        if (a.v === b.v) return a.i - b.i;
+        return a.v === null ? 1 : -1;
+      }
+      var c = numeric ? a.v - b.v : collate(a.v, b.v);
+      return c ? sign * c : a.i - b.i;
+    });
+    var parent = head.parentNode;
+    keyed.forEach(function(k){ parent.appendChild(k.r); });
+    rest.forEach(function(r){ parent.appendChild(r); });
+    for (var j = 0; j < width; j++){
+      if (j === st.col) head.cells[j].setAttribute('aria-sort', st.dir);
+      else head.cells[j].removeAttribute('aria-sort');
+    }
+  }
+
+  function clear(table){
+    table._gwnSort = null;
+    var head = table.rows[0];
+    if (head) for (var j = 0; j < head.cells.length; j++) head.cells[j].removeAttribute('aria-sort');
+  }
+
+  function init(table){
+    var head = table.rows[0];
+    if (!head) return;
+    Array.prototype.forEach.call(head.cells, function(th, col){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sorth';
+      while (th.firstChild) b.appendChild(th.firstChild);
+      th.appendChild(b);
+      b.addEventListener('click', function(){
+        var st = table._gwnSort;
+        /* First click: numbers largest-first, text A-Z. Second click reverses. */
+        var dir = st && st.col === col
+          ? (st.dir === 'ascending' ? 'descending' : 'ascending')
+          : (th.classList.contains('num') ? 'descending' : 'ascending');
+        table._gwnSort = {col: col, dir: dir};
+        apply(table);
+      });
+    });
+  }
+
+  document.querySelectorAll('table.sortable').forEach(init);
+  return {apply: apply, clear: clear};
+})();
+</script>
+<div id="charttip" class="charttip" hidden></div>
+<script>
+// Hover tooltips for chart marks. SVG <title> tooltips are slow or absent in
+// many browsers, so each mark's <title> text is shown in a positioned box
+// instead (and removed, so the native one does not appear as well).
+(function () {
+  var tip = document.getElementById("charttip");
+  document.querySelectorAll("svg.chart title").forEach(function (t) {
+    var el = t.parentNode;
+    if (el && el.tagName.toLowerCase() !== "svg") { el.setAttribute("data-tip", t.textContent.trim()); t.remove(); }
+  });
+  function place(e) {
+    var pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+    var x = e.clientX + pad, y = e.clientY + pad;
+    if (x + w > window.innerWidth - 8) x = e.clientX - w - pad;
+    if (y + h > window.innerHeight - 8) y = e.clientY - h - pad;
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  document.addEventListener("mousemove", function (e) {
+    var el = e.target.closest && e.target.closest("svg.chart [data-tip]");
+    if (!el) { tip.hidden = true; return; }
+    tip.textContent = el.getAttribute("data-tip"); tip.hidden = false; place(e);
+  });
+  document.addEventListener("mouseleave", function () { tip.hidden = true; });
+})();
+</script>
+</body>
+</html>
