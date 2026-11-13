@@ -9,3 +9,6 @@ __pycache__/
 .pytest_cache/
 logs/
 dist/
+
+# Editor swap files (an open .env leaves .env.swp holding its secrets)
+*.swp
