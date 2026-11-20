@@ -6,10 +6,68 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Labelling guide</title>
 {% include "_label_style.html" %}
-<style>pre{white-space:pre-wrap;font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif;max-width:46rem}
-.note{max-width:46rem;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;font-size:.92rem}</style>
+<style>
+.wrap{max-width:46rem}
+h1{margin-top:6px}
+h2{font-size:1.05rem;margin:28px 0 8px}
+p,li,td{font-size:.95rem}
+.q{border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:0 0 12px}
+.q b{display:block}
+.q span{color:var(--ink-2);font-size:.9rem}
+.q code{font-size:.78rem;color:var(--muted)}
+td{vertical-align:top}
+td:last-child{white-space:nowrap;font-weight:600}
+.foot{color:var(--muted);font-size:.8rem;margin-top:28px}
+</style>
 </head>
-<body><div class="wrap"><header><b>Labelling guide, version {{ guide_version }}</b></header>
-<div class="note">This is the frozen guide used for all gold labels. In this round, <b>roles are not asked</b>: skip the <i>Roles</i> section. The <i>unsure</i> tick box is replaced by a confidence choice per event: <i>clear</i>, <i>probably</i>, or <i>ambiguous</i> (= unsure below). The usage questions are unchanged.</div>
-<pre>{{ text }}</pre></div></body>
+<body><div class="wrap">
+<header><b>Labelling guide</b><span class="mut small">about 5 minutes</span></header>
+
+<h1>How does this paper use this event?</h1>
+<p>Each paper page lists the gravitational-wave events the paper names. For each one, judge how <b>this paper</b> uses <b>that event</b>. That means its actual use, not the paper's topic, and not how it uses other events. Read the paper itself: the list of places where an event is named only tells you where to look.</p>
+
+<h2>Answer Q1–Q3 independently; tick every one that applies</h2>
+{% for key, q, detail in data_questions %}
+<div class="q"><b>Q{{ loop.index }}. {{ q }}</b><span>{{ detail }}</span></div>
+{% endfor %}
+<p><b>Your own results are Q1.</b> Q2 and Q3 are about products someone else (or an earlier paper) released or published. A catalogue reporting the masses it inferred is Q1, not Q3.</p>
+
+<h2>Only if Q1–Q3 are all "no"</h2>
+<div class="q"><b>Q4. {{ fallback_question[1] }}</b><span>{{ fallback_question[2] }}</span></div>
+<p>If the answer is yes, the label is <b>qualitative</b>. If no, it is <b>cited in passing</b>.</p>
+
+<h2>Examples</h2>
+<table>
+<tr><td>A catalogue estimates each event's parameters from the data</td><td>Q1 for every event</td></tr>
+<tr><td>Reweights "the GW170817-informed EOS samples"</td><td>Q2</td></tr>
+<tr><td>Builds Gaussians from a published chirp-mass interval (not the released samples)</td><td>Q3, not Q2</td></tr>
+<tr><td>"exceeds the 1.61–2.52 M<sub>☉</sub> primary of GW190425", as a comparison</td><td>Q3</td></tr>
+<tr><td>Chooses equations of state that satisfy GW170817's tidal limits, without restating the numbers</td><td>Q3</td></tr>
+<tr><td>Follow-up observations planned from the alert sky map</td><td>Q3</td></tr>
+<tr><td>Lists GW170817's H0 ± error among other H0 measurements in its introduction</td><td>Q4 (quoted as background)</td></tr>
+<tr><td>"the merger of a ~23 M<sub>☉</sub> BH and a ~2.6 M<sub>☉</sub> object" (rounded values)</td><td>Q4</td></tr>
+<tr><td>"Formation scenarios proposed to explain GW150914" motivate the study</td><td>Q4</td></tr>
+<tr><td>Excludes the event from an analysis because of a property (low significance, an outlier)</td><td>Q4</td></tr>
+<tr><td>Cites a GW150914 paper only for "a GW background has been searched for [84]"</td><td>cited</td></tr>
+<tr><td>The event appears only in titles of cited papers, even ones about GW results</td><td>cited</td></tr>
+<tr><td>Names the event only as the occasion for something else, such as the telescopes that followed it up</td><td>cited</td></tr>
+</table>
+<p>For mixed cases, answer each question on its own. If a paper quotes "~1.4 M<sub>☉</sub>" in the introduction <i>and</i> uses the samples later, that's Q2. The rounded value adds nothing once a data product is used.</p>
+
+<h2>Two things to watch</h2>
+<ul>
+<li><b>Reference-list mentions</b>: the event is in a cited paper's title. Judge from where the paper cites that reference, not from the title.</li>
+<li><b>Counterpart names</b> (GRB 170817A, AT2017gfo, SSS17a) name the electromagnetic counterpart, not the GW signal. The questions are about the GW results. Discussing or interpreting the counterpart is Q4. Only taking counterpart data as an input (e.g. plotting the kilonova light curve) is cited.</li>
+</ul>
+
+<h2>How sure are you?</h2>
+<ul>
+<li><b>clear</b>: the paper plainly supports your answer.</li>
+<li><b>probably</b>: your best reading, but you might be wrong.</li>
+<li><b>ambiguous</b>: the text genuinely supports two answers under these rules (not just a hard paper). Say which question, if you can.</li>
+</ul>
+<p>Not sure what the paper does at all, or outside your field? <b>Skip</b> it with a reason; that's better than a guess.</p>
+
+<p class="foot">Short form of labelling guide v{{ guide_version }}. The rules are the same; the questions are quoted from the classifier's prompt.</p>
+</div></body>
 </html>

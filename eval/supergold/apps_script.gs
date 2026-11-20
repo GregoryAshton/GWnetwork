@@ -33,15 +33,20 @@ function doPost(e) {
       if (!name.trim()) throw new Error("empty name");
       const ack = ss.getSheetByName(ACK_SHEET) || ss.insertSheet(ACK_SHEET);
       if (ack.getLastRow() === 0) ack.appendRow(["name", "affiliation"]);
-      ack.appendRow([name, aff]);
+      const r = ack.getRange(ack.getLastRow() + 1, 1, 1, 2);
+      r.setNumberFormat("@");
+      r.setValues([[name, aff]]);
       return json({ok: true});
     }
     if (!/^[0-9a-f]{8}$/.test(p.token || "")) throw new Error("bad token");
     if (typeof p.arxiv_id !== "string" || p.arxiv_id.length > 40) throw new Error("bad paper");
     const sh = ss.getSheetByName(SHEET) || ss.insertSheet(SHEET);
     if (sh.getLastRow() === 0) sh.appendRow(["received_at", "token", "arxiv_id", "payload"]);
-    // The payload starts with "{", so Sheets never reads it as a formula.
-    sh.appendRow([new Date().toISOString(), p.token, p.arxiv_id, body]);
+    // Write as plain text: appendRow would turn token "00857826" into the
+    // number 857826 and arXiv "1602.03840" into 1602.0384.
+    const range = sh.getRange(sh.getLastRow() + 1, 1, 1, 4);
+    range.setNumberFormat("@");
+    range.setValues([[new Date().toISOString(), p.token, p.arxiv_id, body]]);
     return json({ok: true});
   } catch (err) {
     return json({ok: false, error: String(err)});

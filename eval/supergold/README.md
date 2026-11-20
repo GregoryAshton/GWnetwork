@@ -14,7 +14,14 @@ Choices made for this round (2026-11-18):
   because anchoring on it would inflate exactly the agreement being measured.
 - **Confidence** per pair: `clear` / `probably` / `ambiguous`. `ambiguous` is
   the old `unsure` and is written as `unsure: true`.
-- **Guide 3.1, frozen.** Any rule change is a new guide version.
+- **Guide 3.1, frozen.** Any rule change is a new guide version. Labellers
+  see a one-page short form (`templates/sg_guide.html`) with the same rules,
+  and questions quoted from the classifier prompt. It has no history and no
+  roles.
+- **Read the paper, not excerpts.** Each page opens the arXiv version we
+  searched. For each event it shows where the event is named, a jump link,
+  and optional one-line reminders. Excerpts would share the classifier's
+  blind spot for collective statements that name no event.
 
 ## Running it
 
@@ -32,7 +39,7 @@ gwn eval supergold site --out ../gwn-labelling --endpoint "https://script.google
 2. **Host.** Push the site directory to its own GitHub repository with
    Pages enabled. Never use `docs/`. The pages are `noindex` and robots
    disallows everything, but the site is public to anyone holding the URL.
-   Pages show mention snippets and arXiv links only, never full text.
+   Pages link to the paper on arXiv and never reproduce its text at length.
 3. **Pilot.** Label about 10 papers yourself, plus one colleague, using two
    of the tokens. Then download the Sheet as CSV and run
    `gwn eval supergold import sheet.csv && gwn eval supergold report`.

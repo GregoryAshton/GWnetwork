@@ -169,6 +169,14 @@
       });
     }
 
+    const details = $("show-details");
+    details.checked = ls.get("sg_details", false);
+    document.body.classList.toggle("details", details.checked);
+    details.addEventListener("change", () => {
+      ls.set("sg_details", details.checked);
+      document.body.classList.toggle("details", details.checked);
+    });
+
     const cards = [...document.querySelectorAll(".card")];
     let active = 0;
     function activate(i) {
@@ -257,7 +265,9 @@
         box.innerHTML = "";
         box.append(same ? "Matches the reference answer: " : "Reference answer: ",
                    Object.assign(document.createElement("b"), {textContent: label(refShown)}),
-                   same ? "" : " (you: " + label(a.uses) + "). Compare with the guide's worked cases.");
+                   same ? "." : " (you: " + label(a.uses) + ").");
+        const note = (P.notes || {})[a.event];
+        if (note) box.append(Object.assign(document.createElement("div"), {textContent: note, style: "margin-top:4px"}));
       });
       $("continue").hidden = false;
       $("continue").addEventListener("click", goNext);

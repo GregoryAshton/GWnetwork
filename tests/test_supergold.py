@@ -205,7 +205,7 @@ def test_frame_and_site_from_the_database(temp_db, tmp_path):
         "2401.00000": "samples/pre2020", "2401.00001": "other/2020+", "2401.00002": "lvk"}
     assert meta["classify_version"] == "classify-t"
 
-    sample = {"gold_version": 3, "guide_version": "3.1",
+    sample = {"gold_version": 3, "guide_version": "3.1", "extract_run_id": meta["extract_run_id"],
               **sg.draw_sample(frame, n_uniform=1, min_per_stratum=1),
               "calibration": [{"arxiv_id": "2401.00002", "pairs": [
                   {"event": "GW150914", "uses": ["strain_analysis"],
@@ -213,12 +213,24 @@ def test_frame_and_site_from_the_database(temp_db, tmp_path):
     assignments = {"reviewers": [{"token": "aaaa1111",
                                   "queue": ["2401.00002", "2401.00000", "2401.00001"]}]}
     out = tmp_path / "site"
+    (out / ".git").mkdir(parents=True)                 # the site is its own repo
+    (out / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
+    (out / "stale.html").write_text("old")
     stats = build_site(out, endpoint="https://example.invalid/exec",
                        sample=sample, assignments=assignments)
     assert stats["papers"] == 4                        # 3 sampled + 1 calibration
     page = (out / "p" / "2401.00000.html").read_text()
     assert "GW150914" in page and "noindex" in page
-    assert "SECRET-BODY" not in page                   # snippets, not the text
+    assert "SECRET-BODY" not in page                   # reminders, not the text
+    assert "https://arxiv.org/html/2401.00000" in page  # read the paper itself
+    assert "#:~:text=GW150914" in page                 # jump to the first mention
+    assert (out / ".git" / "HEAD").exists() and not (out / "stale.html").exists()
+    guide = (out / "guide.html").read_text()
+    from gwnetwork.classify.prompts import DATA_QUESTIONS
+    from markupsafe import escape
+    assert all(str(escape(q)) in guide and str(escape(d)) in guide
+               for _, q, d in DATA_QUESTIONS)
+    assert "Version 2" not in guide and "Roles" not in guide   # no history, no roles
     assert '"answers"' in (out / "p" / "2401.00002.html").read_text()
     from gwnetwork.web.supergold_site import queue_file
     assert not (out / "q" / "aaaa1111.json").exists()      # tokens never in file names
