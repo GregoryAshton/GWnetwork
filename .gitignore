@@ -12,3 +12,7 @@ dist/
 
 # Editor swap files (an open .env leaves .env.swp holding its secrets)
 *.swp
+
+# Super-gold reviewer tokens: anyone holding one can submit answers under it.
+# Commit only after collection has closed.
+eval/supergold/assignments.json

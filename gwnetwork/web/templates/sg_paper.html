@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Label · {{ arxiv_id }}</title>
+{% include "_label_style.html" %}
+{% include "_sg_style.html" %}
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="../index.html" class="keep-r">Start page</a>
+  <span id="prog" class="tnum"></span>
+  <span class="bar" aria-hidden="true"><i id="progbar" style="width:0"></i></span>
+  <a href="../guide.html" target="_blank" rel="noopener">Guide (v{{ guide_version }})</a>
+  <span id="mode" class="small" hidden></span>
+</header>
+
+<div id="again" class="note" hidden>You have already submitted this paper. Submitting again replaces your earlier answer.</div>
+{% if page.kind == "calibration" %}
+<div class="note">Practice paper: after you submit, the reference answer is shown so you can check your reading of the guide. Your answers are still recorded.</div>
+{% endif %}
+
+<h1>{{ title }}</h1>
+<div class="small mut"><a href="https://arxiv.org/abs/{{ arxiv_id }}" target="_blank" rel="noopener" class="mono">arXiv:{{ arxiv_id }}</a> · open the paper whenever the snippets are not enough</div>
+{% if abstract %}<details style="margin-top:8px"><summary>Abstract</summary><p class="abstract">{{ abstract }}</p></details>{% endif %}
+
+{% if page.uniform %}
+<section id="recall" class="panel" style="margin-top:16px">
+  <h2>First: which events does this paper name?</h2>
+  <p class="small">Before looking at the events we found, open the paper on arXiv and list every gravitational-wave event it names, in any form (GW150914, "the first BNS", 170817, GRB 170817A, a typo, ...), one per line. This measures what our search misses. Skip if you can't spare the time.</p>
+  <textarea id="listed" rows="5" placeholder="GW150914&#10;GW170817 (as 'the binary neutron star merger')"></textarea>
+  <div class="actions">
+    <button class="primary" type="button" id="recall-done">Done: show the events</button>
+    <button type="button" id="recall-skip">Skip this step</button>
+  </div>
+</section>
+{% endif %}
+
+<div id="pairs" {% if page.uniform %}hidden{% endif %}>
+<p class="small mut" style="margin:18px 0 0">{{ events|length }} event{{ "" if events|length == 1 else "s" }} found in this paper. For each, answer how <b>this paper</b> uses <b>that event</b>, following the <a href="../guide.html" target="_blank" rel="noopener">guide</a>. Keys act on the highlighted card: <b>1–3</b> Q1–Q3 · <b>4/5</b> Q4 · <b>c/p/a</b> confidence · <b>n</b> next event.</p>
+
+{% for e in events %}{% set i = loop.index0 %}
+<section class="card" data-i="{{ i }}" data-event="{{ e.event }}">
+  <div class="ctx">
+    <div class="evname mono">{{ e.event }}</div>
+    <h3>{{ e.n_mentions }} mention{{ "" if e.n_mentions == 1 else "s" }}{% if e.n_mentions > e.mentions|length %} · first {{ e.mentions|length }} shown{% endif %}{% if e.n_counterpart %} · <span class="cptag">{{ e.n_counterpart }} by counterpart name</span>{% endif %}</h3>
+    {% for m in e.mentions %}
+    {% if loop.index0 == 3 %}<details><summary>{{ e.mentions|length - 3 }} more</summary>{% endif %}
+    <div class="mention{% if m.counterpart %} cp{% endif %}"><span class="sec">{{ m.section }}{% if m.counterpart %} · <span class="cptag">counterpart name, not the GW signal</span>{% endif %}</span>{{ m.pre }}<mark{% if m.counterpart %} class="cp"{% endif %}>{{ m.hit }}</mark>{{ m.post }}
+    {%- if m.cite_lookup %}
+    <div class="cites">
+      {%- if m.cite and m.cite.n %}
+      <span class="sec">Reference list entry. Cited in the text as <span class="mono">{{ m.cite.key }}</span> · {{ m.cite.n }} place{{ "" if m.cite.n == 1 else "s" }}{% if m.cite.n > m.cite.spans|length %}, first {{ m.cite.spans|length }} shown{% endif %}</span>
+      {%- for c in m.cite.spans %}<div class="cite">{{ c.pre }}<mark class="ref">{{ c.hit }}</mark>{{ c.post }}</div>{%- endfor %}
+      {%- elif m.cite %}
+      <span class="sec">Reference {{ m.cite.key }}: couldn't find where it is cited; check the paper.</span>
+      {%- else %}
+      <span class="sec">Couldn't identify the reference entry; check the paper.</span>
+      {%- endif %}
+    </div>
+    {%- endif %}</div>
+    {% if loop.last and loop.length > 3 %}</details>{% endif %}
+    {% else %}
+    <p class="mut small">No snippets available: check the paper.</p>
+    {% endfor %}
+  </div>
+  <div class="form">
+    <fieldset class="eng">
+      <legend>Usage of {{ e.event }}</legend>
+      {% for key, q, detail in data_questions %}
+      <label><input type="checkbox" name="uses-{{ i }}" value="{{ key }}"><b><kbd>{{ loop.index }}</kbd>{{ q }}</b><span>{{ detail }}</span></label>
+      {% endfor %}
+      <div class="fallback">
+        <div class="small mut" style="margin:8px 0 6px"><b>Q4.</b> {{ fallback_question[1] }}</div>
+        <label><input type="radio" name="fb-{{ i }}" value="qualitative"><b><kbd>4</kbd>yes: qualitative</b><span>{{ fallback_question[2] }}</span></label>
+        <label><input type="radio" name="fb-{{ i }}" value="cited_only"><b><kbd>5</kbd>no: cited in passing</b><span>Named or cited as background only.</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="conf">
+      <legend>How sure are you?</legend>
+      <div class="seg">
+        <label><input type="radio" name="conf-{{ i }}" value="clear"><kbd>c</kbd>clear</label>
+        <label><input type="radio" name="conf-{{ i }}" value="probably"><kbd>p</kbd>probably</label>
+        <label><input type="radio" name="conf-{{ i }}" value="ambiguous"><kbd>a</kbd>ambiguous</label>
+      </div>
+      <p class="small mut" style="margin:6px 0 0"><b>ambiguous</b>: the text genuinely supports two answers under the guide, not just hard to read.</p>
+      <input type="text" class="which" name="which-{{ i }}" placeholder="Which question is ambiguous, and why? (optional)" hidden>
+    </fieldset>
+    <div class="feedback" hidden></div>
+  </div>
+</section>
+{% endfor %}
+
+<section class="panel" style="margin-top:18px">
+  <label class="check"><input type="checkbox" id="author"> I am an author of this paper</label>
+  <textarea id="comment" rows="2" placeholder="Anything else about this paper (optional)"></textarea>
+  <div id="err" class="err" hidden></div>
+  <div class="actions">
+    <button class="primary" type="button" id="submit">Submit &amp; next paper</button>
+    <span class="spacer"></span>
+    <select id="skip-reason" aria-label="Reason for skipping">
+      <option value="">Skip this paper because…</option>
+      <option value="cannot_judge">I can't judge this paper's field</option>
+      <option value="conflict">conflict of interest</option>
+      <option value="no_access">the paper won't open</option>
+      <option value="other">other (say in the comment)</option>
+    </select>
+    <button type="button" id="skip">Skip</button>
+  </div>
+  <div id="status" class="small" style="margin-top:8px"></div>
+  <button type="button" class="primary" id="continue" hidden>Continue to the next paper</button>
+</section>
+</div>
+</div>
+<script>window.SG_PAGE = {{ page|tojson }};</script>
+<script src="../config.js"></script>
+<script src="../sg.js"></script>
+<script>SG.paperPage();</script>
+</body>
+</html>

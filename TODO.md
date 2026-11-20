@@ -106,3 +106,50 @@ from the analysis; a label upgrade a question needs is a new release.
     marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
     while PLAN's A6 definition (any LVK record, confident or marginal)
     excludes it.
+    Fixed 2026-11-13 in the paper repo: `lvk_catalogued` now includes
+    O3_IMBH_marginal.
+- **Super-gold set: expert labels from collaborators** (noted 2026-11-14,
+  for the paper's error correction, `../GWnetwork_paper/analysis/
+  correction.py` and PLAN "Gold-set error correction"). The correction
+  imputes true labels from P(true | predicted) on the gold set; its bands
+  are wide where gold columns are thin (only 9 independent gold pairs
+  labelled `posterior_samples`), and 107 of the 234 current labels are
+  model consensus, which agrees with the classifier more than people do
+  (83% against 72%; partly because consensus rows are easier). Collect
+  person-only labels in a new gold version, shipped in a new release (v3).
+  - **Labellers:** collaborators, each briefed on `eval/GUIDELINES.md`
+    (frozen version; any rule change is a new guide version) and the
+    labelling UI. Labels by people only; a model may pre-highlight
+    evidence but not propose labels.
+  - **Sample, stratified (valid for P(true | predicted)):**
+    - by predicted engagement: 40-50 independent pairs in each class, so
+      `posterior_samples` and `published_results` are no longer thin;
+    - by era: at least a third of papers submitted before 2020 (agreement
+      there is 69% on 39 pairs against 81% after; the correction's
+      posterior-sample share for 2016-17 looks too high);
+    - catalogue and population papers (many events, under-sampled at 8
+      pairs per paper; 35% of corpus pairs), LVK papers included as their
+      own stratum (they err differently: strain under-called for the events
+      a catalogue analyses);
+    - record each paper's stratum and sampling probability in the gold
+      file, so the analysis can weight exactly.
+  - **Size:** about 80-120 papers, all pairs in each (no 8-pair cap, or
+    record the cap). At 10-15 minutes a paper, a few hours each for 5-8
+    people.
+  - **Double-label about a third** of papers to measure agreement between
+    people (the ceiling for the classifier's 77%).
+  - **Extraction recall in the same pass:** each labeller lists every
+    event the paper names (including forms the matcher may miss: bare
+    dates, typos, counterpart names), from the full text, before seeing
+    the extracted pairs. The only way to measure recall.
+  - Keep the existing gold rows (with `labelled_by`) and add the new ones
+    with a `gold_version`; the analysis selects by version.
+  - **Tooling built 2026-11-18** (`gwn eval supergold draw|assign|site|
+    import|report`, `eval/supergold/README.md`): static site + Apps Script
+    Sheet, no roles, no model output shown, 3-level confidence, recall
+    listing on the uniform slice only, opt-in acknowledgements kept apart
+    from answers (no token-to-person record). New labels go to
+    `eval/supergold/labels.jsonl` (multi-reviewer), not gold.jsonl. Trial
+    draw with defaults (2026-11-20, for ~10 labellers): 181 papers, 642
+    pairs, 20 per stratum, 50 uniform. Still to do: draw for real, deploy,
+    pilot, send.

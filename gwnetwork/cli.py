@@ -379,6 +379,86 @@ def cmd_eval_label(
     uvicorn.run(label.app, host=host, port=port)
 
 
+sg_app = typer.Typer(help="Super-gold set: labels from collaborators via a static site "
+                          "(eval/supergold/README.md)")
+eval_app.add_typer(sg_app, name="supergold")
+
+
+@sg_app.command("draw")
+def cmd_sg_draw(
+    seed: int = typer.Option(0, help="Sampling seed"),
+    uniform: int = typer.Option(50, help="Papers in the uniform (self-weighting) slice"),
+    min_per_stratum: int = typer.Option(
+        20, help="Papers drawn from each stratum at least. Over-drawing is free: queues are in random order and the report weights by what was completed"),
+    max_pairs: int = typer.Option(12, help="Pairs per paper; more are subsampled"),
+    cutoff: str = typer.Option("2026-10-01", help="Only papers first submitted before this"),
+    calibration: int = typer.Option(3, help="Practice papers from the gold set"),
+    force: bool = typer.Option(False, help="Redraw over an existing sample"),
+):
+    """Draw the stratified paper sample from the current runs (sample.json)."""
+    from .supergold import SAMPLE_PATH, draw
+    init_db()
+    s = draw(seed=seed, n_uniform=uniform, min_per_stratum=min_per_stratum,
+             max_pairs=max_pairs, cutoff=cutoff, n_calibration=calibration, force=force)
+    typer.echo(f"{len(s['papers'])} papers, {sum(len(p['pairs']) for p in s['papers'])} pairs "
+               f"from a frame of {s['frame_size']} -> {SAMPLE_PATH}")
+    typer.echo(f"{'stratum':<18} {'N':>6} {'n':>4} {'uniform':>7} {'pairs':>6}")
+    for h, st in s["strata"].items():
+        n_pairs = sum(len(p["pairs"]) for p in s["papers"] if p["stratum"] == h)
+        typer.echo(f"{h:<18} {st['N']:>6} {st['n']:>4} {st['n_uniform']:>7} {n_pairs:>6}")
+    pred = {}
+    for p in s["papers"]:
+        for r in p["pairs"]:
+            pred[r["predicted_engagement"]] = pred.get(r["predicted_engagement"], 0) + 1
+    typer.echo(f"pairs by predicted engagement: {pred}")
+    typer.echo(f"calibration: {[c['arxiv_id'] for c in s['calibration']]}")
+
+
+@sg_app.command("assign")
+def cmd_sg_assign(
+    reviewers: int = typer.Argument(..., help="Number of reviewer tokens to create"),
+    seed: int = typer.Option(0, help="Queue-order seed"),
+    force: bool = typer.Option(False, help="Replace existing tokens (only before any are sent)"),
+):
+    """Create anonymous reviewer tokens and their queues (assignments.json)."""
+    from .supergold import ASSIGN_PATH, assign
+    a = assign(reviewers, seed=seed, force=force)
+    typer.echo(f"{len(a['reviewers'])} reviewers -> {ASSIGN_PATH}; hand tokens out in this order:")
+    for r in a["reviewers"]:
+        typer.echo(f"  {r['token']}  ({len(r['queue'])} papers)")
+
+
+@sg_app.command("site")
+def cmd_sg_site(
+    out: Path = typer.Option(..., help="Output directory (not docs/)"),
+    endpoint: str = typer.Option("", help="Apps Script /exec URL; empty = test mode"),
+):
+    """Build the static labelling site."""
+    from .web.supergold_site import build_site
+    if out.resolve() == (Path.cwd() / "docs").resolve():
+        raise typer.BadParameter("docs/ is the public site; build this elsewhere")
+    init_db()
+    typer.echo(str(build_site(out, endpoint=endpoint)))
+
+
+@sg_app.command("import")
+def cmd_sg_import(
+    files: List[Path] = typer.Argument(..., help="Sheet CSV download and/or "
+                                                 "'download my answers' JSON files"),
+):
+    """Rebuild labels.jsonl and papers.jsonl from the submissions."""
+    from .supergold import LABELS_PATH, import_submissions
+    typer.echo(str(import_submissions(files)))
+    typer.echo(f"-> {LABELS_PATH}")
+
+
+@sg_app.command("report")
+def cmd_sg_report():
+    """Coverage, reviewer agreement, and the frozen run against reviewers."""
+    from .supergold import report
+    typer.echo(str(report()))
+
+
 @app.command("unknown")
 def cmd_unknown(limit: int = 30):
     """GW-shaped strings matching no known event: the discovery queue."""

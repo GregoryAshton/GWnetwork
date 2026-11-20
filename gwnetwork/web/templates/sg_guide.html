@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Labelling guide</title>
+{% include "_label_style.html" %}
+<style>pre{white-space:pre-wrap;font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif;max-width:46rem}
+.note{max-width:46rem;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;font-size:.92rem}</style>
+</head>
+<body><div class="wrap"><header><b>Labelling guide, version {{ guide_version }}</b></header>
+<div class="note">This is the frozen guide used for all gold labels. In this round, <b>roles are not asked</b>: skip the <i>Roles</i> section. The <i>unsure</i> tick box is replaced by a confidence choice per event: <i>clear</i>, <i>probably</i>, or <i>ambiguous</i> (= unsure below). The usage questions are unchanged.</div>
+<pre>{{ text }}</pre></div></body>
+</html>

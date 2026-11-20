@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>GW event usage labelling</title>
+{% include "_label_style.html" %}
+{% include "_sg_style.html" %}
+<style>.wrap{max-width:46rem}p,li{font-size:.95rem}</style>
+</head>
+<body>
+<div class="wrap">
+<header><b>GW event usage labelling</b><span id="mode" class="small" hidden></span></header>
+
+<div id="no-token" hidden>
+  <p>This page needs the personal link you were sent (it ends in <span class="mono">?r=…</span>). Please open that link instead.</p>
+</div>
+<div id="bad-token" class="err" hidden>This link is not recognised. Please check that you copied the whole link.</div>
+
+<div id="main" hidden>
+  <p>Thank you for helping. We are measuring how well an automated classifier recognises how papers <b>use</b> gravitational-wave events: analysing the strain, using released samples, using published measurements, discussing them qualitatively, or only citing them.</p>
+  <ul>
+    <li>Each page is one paper with the events we found in it. For each event, answer the usage questions and say how sure you are.</li>
+    <li>Read the <a href="guide.html" target="_blank" rel="noopener">labelling guide</a> first (about 10 minutes). Ignore its <i>Roles</i> section; roles aren't asked here. The confidence buttons replace its <i>unsure</i> tick box: <i>ambiguous</i> means the same thing.</li>
+    <li>The first {{ n_calibration }} papers are practice: after submitting you'll see the reference answer.</li>
+    <li>Papers come in a fixed order. Please do them in order and use <i>Skip</i> (with a reason) rather than jumping over one, so the sample stays random.</li>
+    <li>Do as many as you like: stop whenever you want, and this link brings you back to where you were. A paper takes about 10 minutes.</li>
+    <li>Your answers are stored under an anonymous reviewer ID. Answers are also kept in this browser; if sending fails, use <i>Download my answers</i> below and email the file.</li>
+  </ul>
+  <p class="tnum"><b id="done-n">0</b> of <span id="total-n">0</span> papers in your queue done.</p>
+  <div class="actions">
+    <a id="go" class="primary-link"><button class="primary" type="button">Start</button></a>
+    <button type="button" id="download">Download my answers</button>
+  </div>
+  <p id="pending" class="small" hidden></p>
+  <p id="all-done" hidden><b>You've reached the end of your queue. Thank you!</b></p>
+
+  <section class="panel" style="margin-top:22px">
+    <h2>Acknowledgements (optional)</h2>
+    <p class="small">To be thanked in the paper, add your name. It is stored separately from your answers, with no link to your reviewer ID and no timestamp, so nobody (including us) can tell which answers are yours. You can do this at any time, even before labelling anything.</p>
+    <div id="ack-form">
+      <input type="text" id="ack-name" placeholder="Name as it should appear" maxlength="200">
+      <input type="text" id="ack-aff" placeholder="Affiliation (optional)" maxlength="200">
+      <div class="actions"><button type="button" id="ack-send">Add my name</button></div>
+    </div>
+    <p id="ack-status" class="small"></p>
+  </section>
+</div>
+</div>
+<script src="config.js"></script>
+<script src="sg.js"></script>
+<script>SG.indexPage();</script>
+</body>
+</html>

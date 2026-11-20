@@ -1,0 +1,7655 @@
+{
+ "gold_version": 3,
+ "guide_version": "3.1",
+ "created": "2026-11-20 10:01 UTC",
+ "classify_run_id": "468129b9-5028-49c5-8373-beebd96f0d07",
+ "classify_version": "classify-0.4",
+ "classify_model": "claude-haiku-5-5",
+ "extract_run_id": "d65e8c26-4bb8-41cd-add3-ec9c9b754662",
+ "extract_version": "extract-0.3",
+ "release": "v2",
+ "cutoff": "2026-10-01",
+ "excluded_from_frame": [
+  "1602.03840",
+  "1808.00632",
+  "2403.16154"
+ ],
+ "seed": 0,
+ "n_uniform": 50,
+ "min_per_stratum": 20,
+ "max_pairs": 12,
+ "frame_size": 13596,
+ "strata": {
+  "lvk": {
+   "N": 142,
+   "n": 20,
+   "n_uniform": 1
+  },
+  "other/2020+": {
+   "N": 5829,
+   "n": 21,
+   "n_uniform": 21
+  },
+  "other/pre2020": {
+   "N": 2188,
+   "n": 20,
+   "n_uniform": 8
+  },
+  "published/2020+": {
+   "N": 3054,
+   "n": 20,
+   "n_uniform": 11
+  },
+  "published/pre2020": {
+   "N": 1120,
+   "n": 20,
+   "n_uniform": 4
+  },
+  "samples/2020+": {
+   "N": 348,
+   "n": 20,
+   "n_uniform": 1
+  },
+  "samples/pre2020": {
+   "N": 26,
+   "n": 20,
+   "n_uniform": 0
+  },
+  "strain/2020+": {
+   "N": 750,
+   "n": 20,
+   "n_uniform": 3
+  },
+  "strain/pre2020": {
+   "N": 139,
+   "n": 20,
+   "n_uniform": 1
+  }
+ },
+ "papers": [
+  {
+   "arxiv_id": "1602.03847",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2016,
+   "class": "published",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1612.02029",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2016,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1612.02030",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2016,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1710.05834",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2017,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1710.05836",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1811.12907",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 25,
+   "pair_pi": 0.48,
+   "pairs": [
+    {
+     "event": "151012.2",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "151116",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "161217",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "170208",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "170219",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "170405",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1904.08976",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 5,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1906.08000",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 11,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1912.11716",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2006.12611",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2009.01190",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 9,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151205",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817A",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2108.01045",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2021,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 61,
+   "pair_pi": 0.19672131147540983,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190413_134308",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190426_190642",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190503_185404",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190602_175927",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190720_000836",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190725_174728",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190728_064510",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190910_112807",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190916_200658",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2203.01270",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2022,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": true,
+   "pi_uniform": 0.007042253521126761,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2309.15469",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2023,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2504.01669",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW200224_222234",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2510.26931",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 18,
+   "pair_pi": 0.6666666666666666,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190403_051519",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190917_114630",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW230723_101834",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW231230_170116",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW241011_233834",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW241110_124123",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW250114_082203",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2512.16562",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2025,
+   "class": "other",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2603.19020",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2026,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 79,
+   "pair_pi": 0.1518987341772152,
+   "pairs": [
+    {
+     "event": "GW190512_180714",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190517_055101",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190828_065509",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW200202_154313",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200219_094415",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230518_125908",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231020_142947",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231104_133418",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231114_043211",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231118_005626",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231213_111417",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2603.19021",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2026,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 89,
+   "pair_pi": 0.1348314606741573,
+   "pairs": [
+    {
+     "event": "GW190408_181802",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190503_185404",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190728_064510",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200219_094415",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200225_060421",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230518_125908",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230731_215307",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230904_051013",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231020_142947",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231114_043211",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231226_101520",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2605.27225",
+   "stratum": "lvk",
+   "lvk": true,
+   "year": 2026,
+   "class": "strain",
+   "pi": 0.14084507042253522,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 242,
+   "pair_pi": 0.049586776859504134,
+   "pairs": [
+    {
+     "event": "GW230712_090405",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230927_043729",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230927_153832",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231029_111508",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW231223_032836",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW240420_175625",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW240515_005301",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW240701_203807",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW240813_034548",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW241114_235258",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW241129_140416",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2005.14309",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2006.15047",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2010.04972",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2011.11385",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2101.01991",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2107.01115",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2109.06924",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2202.09961",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2022,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 5,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2212.01990",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2022,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2302.06565",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2404.11808",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2501.12608",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.18965",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2507.01086",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2508.13894",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2602.21261",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW241011_233834",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW241110_124123",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW250114_082203",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2606.23021",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2607.29273",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2608.10058",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2609.09704",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2609.21814",
+   "stratum": "other/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "other",
+   "pi": 0.003602676273803397,
+   "uniform": true,
+   "pi_uniform": 0.003602676273803397,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1603.07452",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1702.04356",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1708.00671",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1708.04359",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1712.04267",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1801.09712",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1803.10865",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1804.05176",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1805.06731",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1806.01957",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1808.00293",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1808.05565",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1812.02177",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1812.11751",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1902.08287",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1903.06867",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1905.10380",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1907.10301",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1909.13328",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1910.06016",
+   "stratum": "other/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "other",
+   "pi": 0.009140767824497258,
+   "uniform": true,
+   "pi_uniform": 0.003656307129798903,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2004.06419",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2006.04257",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2007.07394",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2008.10395",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2010.14728",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2101.06402",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2104.01181",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2108.09113",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2111.11919",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2302.04878",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 10,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190426_152155",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190917_114630",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW200210_092254",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2401.10311",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2501.16829",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.15410",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 9,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190924_021846",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.21530",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2509.03101",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2509.11647",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2511.20477",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2511.23110",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 9,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW250114_082203",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2604.15431",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW250114_082203",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2606.20203",
+   "stratum": "published/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "published",
+   "pi": 0.006548788474132285,
+   "uniform": true,
+   "pi_uniform": 0.003601833660772757,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1604.00541",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1604.02513",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1606.07437",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1611.05766",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1701.05774",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1706.00199",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": true,
+   "pi_uniform": 0.0035714285714285713,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1707.03885",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1709.08437",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1710.03988",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": true,
+   "pi_uniform": 0.0035714285714285713,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1710.05452",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1801.02624",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1801.06516",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1803.02620",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1803.11397",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1807.01614",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1902.08477",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": true,
+   "pi_uniform": 0.0035714285714285713,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1903.09865",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": true,
+   "pi_uniform": 0.0035714285714285713,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1905.07477",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1908.07555",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1912.11131",
+   "stratum": "published/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "published",
+   "pi": 0.017857142857142856,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2008.02955",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2010.02090",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2011.04502",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": true,
+   "pi_uniform": 0.0028735632183908046,
+   "n_pairs_in_paper": 10,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190424_180648",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190514_065416",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190731_140936",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2103.05408",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2111.03498",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190719_215514",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190924_021846",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2112.05728",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2202.05164",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2022,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 7,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW190426_152155",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190917_114630",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200210_092254",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2301.03666",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2306.12908",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 28,
+   "pair_pi": 0.42857142857142855,
+   "pairs": [
+    {
+     "event": "GW170729",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190424_180648",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190513_205428",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190706_222641",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190719_215514",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191103_012549",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191105_143521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW191230_180458",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2311.05182",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 8,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190403_051519",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190517_055101",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW191109_010717",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191204_171526",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2311.15695",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis",
+      "posterior_samples"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2404.09668",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 70,
+   "pair_pi": 0.17142857142857143,
+   "pairs": [
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190408_181802",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190503_185404",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190513_205428",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190527_092055",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190719_215514",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190731_140936",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190828_063405",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190915_235702",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191105_143521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200128_022011",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2411.02778",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 14,
+   "pair_pi": 0.8571428571428571,
+   "pairs": [
+    {
+     "event": "GW190403_051519",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190519_153544",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190602_175927",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190706_222641",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190929_012149",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191109_010717",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW230529_181500",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2505.15448",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW230529_181500",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2506.02250",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2509.06145",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2603.21249",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis",
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2605.09351",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 5,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW190517_055101",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW191109_010717",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW231028_153006",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2608.19019",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2609.22450",
+   "stratum": "samples/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "samples",
+   "pi": 0.05747126436781609,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1609.08411",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1703.06223",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1709.01943",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1801.08160",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1805.06442",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1809.00264",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1809.01401",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1809.02293",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1810.06160",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1812.08910",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1901.03190",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1902.00181",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1905.00870",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1905.11054",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1906.02180",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1907.06540",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1907.10059",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "posterior_samples"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1908.00018",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1910.09740",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1912.09708",
+   "stratum": "samples/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "samples",
+   "pi": 0.7692307692307693,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 19,
+   "pair_pi": 0.631578947368421,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151216",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170202",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170304",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170425",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170727",
+     "predicted_uses": [
+      "posterior_samples",
+      "published_results"
+     ],
+     "predicted_engagement": "posterior_samples",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817A",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2001.00821",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 11,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2005.11352",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 15,
+   "pair_pi": 0.8,
+   "pairs": [
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2007.03623",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2008.07494",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2020,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": true,
+   "pi_uniform": 0.004,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2107.06229",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2111.03295",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2021,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2208.02545",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2022,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": true,
+   "pi_uniform": 0.004,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2304.10117",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 12,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW190403_051519",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190426_152155",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190917_114630",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191113_071753",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191219_163120",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW200115_042309",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200208_222617",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200210_092254",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2306.11797",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2023,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW190513_205428",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190514_065416",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190517_055101",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190519_153544",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521_074359",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2404.14641",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 9,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190708_232457",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191216_213338",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200202_154313",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200311_115853",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2410.03275",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2412.12211",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2024,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2503.14179",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 13,
+   "pair_pi": 0.9230769230769231,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190814",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191109_010717",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191204_171526",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191216_213338",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200112_155838",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200224_222234",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200311_115853",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2504.10130",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 15,
+   "pair_pi": 0.8,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "published_results"
+     ],
+     "predicted_engagement": "published_results",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW190630_185205",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190828_063405",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW191109_010717",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200208_130117",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200224_222234",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200311_115853",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW230529_181500",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2507.02604",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW190412",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW200129_065458",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2508.12697",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW190425",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW200105_162426",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2509.09161",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW190521",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": true
+    },
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2512.10283",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2025,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2602.12859",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW250114_082203",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "2607.21834",
+   "stratum": "strain/2020+",
+   "lvk": false,
+   "year": 2026,
+   "class": "strain",
+   "pi": 0.02666666666666667,
+   "uniform": true,
+   "pi_uniform": 0.004,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW231123_135430",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1602.04666",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1604.06668",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2016,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1709.08870",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2017,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1801.07840",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1803.02350",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1805.10457",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1805.11174",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1808.10057",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 3,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1811.02042",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 2,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1811.04904",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1812.04803",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2018,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1902.04616",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis",
+      "published_results"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1903.00546",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1903.02401",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1903.02823",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 6,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [],
+     "predicted_engagement": "cited_only",
+     "reference_only": true
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1906.11168",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 11,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1908.08688",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1909.13442",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 4,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1911.12496",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": true,
+   "pi_uniform": 0.007194244604316547,
+   "n_pairs_in_paper": 1,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1912.10758",
+   "stratum": "strain/pre2020",
+   "lvk": false,
+   "year": 2019,
+   "class": "strain",
+   "pi": 0.14388489208633093,
+   "uniform": false,
+   "pi_uniform": null,
+   "n_pairs_in_paper": 11,
+   "pair_pi": 1.0,
+   "pairs": [
+    {
+     "event": "GW150914",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151012",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW151226",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170104",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170608",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170729",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170809",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170814",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170817",
+     "predicted_uses": [
+      "qualitative"
+     ],
+     "predicted_engagement": "qualitative",
+     "reference_only": false
+    },
+    {
+     "event": "GW170818",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    },
+    {
+     "event": "GW170823",
+     "predicted_uses": [
+      "strain_analysis"
+     ],
+     "predicted_engagement": "strain_analysis",
+     "reference_only": false
+    }
+   ]
+  }
+ ],
+ "calibration": [
+  {
+   "arxiv_id": "2403.16154",
+   "pairs": [
+    {
+     "event": "GW170817",
+     "uses": [
+      "qualitative"
+     ],
+     "engagement": "qualitative"
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1602.03840",
+   "pairs": [
+    {
+     "event": "GW150914",
+     "uses": [
+      "strain_analysis"
+     ],
+     "engagement": "strain_analysis"
+    }
+   ]
+  },
+  {
+   "arxiv_id": "1808.00632",
+   "pairs": [
+    {
+     "event": "GW170814",
+     "uses": [
+      "qualitative"
+     ],
+     "engagement": "qualitative"
+    },
+    {
+     "event": "GW170817",
+     "uses": [
+      "published_results"
+     ],
+     "engagement": "published_results"
+    }
+   ]
+  }
+ ]
+}

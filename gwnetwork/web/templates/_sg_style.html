@@ -1,0 +1,58 @@
+<style>
+.wrap{max-width:1180px}
+h2{font-size:1.02rem;margin:0 0 6px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.note{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;
+  margin:0 0 14px;font-size:.9rem}
+.card{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:16px}
+.card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card.missing{border-color:#c0392b}
+@media (max-width:860px){.card{grid-template-columns:1fr}}
+.evname{font-size:1.05rem;font-weight:600}
+.mention{border-left:3px solid var(--line-2);padding:4px 0 4px 12px;margin:0 0 12px;
+  font-size:.88rem;color:var(--ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.mention .sec{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:2px;white-space:normal}
+.cites{margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:7px;white-space:normal}
+.cite{white-space:pre-wrap;margin:6px 0 0;padding-top:6px;border-top:1px solid var(--line)}
+mark{background:var(--hit);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+mark.cp{background:var(--amber-soft);color:var(--amber);outline:1px dashed var(--amber)}
+mark.ref{background:var(--accent-soft);color:var(--accent-ink);outline:1px solid var(--accent)}
+.mention.cp{border-left-color:var(--amber)}
+.cptag{color:var(--amber);text-transform:none;letter-spacing:0;font-weight:600}
+details summary{cursor:pointer;color:var(--muted);font-size:.85rem;margin-bottom:8px}
+.abstract{font-size:.9rem;color:var(--ink-2)}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:0 0 8px}
+.eng label{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 10px;
+  border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer}
+.eng label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.eng input{grid-row:span 2;margin-top:4px}
+.eng b{font-family:"IBM Plex Mono",monospace;font-size:.82rem}
+.eng span{font-size:.78rem;color:var(--muted)}
+/* The long explanations only on the card being answered. */
+.card:not(.active) .eng span{display:none}
+kbd{font:inherit;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--muted);
+  border:1px solid var(--line-2);border-radius:4px;padding:0 4px;margin-right:6px}
+.fallback.off{opacity:.4}.fallback.off label{pointer-events:none}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg label{flex:1;text-align:center;padding:6px 8px;border:1px solid var(--line-2);border-radius:7px;
+  cursor:pointer;font-size:.85rem}
+.seg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent)}
+input[type=text],textarea,select{width:100%;font:inherit;font-size:.88rem;padding:6px 8px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--surface);color:var(--ink);margin-top:8px}
+select{width:auto;margin:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.spacer{flex:1}
+button{font:inherit;font-size:.9rem;padding:7px 14px;border-radius:7px;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--surface-2);color:var(--ink)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.err{color:#c0392b;font-weight:600;font-size:.88rem;margin-top:10px}
+.feedback{border-radius:8px;padding:8px 10px;font-size:.88rem}
+.feedback.ok{background:#2f7d3a1a;border:1px solid var(--ok)}
+.feedback.diff{background:var(--amber-soft);border:1px solid var(--amber)}
+</style>

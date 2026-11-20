@@ -95,6 +95,13 @@ run (~3 points of gold agreement): quote the mean and spread, never the best run
 A template-derived gold set measures classification quality only, not
 extraction recall (see caveat in `gwnetwork/evalset.py`).
 
+The super-gold set (gold version 3, `eval/supergold/`, `gwn eval supergold …`)
+is a stratified probability sample labelled by collaborators through a static
+site. Every paper records its inclusion probability `pi`, so weight by it (or
+use the `uniform` slice) for corpus-level numbers. `sample.json` is frozen once
+drawn and `assignments.json` holds tokens already handed out; don't redraw or
+reassign either with `--force`.
+
 ## Publishing the static site
 
 Commit code first, then `gwn export --out docs`, then commit `docs/` as a

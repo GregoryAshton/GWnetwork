@@ -133,7 +133,8 @@ def _fulltext(p: Optional[str]) -> Optional[str]:
     return path.read_text(errors="replace") if path.exists() else None
 
 
-def _context(arxiv_id: str, event: str) -> dict:
+def _context(arxiv_id: str, event: str, max_mentions: int = MAX_MENTIONS,
+             width: int = CONTEXT_CHARS, cite_width: int = CITE_CONTEXT_CHARS) -> dict:
     with session() as s:
         paper = s.scalar(select(Paper).where(Paper.arxiv_id == arxiv_id))
         run = s.scalar(select(AnalysisRun).where(
@@ -154,9 +155,9 @@ def _context(arxiv_id: str, event: str) -> dict:
 
     mentions = []
     n_counterpart = sum(is_counterpart(mt, counterparts) for *_, mt in ms)
-    for start, end, section, sentence, matched in ms[:MAX_MENTIONS]:
+    for start, end, section, sentence, matched in ms[:max_mentions]:
         if text and 0 <= start < end <= len(text):
-            m = {"section": section or "?", **_snippet(text, start, end, CONTEXT_CHARS),
+            m = {"section": section or "?", **_snippet(text, start, end, width),
                  "counterpart": is_counterpart(matched, counterparts)}
             # A bibliography hit is a cited paper's title; what matters is
             # where the citing paper cites it.
@@ -164,7 +165,7 @@ def _context(arxiv_id: str, event: str) -> dict:
                 cite = find_citations(text, start)
                 m["cite"] = cite and {
                     "key": cite.key, "n": len(cite.spans),
-                    "spans": [_snippet(text, a, b, CITE_CONTEXT_CHARS)
+                    "spans": [_snippet(text, a, b, cite_width)
                               for a, b in cite.spans[:MAX_CITES]]}
                 m["cite_lookup"] = True
             mentions.append(m)
