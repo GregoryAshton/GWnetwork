@@ -4,7 +4,8 @@ Plain files for any static host (a separate GitHub Pages repo or branch; never
 docs/, which is the public read-only site). Nothing here runs on a server:
 
   index.html        landing page; reads the reviewer's token from ?r=
-  q/<token>.json    that reviewer's fixed queue (calibration papers first)
+  q/<hash>.json     a reviewer's fixed queue (calibration papers first), named
+                    by queue_file(token) so the repo never lists usable tokens
   p/<paper>.html    one page per paper: snippets, the usage questions per
                     event, confidence, author flag, skip
   guide.html        eval/GUIDELINES.md (frozen) with a note on what differs
@@ -36,6 +37,13 @@ GUIDE_PATH = ROOT / "eval" / "GUIDELINES.md"
 MAX_MENTIONS = 12
 CONTEXT_CHARS = 260
 CITE_CONTEXT_CHARS = 200
+
+
+def queue_file(token: str) -> str:
+    """The queue's file name: a hash, so hosting the site (or its repo) in
+    public does not reveal the tokens. sg.js computes the same in the browser."""
+    import hashlib
+    return hashlib.sha256(f"gwn-supergold:{token}".encode()).hexdigest()[:20]
 
 
 def slug(arxiv_id: str) -> str:
@@ -85,7 +93,7 @@ def build_site(out_dir: Path, endpoint: str = "", sample: Optional[dict] = None,
         (out_dir / "p" / f"{slug(p['arxiv_id'])}.html").write_text(html)
 
     for r in assignments["reviewers"]:
-        (out_dir / "q" / f"{r['token']}.json").write_text(json.dumps(
+        (out_dir / "q" / f"{queue_file(r['token'])}.json").write_text(json.dumps(
             {"queue": [{"arxiv_id": a, "slug": slug(a)} for a in r["queue"]]}))
 
     (out_dir / "index.html").write_text(env.get_template("sg_index.html").render(**common))

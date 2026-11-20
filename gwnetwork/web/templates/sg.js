@@ -15,10 +15,16 @@
     return ls.get("sg_token", null);
   }
 
+  // Queue files are named by a hash of the token (supergold_site.queue_file).
+  async function queueFile(tok) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("gwn-supergold:" + tok));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 20);
+  }
+
   async function queue(tok, base) {
     const cached = ls.get("sg_queue_" + tok, null);
     if (cached) return cached;
-    const res = await fetch(base + "q/" + tok + ".json", {cache: "no-store"});
+    const res = await fetch(base + "q/" + (await queueFile(tok)) + ".json", {cache: "no-store"});
     if (!res.ok) return null;
     const q = (await res.json()).queue;
     ls.set("sg_queue_" + tok, q);

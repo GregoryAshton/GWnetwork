@@ -220,7 +220,10 @@ def test_frame_and_site_from_the_database(temp_db, tmp_path):
     assert "GW150914" in page and "noindex" in page
     assert "SECRET-BODY" not in page                   # snippets, not the text
     assert '"answers"' in (out / "p" / "2401.00002.html").read_text()
-    assert json.loads((out / "q" / "aaaa1111.json").read_text())["queue"][0]["slug"] == "2401.00002"
+    from gwnetwork.web.supergold_site import queue_file
+    assert not (out / "q" / "aaaa1111.json").exists()      # tokens never in file names
+    q = json.loads((out / "q" / f"{queue_file('aaaa1111')}.json").read_text())
+    assert q["queue"][0]["slug"] == "2401.00002"
     assert "example.invalid" in (out / "config.js").read_text()
     for f in ("index.html", "guide.html", "sg.js", "robots.txt"):
         assert (out / f).exists()
