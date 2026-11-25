@@ -10,12 +10,6 @@ the full classify-0.4 runs (2026-10-21 to 2026-11-13); see DESIGN.md §13.
   "GW151216" for GW151226) are invisible to the matcher. Known cases are
   fixed in `data/mention_overrides.yaml`; others will only surface by
   hand-reading.
-- **`gwn events propose-aliases --write` drops existing aliases.** It
-  rebuilds `data/events/aliases-auto.yaml` from the current unknown queue,
-  and names already aliased are no longer in that queue, so a regeneration
-  keeps only the new ones (found 2026-11-13: 96 entries would have gone).
-  Until fixed, append the new entries by hand. Fix: merge with the existing
-  file.
 - **Extraction recall is unmeasured.** The gold set was drawn from extracted
   pairs, so it cannot see events the matcher missed. Needs hand-read papers.
 
@@ -65,7 +59,8 @@ all 31 of its gold flips are in papers whose inputs did not change.
 
 - **Pairs found only in reference titles** (e.g. 1802.04969 cites "...after
   GW170817" papers for the Vainshtein mechanism) still count towards event
-  totals; show them separately or exclude by default. Derivable from
+  totals; show them separately on the site rather than dropping them (many
+  are deeper than cited-only; see the paper item below). Derivable from
   `Mention.section`, no new label needed.
 - **Show the full set of uses**, not only the derived deepest engagement.
 - **Loudness chart: fixed-window comparison.** It now plots papers per year
@@ -86,28 +81,16 @@ from the analysis; a label upgrade a question needs is a new release.
   noise to drop at extraction: 635 are classified deeper than cited-only,
   through the in-text citation (`citations.py`). Derive the flag from
   `Mention.section` in the analysis and report with and without them.
-- **Literature cutoff 2026-06-01** is applied in the analysis, not by
-  deleting papers. Since 2026-10-28 it applies to first appearance (first
+- **Literature cutoff 2026-10-01** (v2; v1 used 2026-06-01) is applied in
+  the analysis, not by deleting papers. Since 2026-10-28 it applies to first appearance (first
   submission, or the revision that first names the event), not to the
   fetched version's date.
 - **Release v2: harvest done 2026-11-13** (755 new papers, submitted up
   to 2026-11-11; extraction and classification re-run). Papers on the 161
-  GWTC-5.0-only events: 254 in v1, 404 now. Still to choose: the paper's
-  analysis cutoff. ADS full-text indexing lags by weeks, so the last
-  months before the harvest are incomplete (2026-10: 260 new papers,
-  2026-11: 83); a cutoff a few weeks before the harvest date is safer.
-  Then deposit v2 on Zenodo and re-export the site.
-- **Release v2: non-LVK catalogues, IAS and OGC** (paper question A6).
-  Ingested, extracted and classified 2026-11-12 (35 new events; criteria,
-  merge decisions and the per-catalogue table in `data/catalogues/README.md`).
-  Remaining:
-  - Note for the paper: `analysis/data.py` sets `lvk_catalogued` from
-    GWTC-* and O*_Discovery_Papers only, so 200114_020818 (O3 IMBH
-    marginal only; IAS-HM's GW200114_020818) counts as not LVK there,
-    while PLAN's A6 definition (any LVK record, confident or marginal)
-    excludes it.
-    Fixed 2026-11-13 in the paper repo: `lvk_catalogued` now includes
-    O3_IMBH_marginal.
+  GWTC-5.0-only events: 254 in v1, 404 now. Analysis cutoff set to
+  2026-10-01, six weeks before the harvest, since ADS full-text indexing
+  lags by weeks (`../GWnetwork_paper/PLAN.md`). Still to do: deposit v2
+  on Zenodo and re-export the site.
 - **Super-gold set: expert labels from collaborators** (noted 2026-11-14,
   for the paper's error correction, `../GWnetwork_paper/analysis/
   correction.py` and PLAN "Gold-set error correction"). The correction
@@ -153,3 +136,39 @@ from the analysis; a label upgrade a question needs is a new release.
     draw with defaults (2026-11-20, for ~10 labellers): 181 papers, 642
     pairs, 20 per stratum, 50 uniform. Still to do: draw for real, deploy,
     pilot, send.
+- **Release v3: same cutoff, waits for the full super-gold set** (decided
+  2026-11-20, `../GWnetwork_paper/PLAN.md` "Deposit contents"). No new
+  harvest: the paper keeps v2's literature cutoff (2026-10-01) until Greg
+  says otherwise. Cut v3 once the super-gold labels are all in, and
+  include:
+  - the super-gold labels (above), with `gold_version`;
+  - the per-paper Part B flags: B1 instrument attribution and B2 GWOSC
+    citation, including the strain-text flags the paper repo now derives
+    locally (`data/gwosc_text_flags-v2.csv`);
+  - the full multi-run database (all classify-0.4 runs, not just the one
+    v2 ships), so run-to-run instability is reproducible;
+  - quarterly arXiv submission counts (below).
+  Part B stays rates and trends in the paper; the flags are data, not a
+  list in the text.
+- **arXiv volume per quarter, to normalise the corpus** (asked
+  2026-11-25, for v3). The paper wants to compare corpus growth with
+  arXiv's: over the whole decade (are event papers a growing share of
+  the field?), for the recent rise (2025Q3 on; is it a general
+  productivity boom, e.g. AI-assisted writing?), and in the reach and
+  open-data figures. Fetch submission counts per calendar quarter,
+  2015Q1 to 2026Q3 (the cutoff is 2026-10-01), from the arXiv API
+  (`search_query=cat:<cat> AND submittedDate:[.. TO ..]`,
+  `max_results=0`, read `opensearch:totalResults`; 3 s between calls):
+  - astro-ph (all subcategories), gr-qc, hep-ph, hep-th, nucl-th;
+  - all of arXiv, for the overall trend.
+  Record both cross-list-inclusive counts (`cat:` matches any listed
+  category, so the categories overlap) and, if the API or the OAI-PMH
+  metadata allows, primary-category counts, since the corpus's reach
+  figure uses primary categories. Also counts of the union astro-ph OR
+  gr-qc, deduplicated, as the natural denominator for the corpus. Store
+  as a table with the query, fetch date and API used, so the numbers are
+  reproducible as of the fetch; check a couple of quarters against
+  arxiv.org/stats. A first look in the paper repo (2026-11-25) found the
+  2025Q3 rise is entirely papers naming O4 events (13 to 115 a quarter;
+  papers naming no O4 event flat at ~310), so the comparison is for
+  context, not to rescue that claim.
