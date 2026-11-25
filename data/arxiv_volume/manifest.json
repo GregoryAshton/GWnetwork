@@ -1,0 +1,449 @@
+{
+ "api": "https://export.arxiv.org/api/query",
+ "archives": [
+  "astro-ph",
+  "gr-qc",
+  "hep-ph",
+  "hep-th",
+  "nucl-th"
+ ],
+ "arxiv_stats_monthly": {
+  "fetched_at": "2026-11-25T17:20:07Z",
+  "url": "https://arxiv.org/stats/get_monthly_submissions"
+ },
+ "date_field": "submittedDate (v1, UTC)",
+ "listing": {
+  "2015Q1": {
+   "api_total": 6429,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:42:15Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201501010000 TO 201503312359]"
+   ],
+   "rows": 6429
+  },
+  "2015Q2": {
+   "api_total": 6647,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:42:30Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201504010000 TO 201506302359]"
+   ],
+   "rows": 6647
+  },
+  "2015Q3": {
+   "api_total": 6936,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:42:48Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201507010000 TO 201509302359]"
+   ],
+   "rows": 6936
+  },
+  "2015Q4": {
+   "api_total": 7685,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:43:03Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201510010000 TO 201512312359]"
+   ],
+   "rows": 7685
+  },
+  "2016Q1": {
+   "api_total": 6711,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:43:15Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201601010000 TO 201603312359]"
+   ],
+   "rows": 6711
+  },
+  "2016Q2": {
+   "api_total": 6847,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:43:32Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201604010000 TO 201606302359]"
+   ],
+   "rows": 6847
+  },
+  "2016Q3": {
+   "api_total": 6905,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:43:52Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201607010000 TO 201609302359]"
+   ],
+   "rows": 6905
+  },
+  "2016Q4": {
+   "api_total": 7381,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:44:11Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201610010000 TO 201612312359]"
+   ],
+   "rows": 7381
+  },
+  "2017Q1": {
+   "api_total": 6377,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:44:24Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201701010000 TO 201703312359]"
+   ],
+   "rows": 6377
+  },
+  "2017Q2": {
+   "api_total": 6724,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:44:39Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201704010000 TO 201706302359]"
+   ],
+   "rows": 6724
+  },
+  "2017Q3": {
+   "api_total": 6649,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:44:54Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201707010000 TO 201709302359]"
+   ],
+   "rows": 6649
+  },
+  "2017Q4": {
+   "api_total": 7832,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:45:12Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201710010000 TO 201712312359]"
+   ],
+   "rows": 7832
+  },
+  "2018Q1": {
+   "api_total": 6614,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:45:27Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201801010000 TO 201803312359]"
+   ],
+   "rows": 6614
+  },
+  "2018Q2": {
+   "api_total": 7158,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:45:44Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201804010000 TO 201806302359]"
+   ],
+   "rows": 7158
+  },
+  "2018Q3": {
+   "api_total": 7084,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:46:01Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201807010000 TO 201809302359]"
+   ],
+   "rows": 7084
+  },
+  "2018Q4": {
+   "api_total": 7900,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:46:20Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201810010000 TO 201812312359]"
+   ],
+   "rows": 7900
+  },
+  "2019Q1": {
+   "api_total": 7129,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:46:41Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201901010000 TO 201903312359]"
+   ],
+   "rows": 7129
+  },
+  "2019Q2": {
+   "api_total": 7266,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:46:59Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201904010000 TO 201906302359]"
+   ],
+   "rows": 7266
+  },
+  "2019Q3": {
+   "api_total": 7540,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:47:16Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201907010000 TO 201909302359]"
+   ],
+   "rows": 7540
+  },
+  "2019Q4": {
+   "api_total": 7786,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:47:45Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[201910010000 TO 201912312359]"
+   ],
+   "rows": 7786
+  },
+  "2020Q1": {
+   "api_total": 6710,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:48:14Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202001010000 TO 202003312359]"
+   ],
+   "rows": 6710
+  },
+  "2020Q2": {
+   "api_total": 7867,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:48:45Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202004010000 TO 202006302359]"
+   ],
+   "rows": 7867
+  },
+  "2020Q3": {
+   "api_total": 7917,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:49:02Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202007010000 TO 202009302359]"
+   ],
+   "rows": 7917
+  },
+  "2020Q4": {
+   "api_total": 8194,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:49:23Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202010010000 TO 202012312359]"
+   ],
+   "rows": 8194
+  },
+  "2021Q1": {
+   "api_total": 7106,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:49:42Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202101010000 TO 202103312359]"
+   ],
+   "rows": 7106
+  },
+  "2021Q2": {
+   "api_total": 7406,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:49:59Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202104010000 TO 202106302359]"
+   ],
+   "rows": 7406
+  },
+  "2021Q3": {
+   "api_total": 7662,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:50:20Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202107010000 TO 202109302359]"
+   ],
+   "rows": 7662
+  },
+  "2021Q4": {
+   "api_total": 8559,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:50:39Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202110010000 TO 202112312359]"
+   ],
+   "rows": 8559
+  },
+  "2022Q1": {
+   "api_total": 7317,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:51:04Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202201010000 TO 202203312359]"
+   ],
+   "rows": 7317
+  },
+  "2022Q2": {
+   "api_total": 7487,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:51:21Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202204010000 TO 202206302359]"
+   ],
+   "rows": 7487
+  },
+  "2022Q3": {
+   "api_total": 7835,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:51:38Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202207010000 TO 202209302359]"
+   ],
+   "rows": 7835
+  },
+  "2022Q4": {
+   "api_total": 8335,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:51:56Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202210010000 TO 202212312359]"
+   ],
+   "rows": 8335
+  },
+  "2023Q1": {
+   "api_total": 7329,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:52:16Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202301010000 TO 202303312359]"
+   ],
+   "rows": 7329
+  },
+  "2023Q2": {
+   "api_total": 7688,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:52:34Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202304010000 TO 202306302359]"
+   ],
+   "rows": 7688
+  },
+  "2023Q3": {
+   "api_total": 8173,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:52:49Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202307010000 TO 202309302359]"
+   ],
+   "rows": 8173
+  },
+  "2023Q4": {
+   "api_total": 8669,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:53:10Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202310010000 TO 202312312359]"
+   ],
+   "rows": 8669
+  },
+  "2024Q1": {
+   "api_total": 7675,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:53:27Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202401010000 TO 202403312359]"
+   ],
+   "rows": 7675
+  },
+  "2024Q2": {
+   "api_total": 8540,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:53:44Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202404010000 TO 202406302359]"
+   ],
+   "rows": 8540
+  },
+  "2024Q3": {
+   "api_total": 8357,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:54:03Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202407010000 TO 202409302359]"
+   ],
+   "rows": 8357
+  },
+  "2024Q4": {
+   "api_total": 9188,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:54:24Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202410010000 TO 202412312359]"
+   ],
+   "rows": 9188
+  },
+  "2025Q1": {
+   "api_total": 8308,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:54:37Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202501010000 TO 202503312359]"
+   ],
+   "rows": 8308
+  },
+  "2025Q2": {
+   "api_total": 8773,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:55:04Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202504010000 TO 202506302359]"
+   ],
+   "rows": 8773
+  },
+  "2025Q3": {
+   "api_total": 9772,
+   "complete": true,
+   "fetched_at": "2026-11-25T15:55:28Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202507010000 TO 202509302359]"
+   ],
+   "rows": 9772
+  },
+  "2025Q4": {
+   "api_total": 10347,
+   "complete": true,
+   "fetched_at": "2026-11-25T16:07:03Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202510010000 TO 202510312359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202511010000 TO 202511302359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202512010000 TO 202512312359]"
+   ],
+   "rows": 10347
+  },
+  "2026Q1": {
+   "api_total": 9296,
+   "complete": true,
+   "fetched_at": "2026-11-25T16:07:26Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202601010000 TO 202601312359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202602010000 TO 202602282359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202603010000 TO 202603312359]"
+   ],
+   "rows": 9296
+  },
+  "2026Q2": {
+   "api_total": 10657,
+   "complete": true,
+   "fetched_at": "2026-11-25T16:07:49Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202604010000 TO 202604302359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202605010000 TO 202605312359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202606010000 TO 202606302359]"
+   ],
+   "rows": 10657
+  },
+  "2026Q3": {
+   "api_total": 11821,
+   "complete": true,
+   "fetched_at": "2026-11-25T16:08:21Z",
+   "queries": [
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202607010000 TO 202607312359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202608010000 TO 202608312359]",
+    "(cat:astro-ph* OR cat:gr-qc OR cat:hep-ph OR cat:hep-th OR cat:nucl-th) AND submittedDate:[202609010000 TO 202609302359]"
+   ],
+   "rows": 11821
+  }
+ },
+ "user_agent": "GWnetwork/0.1 (https://github.com/; research crawler)"
+}
