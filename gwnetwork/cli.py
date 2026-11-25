@@ -23,6 +23,8 @@ app.add_typer(events_app, name="events")
 app.add_typer(corpus_app, name="corpus")
 app.add_typer(eval_app, name="eval")
 app.add_typer(release_app, name="release")
+volume_app = typer.Typer(help="arXiv submission volume per quarter (corpus normalisation)")
+app.add_typer(volume_app, name="volume")
 
 
 @app.command("init")
@@ -595,3 +597,43 @@ def cmd_release_verify(
             typer.echo(f"  {k}: {row}")
         stats[k] = len(stats[k])
     typer.echo(str(stats))
+
+
+@volume_app.command("fetch")
+def cmd_volume_fetch(
+    first: str = typer.Option("2015Q1", help="First quarter"),
+    last: str = typer.Option("2026Q3", help="Last quarter (the paper's cutoff is 2026-10-01)"),
+    what: str = typer.Option("both", help="listing, totals or both"),
+    delay: float = typer.Option(3.0, help="Seconds between API calls"),
+    force: bool = typer.Option(False, help="Re-fetch quarters already on disk"),
+):
+    """Fetch the per-paper listing and the API totals into data/arxiv_volume/.
+
+    Resumable: quarters already fetched are skipped.
+    """
+    from .arxiv_volume import fetch_listing, fetch_monthly_stats, fetch_totals
+    if what in ("listing", "both"):
+        typer.echo("listing (union of tracked archives):")
+        fetch_listing(first, last, delay=delay, force=force, log=typer.echo)
+    if what in ("totals", "both"):
+        typer.echo("API totals:")
+        fetch_totals(first, last, delay=delay, force=force, log=typer.echo)
+        fetch_monthly_stats()
+    cmd_volume_counts()
+
+
+@volume_app.command("counts")
+def cmd_volume_counts():
+    """Derive counts.csv from the listing and check it against the API totals."""
+    from .arxiv_volume import compare_with_stats, default_dir, write_counts
+    n, bad = write_counts()
+    typer.echo(f"wrote {n} rows to {default_dir() / 'counts.csv'}")
+    for b in bad:
+        typer.echo(f"  listing != API: {b}")
+    if not bad:
+        typer.echo("  listing matches the API totals")
+    cmp = compare_with_stats()
+    if cmp:
+        worst = max(cmp, key=lambda r: abs(r["diff_pct"]))
+        typer.echo(f"  all of arXiv, API vs arxiv.org/stats over {len(cmp)} quarters: "
+                   f"largest difference {worst['diff_pct']:+.2f}% ({worst['quarter']})")
