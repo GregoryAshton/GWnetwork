@@ -35,3 +35,36 @@ def test_suffix_mismatch_is_detectable():
     """
     assert hhmmss_of(1240215503.0) == "081805"
     assert hhmmss_of(1240215503.0) != "133124"
+
+
+def test_write_yaml_keeps_existing_aliases(tmp_path):
+    """Aliased names leave the unknown queue; a rewrite must not drop them."""
+    import yaml
+
+    from gwnetwork.events.aliases import AliasReport, Proposal, write_yaml
+
+    path = tmp_path / "aliases-auto.yaml"
+    first = AliasReport(safe=[
+        Proposal("GW150914_095045", "GW150914", 31, "long form; GPS matches"),
+        Proposal("GW230529", "GW230529_181500", 12, "short form; one candidate"),
+    ])
+    write_yaml(first, path)
+
+    # Next run: the old aliases are matched now, only a new one is proposed,
+    # plus a refreshed count for an existing one.
+    second = AliasReport(safe=[
+        Proposal("GW190521_030229", "GW190521", 7, "long form; GPS matches"),
+        Proposal("GW230529", "GW230529_181500", 20, "short form; one candidate"),
+    ])
+    assert write_yaml(second, path) == 3
+
+    docs = {d["common_name"]: [x["designation"] for x in d["designations"]]
+            for d in yaml.safe_load(path.read_text())}
+    assert docs == {
+        "GW150914": ["GW150914", "GW150914_095045"],
+        "GW190521": ["GW190521", "GW190521_030229"],
+        "GW230529_181500": ["GW230529_181500", "GW230529"],
+    }
+    text = path.read_text()
+    assert "x31; long form" in text          # old note kept
+    assert "x20; short form" in text and "x12" not in text   # refreshed
