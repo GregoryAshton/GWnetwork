@@ -16,3 +16,5 @@ dist/
 # Super-gold reviewer tokens: anyone holding one can submit answers under it.
 # Commit only after collection has closed.
 eval/supergold/assignments.json
+# Who has been contacted and which links are out (unpaired); private.
+eval/supergold/sent.json
