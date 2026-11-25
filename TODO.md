@@ -151,24 +151,15 @@ from the analysis; a label upgrade a question needs is a new release.
   Part B stays rates and trends in the paper; the flags are data, not a
   list in the text.
 - **arXiv volume per quarter, to normalise the corpus** (asked
-  2026-11-25, for v3). The paper wants to compare corpus growth with
-  arXiv's: over the whole decade (are event papers a growing share of
-  the field?), for the recent rise (2025Q3 on; is it a general
-  productivity boom, e.g. AI-assisted writing?), and in the reach and
-  open-data figures. Fetch submission counts per calendar quarter,
-  2015Q1 to 2026Q3 (the cutoff is 2026-10-01), from the arXiv API
-  (`search_query=cat:<cat> AND submittedDate:[.. TO ..]`,
-  `max_results=0`, read `opensearch:totalResults`; 3 s between calls):
-  - astro-ph (all subcategories), gr-qc, hep-ph, hep-th, nucl-th;
-  - all of arXiv, for the overall trend.
-  Record both cross-list-inclusive counts (`cat:` matches any listed
-  category, so the categories overlap) and, if the API or the OAI-PMH
-  metadata allows, primary-category counts, since the corpus's reach
-  figure uses primary categories. Also counts of the union astro-ph OR
-  gr-qc, deduplicated, as the natural denominator for the corpus. Store
-  as a table with the query, fetch date and API used, so the numbers are
-  reproducible as of the fetch; check a couple of quarters against
-  arxiv.org/stats. A first look in the paper repo (2026-11-25) found the
-  2025Q3 rise is entirely papers naming O4 events (13 to 115 a quarter;
-  papers naming no O4 event flat at ~310), so the comparison is for
-  context, not to rescue that claim.
+  2026-11-25, for v3). Fetched 2026-11-25 by `gwn volume fetch` into
+  `data/arxiv_volume/` (README there), 2015Q1 to 2026Q3: a per-paper
+  listing of the union of astro-ph, gr-qc, hep-ph, hep-th and nucl-th
+  (primary and all categories, so any archive or subcategory count, any
+  or primary, is derived locally), plus API totals per archive, union and
+  all of arXiv. The listing matches the API totals exactly; all of arXiv
+  is within 1.5% of arxiv.org/stats every quarter. Remaining, in the
+  paper repo: the comparison itself (decade share, the 2025Q3 rise, reach
+  and open-data figures). A first look (2026-11-25) found the 2025Q3 rise
+  is entirely papers naming O4 events (13 to 115 a quarter; papers naming
+  no O4 event flat at ~310), so the comparison is for context, not to
+  rescue that claim.
