@@ -89,8 +89,8 @@ from the analysis; a label upgrade a question needs is a new release.
   to 2026-11-11; extraction and classification re-run). Papers on the 161
   GWTC-5.0-only events: 254 in v1, 404 now. Analysis cutoff set to
   2026-10-01, six weeks before the harvest, since ADS full-text indexing
-  lags by weeks (`../GWnetwork_paper/PLAN.md`). Still to do: deposit v2
-  on Zenodo and re-export the site.
+  lags by weeks (`../GWnetwork_paper/PLAN.md`). Deposited on Zenodo
+  (10.5281/zenodo.24196676) and the site re-exported 2026-11-25.
 - **Super-gold set: expert labels from collaborators** (noted 2026-11-14,
   for the paper's error correction, `../GWnetwork_paper/analysis/
   correction.py` and PLAN "Gold-set error correction"). The correction
